@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Many craft. Wow. Such create</title><link>/</link><description></description><atom:link href="/feeds/maciej-lasyk.rss.xml" rel="self"></atom:link><lastBuildDate>Fri, 08 Aug 2014 00:21:00 +0200</lastBuildDate><item><title>Moving to Pelican</title><link>/moving-to-pelican.html</link><description>&lt;p&gt;So it finally happened. After 6 months I started migrating my blog from crapy
+Wordpress to &lt;a href="https://github.com/getpelican/pelican/"&gt;Pelican&lt;/a&gt;. There're still plenty of things I have to take care of:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;git automation (pull / push)&lt;/li&gt;
+&lt;li&gt;some commenting functionality&lt;/li&gt;
+&lt;li&gt;layout polishing (current layout is based on &lt;a href="https://github.com/getpelican/pelican-themes/tree/master/monospace"&gt;monospace&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;slug (call it: modrewrite / url fixing)&lt;/li&gt;
+&lt;li&gt;images upload handling (I want all images I use in post content to be uploaded and reformatted automatically&lt;/li&gt;
+&lt;li&gt;code syntax highlightning&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/getpelican/pelican-plugins"&gt;plugins&lt;/a&gt; review&lt;/li&gt;
+&lt;li&gt;RSS handling&lt;/li&gt;
+&lt;li&gt;tag cloud (I'll use only that instead of categories)&lt;/li&gt;
+&lt;li&gt;maybe some spell - check? or rather will stick to VIM - based&lt;/li&gt;
+&lt;li&gt;migrating posts from my old Wordpress - blog&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Looks like a plate is full. ETA? Will be delivered somehow between Monday and
+end of the next year ;)&lt;/p&gt;
+&lt;p&gt;What's beautiful here? It's 100% Markdown &amp;lt;- Pelican &amp;lt;- Nginx &amp;lt;- Docker &amp;lt;-
+Fedora &amp;lt;- my home server :)&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Maciej Lasyk</dc:creator><pubDate>Fri, 08 Aug 2014 00:21:00 +0200</pubDate><guid>tag:,2014-08-08:moving-to-pelican.html</guid><category>pelican</category></item></channel></rss>
