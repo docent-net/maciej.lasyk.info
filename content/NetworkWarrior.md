@@ -1,5 +1,6 @@
 Title: Network Warrior
 Date: 2014-08-18 17:54
+Updated: 2014-08-18 23:13
 Category: ebooks
 Tags: ebooks,networking
 Author: Maciej Lasyk
@@ -13,8 +14,8 @@ finish it. But right now - on holidays - once more I went through table of
 contents and last chapter "**Avoiding Frustration**" brought my attention. I just couldn't
 resist from reading this right - away. Those couple of pages consists of
 author's experiences from years when he was still learning how to work in
-bigger companies (corporate sizes) and how to collaborate with others being
-the teamplayer.
+bigger companies (corporate sizes) and how to collaborate with others acting
+as teamplayer.
 
 Seriously - if you didn't read it yet - just read it. From table of contents:
 
