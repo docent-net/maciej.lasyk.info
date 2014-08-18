@@ -12,6 +12,8 @@ DEFAULT_LANG = u'en'
 
 THEME = "themes/docent"
 
+STATIC_PATHS = ['images', 'pdfs']
+
 # Feed generation is usually not desired when developing
 FEED_ALL_ATOM = None
 CATEGORY_FEED_ATOM = None
@@ -23,7 +25,7 @@ LINKS =  (('Pelican', 'http://getpelican.com/'),
           ('Jinja2', 'http://jinja.pocoo.org/'),
           ('You can modify those links in your config file', '#'),)
 
-# Social widget
+# Social widget.
 SOCIAL = (('You can add links in your config file', '#'),
           ('Another social link', '#'),)
 
