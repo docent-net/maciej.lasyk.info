@@ -28,72 +28,57 @@
         
 
             <header>
-            <h1><a href="" id="site-title">  </a>  <a href="/automating-pelican-with-git.html" id="page-title">Automating Pelican with Git</a></h1>
-<time datetime="2014-08-19T00:35:00">Tue 19 August 2014</time>            </header>
+            <h1><a href="" id="site-title">  </a>  <a href="/lectures-during-holidays.html" id="page-title">Lectures during holidays</a></h1>
+<time datetime="2014-08-20T00:31:00">Wed 20 August 2014</time>            </header>
 
             <article>
-                <p><center><img alt="Pelican Automation with Git" src="/images/pelican-automation.png" /></center></p>
-<p>This is a first blogpost of a whole series about working with
-<a href="http://docs.getpelican.com/">Pelican</a>. I'll be publishing all future post with
-the hashtag <a href="tag/pelican.html">#pelican</a>.</p>
-<h3>What kind of automation?</h3>
-<p>My first step with migrating my <a href="http://maciek.lasyk.info/sysop">old blog</a> to
-this <strong>Pelican - based</strong> was to automate the whole process of deploying new
-posts. I just want to work with <strong>Markdown</strong> files on my laptop and push those
-to the git repository. And let the rest magically happen in the background.</p>
-<h3>Architecture</h3>
-<p>Basically I write posts on my laptop, then I push changes to the remote bare
-git repo, this repo has <strong>post-update</strong> hook which communicates with my
-webserver and tells him to pull all the changes:</p>
-<div class="highlight"><pre>laptop with markdowns ----<span class="o">(</span>git push<span class="o">)</span>----&gt; remote git bare repo 
-----<span class="o">(</span>post-update hook----&gt; webserver
-</pre></div>
-
-
-<h3>Abracadabra</h3>
-<p>What's important here - I've added to the repo my whole <strong>pelican</strong>
-directory. This is because I'm realy lazy and just wanted to keep all the 
-changes and use this repo also for backup purposes. Of course you'll want to
-play with <strong>.gitignore</strong> file and ommit couple of dirs and files :)</p>
-<p>On the server with git bare repo I've created <strong>hooks/post-update</strong> file
-(perms 0700) with following contents:</p>
-<div class="highlight"><pre><span class="c">#!/bin/sh</span>
-
-<span class="c"># just invoke the update script on the webserver:</span>
-ssh home-docker <span class="s1">&#39;/home/docent/scripts/update_maciej.lasyk.info.sh&#39;</span>
-</pre></div>
-
-
-<p>As you can see I'm using here <strong>ssh home-docker</strong> command. This is an alias
-that exists in my <strong>~/.ssh/config</strong>:</p>
-<div class="highlight"><pre>Host home-docker
-Hostname vm-9-containers.netrunner.lasyk.info
-User docent
-Port 22
-ProxyCommand ssh -p 55555 docent@netrunner.lasyk.info nc %h %p 2&gt; /dev/null
-IdentityFile ~/.ssh/id_rsa
-</pre></div>
-
-
-<p>This basically connects to VM hosting Docker containers through the bastion
-server (no direct SSH allowed to containers VM from outside or DMZ).</p>
-<p>So now anytime I post something and commit it to the repo above script will be
-invoked via SSH. And this calls another script - this time on webserver:</p>
-<div class="highlight"><pre><span class="c">#!/bin/bash</span>
-<span class="nv">GIT</span><span class="o">=</span>/usr/bin/git
-
-<span class="nb">cd</span> /srv/docker_mounts/nginx/public_html/maciej.lasyk.info/
-<span class="nv">$GIT</span> fetch --all
-<span class="nv">$GIT</span> reset --hard docent/master
-</pre></div>
-
-
-<p>Above script fetches all data from the remote repository and then sets the
-last commit as the HEAD. No webserver restart is needed here as those are only
-static files :)</p>            </article>
+                <h3>Reading It books during holidays?</h3>
+<p><strong>Are you insanse?</strong> Someone could ask me this question, but seriously - 
+during holidays I read just whatever I have on my list; I don't divide lectures
+into "workdays" and "holidays". I just read what I'd like to read and what I'm 
+comfortable with at the moment. And of those are IT books during holidays - it's
+totally ok :)</p>
+<h3>Mature optimization</h3>
+<p><center><a href="http://carlos.bueno.org/optimization/"><img alt="Mature Optimization" src="/images/mature-optimization.jpg" /></a></center></p>
+<p><a href="http://carlos.bueno.org/optimization/">Mature Optimization</a> by <strong>Carlos Bueno</strong> 
+is a book which could be described the best using words of the author:</p>
+<p><em>I spent a good chunk of the last year working on an internal 
+training class and a short book about performance measurement 
+and optimization. My employer, Facebook, has kindly allowed me 
+to release the book for free.</em></p>
+<h3>Docker Book</h3>
+<p><center><a href="http://www.dockerbook.com/"><img alt="Docker Book" src="/images/dockerbook.jpg" /></a></center></p>
+<p>This is a full know - how about Docker containers. Anyone that thinks about
+turning his infrastructure in the way of lightweight containers should start
+with this reading. Nice to see <a href="http://www.colliernotes.com/">Scott Collier</a>
+as the technical reviewer. Scott works in <strong>RedHat</strong> on Openshift and Docker
+(also <a href="https://github.com/GoogleCloudPlatform/kubernetes">Kubernetes</a>). I
+collaborate with Scott on <a href="https://github.com/fedora-cloud/Fedora-Dockerfiles">Fedora Dockerfiles</a> project within <a href="https://fedoraproject.org">FedoraProject</a>.</p>
+<p>This books imo lacks chapter covering cluster management subject, but as it
+is (the book) still updated with new content I think that we'll have this
+covered.</p>
+<h3>Run or die</h3>
+<p><center><a href="http://www.amazon.com/Run-Die-Kilian-Jornet/dp/1937715094"><img alt="Run or Die" src="/images/runordie.jpg" /></a></center></p>
+<p>This is a story of one of the most famous skyruners of our times. He's still
+amazing us with his new achievements. What can I say - this is a nice and easy
+lecture I really wanted to read (thanks to my wife for finding this!)</p>
+<h3>The Thriatlete's Training Bible</h3>
+<p><center><a href="http://www.amazon.com/Triathletes-Training-Bible-Joe-Friel-ebook/dp/B00BUWY74M"><img alt="The Thriatlete's Training Bible #" src="/images/tritrainingbible.jpg" /></a></center></p>
+<p>As I'm planning to start in my first thriatlon next year, all this year I'm
+preparing for this event. The best way imo is to do the lesson and learn
+about theory of proper training. I know the author <strong>John Friel</strong> for his
+other books (especially <a href="http://www.amazon.com/Cyclists-Training-Bible-Joe-Friel/dp/1931382212">The Cyclist Training Bible</a> 
+and I really found those lectures very rich about good practices, training
+sessions examples and whole training theory.</p>
+<h3>2 weeks ;)</h3>
+<p>...and couple ot thousands of pages to read &amp; understand &amp; make notes. Yeah ;)</p>            </article>
                 <section id="article-list">
                     <h2>All posts</h2>
                     <ol>
+        
+
+ 
+            <li><a href="/automating-pelican-with-git.html" rel="bookmark" title="Permalink to Automating Pelican with Git">Automating Pelican with Git</a></li>
         
 
  

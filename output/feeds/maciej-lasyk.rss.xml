@@ -1,5 +1,44 @@
 <?xml version="1.0" encoding="utf-8"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Many craft. Wow. Such create</title><link>/</link><description></description><atom:link href="/feeds/maciej-lasyk.rss.xml" rel="self"></atom:link><lastBuildDate>Tue, 19 Aug 2014 00:35:00 +0200</lastBuildDate><item><title>Automating Pelican with Git</title><link>/automating-pelican-with-git.html</link><description>&lt;p&gt;&lt;center&gt;&lt;img alt="Pelican Automation with Git" src="/images/pelican-automation.png" /&gt;&lt;/center&gt;&lt;/p&gt;
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Many craft. Wow. Such create</title><link>/</link><description></description><atom:link href="/feeds/maciej-lasyk.rss.xml" rel="self"></atom:link><lastBuildDate>Wed, 20 Aug 2014 00:31:00 +0200</lastBuildDate><item><title>Lectures during holidays</title><link>/lectures-during-holidays.html</link><description>&lt;h3&gt;Reading It books during holidays?&lt;/h3&gt;
+&lt;p&gt;&lt;strong&gt;Are you insanse?&lt;/strong&gt; Someone could ask me this question, but seriously - 
+during holidays I read just whatever I have on my list; I don't divide lectures
+into "workdays" and "holidays". I just read what I'd like to read and what I'm 
+comfortable with at the moment. And of those are IT books during holidays - it's
+totally ok :)&lt;/p&gt;
+&lt;h3&gt;Mature optimization&lt;/h3&gt;
+&lt;p&gt;&lt;center&gt;&lt;a href="http://carlos.bueno.org/optimization/"&gt;&lt;img alt="Mature Optimization" src="/images/mature-optimization.jpg" /&gt;&lt;/a&gt;&lt;/center&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href="http://carlos.bueno.org/optimization/"&gt;Mature Optimization&lt;/a&gt; by &lt;strong&gt;Carlos Bueno&lt;/strong&gt; 
+is a book which could be described the best using words of the author:&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;I spent a good chunk of the last year working on an internal 
+training class and a short book about performance measurement 
+and optimization. My employer, Facebook, has kindly allowed me 
+to release the book for free.&lt;/em&gt;&lt;/p&gt;
+&lt;h3&gt;Docker Book&lt;/h3&gt;
+&lt;p&gt;&lt;center&gt;&lt;a href="http://www.dockerbook.com/"&gt;&lt;img alt="Docker Book" src="/images/dockerbook.jpg" /&gt;&lt;/a&gt;&lt;/center&gt;&lt;/p&gt;
+&lt;p&gt;This is a full know - how about Docker containers. Anyone that thinks about
+turning his infrastructure in the way of lightweight containers should start
+with this reading. Nice to see &lt;a href="http://www.colliernotes.com/"&gt;Scott Collier&lt;/a&gt;
+as the technical reviewer. Scott works in &lt;strong&gt;RedHat&lt;/strong&gt; on Openshift and Docker
+(also &lt;a href="https://github.com/GoogleCloudPlatform/kubernetes"&gt;Kubernetes&lt;/a&gt;). I
+collaborate with Scott on &lt;a href="https://github.com/fedora-cloud/Fedora-Dockerfiles"&gt;Fedora Dockerfiles&lt;/a&gt; project within &lt;a href="https://fedoraproject.org"&gt;FedoraProject&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;This books imo lacks chapter covering cluster management subject, but as it
+is (the book) still updated with new content I think that we'll have this
+covered.&lt;/p&gt;
+&lt;h3&gt;Run or die&lt;/h3&gt;
+&lt;p&gt;&lt;center&gt;&lt;a href="http://www.amazon.com/Run-Die-Kilian-Jornet/dp/1937715094"&gt;&lt;img alt="Run or Die" src="/images/runordie.jpg" /&gt;&lt;/a&gt;&lt;/center&gt;&lt;/p&gt;
+&lt;p&gt;This is a story of one of the most famous skyruners of our times. He's still
+amazing us with his new achievements. What can I say - this is a nice and easy
+lecture I really wanted to read (thanks to my wife for finding this!)&lt;/p&gt;
+&lt;h3&gt;The Thriatlete's Training Bible&lt;/h3&gt;
+&lt;p&gt;&lt;center&gt;&lt;a href="http://www.amazon.com/Triathletes-Training-Bible-Joe-Friel-ebook/dp/B00BUWY74M"&gt;&lt;img alt="The Thriatlete's Training Bible #" src="/images/tritrainingbible.jpg" /&gt;&lt;/a&gt;&lt;/center&gt;&lt;/p&gt;
+&lt;p&gt;As I'm planning to start in my first thriatlon next year, all this year I'm
+preparing for this event. The best way imo is to do the lesson and learn
+about theory of proper training. I know the author &lt;strong&gt;John Friel&lt;/strong&gt; for his
+other books (especially &lt;a href="http://www.amazon.com/Cyclists-Training-Bible-Joe-Friel/dp/1931382212"&gt;The Cyclist Training Bible&lt;/a&gt; 
+and I really found those lectures very rich about good practices, training
+sessions examples and whole training theory.&lt;/p&gt;
+&lt;h3&gt;2 weeks ;)&lt;/h3&gt;
+&lt;p&gt;...and couple ot thousands of pages to read &amp;amp; understand &amp;amp; make notes. Yeah ;)&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Maciej Lasyk</dc:creator><pubDate>Wed, 20 Aug 2014 00:31:00 +0200</pubDate><guid>tag:,2014-08-20:lectures-during-holidays.html</guid><category>ebooks</category><category>books</category></item><item><title>Automating Pelican with Git</title><link>/automating-pelican-with-git.html</link><description>&lt;p&gt;&lt;center&gt;&lt;img alt="Pelican Automation with Git" src="/images/pelican-automation.png" /&gt;&lt;/center&gt;&lt;/p&gt;
 &lt;p&gt;This is a first blogpost of a whole series about working with
 &lt;a href="http://docs.getpelican.com/"&gt;Pelican&lt;/a&gt;. I'll be publishing all future post with
 the hashtag &lt;a href="tag/pelican.html"&gt;#pelican&lt;/a&gt;.&lt;/p&gt;
