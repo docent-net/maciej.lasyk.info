@@ -6,11 +6,12 @@ import socket
 AUTHOR = u'Maciej Lasyk'
 SITENAME = u'Many craft. Wow. Such create'
 SITEURL = ''
-
+print socket.gethostname()
 if(socket.gethostname() == 'fedex.lasyk.info'):
     HOME_URL = 'http://localhost:8000'
 else:
     HOME_URL = 'http://maciej.lasyk.info'
+
 HOME_URL = 'http://'+socket.gethostname()
 TIMEZONE = 'Europe/Paris'
 
