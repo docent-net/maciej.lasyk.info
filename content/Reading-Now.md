@@ -10,7 +10,7 @@ Summary: Books I read during this holidays
 **Are you insanse?** Someone could ask me this question, but seriously - 
 during holidays I read just whatever I have on my list; I don't divide lectures
 into "workdays" and "holidays". I just read what I'd like to read and what I'm 
-comfortable with at the moment. And of those are IT books during holidays - it's
+comfortable with at the moment. And if those are IT books during holidays - it's
 totally ok :)
 
 ### Mature optimization ###
