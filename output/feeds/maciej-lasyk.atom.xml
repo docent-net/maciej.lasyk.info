@@ -1,5 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Many craft. Wow. Such create</title><link href="/" rel="alternate"></link><link href="/feeds/maciej-lasyk.atom.xml" rel="self"></link><id>/</id><updated>2014-08-20T00:31:00+02:00</updated><entry><title>Lectures during holidays</title><link href="/lectures-during-holidays.html" rel="alternate"></link><updated>2014-08-20T00:31:00+02:00</updated><author><name>Maciej Lasyk</name></author><id>tag:,2014-08-20:lectures-during-holidays.html</id><summary type="html">&lt;h3&gt;Reading It books during holidays?&lt;/h3&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Many craft. Wow. Such create</title><link href="/" rel="alternate"></link><link href="/feeds/maciej-lasyk.atom.xml" rel="self"></link><id>/</id><updated>2014-08-20T22:46:00+02:00</updated><entry><title>Online Courses</title><link href="/online-courses.html" rel="alternate"></link><updated>2014-08-20T22:46:00+02:00</updated><author><name>Maciej Lasyk</name></author><id>tag:,2014-08-20:online-courses.html</id><summary type="html">&lt;h3&gt;What about onlince courses?&lt;/h3&gt;
+&lt;p&gt;I've been using couple of online educational services (IT mainly) and wanted
+to share a short list of those I used - with a little comment:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://www.coursera.org/"&gt;Coursera&lt;/a&gt; - very rich courses library, mainly
+  university level; ++ for mobile apps; courses are not self - paced&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.codeschool.com/"&gt;CodeSchool&lt;/a&gt; - Mainly webdev &amp;amp; mobiledev courses;
+  sometimes I have filling that videos are too childish; also not that many
+  excercises to do; self - paced&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://www.codecademy.com/"&gt;CodeAcademy&lt;/a&gt; - like &lt;strong&gt;CodeSchool&lt;/strong&gt; mainly webdev
+  courses (and backend ones also); not that childish - I liked using this; 
+  self - paced&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://www.learnstreet.com/"&gt;LearnStreet&lt;/a&gt; - pity it's closed now; this was 
+  really great service with many excercises and rich content; mentioning it
+  because I really believe it will be live again; self - paced&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.udemy.com/"&gt;udemy&lt;/a&gt; - didn't use this one, but my wife does ;) 
+  self - paced, rich of wide angle - courses (not only IT)&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.class-central.com"&gt;ClassCentral&lt;/a&gt; - it's rather an agregator of 
+  many courses - engines (like &lt;strong&gt;Coursera&lt;/strong&gt;). Worth mentioning as provides
+  calendar of courses from many services&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://www.pluralsight.com/"&gt;Pluralsight&lt;/a&gt; - very rich library of self - 
+  paced IT courses; I've moved here as this one covers majority of topics
+  that I wanted to learn about or retrain&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;I think that those services could be a solid base for development planning
+in any company.&lt;/p&gt;</summary><category term="courses"></category></entry><entry><title>Lectures during holidays</title><link href="/lectures-during-holidays.html" rel="alternate"></link><updated>2014-08-20T00:31:00+02:00</updated><author><name>Maciej Lasyk</name></author><id>tag:,2014-08-20:lectures-during-holidays.html</id><summary type="html">&lt;h3&gt;Reading It books during holidays?&lt;/h3&gt;
 &lt;p&gt;&lt;strong&gt;Are you insanse?&lt;/strong&gt; Someone could ask me this question, but seriously - 
 during holidays I read just whatever I have on my list; I don't divide lectures
 into "workdays" and "holidays". I just read what I'd like to read and what I'm 
