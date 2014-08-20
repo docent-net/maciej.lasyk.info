@@ -58,6 +58,6 @@ other books (especially [The Cyclist Training Bible](http://www.amazon.com/Cycli
 and I really found those lectures very rich about good practices, training
 sessions examples and whole training theory.
 
-### 2 weeks ;) ###
+### 2 weeks ###
 
 ...and couple ot thousands of pages to read & understand & make notes. Yeah ;)
