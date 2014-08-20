@@ -43,8 +43,8 @@ covered.
 
 <center>[![Run or Die]({filename}/images/runordie.jpg)](http://www.amazon.com/Run-Die-Kilian-Jornet/dp/1937715094)</center>
 
-This is a story of one of the most famous skyruners of our times. He's still
-amazing us with his new achievements. What can I say - this is a nice and easy
+This is a story of one of the most famous skyrunners of our times. He still
+amazes us with his new achievements. What can I say - this is a nice and easy
 lecture I really wanted to read (thanks to my wife for finding this!)
 
 ### The Thriatlete's Training Bible ###
@@ -54,7 +54,7 @@ lecture I really wanted to read (thanks to my wife for finding this!)
 As I'm planning to start in my first thriatlon next year, all this year I'm
 preparing for this event. The best way imo is to do the lesson and learn
 about theory of proper training. I know the author **John Friel** for his
-other books (especially [The Cyclist Training Bible](http://www.amazon.com/Cyclists-Training-Bible-Joe-Friel/dp/1931382212) 
+other books (especially [The Cyclist Training Bible](http://www.amazon.com/Cyclists-Training-Bible-Joe-Friel/dp/1931382212))
 and I really found those lectures very rich about good practices, training
 sessions examples and whole training theory.
 
