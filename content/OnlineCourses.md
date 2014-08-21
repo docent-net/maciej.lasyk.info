@@ -10,7 +10,7 @@ Summary: Short lsit of online courses, which I found usable & interesting
 I've been using couple of online educational services (IT mainly) and wanted
 to share a short list of those I used - with a little comment:
 
-- [Coursera](https://www.coursera.org/) - very rich courses library, mainly
+- [Coursera](https://www.coursera.org/) - library full of varied courses, mainly
   university level; ++ for mobile apps; courses are not self - paced
 - [CodeSchool](https://www.codeschool.com/) - Mainly webdev & mobiledev courses;
   sometimes I have feeling that videos are too childish; also not that many
