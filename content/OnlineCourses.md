@@ -13,7 +13,7 @@ to share a short list of those I used - with a little comment:
 - [Coursera](https://www.coursera.org/) - very rich courses library, mainly
   university level; ++ for mobile apps; courses are not self - paced
 - [CodeSchool](https://www.codeschool.com/) - Mainly webdev & mobiledev courses;
-  sometimes I have filling that videos are too childish; also not that many
+  sometimes I have feeling that videos are too childish; also not that many
   excercises to do; self - paced
 - [CodeAcademy](http://www.codecademy.com/) - like **CodeSchool** mainly webdev
   courses (and backend ones also); not that childish - I liked using this; 
