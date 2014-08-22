@@ -3,7 +3,7 @@ Date: 2014-08-20 22:46
 Category: tech
 Tags: courses
 Author: Maciej Lasyk
-Summary: Short lsit of online courses, which I found usable & interesting
+Summary: Short list of online courses, which I found usable & interesting
 
 ### What about onlince courses? ###
 
