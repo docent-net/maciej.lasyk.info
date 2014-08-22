@@ -90,17 +90,13 @@ invoked via SSH. And this calls another script - this time on webserver:</p>
 last commit as the HEAD. No webserver restart is needed here as those are only
 static files :)</p>
     <h3>Comments</h3>
-    <div id="disqus_thread"></div>
-    <script type="text/javascript">
-       var disqus_shortname = 'manycraft';
-       var disqus_identifier = 'automating-pelican-with-git.html';
-       var disqus_url = '/automating-pelican-with-git.html';
-       (function() {
-            var dsq = document.createElement('script');
-            dsq.type = 'text/javascript'; dsq.async = true;
-            dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
-            (document.getElementsByTagName('head')[0] ||
-             document.getElementsByTagName('body')[0]).appendChild(dsq);
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+    var disqus_shortname = 'manycraft';
+      (function() {
+          var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+          dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+          (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
       })();
     </script>
 </article>
@@ -143,15 +139,6 @@ static files :)</p>
   ga('send', 'pageview');
 
 </script>
-<div id="disqus_thread"></div>
-<script type="text/javascript">
-    var disqus_shortname = 'manycraft';
-      (function() {
-          var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-          dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
-          (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-      })();
-    </script>
 
     </div>
 
