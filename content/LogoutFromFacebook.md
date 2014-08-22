@@ -45,6 +45,12 @@ with other people who you don't have to know or cannot contact personally.
 - ~100mb of space on my phone ;)
 - I'll focus on this blog so there's non - zero chance that it will be more
   human - usable
+- I was always a writer kind of person who likes to document events. FB is very
+  bad when someones decide to post there story from a voyage because it will
+  simply be lost after some time. Internet of things works better - when you 
+  have your own webpage it is indexed by many serch engines and people can easily
+  come back here.
+- Confidence that content I create will survive as it is hosted in a way I decide
 
 ### Did I logout completely? ###
 
