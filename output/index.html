@@ -28,40 +28,71 @@
         
 
             <header>
-            <h1><a href="" id="site-title">  </a>  <a href="/discourse-and-piwik.html" id="page-title">Discourse and Piwik</a></h1>
-<time datetime="2014-08-23T00:15:00">Sat 23 August 2014</time> under <a href="/category/tech.html">tech</a>
-            </header>
+            <h1><a href="" id="site-title">  </a>  <a href="/dns-views-in-bind.html" id="page-title">DNS views in BIND</a></h1>
+<time datetime="2014-09-02T08:15:00">Tue 02 September 2014</time>            </header>
 
             <article>
-                <h3>Erm, what?</h3>
-<p>For the last couple of years I've been favorizing Open Source software. That's
-why after many years of using <a href="https://www.disqus.com">Disqus</a> for comments and
-<a href="https://analytics.google.com">Google Analytics</a> for statistics I've decided
-to go Open Source.</p>
-<h3>Why?</h3>
-<ul>
-<li>Because it's open source</li>
-<li>Because I like hosting my services on my servers</li>
-<li>Because I value my privacy</li>
-<li>Because when I host something then it's on my rules</li>
-</ul>
-<h3>Discourse</h3>
-<ul>
-<li>This is Disqus alternative</li>
-<li>Official webpage: <a href="http://www.discourse.org/">Discourse</a></li>
-<li>Install notes via <strong>Docker</strong>(!): <a href="https://github.com/discourse/discourse/blob/master/docs/INSTALL.md">github</a></li>
-</ul>
-<h3>Piwik</h3>
-<ul>
-<li>This is Google analytics alternative</li>
-<li>Official webpage: <a href="http://piwik.org/">Piwik</a></li>
-<li>Install notes: <a href="http://piwik.org/docs/installation/">here</a></li>
-</ul>
-<p>Piwik doesn't have official Docker images - I'll work on that within <a href="https://github.com/fedora-cloud/Fedora-Dockerfiles">Fedora Dockerfiles</a> 
-and maybe I'll try to push this as another official installation method of Piwik.</p><p>There are <a href="/discourse-and-piwik.html#disqus_thread">comments</a>.</p>            </article>
+                <h3>Why would I use DNS BIND views?</h3>
+<p>From the manual: <strong>The view clause allows BIND to provide different
+functionality based on the hosts accessing it.</strong></p>
+<p>So basically you can provide one group of users with one variant of same zone 
+and different part of users with other variant of zone file.</p>
+<p>This is very important - I've seen many poor - man's solutions when there was a
+need to provide different views in DNSes. <strong>view</strong> clause is the proper
+solution.</p>
+<h3>How?</h3>
+<p><strong>view Clause Syntax:</strong></p>
+<div class="highlight"><pre>view <span class="s2">&quot;view_name&quot;</span> <span class="o">[</span>class<span class="o">]</span> <span class="o">{</span>
+      <span class="o">[</span> match-clients <span class="o">{</span>  address_match_list <span class="o">}</span> ; <span class="o">]</span>
+      <span class="o">[</span> match-destinations <span class="o">{</span> address_match_list <span class="o">}</span> ; <span class="o">]</span>
+      <span class="o">[</span> match-recursive-only <span class="o">{</span> yes | no <span class="o">}</span> ; <span class="o">]</span>
+      // view statements
+      // zone clauses
+<span class="o">}</span>;
+</pre></div>
+
+
+<p>So i.e. when we want to serve different view for <strong>lasyk.info</strong> domain for 2
+grups of users (one would be guys from internet, second - guys from my LAN) we
+would do something like this:</p>
+<p><strong>set up proper ACL:</strong></p>
+<div class="highlight"><pre>acl internal <span class="o">{</span>
+       192.168.10.0/24;
+       localhost;
+<span class="o">}</span>;
+</pre></div>
+
+
+<p><strong>define zone:</strong></p>
+<div class="highlight"><pre>view <span class="s2">&quot;internal-view&quot;</span> <span class="o">{</span>
+      match-clients <span class="o">{</span> internal; <span class="o">}</span>;
+      recursion yes;
+
+      zone <span class="s2">&quot;lasyk.info&quot;</span> IN <span class="o">{</span>
+            <span class="nb">type </span>master;
+            file <span class="s2">&quot;internal.lasyk.info.conf&quot;</span>;
+            allow-transfer <span class="o">{</span> any; <span class="o">}</span>
+      <span class="o">}</span>;
+view <span class="s2">&quot;external-view&quot;</span> <span class="o">{</span>
+      match-clients <span class="o">{</span> any; <span class="o">}</span>;
+      recursion no;
+
+      zone <span class="s2">&quot;lasyk.info&quot;</span> IN <span class="o">{</span>
+            <span class="nb">type </span>master;
+            file <span class="s2">&quot;external.lasyk.info.conf&quot;</span>;
+            allow-transfer <span class="o">{</span> none; <span class="o">}</span>;
+      <span class="o">}</span>;
+</pre></div>
+
+
+<p>Now just create proper zone - files, <strong>rndc reload</strong> and test it with <strong>dig</strong></p>            </article>
                 <section id="article-list">
                     <h2>All posts</h2>
                     <ol>
+        
+
+ 
+            <li><a href="/discourse-and-piwik.html" rel="bookmark" title="Permalink to Discourse and Piwik">Discourse and Piwik</a></li>
         
 
  
@@ -112,21 +143,11 @@ and maybe I'll try to push this as another official installation method of Piwik
                         href="http://wordpress.org/themes/monospace">Monospace</a>
                 || Created with <a href="">Pelican</a> || Hosted with <a
                     href="http://docker.io/">Docker</a></span>
-                <p>copyrights &copy; Maciej Lasyk</p>
+                <p>content copyrights &copy; Maciej Lasyk</p>
             </div>
                 
         </div>
 
-<script>
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-  ga('create', 'UA-61452-19', 'auto');
-  ga('send', 'pageview');
-
-</script>
 
     </div>
 
