@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Many craft. Wow. Such create</title><link>/</link><description></description><atom:link href="/feeds/maciej-lasyk.rss.xml" rel="self"></atom:link><lastBuildDate>Tue, 02 Sep 2014 08:15:00 +0200</lastBuildDate><item><title>DNS views in BIND</title><link>/dns-views-in-bind.html</link><description>&lt;h3&gt;Why would I use DNS BIND views?&lt;/h3&gt;
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Many craft. Wow. Such create</title><link>/</link><description></description><atom:link href="/feeds/maciej-lasyk.rss.xml" rel="self"></atom:link><lastBuildDate>Thu, 04 Sep 2014 18:38:00 +0200</lastBuildDate><item><title>Sysadmin evolution</title><link>/sysadmin-evolution.html</link><description>&lt;h3&gt;Sysadmin evolution&lt;/h3&gt;
+&lt;p&gt;A couple of days ago on &lt;a href="http://www.thelinuxfoundation.org"&gt;The Linux Foundation&lt;/a&gt;
+appeared an image showing how could sysadmin advance his experience. I think
+that it's really worth mentioning, so check this &lt;a href="/images/EvolutionSysadmin_Infographic.png"&gt;image&lt;/a&gt;&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Maciej Lasyk</dc:creator><pubDate>Thu, 04 Sep 2014 18:38:00 +0200</pubDate><guid>tag:,2014-09-04:sysadmin-evolution.html</guid><category>ops</category></item><item><title>DNS views in BIND</title><link>/dns-views-in-bind.html</link><description>&lt;h3&gt;Why would I use DNS BIND views?&lt;/h3&gt;
 &lt;p&gt;From the manual: &lt;strong&gt;The view clause allows BIND to provide different
 functionality based on the hosts accessing it.&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;So basically you can provide one group of users with one variant of same zone 
