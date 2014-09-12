@@ -33,4 +33,11 @@ This rather doesn't fit my github repo ;)
     - telnet
 ```
 
+And there would be one [dependency](http://docs.ansible.com/playbooks_roles.html#role-dependencies) here ([EPEL](https://fedoraproject.org/wiki/EPEL) repo):
+
+```bash
+- name: install epel repo
+  yum: name=http://dl.fedoraproject.org/pub/epel/6/x86_64/epel-release-6-8.noarch.rpm state=present
+```
+
 That is only for starters; I'd add here also [sysdig](http://www.sysdig.org/) and whole playbook for preparing user env.

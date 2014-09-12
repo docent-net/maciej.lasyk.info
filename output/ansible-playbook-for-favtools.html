@@ -55,6 +55,12 @@
 </pre></div>
 
 
+<p>And there would be one <a href="http://docs.ansible.com/playbooks_roles.html#role-dependencies">dependency</a> here (<a href="https://fedoraproject.org/wiki/EPEL">EPEL</a> repo):</p>
+<div class="highlight"><pre>- name: install epel repo
+  yum: <span class="nv">name</span><span class="o">=</span>http://dl.fedoraproject.org/pub/epel/6/x86_64/epel-release-6-8.noarch.rpm <span class="nv">state</span><span class="o">=</span>present
+</pre></div>
+
+
 <p>That is only for starters; I'd add here also <a href="http://www.sysdig.org/">sysdig</a> and whole playbook for preparing user env.</p>
 </article>
             </div>

@@ -25,6 +25,12 @@
 &lt;/pre&gt;&lt;/div&gt;
 
 
+&lt;p&gt;And there would be one &lt;a href="http://docs.ansible.com/playbooks_roles.html#role-dependencies"&gt;dependency&lt;/a&gt; here (&lt;a href="https://fedoraproject.org/wiki/EPEL"&gt;EPEL&lt;/a&gt; repo):&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;- name: install epel repo
+  yum: &lt;span class="nv"&gt;name&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;http://dl.fedoraproject.org/pub/epel/6/x86_64/epel-release-6-8.noarch.rpm &lt;span class="nv"&gt;state&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;present
+&lt;/pre&gt;&lt;/div&gt;
+
+
 &lt;p&gt;That is only for starters; I'd add here also &lt;a href="http://www.sysdig.org/"&gt;sysdig&lt;/a&gt; and whole playbook for preparing user env.&lt;/p&gt;</summary><category term="ansible"></category><category term="centos"></category><category term="fedora"></category></entry><entry><title>Sysadmin evolution</title><link href="/sysadmin-evolution.html" rel="alternate"></link><updated>2014-09-04T18:38:00+02:00</updated><author><name>Maciej Lasyk</name></author><id>tag:,2014-09-04:sysadmin-evolution.html</id><summary type="html">&lt;h3&gt;Sysadmin evolution&lt;/h3&gt;
 &lt;p&gt;A couple of days ago on &lt;a href="http://training.linuxfoundation.org/sysadmin-evolution"&gt;The Linux Foundation&lt;/a&gt;
 appeared an image showing how could sysadmin advance his experience. I think
