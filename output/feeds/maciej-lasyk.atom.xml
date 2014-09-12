@@ -17,7 +17,6 @@
     - links
     - man
     - ntp
-    - ntpd
     - &lt;span class="nb"&gt;bind&lt;/span&gt;-utils
     - nmap
     - wget

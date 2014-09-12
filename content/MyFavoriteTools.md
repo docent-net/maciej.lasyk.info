@@ -26,7 +26,6 @@ This rather doesn't fit my github repo ;)
     - links
     - man
     - ntp
-    - ntpd
     - bind-utils
     - nmap
     - wget
