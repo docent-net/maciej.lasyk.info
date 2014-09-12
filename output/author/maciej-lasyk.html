@@ -28,17 +28,44 @@
         
 
             <header>
-            <h1><a href="" id="site-title">  </a>  <a href="/sysadmin-evolution.html" id="page-title">Sysadmin evolution</a></h1>
-<time datetime="2014-09-04T18:38:00">Thu 04 September 2014</time>            </header>
+            <h1><a href="" id="site-title">  </a>  <a href="/ansible-playbook-for-favtools.html" id="page-title">Ansible Playbook for favtools</a></h1>
+<time datetime="2014-09-12T23:24:00">Fri 12 September 2014</time>            </header>
 
             <article>
-                <h3>Sysadmin evolution</h3>
-<p>A couple of days ago on <a href="http://www.thelinuxfoundation.org">The Linux Foundation</a>
-appeared an image showing how could sysadmin advance his experience. I think
-that it's really worth mentioning, so check this <a href="/images/EvolutionSysadmin_Infographic.png">image</a></p>            </article>
+                <h3>playbook</h3>
+<p>This rather doesn't fit my github repo ;)</p>
+<div class="highlight"><pre>- name: Ensure my favorite tools are installed
+  yum: <span class="nv">pkg</span><span class="o">={{</span>item<span class="o">}}</span> <span class="nv">state</span><span class="o">=</span>latest
+  with_items:
+    - strace
+    - ltrace
+    - tcpdump
+    - vim
+    - procps
+    - sysstat
+    - git
+    - make
+    - gcc
+    - tmux
+    - links
+    - man
+    - ntp
+    - ntpd
+    - <span class="nb">bind</span>-utils
+    - nmap
+    - wget
+    - telnet
+</pre></div>
+
+
+<p>That is only for starters; I'd add here also <a href="http://www.sysdig.org/">sysdig</a> and whole playbook for preparing user env.</p>            </article>
                 <section id="article-list">
                     <h2>All posts</h2>
                     <ol>
+        
+
+ 
+            <li><a href="/sysadmin-evolution.html" rel="bookmark" title="Permalink to Sysadmin evolution">Sysadmin evolution</a></li>
         
 
  
