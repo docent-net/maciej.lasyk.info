@@ -26,7 +26,7 @@
 
 
 &lt;p&gt;That is only for starters; I'd add here also &lt;a href="http://www.sysdig.org/"&gt;sysdig&lt;/a&gt; and whole playbook for preparing user env.&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Maciej Lasyk</dc:creator><pubDate>Fri, 12 Sep 2014 23:24:00 +0200</pubDate><guid>tag:,2014-09-12:ansible-playbook-for-favtools.html</guid><category>ansible</category><category>centos</category><category>fedora</category></item><item><title>Sysadmin evolution</title><link>/sysadmin-evolution.html</link><description>&lt;h3&gt;Sysadmin evolution&lt;/h3&gt;
-&lt;p&gt;A couple of days ago on &lt;a href="http://www.thelinuxfoundation.org"&gt;The Linux Foundation&lt;/a&gt;
+&lt;p&gt;A couple of days ago on &lt;a href="http://training.linuxfoundation.org/sysadmin-evolution"&gt;The Linux Foundation&lt;/a&gt;
 appeared an image showing how could sysadmin advance his experience. I think
 that it's really worth mentioning, so check this &lt;a href="/images/EvolutionSysadmin_Infographic.png"&gt;image&lt;/a&gt;&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Maciej Lasyk</dc:creator><pubDate>Thu, 04 Sep 2014 18:38:00 +0200</pubDate><guid>tag:,2014-09-04:sysadmin-evolution.html</guid><category>ops</category></item><item><title>DNS views in BIND</title><link>/dns-views-in-bind.html</link><description>&lt;h3&gt;Why would I use DNS BIND views?&lt;/h3&gt;
 &lt;p&gt;From the manual: &lt;strong&gt;The view clause allows BIND to provide different
