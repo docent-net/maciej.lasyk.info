@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Many craft. Wow. Such create</title><link>/</link><description></description><atom:link href="/feeds/maciej-lasyk.rss.xml" rel="self"></atom:link><lastBuildDate>Sun, 14 Sep 2014 11:46:00 +0200</lastBuildDate><item><title>Network Manager Dispatcher</title><link>/network-manager-dispatcher.html</link><description>&lt;p&gt;&lt;a href="https://en.wikipedia.org/wiki/NetworkManager"&gt;NetworkManager&lt;/a&gt; is often 
-associated with some voodo - network - magic tool, that does the work on 
+associated with some voodoo - network - magic tool, that does the work on 
 laptop, but better switch it off on server. I won't argue about that, just 
 wanted to give you something I personally think make NM more usable.&lt;/p&gt;
 &lt;p&gt;So it is the &lt;strong&gt;/etc/NetworkManager/dispatcher.d&lt;/strong&gt; - this is directory under

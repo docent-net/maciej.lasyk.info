@@ -6,7 +6,7 @@ Author: Maciej Lasyk
 Summary: Short story why one coulde like NetworkManager
 
 [NetworkManager](https://en.wikipedia.org/wiki/NetworkManager) is often 
-associated with some voodo - network - magic tool, that does the work on 
+associated with some voodoo - network - magic tool, that does the work on 
 laptop, but better switch it off on server. I won't argue about that, just 
 wanted to give you something I personally think make NM more usable.
 
