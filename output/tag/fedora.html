@@ -28,42 +28,43 @@
         
 
             <header>
-            <h1><a href="" id="site-title">  </a>  <a href="/ansible-playbook-for-favtools.html" id="page-title">Ansible Playbook for favtools</a></h1>
-<time datetime="2014-09-12T23:24:00">Fri 12 September 2014</time>            </header>
+            <h1><a href="" id="site-title">  </a>  <a href="/network-manager-dispatcher.html" id="page-title">Network Manager Dispatcher</a></h1>
+<time datetime="2014-09-14T11:46:00">Sun 14 September 2014</time>            </header>
 
             <article>
-                <h3>playbook</h3>
-<p>This rather doesn't fit my github repo ;)</p>
-<div class="highlight"><pre>- name: Ensure my favorite tools are installed
-  yum: <span class="nv">pkg</span><span class="o">={{</span>item<span class="o">}}</span> <span class="nv">state</span><span class="o">=</span>latest
-  with_items:
-    - strace
-    - ltrace
-    - tcpdump
-    - vim
-    - procps
-    - sysstat
-    - git
-    - make
-    - gcc
-    - tmux
-    - links
-    - man
-    - ntp
-    - <span class="nb">bind</span>-utils
-    - nmap
-    - wget
-    - telnet
-</pre></div>
+                <p><a href="https://en.wikipedia.org/wiki/NetworkManager">NetworkManager</a> is often 
+associated with some voodo - network - magic tool, that does the work on 
+laptop, but better switch it off on server. I won't argue about that, just 
+wanted to give you something I personally think make NM more usable.</p>
+<p>So it is the <strong>/etc/NetworkManager/dispatcher.d</strong> - this is directory under
+which lay scripts which will be executed on network change. Following
+man-pages:</p>
+<p><em>NetworkManager will execute scripts in the /etc/NetworkManager/dispatcher.d 
+directory in alphabetical order in response to network events. Each script 
+should be a regular executable file, owned by root.</em></p>
+<p><em>Furthermore, it must not be writable by group or other, and not setuid.</em></p>
+<p><em>Each script receives two arguments, the first being the interface name of
+the device just activated, and second an action.</em></p>
+<ul>
+<li><strong>down</strong> - The interface has been deactivated.</li>
+<li><strong>vpn-up</strong> - A VPN connection has been activated.</li>
+<li><strong>vpn-down</strong> - A VPN connection has been deactivated.</li>
+<li><strong>hostname</strong> - The system hostname has been updated. Use gethostname(2) to
+  retrieve it.</li>
+<li><strong>dhcp4-change</strong> - The DHCPv4 lease has changed (renewed, rebound, etc).</li>
+<li><strong>dhcp6-change</strong> - The DHCPv6 lease has changed (renewed, rebound, etc).</li>
+</ul>
+<p>So basically without manually detecting change in network events we may use the
+tool that was created just for this particular goal.</p>            </article>
+                <section id="article-list">
+                    <h2>All posts</h2>
+                    <ol>
+        
 
-
-<p>And there would be one <a href="http://docs.ansible.com/playbooks_roles.html#role-dependencies">dependency</a> here (<a href="https://fedoraproject.org/wiki/EPEL">EPEL</a> repo):</p>
-<div class="highlight"><pre>- name: install epel repo
-  yum: <span class="nv">name</span><span class="o">=</span>http://dl.fedoraproject.org/pub/epel/6/x86_64/epel-release-6-8.noarch.rpm <span class="nv">state</span><span class="o">=</span>present
-</pre></div>
-
-
-<p>That is only for starters; I'd add here also <a href="http://www.sysdig.org/">sysdig</a> and whole playbook for preparing user env.</p>            </article>
+ 
+            <li><a href="/ansible-playbook-for-favtools.html" rel="bookmark" title="Permalink to Ansible Playbook for favtools">Ansible Playbook for favtools</a></li>
+    </ol>
+    </section><!-- #article-list -->
             </div>
         </div>
 
