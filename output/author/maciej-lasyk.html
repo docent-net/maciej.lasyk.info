@@ -28,81 +28,81 @@
         
 
             <header>
-            <h1><a href="" id="site-title">  </a>  <a href="/network-manager-dispatcher.html" id="page-title">Network Manager Dispatcher</a></h1>
-<time datetime="2014-09-14T11:46:00">Sun 14 September 2014</time>            </header>
+            <h1><a href="" id="site-title">  </a>  <a href="/2014/Sep/22/openwrt-dnsmasq-external-dns/" id="page-title">OpenWRT, Dnsmasq + external DNS</a></h1>
+<time datetime="2014-09-22T00:00:00">Mon 22 September 2014</time>            </header>
 
             <article>
-                <p><a href="https://en.wikipedia.org/wiki/NetworkManager">NetworkManager</a> is often 
-associated with some voodoo - network - magic tool, that does the work on 
-laptop, but better switch it off on server. I won't argue about that, just 
-wanted to give you something I personally think make NM more usable.</p>
-<p>So it is the <strong>/etc/NetworkManager/dispatcher.d</strong> - this is directory under
-which lay scripts which will be executed on network change. Following
-man-pages:</p>
-<p><em>NetworkManager will execute scripts in the /etc/NetworkManager/dispatcher.d 
-directory in alphabetical order in response to network events. Each script 
-should be a regular executable file, owned by root.</em></p>
-<p><em>Furthermore, it must not be writable by group or other, and not setuid.</em></p>
-<p><em>Each script receives two arguments, the first being the interface name of
-the device just activated, and second an action.</em></p>
-<ul>
-<li><strong>down</strong> - The interface has been deactivated.</li>
-<li><strong>vpn-up</strong> - A VPN connection has been activated.</li>
-<li><strong>vpn-down</strong> - A VPN connection has been deactivated.</li>
-<li><strong>hostname</strong> - The system hostname has been updated. Use gethostname(2) to
-  retrieve it.</li>
-<li><strong>dhcp4-change</strong> - The DHCPv4 lease has changed (renewed, rebound, etc).</li>
-<li><strong>dhcp6-change</strong> - The DHCPv6 lease has changed (renewed, rebound, etc).</li>
-</ul>
-<p>So basically without manually detecting change in network events we may use the
-tool that was created just for this particular goal.</p>            </article>
+                <p>I use <a href="https://openwrt.org/">OpenWRT</a> on my home access - points instead of
+stock software (due to security concerns and my OpenSourceTheWorld approach).</p>
+<p>I also have <a href="https://en.wikipedia.org/wiki/BIND">BIND</a> in use on my
+home-server, so I can use e.g. <a href="/2014/Sep/02/dns-views-in-bind/">zones</a>.</p>
+<p>So I was trying to make OpenWRT send DNS IP address to DHCP clients. By default
+OpenWRT will send it's own IP (it's using Dnsmasq onboard). And I just couldn't
+find option to set this manually (using webinteface).</p>
+<p>Finally I logged into CLI interface via SSH and found that this change can be
+made in two ways.</p>
+<p>In <strong>/etc/dnsmasq.conf</strong> by adding line:</p>
+<div class="highlight"><pre>dhcp-option<span class="o">=</span>6,IP1,IP2
+</pre></div>
+
+
+<p>Or in <strong>/etc/config/dhcp</strong> by adding to the section <strong>config dnsmasq</strong>:</p>
+<div class="highlight"><pre>list <span class="s1">&#39;dhcp_option&#39;</span> <span class="s1">&#39;6,192.168.1.29&#39;</span>
+</pre></div>
+
+
+<p>Just restart Dnsmaq service afterwards and you're done.</p>            </article>
                 <section id="article-list">
                     <h2>All posts</h2>
                     <ol>
         
 
  
-            <li><a href="/ansible-playbook-for-favtools.html" rel="bookmark" title="Permalink to Ansible Playbook for favtools">Ansible Playbook for favtools</a></li>
+            <li><a href="/2014/Sep/14/network-manager-dispatcher/" rel="bookmark" title="Permalink to Network Manager Dispatcher">Network Manager Dispatcher</a></li>
         
 
  
-            <li><a href="/sysadmin-evolution.html" rel="bookmark" title="Permalink to Sysadmin evolution">Sysadmin evolution</a></li>
+            <li><a href="/2014/Sep/12/ansible-playbook-for-favtools/" rel="bookmark" title="Permalink to Ansible Playbook for favtools">Ansible Playbook for favtools</a></li>
         
 
  
-            <li><a href="/dns-views-in-bind.html" rel="bookmark" title="Permalink to DNS views in BIND">DNS views in BIND</a></li>
+            <li><a href="/2014/Sep/04/sysadmin-evolution/" rel="bookmark" title="Permalink to Sysadmin evolution">Sysadmin evolution</a></li>
         
 
  
-            <li><a href="/discourse-and-piwik.html" rel="bookmark" title="Permalink to Discourse and Piwik">Discourse and Piwik</a></li>
+            <li><a href="/2014/Sep/02/dns-views-in-bind/" rel="bookmark" title="Permalink to DNS views in BIND">DNS views in BIND</a></li>
         
 
  
-            <li><a href="/logout-from-facebook.html" rel="bookmark" title="Permalink to Logout from Facebook">Logout from Facebook</a></li>
+            <li><a href="/2014/Aug/23/discourse-and-piwik/" rel="bookmark" title="Permalink to Discourse and Piwik">Discourse and Piwik</a></li>
         
 
  
-            <li><a href="/online-courses.html" rel="bookmark" title="Permalink to Online Courses">Online Courses</a></li>
+            <li><a href="/2014/Aug/22/logout-from-facebook/" rel="bookmark" title="Permalink to Logout from Facebook">Logout from Facebook</a></li>
         
 
  
-            <li><a href="/lectures-during-holidays.html" rel="bookmark" title="Permalink to Lectures during holidays">Lectures during holidays</a></li>
+            <li><a href="/2014/Aug/20/online-courses/" rel="bookmark" title="Permalink to Online Courses">Online Courses</a></li>
         
 
  
-            <li><a href="/automating-pelican-with-git.html" rel="bookmark" title="Permalink to Automating Pelican with Git">Automating Pelican with Git</a></li>
+            <li><a href="/2014/Aug/20/lectures-during-holidays/" rel="bookmark" title="Permalink to Lectures during holidays">Lectures during holidays</a></li>
         
 
  
-            <li><a href="/network-warrior.html" rel="bookmark" title="Permalink to Network Warrior">Network Warrior</a></li>
+            <li><a href="/2014/Aug/19/automating-pelican-with-git/" rel="bookmark" title="Permalink to Automating Pelican with Git">Automating Pelican with Git</a></li>
         
 
  
-            <li><a href="/moving-to-pelican.html" rel="bookmark" title="Permalink to Moving to Pelican">Moving to Pelican</a></li>
+            <li><a href="/2014/Aug/18/network-warrior/" rel="bookmark" title="Permalink to Network Warrior">Network Warrior</a></li>
         
 
  
-            <li><a href="/creator-bias.html" rel="bookmark" title="Permalink to Creator Bias">Creator Bias</a></li>
+            <li><a href="/2014/Aug/08/moving-to-pelican/" rel="bookmark" title="Permalink to Moving to Pelican">Moving to Pelican</a></li>
+        
+
+ 
+            <li><a href="/2014/Jul/29/creator-bias/" rel="bookmark" title="Permalink to Creator Bias">Creator Bias</a></li>
     </ol>
     </section><!-- #article-list -->
             </div>

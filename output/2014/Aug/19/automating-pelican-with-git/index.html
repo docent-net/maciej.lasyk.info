@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <title>Many craft. Wow. Such create : Automating Pelican with Git</title>
+        <meta charset="utf-8" />
+        <link rel="stylesheet" href="/theme/css/main.css" type="text/css" />
+        <link href="/" type="application/atom+xml" rel="alternate" title="Many craft. Wow. Such create ATOM Feed" />
+
+        <!--[if IE]>
+                <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+
+        <!--[if lte IE 7]>
+                <link rel="stylesheet" type="text/css" media="all" href="/css/ie.css"/>
+                <script src="/js/IE8.js" type="text/javascript"></script><![endif]-->
+
+        <!--[if lt IE 7]>
+                <link rel="stylesheet" type="text/css" media="all" href="/css/ie6.css"/><![endif]-->
+
+</head>
+
+<body>
+	<div id="wrap" style="width:850px">
+	    <div id="container" style="width:560px">
+
+
+            <div class="entry">
+        
+<header>
+<h1><a href="" id="site-title">  </a>         <a href="/2014/Aug/19/automating-pelican-with-git/" id="page-title">Automating Pelican with Git</a></h1>
+<time datetime="2014-08-19T00:35:00">Tue 19 August 2014</time></header>
+<article>
+    <p><center><img alt="Pelican Automation with Git" src="/images/pelican-automation.png" /></center></p>
+<p>This is a first blogpost of a whole series about working with
+<a href="http://docs.getpelican.com/">Pelican</a>. I'll be publishing all future post with
+the hashtag <a href="tag/pelican.html">#pelican</a>.</p>
+<h3>What kind of automation?</h3>
+<p>My first step with migrating my <a href="http://maciek.lasyk.info/sysop">old blog</a> to
+this <strong>Pelican - based</strong> was to automate the whole process of deploying new
+posts. I just want to work with <strong>Markdown</strong> files on my laptop and push those
+to the git repository. And let the rest magically happen in the background.</p>
+<h3>Architecture</h3>
+<p>Basically I write posts on my laptop, then I push changes to the remote bare
+git repo, this repo has <strong>post-update</strong> hook which communicates with my
+webserver and tells him to pull all the changes:</p>
+<div class="highlight"><pre>laptop with markdowns ----<span class="o">(</span>git push<span class="o">)</span>----&gt; remote git bare repo 
+----<span class="o">(</span>post-update hook----&gt; webserver
+</pre></div>
+
+
+<h3>Abracadabra</h3>
+<p>What's important here - I've added to the repo my whole <strong>pelican</strong>
+directory. This is because I'm realy lazy and just wanted to keep all the 
+changes and use this repo also for backup purposes. Of course you'll want to
+play with <strong>.gitignore</strong> file and ommit couple of dirs and files :)</p>
+<p>On the server with git bare repo I've created <strong>hooks/post-update</strong> file
+(perms 0700) with following contents:</p>
+<div class="highlight"><pre><span class="c">#!/bin/sh</span>
+
+<span class="c"># just invoke the update script on the webserver:</span>
+ssh home-docker <span class="s1">&#39;/home/docent/scripts/update_maciej.lasyk.info.sh&#39;</span>
+</pre></div>
+
+
+<p>As you can see I'm using here <strong>ssh home-docker</strong> command. This is an alias
+that exists in my <strong>~/.ssh/config</strong>:</p>
+<div class="highlight"><pre>Host home-docker
+Hostname vm-9-containers.netrunner.lasyk.info
+User docent
+Port 22
+ProxyCommand ssh -p 55555 docent@netrunner.lasyk.info nc %h %p 2&gt; /dev/null
+IdentityFile ~/.ssh/id_rsa
+</pre></div>
+
+
+<p>This basically connects to VM hosting Docker containers through the bastion
+server (no direct SSH allowed to containers VM from outside or DMZ).</p>
+<p>So now anytime I post something and commit it to the repo above script will be
+invoked via SSH. And this calls another script - this time on webserver:</p>
+<div class="highlight"><pre><span class="c">#!/bin/bash</span>
+<span class="nv">GIT</span><span class="o">=</span>/usr/bin/git
+
+<span class="nb">cd</span> /srv/docker_mounts/nginx/public_html/maciej.lasyk.info/
+<span class="nv">$GIT</span> fetch --all
+<span class="nv">$GIT</span> reset --hard docent/master
+</pre></div>
+
+
+<p>Above script fetches all data from the remote repository and then sets the
+last commit as the HEAD. No webserver restart is needed here as those are only
+static files :)</p>
+</article>
+            </div>
+        </div>
+
+
+        <div id="sidebar">
+            <h1><a href="http://maciej.lasyk.info" title="title">Many craft. Wow. Such create</a><br><img
+                src="/theme/img/chunkybacon.png"></h1>
+            <span class="description"> </span>
+            <!-- <span class="feed"><a href="">RSS</a> | <a href="">Atom</a></span> -->
+        </div>
+
+        <div id="footer">
+            <nav>
+                <ul>
+                    <li>:: <a href="/categories.html">Categories</a></li>
+                    <li>:: <a href="/tags.html">Tags</a></li>
+                </ul>
+            </nav>
+
+            <div id="credits">
+                <span>Adapted from <a
+                        href="http://wordpress.org/themes/monospace">Monospace</a>
+                || Created with <a href="">Pelican</a> || Hosted with <a
+                    href="http://docker.io/">Docker</a></span>
+                <p>content copyrights &copy; Maciej Lasyk</p>
+            </div>
+                
+        </div>
+
+
+    </div>
+
+</body>
+</html>

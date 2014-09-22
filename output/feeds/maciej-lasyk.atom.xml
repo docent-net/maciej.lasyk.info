@@ -1,5 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Many craft. Wow. Such create</title><link href="/" rel="alternate"></link><link href="/feeds/maciej-lasyk.atom.xml" rel="self"></link><id>/</id><updated>2014-09-14T11:46:00+02:00</updated><entry><title>Network Manager Dispatcher</title><link href="/network-manager-dispatcher.html" rel="alternate"></link><updated>2014-09-14T11:46:00+02:00</updated><author><name>Maciej Lasyk</name></author><id>tag:,2014-09-14:network-manager-dispatcher.html</id><summary type="html">&lt;p&gt;&lt;a href="https://en.wikipedia.org/wiki/NetworkManager"&gt;NetworkManager&lt;/a&gt; is often 
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Many craft. Wow. Such create</title><link href="/" rel="alternate"></link><link href="/feeds/maciej-lasyk.atom.xml" rel="self"></link><id>/</id><updated>2014-09-22T00:00:00+02:00</updated><entry><title>OpenWRT, Dnsmasq + external DNS</title><link href="/2014/Sep/22/openwrt-dnsmasq-external-dns/" rel="alternate"></link><updated>2014-09-22T00:00:00+02:00</updated><author><name>Maciej Lasyk</name></author><id>tag:,2014-09-22:2014/Sep/22/openwrt-dnsmasq-external-dns/</id><summary type="html">&lt;p&gt;I use &lt;a href="https://openwrt.org/"&gt;OpenWRT&lt;/a&gt; on my home access - points instead of
+stock software (due to security concerns and my OpenSourceTheWorld approach).&lt;/p&gt;
+&lt;p&gt;I also have &lt;a href="https://en.wikipedia.org/wiki/BIND"&gt;BIND&lt;/a&gt; in use on my
+home-server, so I can use e.g. &lt;a href="/2014/Sep/02/dns-views-in-bind/"&gt;zones&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;So I was trying to make OpenWRT send DNS IP address to DHCP clients. By default
+OpenWRT will send it's own IP (it's using Dnsmasq onboard). And I just couldn't
+find option to set this manually (using webinteface).&lt;/p&gt;
+&lt;p&gt;Finally I logged into CLI interface via SSH and found that this change can be
+made in two ways.&lt;/p&gt;
+&lt;p&gt;In &lt;strong&gt;/etc/dnsmasq.conf&lt;/strong&gt; by adding line:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;dhcp-option&lt;span class="o"&gt;=&lt;/span&gt;6,IP1,IP2
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Or in &lt;strong&gt;/etc/config/dhcp&lt;/strong&gt; by adding to the section &lt;strong&gt;config dnsmasq&lt;/strong&gt;:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;list &lt;span class="s1"&gt;&amp;#39;dhcp_option&amp;#39;&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;6,192.168.1.29&amp;#39;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Just restart Dnsmaq service afterwards and you're done.&lt;/p&gt;</summary><category term="dns"></category><category term="openwrt"></category><category term="dnsmasq"></category><category term="dhcp"></category></entry><entry><title>Network Manager Dispatcher</title><link href="/2014/Sep/14/network-manager-dispatcher/" rel="alternate"></link><updated>2014-09-14T11:46:00+02:00</updated><author><name>Maciej Lasyk</name></author><id>tag:,2014-09-14:2014/Sep/14/network-manager-dispatcher/</id><summary type="html">&lt;p&gt;&lt;a href="https://en.wikipedia.org/wiki/NetworkManager"&gt;NetworkManager&lt;/a&gt; is often 
 associated with some voodoo - network - magic tool, that does the work on 
 laptop, but better switch it off on server. I won't argue about that, just 
 wanted to give you something I personally think make NM more usable.&lt;/p&gt;
@@ -22,7 +41,7 @@ the device just activated, and second an action.&lt;/em&gt;&lt;/p&gt;
 &lt;li&gt;&lt;strong&gt;dhcp6-change&lt;/strong&gt; - The DHCPv6 lease has changed (renewed, rebound, etc).&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;So basically without manually detecting change in network events we may use the
-tool that was created just for this particular goal.&lt;/p&gt;</summary><category term="network"></category><category term="centos"></category><category term="fedora"></category></entry><entry><title>Ansible Playbook for favtools</title><link href="/ansible-playbook-for-favtools.html" rel="alternate"></link><updated>2014-09-12T23:24:00+02:00</updated><author><name>Maciej Lasyk</name></author><id>tag:,2014-09-12:ansible-playbook-for-favtools.html</id><summary type="html">&lt;h3&gt;playbook&lt;/h3&gt;
+tool that was created just for this particular goal.&lt;/p&gt;</summary><category term="network"></category><category term="centos"></category><category term="fedora"></category></entry><entry><title>Ansible Playbook for favtools</title><link href="/2014/Sep/12/ansible-playbook-for-favtools/" rel="alternate"></link><updated>2014-09-12T23:24:00+02:00</updated><author><name>Maciej Lasyk</name></author><id>tag:,2014-09-12:2014/Sep/12/ansible-playbook-for-favtools/</id><summary type="html">&lt;h3&gt;playbook&lt;/h3&gt;
 &lt;p&gt;This rather doesn't fit my github repo ;)&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;- name: Ensure my favorite tools are installed
   yum: &lt;span class="nv"&gt;pkg&lt;/span&gt;&lt;span class="o"&gt;={{&lt;/span&gt;item&lt;span class="o"&gt;}}&lt;/span&gt; &lt;span class="nv"&gt;state&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;latest
@@ -53,10 +72,10 @@ tool that was created just for this particular goal.&lt;/p&gt;</summary><categor
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;p&gt;That is only for starters; I'd add here also &lt;a href="http://www.sysdig.org/"&gt;sysdig&lt;/a&gt; and whole playbook for preparing user env.&lt;/p&gt;</summary><category term="ansible"></category><category term="centos"></category><category term="fedora"></category></entry><entry><title>Sysadmin evolution</title><link href="/sysadmin-evolution.html" rel="alternate"></link><updated>2014-09-04T18:38:00+02:00</updated><author><name>Maciej Lasyk</name></author><id>tag:,2014-09-04:sysadmin-evolution.html</id><summary type="html">&lt;h3&gt;Sysadmin evolution&lt;/h3&gt;
+&lt;p&gt;That is only for starters; I'd add here also &lt;a href="http://www.sysdig.org/"&gt;sysdig&lt;/a&gt; and whole playbook for preparing user env.&lt;/p&gt;</summary><category term="ansible"></category><category term="centos"></category><category term="fedora"></category></entry><entry><title>Sysadmin evolution</title><link href="/2014/Sep/04/sysadmin-evolution/" rel="alternate"></link><updated>2014-09-04T18:38:00+02:00</updated><author><name>Maciej Lasyk</name></author><id>tag:,2014-09-04:2014/Sep/04/sysadmin-evolution/</id><summary type="html">&lt;h3&gt;Sysadmin evolution&lt;/h3&gt;
 &lt;p&gt;A couple of days ago on &lt;a href="http://training.linuxfoundation.org/sysadmin-evolution"&gt;The Linux Foundation&lt;/a&gt;
 appeared an image showing how could sysadmin advance his experience. I think
-that it's really worth mentioning, so check this &lt;a href="/images/EvolutionSysadmin_Infographic.png"&gt;image&lt;/a&gt;&lt;/p&gt;</summary><category term="ops"></category></entry><entry><title>DNS views in BIND</title><link href="/dns-views-in-bind.html" rel="alternate"></link><updated>2014-09-02T08:15:00+02:00</updated><author><name>Maciej Lasyk</name></author><id>tag:,2014-09-02:dns-views-in-bind.html</id><summary type="html">&lt;h3&gt;Why would I use DNS BIND views?&lt;/h3&gt;
+that it's really worth mentioning, so check this &lt;a href="/images/EvolutionSysadmin_Infographic.png"&gt;image&lt;/a&gt;&lt;/p&gt;</summary><category term="ops"></category></entry><entry><title>DNS views in BIND</title><link href="/2014/Sep/02/dns-views-in-bind/" rel="alternate"></link><updated>2014-09-02T08:15:00+02:00</updated><author><name>Maciej Lasyk</name></author><id>tag:,2014-09-02:2014/Sep/02/dns-views-in-bind/</id><summary type="html">&lt;h3&gt;Why would I use DNS BIND views?&lt;/h3&gt;
 &lt;p&gt;From the manual: &lt;strong&gt;The view clause allows BIND to provide different
 functionality based on the hosts accessing it.&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;So basically you can provide one group of users with one variant of same zone 
@@ -109,7 +128,7 @@ view &lt;span class="s2"&gt;&amp;quot;external-view&amp;quot;&lt;/span&gt; &lt;s
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;p&gt;Now just create proper zone - files, &lt;strong&gt;rndc reload&lt;/strong&gt; and test it with &lt;strong&gt;dig&lt;/strong&gt;&lt;/p&gt;</summary><category term="dns"></category><category term="bind"></category></entry><entry><title>Discourse and Piwik</title><link href="/discourse-and-piwik.html" rel="alternate"></link><updated>2014-08-23T00:15:00+02:00</updated><author><name>Maciej Lasyk</name></author><id>tag:,2014-08-23:discourse-and-piwik.html</id><summary type="html">&lt;h3&gt;Erm, what?&lt;/h3&gt;
+&lt;p&gt;Now just create proper zone - files, &lt;strong&gt;rndc reload&lt;/strong&gt; and test it with &lt;strong&gt;dig&lt;/strong&gt;&lt;/p&gt;</summary><category term="dns"></category><category term="bind"></category></entry><entry><title>Discourse and Piwik</title><link href="/2014/Aug/23/discourse-and-piwik/" rel="alternate"></link><updated>2014-08-23T00:15:00+02:00</updated><author><name>Maciej Lasyk</name></author><id>tag:,2014-08-23:2014/Aug/23/discourse-and-piwik/</id><summary type="html">&lt;h3&gt;Erm, what?&lt;/h3&gt;
 &lt;p&gt;For the last couple of years I've been favorizing Open Source software. That's
 why after many years of using &lt;a href="https://www.disqus.com"&gt;Disqus&lt;/a&gt; for comments and
 &lt;a href="https://analytics.google.com"&gt;Google Analytics&lt;/a&gt; for statistics I've decided
@@ -134,7 +153,7 @@ to go Open Source.&lt;/p&gt;
 &lt;li&gt;Install notes: &lt;a href="http://piwik.org/docs/installation/"&gt;here&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;Piwik doesn't have official Docker images - I'll work on that within &lt;a href="https://github.com/fedora-cloud/Fedora-Dockerfiles"&gt;Fedora Dockerfiles&lt;/a&gt; 
-and maybe I'll try to push this as another official installation method of Piwik.&lt;/p&gt;</summary><category term="discourse"></category><category term="piwik"></category><category term="disqus"></category><category term="google-analytics"></category></entry><entry><title>Logout from Facebook</title><link href="/logout-from-facebook.html" rel="alternate"></link><updated>2014-08-22T21:58:00+02:00</updated><author><name>Maciej Lasyk</name></author><id>tag:,2014-08-22:logout-from-facebook.html</id><summary type="html">&lt;h3&gt;Why?&lt;/h3&gt;
+and maybe I'll try to push this as another official installation method of Piwik.&lt;/p&gt;</summary><category term="discourse"></category><category term="piwik"></category><category term="disqus"></category><category term="google-analytics"></category></entry><entry><title>Logout from Facebook</title><link href="/2014/Aug/22/logout-from-facebook/" rel="alternate"></link><updated>2014-08-22T21:58:00+02:00</updated><author><name>Maciej Lasyk</name></author><id>tag:,2014-08-22:2014/Aug/22/logout-from-facebook/</id><summary type="html">&lt;h3&gt;Why?&lt;/h3&gt;
 &lt;p&gt;It could be a surprize that I won't mention here Facebook privacy policy. I'm 
 rather open person on the web, so I really don't care about anyone stalking my
 actions (as I rather keep private matters outside the Internet). It's about
@@ -184,7 +203,7 @@ with other people who you don't have to know or cannot contact personally.&lt;/p
 level of dopamine during day :)&lt;/p&gt;
 &lt;p&gt;Moreover I removed login&amp;amp;pwd from the browser memory on my laptop - anytime I
 want to check on FB I have to login manually. Lastly - I set up one-time-per-day
-session of FB (~5min). Just to check on my family.&lt;/p&gt;</summary><category term="facebook"></category></entry><entry><title>Online Courses</title><link href="/online-courses.html" rel="alternate"></link><updated>2014-08-20T22:46:00+02:00</updated><author><name>Maciej Lasyk</name></author><id>tag:,2014-08-20:online-courses.html</id><summary type="html">&lt;h3&gt;What about onlince courses?&lt;/h3&gt;
+session of FB (~5min). Just to check on my family.&lt;/p&gt;</summary><category term="facebook"></category></entry><entry><title>Online Courses</title><link href="/2014/Aug/20/online-courses/" rel="alternate"></link><updated>2014-08-20T22:46:00+02:00</updated><author><name>Maciej Lasyk</name></author><id>tag:,2014-08-20:2014/Aug/20/online-courses/</id><summary type="html">&lt;h3&gt;What about onlince courses?&lt;/h3&gt;
 &lt;p&gt;I've been using couple of online educational services (IT mainly) and wanted
 to share a short list of those I used - with a little comment:&lt;/p&gt;
 &lt;ul&gt;
@@ -209,7 +228,7 @@ to share a short list of those I used - with a little comment:&lt;/p&gt;
   that I wanted to learn about or retrain&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;I think that those services could be a solid base for development planning
-in any company.&lt;/p&gt;</summary><category term="courses"></category></entry><entry><title>Lectures during holidays</title><link href="/lectures-during-holidays.html" rel="alternate"></link><updated>2014-08-20T00:31:00+02:00</updated><author><name>Maciej Lasyk</name></author><id>tag:,2014-08-20:lectures-during-holidays.html</id><summary type="html">&lt;h3&gt;Reading It books during holidays?&lt;/h3&gt;
+in any company.&lt;/p&gt;</summary><category term="courses"></category></entry><entry><title>Lectures during holidays</title><link href="/2014/Aug/20/lectures-during-holidays/" rel="alternate"></link><updated>2014-08-20T00:31:00+02:00</updated><author><name>Maciej Lasyk</name></author><id>tag:,2014-08-20:2014/Aug/20/lectures-during-holidays/</id><summary type="html">&lt;h3&gt;Reading It books during holidays?&lt;/h3&gt;
 &lt;p&gt;&lt;strong&gt;Are you insanse?&lt;/strong&gt; Someone could ask me this question, but seriously - 
 during holidays I read just whatever I have on my list; I don't divide lectures
 into "workdays" and "holidays". I just read what I'd like to read and what I'm 
@@ -248,7 +267,7 @@ other books (especially &lt;a href="http://www.amazon.com/Cyclists-Training-Bibl
 and I really found those lectures very rich about good practices, training
 sessions examples and whole training theory.&lt;/p&gt;
 &lt;h3&gt;2 weeks&lt;/h3&gt;
-&lt;p&gt;...and couple ot thousands of pages to read &amp;amp; understand &amp;amp; make notes. Yeah ;)&lt;/p&gt;</summary><category term="ebooks"></category><category term="books"></category></entry><entry><title>Automating Pelican with Git</title><link href="/automating-pelican-with-git.html" rel="alternate"></link><updated>2014-08-19T00:35:00+02:00</updated><author><name>Maciej Lasyk</name></author><id>tag:,2014-08-19:automating-pelican-with-git.html</id><summary type="html">&lt;p&gt;&lt;center&gt;&lt;img alt="Pelican Automation with Git" src="/images/pelican-automation.png" /&gt;&lt;/center&gt;&lt;/p&gt;
+&lt;p&gt;...and couple ot thousands of pages to read &amp;amp; understand &amp;amp; make notes. Yeah ;)&lt;/p&gt;</summary><category term="ebooks"></category><category term="books"></category></entry><entry><title>Automating Pelican with Git</title><link href="/2014/Aug/19/automating-pelican-with-git/" rel="alternate"></link><updated>2014-08-19T00:35:00+02:00</updated><author><name>Maciej Lasyk</name></author><id>tag:,2014-08-19:2014/Aug/19/automating-pelican-with-git/</id><summary type="html">&lt;p&gt;&lt;center&gt;&lt;img alt="Pelican Automation with Git" src="/images/pelican-automation.png" /&gt;&lt;/center&gt;&lt;/p&gt;
 &lt;p&gt;This is a first blogpost of a whole series about working with
 &lt;a href="http://docs.getpelican.com/"&gt;Pelican&lt;/a&gt;. I'll be publishing all future post with
 the hashtag &lt;a href="tag/pelican.html"&gt;#pelican&lt;/a&gt;.&lt;/p&gt;
@@ -306,7 +325,7 @@ invoked via SSH. And this calls another script - this time on webserver:&lt;/p&g
 
 &lt;p&gt;Above script fetches all data from the remote repository and then sets the
 last commit as the HEAD. No webserver restart is needed here as those are only
-static files :)&lt;/p&gt;</summary><category term="pelican"></category><category term="git"></category></entry><entry><title>Network Warrior</title><link href="/network-warrior.html" rel="alternate"></link><updated>2014-08-18T17:54:00+02:00</updated><author><name>Maciej Lasyk</name></author><id>tag:,2014-08-18:network-warrior.html</id><summary type="html">&lt;p&gt;&lt;center&gt;&lt;img alt="Network Warrior" src="/images/networkwarrior.jpg" /&gt;&lt;/center&gt;&lt;/p&gt;
+static files :)&lt;/p&gt;</summary><category term="pelican"></category><category term="git"></category></entry><entry><title>Network Warrior</title><link href="/2014/Aug/18/network-warrior/" rel="alternate"></link><updated>2014-08-18T17:54:00+02:00</updated><author><name>Maciej Lasyk</name></author><id>tag:,2014-08-18:2014/Aug/18/network-warrior/</id><summary type="html">&lt;p&gt;&lt;center&gt;&lt;img alt="Network Warrior" src="/images/networkwarrior.jpg" /&gt;&lt;/center&gt;&lt;/p&gt;
 &lt;p&gt;Some time ago I bought an e-book "&lt;strong&gt;Network Warrior&lt;/strong&gt;" by &lt;strong&gt;Gary A. Donahue&lt;/strong&gt;. As this
 is rather a long reading (more than 700 pages) I didn't have enough time to
 finish it. But right now - on holidays - once more I went through table of
@@ -337,7 +356,7 @@ as teamplayer.&lt;/p&gt;
 what is important - he wrote how to react and behave so everybody is content
 and our work is effective and goes in right direction. A totally "&lt;strong&gt;must read&lt;/strong&gt;"
 for everyone that have any doubts.&lt;/p&gt;
-&lt;p&gt;You can check the book details on &lt;a href="http://www.amazon.com/Network-Warrior-Gary-A-Donahue/dp/1449387861"&gt;Amazon&lt;/a&gt;&lt;/p&gt;</summary><category term="ebooks"></category><category term="networking"></category></entry><entry><title>Moving to Pelican</title><link href="/moving-to-pelican.html" rel="alternate"></link><updated>2014-08-08T00:21:00+02:00</updated><author><name>Maciej Lasyk</name></author><id>tag:,2014-08-08:moving-to-pelican.html</id><summary type="html">&lt;p&gt;So it finally happened. After 6 months I started migrating my blog from crapy
+&lt;p&gt;You can check the book details on &lt;a href="http://www.amazon.com/Network-Warrior-Gary-A-Donahue/dp/1449387861"&gt;Amazon&lt;/a&gt;&lt;/p&gt;</summary><category term="ebooks"></category><category term="networking"></category></entry><entry><title>Moving to Pelican</title><link href="/2014/Aug/08/moving-to-pelican/" rel="alternate"></link><updated>2014-08-08T00:21:00+02:00</updated><author><name>Maciej Lasyk</name></author><id>tag:,2014-08-08:2014/Aug/08/moving-to-pelican/</id><summary type="html">&lt;p&gt;So it finally happened. After 6 months I started migrating my blog from crapy
 Wordpress to &lt;a href="https://github.com/getpelican/pelican/"&gt;Pelican&lt;/a&gt;. There're still plenty of things I have to take care of:&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;git automation (pull / push)&lt;/li&gt;
@@ -355,5 +374,5 @@ Wordpress to &lt;a href="https://github.com/getpelican/pelican/"&gt;Pelican&lt;/
 &lt;p&gt;Looks like a plate is full. ETA? Will be delivered somehow between Monday and
 end of the next year ;)&lt;/p&gt;
 &lt;p&gt;What's beautiful here? It's 100% Markdown &amp;lt;- Pelican &amp;lt;- Nginx &amp;lt;- Docker &amp;lt;-
-Fedora &amp;lt;- my home server :)&lt;/p&gt;</summary><category term="pelican"></category></entry><entry><title>Creator Bias</title><link href="/creator-bias.html" rel="alternate"></link><updated>2014-07-29T00:15:00+02:00</updated><author><name>Maciej Lasyk</name></author><id>tag:,2014-07-29:creator-bias.html</id><summary type="html">&lt;p&gt;Quote of the day: “Humans are bad at predicting the performance of complex systems [...] Our ability to create large &amp;amp; complex systems fools us into believing that we’re also entitled to understand them”&lt;/p&gt;
+Fedora &amp;lt;- my home server :)&lt;/p&gt;</summary><category term="pelican"></category></entry><entry><title>Creator Bias</title><link href="/2014/Jul/29/creator-bias/" rel="alternate"></link><updated>2014-07-29T00:15:00+02:00</updated><author><name>Maciej Lasyk</name></author><id>tag:,2014-07-29:2014/Jul/29/creator-bias/</id><summary type="html">&lt;p&gt;Quote of the day: “Humans are bad at predicting the performance of complex systems [...] Our ability to create large &amp;amp; complex systems fools us into believing that we’re also entitled to understand them”&lt;/p&gt;
 &lt;p&gt;Taken from &lt;a href="http://carlos.bueno.org/optimization/mature-optimization.pdf"&gt;"Mature Optimization Handbook"&lt;/a&gt; by Carlos Bueno&lt;/p&gt;</summary><category term="quotes"></category><category term=""></category></entry></feed>
