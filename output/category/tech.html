@@ -28,33 +28,30 @@
         
 
             <header>
-            <h1><a href="" id="site-title">  </a>  <a href="/2014/Sep/22/openwrt-dnsmasq-external-dns/" id="page-title">OpenWRT, Dnsmasq + external DNS</a></h1>
-<time datetime="2014-09-22T00:00:00">Mon 22 September 2014</time>            </header>
+            <h1><a href="" id="site-title">  </a>  <a href="/2014/Oct/14/invitation-for-linux-autumn-2014/" id="page-title">Invitation for Linux Autumn 2014</a></h1>
+<time datetime="2014-10-14T00:00:00">Tue 14 October 2014</time>            </header>
 
             <article>
-                <p>I use <a href="https://openwrt.org/">OpenWRT</a> on my home access - points instead of
-stock software (due to security concerns and my OpenSourceTheWorld approach).</p>
-<p>I also have <a href="https://en.wikipedia.org/wiki/BIND">BIND</a> in use on my
-home-server, so I can use e.g. <a href="/2014/Sep/02/dns-views-in-bind/">zones</a>.</p>
-<p>So I was trying to make OpenWRT send DNS IP address to DHCP clients. By default
-OpenWRT will send it's own IP (it's using Dnsmasq onboard). And I just couldn't
-find option to set this manually (using webinteface).</p>
-<p>Finally I logged into CLI interface via SSH and found that this change can be
-made in two ways.</p>
-<p>In <strong>/etc/dnsmasq.conf</strong> by adding line:</p>
-<div class="highlight"><pre>dhcp-option<span class="o">=</span>6,IP1,IP2
-</pre></div>
-
-
-<p>Or in <strong>/etc/config/dhcp</strong> by adding to the section <strong>config dnsmasq</strong>:</p>
-<div class="highlight"><pre>list <span class="s1">&#39;dhcp_option&#39;</span> <span class="s1">&#39;6,192.168.1.29&#39;</span>
-</pre></div>
-
-
-<p>Just restart Dnsmaq service afterwards and you're done.</p>            </article>
+                <p><center><img alt="Jesien" src="/images/jesien-logo.png" /></center></p>
+<p>My speaker - break is over. Another major conference on the horizon. This time it's one of
+the biggest Linux Conferences here in Poland.</p>
+<p>I'll talk there about taking next step in automation of Linux containers
+(<a href="http://docker.io">Docker</a> based) - cluster management based on <a href="https://github.com/coreos/fleet">Fleet</a>
+and <a href="https://github.com/GoogleCloudPlatform/kubernetes">Kubernetes</a>. Also will
+tell couple of words about <a href="http://www.fig.sh/">fig</a> and history of scaling webapps.</p>
+<p>Still not sure if you should attend? Check this year's
+<a href="http://www.jesien.org/2014/pl/agenda">agenda</a> and great
+<a href="http://www.jesien.org/2014/en/hotel">location</a> of the event! Remember to take
+a bike (great mtb and road trails there) or running shoes - this is one of the
+best places to have a workout :)</p>
+<p>See you there guys!</p>            </article>
                 <section id="article-list">
                     <h2>All posts</h2>
                     <ol>
+        
+
+ 
+            <li><a href="/2014/Sep/22/openwrt-dnsmasq-external-dns/" rel="bookmark" title="Permalink to OpenWRT, Dnsmasq + external DNS">OpenWRT, Dnsmasq + external DNS</a></li>
         
 
  

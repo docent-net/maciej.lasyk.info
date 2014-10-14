@@ -1,5 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Many craft. Wow. Such create</title><link href="/" rel="alternate"></link><link href="/feeds/maciej-lasyk.atom.xml" rel="self"></link><id>/</id><updated>2014-09-22T00:00:00+02:00</updated><entry><title>OpenWRT, Dnsmasq + external DNS</title><link href="/2014/Sep/22/openwrt-dnsmasq-external-dns/" rel="alternate"></link><updated>2014-09-22T00:00:00+02:00</updated><author><name>Maciej Lasyk</name></author><id>tag:,2014-09-22:2014/Sep/22/openwrt-dnsmasq-external-dns/</id><summary type="html">&lt;p&gt;I use &lt;a href="https://openwrt.org/"&gt;OpenWRT&lt;/a&gt; on my home access - points instead of
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Many craft. Wow. Such create</title><link href="/" rel="alternate"></link><link href="/feeds/maciej-lasyk.atom.xml" rel="self"></link><id>/</id><updated>2014-10-14T00:00:00+02:00</updated><entry><title>Invitation for Linux Autumn 2014</title><link href="/2014/Oct/14/invitation-for-linux-autumn-2014/" rel="alternate"></link><updated>2014-10-14T00:00:00+02:00</updated><author><name>Maciej Lasyk</name></author><id>tag:,2014-10-14:2014/Oct/14/invitation-for-linux-autumn-2014/</id><summary type="html">&lt;p&gt;&lt;center&gt;&lt;img alt="Jesien" src="/images/jesien-logo.png" /&gt;&lt;/center&gt;&lt;/p&gt;
+&lt;p&gt;My speaker - break is over. Another major conference on the horizon. This time it's one of
+the biggest Linux Conferences here in Poland.&lt;/p&gt;
+&lt;p&gt;I'll talk there about taking next step in automation of Linux containers
+(&lt;a href="http://docker.io"&gt;Docker&lt;/a&gt; based) - cluster management based on &lt;a href="https://github.com/coreos/fleet"&gt;Fleet&lt;/a&gt;
+and &lt;a href="https://github.com/GoogleCloudPlatform/kubernetes"&gt;Kubernetes&lt;/a&gt;. Also will
+tell couple of words about &lt;a href="http://www.fig.sh/"&gt;fig&lt;/a&gt; and history of scaling webapps.&lt;/p&gt;
+&lt;p&gt;Still not sure if you should attend? Check this year's
+&lt;a href="http://www.jesien.org/2014/pl/agenda"&gt;agenda&lt;/a&gt; and great
+&lt;a href="http://www.jesien.org/2014/en/hotel"&gt;location&lt;/a&gt; of the event! Remember to take
+a bike (great mtb and road trails there) or running shoes - this is one of the
+best places to have a workout :)&lt;/p&gt;
+&lt;p&gt;See you there guys!&lt;/p&gt;</summary><category term="talks"></category><category term="conferences"></category><category term="docker"></category><category term="coreos"></category><category term="kubernetes"></category><category term="fleet"></category><category term="fig"></category></entry><entry><title>OpenWRT, Dnsmasq + external DNS</title><link href="/2014/Sep/22/openwrt-dnsmasq-external-dns/" rel="alternate"></link><updated>2014-09-22T00:00:00+02:00</updated><author><name>Maciej Lasyk</name></author><id>tag:,2014-09-22:2014/Sep/22/openwrt-dnsmasq-external-dns/</id><summary type="html">&lt;p&gt;I use &lt;a href="https://openwrt.org/"&gt;OpenWRT&lt;/a&gt; on my home access - points instead of
 stock software (due to security concerns and my OpenSourceTheWorld approach).&lt;/p&gt;
 &lt;p&gt;I also have &lt;a href="https://en.wikipedia.org/wiki/BIND"&gt;BIND&lt;/a&gt; in use on my
 home-server, so I can use e.g. &lt;a href="/2014/Sep/02/dns-views-in-bind/"&gt;zones&lt;/a&gt;.&lt;/p&gt;
