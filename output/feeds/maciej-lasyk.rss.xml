@@ -30,12 +30,12 @@ if you do then see &amp;gt; &lt;strong&gt;Clusterfuck network&lt;/strong&gt; par
 security - &lt;a href="http://www.slideshare.net/d0cent/docker-rhel"&gt;enjoy&lt;/a&gt;!&lt;/p&gt;
 &lt;h1&gt;What about IaaSes?&lt;/h1&gt;
 &lt;p&gt;Yes - if you're running &lt;a href="https://openshift.github.io/"&gt;OpenShift&lt;/a&gt; (or any other
-Open:Nebula/Stack/Whatever) then probably you will not care about isolation at
+Open: Nebula / Stack / Whatever) then probably you will not care about isolation at
 all because this will be done for you without your interference. But -
 seriously? Usually people rather use VMs for hosting nodes of IaaSes.&lt;/p&gt;
 &lt;h1&gt;Recap?&lt;/h1&gt;
 &lt;p&gt;No. Just wrote this after having a failure with LXC containers on Centos7 and
-no-real-explanation just "have-you-tried-to-turn-it-iff-and-on-again?".&lt;/p&gt;
+no-real-explanation just "have-you-tried-to-turn-it-off-and-on-again?".&lt;/p&gt;
 &lt;p&gt;&lt;center&gt;&lt;img alt="Isolation" src="/images/isolation.jpg" /&gt;&lt;/center&gt;&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Maciej Lasyk</dc:creator><pubDate>Wed, 22 Oct 2014 00:00:00 +0200</pubDate><guid>tag:,2014-10-22:2014/Oct/22/isolation/</guid><category>containers</category><category>lxc</category><category>docker</category><category>kvm</category><category>virtualization</category><category>security</category></item><item><title>Invitation for Linux Autumn 2014</title><link>/2014/Oct/14/invitation-for-linux-autumn-2014/</link><description>&lt;p&gt;&lt;center&gt;&lt;img alt="Jesien" src="/images/jesien-logo.png" /&gt;&lt;/center&gt;&lt;/p&gt;
 &lt;p&gt;My speaker - break is over. Another major conference on the horizon. This time it's one of
 the biggest Linux Conferences here in Poland.&lt;/p&gt;
