@@ -46,7 +46,7 @@ security - [enjoy](http://www.slideshare.net/d0cent/docker-rhel)!
 
 # What about IaaSes? #
 
-Yes - if you're running [OpenShift]https://openshift.github.io/) (or any other
+Yes - if you're running [OpenShift](https://openshift.github.io/) (or any other
 Open:Nebula/Stack/Whatever) then probably you will not care about isolation at
 all because this will be done for you without your interference. But -
 seriously? Usually people rather use VMs for hosting nodes of IaaSes.

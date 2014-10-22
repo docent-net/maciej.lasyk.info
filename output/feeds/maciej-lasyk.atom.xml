@@ -29,7 +29,7 @@ if you do then see &amp;gt; &lt;strong&gt;Clusterfuck network&lt;/strong&gt; par
 &lt;p&gt;Btw - I had this talk during Infosec meetup some time ago about Docker
 security - &lt;a href="http://www.slideshare.net/d0cent/docker-rhel"&gt;enjoy&lt;/a&gt;!&lt;/p&gt;
 &lt;h1&gt;What about IaaSes?&lt;/h1&gt;
-&lt;p&gt;Yes - if you're running [OpenShift]https://openshift.github.io/) (or any other
+&lt;p&gt;Yes - if you're running &lt;a href="https://openshift.github.io/"&gt;OpenShift&lt;/a&gt; (or any other
 Open:Nebula/Stack/Whatever) then probably you will not care about isolation at
 all because this will be done for you without your interference. But -
 seriously? Usually people rather use VMs for hosting nodes of IaaSes.&lt;/p&gt;
