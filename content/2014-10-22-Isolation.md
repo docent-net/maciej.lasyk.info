@@ -35,8 +35,8 @@ having 5 managers simultaneously on 3 calls ;)
 
 # Security #
 
-Yes I know - this term is usually some big-fucking-unknown for most of guys.
-And that is why you should isolate groups of containers from each other. Throw
+Yes I know - this term is usually some big-fucking-unknown for most of guys /
+ignorants. And that is why you should isolate groups of containers from each other. Throw
 the first rock who uses SELinux / enforcing (under these circumstances you
 could possibly cover the security subject in the terms on containers). But even
 if you do then see > **Clusterfuck network** paragraph).

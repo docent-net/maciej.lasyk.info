@@ -21,8 +21,8 @@ minimal these years. And it can save your ass. Just make a proper Ha planning
 and even if you kill some group of containers you will not have to firefight
 having 5 managers simultaneously on 3 calls ;)&lt;/p&gt;
 &lt;h1&gt;Security&lt;/h1&gt;
-&lt;p&gt;Yes I know - this term is usually some big-fucking-unknown for most of guys.
-And that is why you should isolate groups of containers from each other. Throw
+&lt;p&gt;Yes I know - this term is usually some big-fucking-unknown for most of guys /
+ignorants. And that is why you should isolate groups of containers from each other. Throw
 the first rock who uses SELinux / enforcing (under these circumstances you
 could possibly cover the security subject in the terms on containers). But even
 if you do then see &amp;gt; &lt;strong&gt;Clusterfuck network&lt;/strong&gt; paragraph).&lt;/p&gt;
