@@ -28,51 +28,74 @@
         
 
             <header>
-            <h1><a href="" id="site-title">  </a>  <a href="/2014/Oct/22/isolation/" id="page-title">Isolation</a></h1>
-<time datetime="2014-10-22T00:00:00">Wed 22 October 2014</time>            </header>
+            <h1><a href="" id="site-title">  </a>  <a href="/2014/Oct/27/focus/" id="page-title">Focus</a></h1>
+<time datetime="2014-10-27T00:00:00">Mon 27 October 2014</time>            </header>
 
             <article>
-                <h1>Isolation - what?</h1>
-<p>Many of guys I talk to tend to run their Linux containers (LXC, Docker, you
-name it) straight on bare. And I call this a bad idea. This is because when
-running all the containers within one single box you will be hit by network or
-security problems. Not today, but it will happen. Why?</p>
-<h1>Clusterfuck network</h1>
-<p>This term is used to describe a network where noone knows what's happening.
-Frankly it's working but don't-try-to-change-that (unless you're stupid  brave
-/ enough).</p>
-<p><center><img alt="Clusterfuck network" src="/images/clusterfucknetwork.jpg" /></center></p>
-<p>How does it refers to containers? Imagine that above wires are iptables rules.
-Should I write more? What happens when you restart iptables? Did you just
-killed the network in 300 containers running on that box? Oh whatever iptables
-- think docker0 interface + bonding/teaming + multiple bridges + veths + VIPs +
-vlans + whatever-your-sysadmins-come-with</p>
-<p>And now one single junior - sysadmin just reloads iptables as was written in
-the 5th point of never-updated-procedure.</p>
-<p>That's why I really like to have containers grouped on KVM VMs. KVM overhead is
-minimal these years. And it can save your ass. Just make a proper Ha planning
-and even if you kill some group of containers you will not have to firefight
-having 5 managers simultaneously on 3 calls ;)</p>
-<h1>Security</h1>
-<p>Yes I know - this term is usually some big-fucking-unknown for most of guys /
-ignorants. And that is why you should isolate groups of containers from each other. Throw
-the first rock who uses SELinux / enforcing (under these circumstances you
-could possibly cover the security subject in the terms on containers). But even
-if you do then see &gt; <strong>Clusterfuck network</strong> paragraph).</p>
-<p>Btw - I had this talk during Infosec meetup some time ago about Docker
-security - <a href="http://www.slideshare.net/d0cent/docker-rhel">enjoy</a>!</p>
-<h1>What about IaaSes?</h1>
-<p>Yes - if you're running <a href="https://openshift.github.io/">OpenShift</a> (or any other
-Open: Nebula / Stack / Whatever) then probably you will not care about isolation at
-all because this will be done for you without your interference. But -
-seriously? Usually people rather use VMs for hosting nodes of IaaSes.</p>
-<h1>Recap?</h1>
-<p>No. Just wrote this after having a failure with LXC containers on Centos7 and
-no-real-explanation just "have-you-tried-to-turn-it-off-and-on-again?".</p>
-<p><center><img alt="Isolation" src="/images/isolation.jpg" /></center></p>            </article>
+                <p><center><img alt="Focus" src="/images/focus.jpg" /></center></p>
+<h1>Focus</h1>
+<p>In 2001 a friend of mine wrote me via IM one sentence which remains in my
+memory up to now. It was about 1am and he wrote:</p>
+<blockquote>
+<p>I've done nothing constructive for the last 30 minutes. I'm going to bed.</p>
+</blockquote>
+<p>He lost his focus. He was tired and started to procrastinate. He was my mentor
+in the terms of <a href="https://en.wikipedia.org/wiki/Getting_Things_Done">Getting Things
+Done</a>.</p>
+<p>I was a student that times. For me it was rather normal to finish the day
+realizing that I'm sleeping on the keyboard - not telling to myself "enough".
+That's why that sentence was such important for me.</p>
+<h1>Pomodoro</h1>
+<p>I find <a href="https://en.wikipedia.org/wiki/Pomodoro_Technique">Pomodoro</a> technique
+very helpful when having problems with concentrating or my plate is totally
+full. Just find your way through <strong>pomidori</strong> and after full set of 4 go
+outside for 15-30 mins. That really helps.</p>
+<h1>Limit your WIP</h1>
+<p>That is taken from
+<a href="http://www.agileweboperations.com/kanban-wip-limits-the-fine-art-of-focus">Kanban</a>.
+I wouldn't be able to use Pomodoro having couple of tasks running
+together. If I want to be efficient I have to <strong>remove any context switching</strong>
+and work only on one task at a time. Kanban or Scrum ensures that I can focus
+on one particular job.</p>
+<h1>Remove distractors</h1>
+<p>Using <a href="https://en.wikipedia.org/wiki/Xfce">XFCE</a> I can easily remove almost all
+distractors simply by pressing <strong>F11</strong>. That gives me fullscreen mode of
+current window hiding any blinking icons in the system bar.</p>
+<p>Also I removed any focus - stealing apps etc (e.g. Skype tried to get my focus
+when receiving new message etc).</p>
+<p>Finally I learned to check all notifiers every single pomidori starts. So this
+is the time I look at the calendar, e-mail, Skype and so on. Then I just put
+down to the <a href="https://workflowy.com/">Workflowy</a> list of micro - tasks for this
+day (reply e-mail, schedule meeting etc) and go on with the main job. So I can
+use one of the pomidoris just for dealing with those micro - jobs (it's great
+after lunch when feeling sleepy).</p>
+<p>I also removed any notifications and LED blinking from all my cell - phones.
+This was quite a huge time - saver. Even after work I just don't have this
+feeling of checking that blinking LED. I just check my private e-mail like 5
+times a day. It's enough.</p>
+<h1>Take control</h1>
+<p>Some time ago I felt like social networks were taking control over me. Having
+Facebook app in the phone just made me poke around it almost unconsciously /
+automatically. So instead of reading something valuable (like RSSes or Kindle)
+I simply burnt my time on some bullshit. So I just removed all those apps from
+my phone. It was fucking genius. No more bullshit, distracting myself etc. Time
+saved - profit.</p>
+<h1>Isolate</h1>
+<p>Just buy yourself good head / earphones and use Spotify / Deezer. Working in an
+open - space (or similiar) area is sometimes fatiguing.</p>
+<h1>Win</h1>
+<p>Yup - with the ability to focus on my job I simply win my time. And that gives
+me oppurtunity to do a lot more. Great win for anyone that is interested in
+almost all field of life ;)</p>
+<p>But.. truly to be winners we have to practice all the time. Loosing focus is
+very easy and kinda natural. So we have to control it. Good luck :)</p><p>There are <a href="/2014/Oct/27/focus/#disqus_thread">comments</a>.</p>            </article>
                 <section id="article-list">
                     <h2>All posts</h2>
                     <ol>
+        
+
+ 
+            <li><a href="/2014/Oct/22/isolation/" rel="bookmark" title="Permalink to Isolation">Isolation</a></li>
         
 
  
@@ -140,6 +163,15 @@ no-real-explanation just "have-you-tried-to-turn-it-off-and-on-again?".</p>
                 
         </div>
 
+<script type="text/javascript">
+    var disqus_shortname = 'manycraft';
+    (function () {
+        var s = document.createElement('script'); s.async = true;
+        s.type = 'text/javascript';
+        s.src = 'http://' + disqus_shortname + '.disqus.com/count.js';
+        (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+    }());
+</script>
 
     </div>
 
