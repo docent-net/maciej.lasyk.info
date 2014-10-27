@@ -8,7 +8,7 @@
 </header>
 <article>
     {{ article.content }}
-    {% if DISQUS_SITENAME and article.status != "draft" %}
+    {% if DISQUS_SITENAME and SITEURL and article.status != "draft" %}
     <h2>Comments</h2>
     <div id="disqus_thread"></div>
     <script type="text/javascript">
