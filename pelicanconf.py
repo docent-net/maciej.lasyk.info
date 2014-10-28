@@ -4,7 +4,7 @@ from __future__ import unicode_literals
 
 AUTHOR = u'Maciej Lasyk'
 SITENAME = u'Many craft. Wow. Such create'
-SITEURL = ''
+SITEURL = 'http://maciej.lasyk.info'
 
 HOME_URL = 'http://maciej.lasyk.info'
 
@@ -34,9 +34,13 @@ SOCIAL = (('You can add links in your config file', '#'),
 DEFAULT_PAGINATION = False
 
 # Uncomment following line if you want document-relative URLs when developing
-#RELATIVE_URLS = True
+RELATIVE_URLS = True
 
 ARTICLE_URL = '{date:%Y}/{date:%b}/{date:%d}/{slug}/'
 ARTICLE_SAVE_AS = '{date:%Y}/{date:%b}/{date:%d}/{slug}/index.html'
 
 DISQUS_SITENAME='manycraft'
+GOOGLE_ANALYTICS='UA-61452-19'
+
+TAG_CLOUD_STEPS = 8
+TAG_CLOUD_MAX_ITEMS = 20
