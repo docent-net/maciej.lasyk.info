@@ -1,5 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Many craft. Wow. Such create</title><link>http://maciej.lasyk.info/</link><description></description><atom:link href="http://maciej.lasyk.info/feeds/tech.rss.xml" rel="self"></atom:link><lastBuildDate>Mon, 27 Oct 2014 00:00:00 +0100</lastBuildDate><item><title>Focus</title><link>http://maciej.lasyk.info/2014/Oct/27/focus/</link><description>&lt;p&gt;&lt;center&gt;&lt;img alt="Focus" src="http://maciej.lasyk.info/images/focus.jpg" /&gt;&lt;/center&gt;&lt;/p&gt;
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Many craft. Wow. Such create</title><link>http://maciej.lasyk.info/</link><description></description><atom:link href="http://maciej.lasyk.info/feeds/tech.rss.xml" rel="self"></atom:link><lastBuildDate>Wed, 29 Oct 2014 00:00:00 +0100</lastBuildDate><item><title>Remark</title><link>http://maciej.lasyk.info/2014/Oct/29/remark/</link><description>&lt;p&gt;&lt;center&gt;&lt;img alt="VIM" src="http://maciej.lasyk.info/images/vim.jpg" /&gt;&lt;/center&gt;&lt;/p&gt;
+&lt;p&gt;One of the rules that stay assures my productivity is using same tools
+for many tasks. That's why I've been looking for Powerpoint / LibreImpress replacement.&lt;/p&gt;
+&lt;p&gt;But it had to fullfill couple of requirements:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="http://daringfireball.net/projects/markdown/"&gt;Markdown&lt;/a&gt; based (so no need to learn new languages and could be created in VIM)&lt;/li&gt;
+&lt;li&gt;Devops way - no clicking and fancy UIs, rather working in terminal&lt;/li&gt;
+&lt;li&gt;No binary files so changes could be diffed easily (and VCSes make sense)&lt;/li&gt;
+&lt;li&gt;Easy embedding of images&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;And it's here: &lt;a href="http://remarkjs.com/"&gt;Remark&lt;/a&gt;. Hosted on &lt;a href="https://github.com/gnab/remark"&gt;GitHub&lt;/a&gt;, simple to use, quite a community around.&lt;/p&gt;
+&lt;p&gt;Running those slideshows with use of:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;python&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;m&lt;/span&gt; &lt;span class="n"&gt;SimpleHTTPServer&lt;/span&gt; &lt;span class="mi"&gt;8001&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Maciej Lasyk</dc:creator><pubDate>Wed, 29 Oct 2014 00:00:00 +0100</pubDate><guid>tag:maciej.lasyk.info,2014-10-29:2014/Oct/29/remark/</guid><category>markdown</category><category>remark</category><category>pelican</category></item><item><title>Focus</title><link>http://maciej.lasyk.info/2014/Oct/27/focus/</link><description>&lt;p&gt;&lt;center&gt;&lt;img alt="Focus" src="http://maciej.lasyk.info/images/focus.jpg" /&gt;&lt;/center&gt;&lt;/p&gt;
 &lt;h1&gt;Focus&lt;/h1&gt;
 &lt;p&gt;In 2001 a friend of mine wrote me via IM one sentence which remains in my
 memory up to now. It was about 1am and he wrote:&lt;/p&gt;
