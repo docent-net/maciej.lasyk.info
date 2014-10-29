@@ -1,0 +1,287 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Many craft. Wow. Such create</title><link href="http://maciej.lasyk.info/" rel="alternate"></link><link href="http://maciej.lasyk.info/feeds/tech.atom.xml" rel="self"></link><id>http://maciej.lasyk.info/</id><updated>2014-10-27T00:00:00+01:00</updated><entry><title>Focus</title><link href="http://maciej.lasyk.info/2014/Oct/27/focus/" rel="alternate"></link><updated>2014-10-27T00:00:00+01:00</updated><author><name>Maciej Lasyk</name></author><id>tag:maciej.lasyk.info,2014-10-27:2014/Oct/27/focus/</id><summary type="html">&lt;p&gt;&lt;center&gt;&lt;img alt="Focus" src="http://maciej.lasyk.info/images/focus.jpg" /&gt;&lt;/center&gt;&lt;/p&gt;
+&lt;h1&gt;Focus&lt;/h1&gt;
+&lt;p&gt;In 2001 a friend of mine wrote me via IM one sentence which remains in my
+memory up to now. It was about 1am and he wrote:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;I've done nothing constructive for the last 30 minutes. I'm going to bed.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;He lost his focus. He was tired and started to procrastinate. He was my mentor
+in the terms of &lt;a href="https://en.wikipedia.org/wiki/Getting_Things_Done"&gt;Getting Things
+Done&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;I was a student that times. For me it was rather normal to work until falling
+asleep on the keyboard. I just couldn't tell myself "enough, go to bed"..
+That's why that sentence was so important for me.&lt;/p&gt;
+&lt;h1&gt;Pomodoro&lt;/h1&gt;
+&lt;p&gt;I find &lt;a href="https://en.wikipedia.org/wiki/Pomodoro_Technique"&gt;Pomodoro&lt;/a&gt; technique
+very helpful when having problems with concentrating or my plate is totally
+full. Just find your way through &lt;strong&gt;pomidori&lt;/strong&gt; and after full set of 4 go
+outside for 15-30 mins. That really helps.&lt;/p&gt;
+&lt;h1&gt;Limit your WIP&lt;/h1&gt;
+&lt;p&gt;That is taken from
+&lt;a href="http://www.agileweboperations.com/kanban-wip-limits-the-fine-art-of-focus"&gt;Kanban&lt;/a&gt;.
+I wouldn't be able to use Pomodoro having couple of tasks running
+together. If I want to be efficient I have to &lt;strong&gt;remove any context switching&lt;/strong&gt;
+and work only on one task at a time. Kanban or Scrum ensures that I can focus
+on one particular job.&lt;/p&gt;
+&lt;h1&gt;Remove distractors&lt;/h1&gt;
+&lt;p&gt;Using &lt;a href="https://en.wikipedia.org/wiki/Xfce"&gt;XFCE&lt;/a&gt; I can easily remove almost all
+distractors simply by pressing &lt;strong&gt;F11&lt;/strong&gt;. That gives me fullscreen mode of
+current window hiding any blinking icons in the system bar.&lt;/p&gt;
+&lt;p&gt;Also I removed any focus - stealing apps etc (e.g. Skype tried to get my focus
+when receiving new message etc).&lt;/p&gt;
+&lt;p&gt;Finally I learned to check all notifiers every single pomidori starts. So this
+is the time I look at the calendar, e-mail, Skype and so on. Then I just put
+down to the &lt;a href="https://workflowy.com/"&gt;Workflowy&lt;/a&gt; list of micro - tasks for this
+day (reply e-mail, schedule meeting etc) and go on with the main job. So I can
+use one of the pomidoris just for dealing with those micro - jobs (it's great
+after lunch when feeling sleepy).&lt;/p&gt;
+&lt;p&gt;I also removed any notifications and LED blinking from all my cell - phones.
+This was quite a huge time - saver. Even after work I just don't have this
+feeling of checking that blinking LED. I just check my private e-mail like 5
+times a day. It's enough.&lt;/p&gt;
+&lt;h1&gt;Take control&lt;/h1&gt;
+&lt;p&gt;Some time ago I felt like social networks were taking control over me. Having
+Facebook app in the phone just made me poke around it almost unconsciously /
+automatically. So instead of reading something valuable (like RSSes or Kindle)
+I simply burnt my time on some bullshit. So I just removed all those apps from
+my phone. It was fucking genius. No more bullshit, distracting myself etc. Time
+saved - profit.&lt;/p&gt;
+&lt;h1&gt;Isolate&lt;/h1&gt;
+&lt;p&gt;Just buy yourself good head / earphones and use Spotify / Deezer. Working in an
+open - space (or similiar) area is sometimes fatiguing.&lt;/p&gt;
+&lt;h1&gt;Win&lt;/h1&gt;
+&lt;p&gt;Yup - with the ability to focus on my job I simply win my time. And that gives
+me oppurtunity to do a lot more. Great win for anyone that is interested in
+almost all field of life ;)&lt;/p&gt;
+&lt;p&gt;But.. truly to be winners we have to practice all the time. Loosing focus is
+very easy and kinda natural. So we have to control it. Good luck :)&lt;/p&gt;</summary><category term="procrastination"></category><category term="focus"></category><category term="gtd"></category></entry><entry><title>Isolation</title><link href="http://maciej.lasyk.info/2014/Oct/22/isolation/" rel="alternate"></link><updated>2014-10-22T00:00:00+02:00</updated><author><name>Maciej Lasyk</name></author><id>tag:maciej.lasyk.info,2014-10-22:2014/Oct/22/isolation/</id><summary type="html">&lt;h1&gt;Isolation - what?&lt;/h1&gt;
+&lt;p&gt;Many of guys I talk to tend to run their Linux containers (LXC, Docker, you
+name it) straight on bare. And I call this a bad idea. This is because when
+running all the containers within one single box you will be hit by network or
+security problems. Not today, but it will happen. Why?&lt;/p&gt;
+&lt;h1&gt;Clusterfuck network&lt;/h1&gt;
+&lt;p&gt;This term is used to describe a network where noone knows what's happening.
+Frankly it's working but don't-try-to-change-that (unless you're stupid  brave
+/ enough).&lt;/p&gt;
+&lt;p&gt;&lt;center&gt;&lt;img alt="Clusterfuck network" src="http://maciej.lasyk.info/images/clusterfucknetwork.jpg" /&gt;&lt;/center&gt;&lt;/p&gt;
+&lt;p&gt;How does it refers to containers? Imagine that above wires are iptables rules.
+Should I write more? What happens when you restart iptables? Did you just
+killed the network in 300 containers running on that box? Oh whatever iptables
+- think docker0 interface + bonding/teaming + multiple bridges + veths + VIPs +
+vlans + whatever-your-sysadmins-come-with&lt;/p&gt;
+&lt;p&gt;And now one single junior - sysadmin just reloads iptables as was written in
+the 5th point of never-updated-procedure.&lt;/p&gt;
+&lt;p&gt;That's why I really like to have containers grouped on KVM VMs. KVM overhead is
+minimal these years. And it can save your ass. Just make a proper Ha planning
+and even if you kill some group of containers you will not have to firefight
+having 5 managers simultaneously on 3 calls ;)&lt;/p&gt;
+&lt;h1&gt;Security&lt;/h1&gt;
+&lt;p&gt;Yes I know - this term is usually some big-fucking-unknown for most of guys /
+ignorants. And that is why you should isolate groups of containers from each other. Throw
+the first rock who uses SELinux / enforcing (under these circumstances you
+could possibly cover the security subject in the terms on containers). But even
+if you do then see &amp;gt; &lt;strong&gt;Clusterfuck network&lt;/strong&gt; paragraph).&lt;/p&gt;
+&lt;p&gt;Btw - I had this talk during Infosec meetup some time ago about Docker
+security - &lt;a href="http://www.slideshare.net/d0cent/docker-rhel"&gt;enjoy&lt;/a&gt;!&lt;/p&gt;
+&lt;h1&gt;What about IaaSes?&lt;/h1&gt;
+&lt;p&gt;Yes - if you're running &lt;a href="https://openshift.github.io/"&gt;OpenShift&lt;/a&gt; (or any other
+Open: Nebula / Stack / Whatever) then probably you will not care about isolation at
+all because this will be done for you without your interference. But -
+seriously? Usually people rather use VMs for hosting nodes of IaaSes.&lt;/p&gt;
+&lt;h1&gt;Recap?&lt;/h1&gt;
+&lt;p&gt;No. Just wrote this after having a failure with LXC containers on Centos7 and
+no-real-explanation just "have-you-tried-to-turn-it-off-and-on-again?".&lt;/p&gt;
+&lt;p&gt;&lt;center&gt;&lt;img alt="Isolation" src="http://maciej.lasyk.info/images/isolation.jpg" /&gt;&lt;/center&gt;&lt;/p&gt;</summary><category term="containers"></category><category term="lxc"></category><category term="docker"></category><category term="kvm"></category><category term="virtualization"></category><category term="security"></category></entry><entry><title>Invitation for Linux Autumn 2014</title><link href="http://maciej.lasyk.info/2014/Oct/14/invitation-for-linux-autumn-2014/" rel="alternate"></link><updated>2014-10-14T00:00:00+02:00</updated><author><name>Maciej Lasyk</name></author><id>tag:maciej.lasyk.info,2014-10-14:2014/Oct/14/invitation-for-linux-autumn-2014/</id><summary type="html">&lt;p&gt;&lt;center&gt;&lt;img alt="Jesien" src="http://maciej.lasyk.info/images/jesien-logo.png" /&gt;&lt;/center&gt;&lt;/p&gt;
+&lt;p&gt;My speaker - break is over. Another major conference on the horizon. This time it's one of
+the biggest Linux Conferences here in Poland.&lt;/p&gt;
+&lt;p&gt;I'll talk there about taking next step in automation of Linux containers
+(&lt;a href="http://docker.io"&gt;Docker&lt;/a&gt; based) - cluster management based on &lt;a href="https://github.com/coreos/fleet"&gt;Fleet&lt;/a&gt;
+and &lt;a href="https://github.com/GoogleCloudPlatform/kubernetes"&gt;Kubernetes&lt;/a&gt;. Also will
+tell couple of words about &lt;a href="http://www.fig.sh/"&gt;fig&lt;/a&gt; and history of scaling webapps.&lt;/p&gt;
+&lt;p&gt;Still not sure if you should attend? Check this year's
+&lt;a href="http://www.jesien.org/2014/pl/agenda"&gt;agenda&lt;/a&gt; and great
+&lt;a href="http://www.jesien.org/2014/en/hotel"&gt;location&lt;/a&gt; of the event! Remember to take
+a bike (great mtb and road trails there) or running shoes - this is one of the
+best places to have a workout :)&lt;/p&gt;
+&lt;p&gt;See you there guys!&lt;/p&gt;</summary><category term="talks"></category><category term="conferences"></category><category term="docker"></category><category term="coreos"></category><category term="kubernetes"></category><category term="fleet"></category><category term="fig"></category></entry><entry><title>OpenWRT, Dnsmasq + external DNS</title><link href="http://maciej.lasyk.info/2014/Sep/22/openwrt-dnsmasq-external-dns/" rel="alternate"></link><updated>2014-09-22T00:00:00+02:00</updated><author><name>Maciej Lasyk</name></author><id>tag:maciej.lasyk.info,2014-09-22:2014/Sep/22/openwrt-dnsmasq-external-dns/</id><summary type="html">&lt;p&gt;I use &lt;a href="https://openwrt.org/"&gt;OpenWRT&lt;/a&gt; on my home access - points instead of
+stock software (due to security concerns and my OpenSourceTheWorld approach).&lt;/p&gt;
+&lt;p&gt;I also have &lt;a href="https://en.wikipedia.org/wiki/BIND"&gt;BIND&lt;/a&gt; in use on my
+home-server, so I can use e.g. &lt;a href="http://maciej.lasyk.info/2014/Sep/02/dns-views-in-bind/"&gt;zones&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;So I was trying to make OpenWRT send DNS IP address to DHCP clients. By default
+OpenWRT will send it's own IP (it's using Dnsmasq onboard). And I just couldn't
+find option to set this manually (using webinteface).&lt;/p&gt;
+&lt;p&gt;Finally I logged into CLI interface via SSH and found that this change can be
+made in two ways.&lt;/p&gt;
+&lt;p&gt;In &lt;strong&gt;/etc/dnsmasq.conf&lt;/strong&gt; by adding line:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;dhcp-option&lt;span class="o"&gt;=&lt;/span&gt;6,IP1,IP2
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Or in &lt;strong&gt;/etc/config/dhcp&lt;/strong&gt; by adding to the section &lt;strong&gt;config dnsmasq&lt;/strong&gt;:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;list &lt;span class="s1"&gt;&amp;#39;dhcp_option&amp;#39;&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;6,192.168.1.29&amp;#39;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Just restart Dnsmaq service afterwards and you're done.&lt;/p&gt;</summary><category term="dns"></category><category term="openwrt"></category><category term="dnsmasq"></category><category term="dhcp"></category></entry><entry><title>Network Manager Dispatcher</title><link href="http://maciej.lasyk.info/2014/Sep/14/network-manager-dispatcher/" rel="alternate"></link><updated>2014-09-14T11:46:00+02:00</updated><author><name>Maciej Lasyk</name></author><id>tag:maciej.lasyk.info,2014-09-14:2014/Sep/14/network-manager-dispatcher/</id><summary type="html">&lt;p&gt;&lt;a href="https://en.wikipedia.org/wiki/NetworkManager"&gt;NetworkManager&lt;/a&gt; is often 
+associated with some voodoo - network - magic tool, that does the work on 
+laptop, but better switch it off on server. I won't argue about that, just 
+wanted to give you something I personally think make NM more usable.&lt;/p&gt;
+&lt;p&gt;So it is the &lt;strong&gt;/etc/NetworkManager/dispatcher.d&lt;/strong&gt; - this is directory under
+which lay scripts which will be executed on network change. Following
+man-pages:&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;NetworkManager will execute scripts in the /etc/NetworkManager/dispatcher.d 
+directory in alphabetical order in response to network events. Each script 
+should be a regular executable file, owned by root.&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;Furthermore, it must not be writable by group or other, and not setuid.&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;Each script receives two arguments, the first being the interface name of
+the device just activated, and second an action.&lt;/em&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;down&lt;/strong&gt; - The interface has been deactivated.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;vpn-up&lt;/strong&gt; - A VPN connection has been activated.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;vpn-down&lt;/strong&gt; - A VPN connection has been deactivated.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;hostname&lt;/strong&gt; - The system hostname has been updated. Use gethostname(2) to
+  retrieve it.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;dhcp4-change&lt;/strong&gt; - The DHCPv4 lease has changed (renewed, rebound, etc).&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;dhcp6-change&lt;/strong&gt; - The DHCPv6 lease has changed (renewed, rebound, etc).&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;So basically without manually detecting change in network events we may use the
+tool that was created just for this particular goal.&lt;/p&gt;</summary><category term="network"></category><category term="centos"></category><category term="fedora"></category></entry><entry><title>Ansible Playbook for favtools</title><link href="http://maciej.lasyk.info/2014/Sep/12/ansible-playbook-for-favtools/" rel="alternate"></link><updated>2014-09-12T23:24:00+02:00</updated><author><name>Maciej Lasyk</name></author><id>tag:maciej.lasyk.info,2014-09-12:2014/Sep/12/ansible-playbook-for-favtools/</id><summary type="html">&lt;h3&gt;playbook&lt;/h3&gt;
+&lt;p&gt;This rather doesn't fit my github repo ;)&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;- name: Ensure my favorite tools are installed
+  yum: &lt;span class="nv"&gt;pkg&lt;/span&gt;&lt;span class="o"&gt;={{&lt;/span&gt;item&lt;span class="o"&gt;}}&lt;/span&gt; &lt;span class="nv"&gt;state&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;latest
+  with_items:
+    - strace
+    - ltrace
+    - tcpdump
+    - vim
+    - procps
+    - sysstat
+    - git
+    - make
+    - gcc
+    - tmux
+    - links
+    - man
+    - ntp
+    - &lt;span class="nb"&gt;bind&lt;/span&gt;-utils
+    - nmap
+    - wget
+    - telnet
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;And there would be one &lt;a href="http://docs.ansible.com/playbooks_roles.html#role-dependencies"&gt;dependency&lt;/a&gt; here (&lt;a href="https://fedoraproject.org/wiki/EPEL"&gt;EPEL&lt;/a&gt; repo):&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;- name: install epel repo
+  yum: &lt;span class="nv"&gt;name&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;http://dl.fedoraproject.org/pub/epel/6/x86_64/epel-release-6-8.noarch.rpm &lt;span class="nv"&gt;state&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;present
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;That is only for starters; I'd add here also &lt;a href="http://www.sysdig.org/"&gt;sysdig&lt;/a&gt; and whole playbook for preparing user env.&lt;/p&gt;</summary><category term="ansible"></category><category term="centos"></category><category term="fedora"></category></entry><entry><title>Sysadmin evolution</title><link href="http://maciej.lasyk.info/2014/Sep/04/sysadmin-evolution/" rel="alternate"></link><updated>2014-09-04T18:38:00+02:00</updated><author><name>Maciej Lasyk</name></author><id>tag:maciej.lasyk.info,2014-09-04:2014/Sep/04/sysadmin-evolution/</id><summary type="html">&lt;h3&gt;Sysadmin evolution&lt;/h3&gt;
+&lt;p&gt;A couple of days ago on &lt;a href="http://training.linuxfoundation.org/sysadmin-evolution"&gt;The Linux Foundation&lt;/a&gt;
+appeared an image showing how could sysadmin advance his experience. I think
+that it's really worth mentioning, so check this &lt;a href="http://maciej.lasyk.info/images/EvolutionSysadmin_Infographic.png"&gt;image&lt;/a&gt;&lt;/p&gt;</summary><category term="ops"></category></entry><entry><title>DNS views in BIND</title><link href="http://maciej.lasyk.info/2014/Sep/02/dns-views-in-bind/" rel="alternate"></link><updated>2014-09-02T08:15:00+02:00</updated><author><name>Maciej Lasyk</name></author><id>tag:maciej.lasyk.info,2014-09-02:2014/Sep/02/dns-views-in-bind/</id><summary type="html">&lt;h3&gt;Why would I use DNS BIND views?&lt;/h3&gt;
+&lt;p&gt;From the manual: &lt;strong&gt;The view clause allows BIND to provide different
+functionality based on the hosts accessing it.&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;So basically you can provide one group of users with one variant of same zone 
+and different part of users with other variant of zone file.&lt;/p&gt;
+&lt;p&gt;This is very important - I've seen many poor - man's solutions when there was a
+need to provide different views in DNSes. &lt;strong&gt;view&lt;/strong&gt; clause is the proper
+solution.&lt;/p&gt;
+&lt;h3&gt;How?&lt;/h3&gt;
+&lt;p&gt;&lt;strong&gt;view Clause Syntax:&lt;/strong&gt;&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;view &lt;span class="s2"&gt;&amp;quot;view_name&amp;quot;&lt;/span&gt; &lt;span class="o"&gt;[&lt;/span&gt;class&lt;span class="o"&gt;]&lt;/span&gt; &lt;span class="o"&gt;{&lt;/span&gt;
+      &lt;span class="o"&gt;[&lt;/span&gt; match-clients &lt;span class="o"&gt;{&lt;/span&gt;  address_match_list &lt;span class="o"&gt;}&lt;/span&gt; ; &lt;span class="o"&gt;]&lt;/span&gt;
+      &lt;span class="o"&gt;[&lt;/span&gt; match-destinations &lt;span class="o"&gt;{&lt;/span&gt; address_match_list &lt;span class="o"&gt;}&lt;/span&gt; ; &lt;span class="o"&gt;]&lt;/span&gt;
+      &lt;span class="o"&gt;[&lt;/span&gt; match-recursive-only &lt;span class="o"&gt;{&lt;/span&gt; yes | no &lt;span class="o"&gt;}&lt;/span&gt; ; &lt;span class="o"&gt;]&lt;/span&gt;
+      // view statements
+      // zone clauses
+&lt;span class="o"&gt;}&lt;/span&gt;;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;So i.e. when we want to serve different view for &lt;strong&gt;lasyk.info&lt;/strong&gt; domain for 2
+grups of users (one would be guys from internet, second - guys from my LAN) we
+would do something like this:&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;set up proper ACL:&lt;/strong&gt;&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;acl internal &lt;span class="o"&gt;{&lt;/span&gt;
+       192.168.10.0/24;
+       localhost;
+&lt;span class="o"&gt;}&lt;/span&gt;;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;&lt;strong&gt;define zone:&lt;/strong&gt;&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;view &lt;span class="s2"&gt;&amp;quot;internal-view&amp;quot;&lt;/span&gt; &lt;span class="o"&gt;{&lt;/span&gt;
+      match-clients &lt;span class="o"&gt;{&lt;/span&gt; internal; &lt;span class="o"&gt;}&lt;/span&gt;;
+      recursion yes;
+
+      zone &lt;span class="s2"&gt;&amp;quot;lasyk.info&amp;quot;&lt;/span&gt; IN &lt;span class="o"&gt;{&lt;/span&gt;
+            &lt;span class="nb"&gt;type &lt;/span&gt;master;
+            file &lt;span class="s2"&gt;&amp;quot;internal.lasyk.info.conf&amp;quot;&lt;/span&gt;;
+            allow-transfer &lt;span class="o"&gt;{&lt;/span&gt; any; &lt;span class="o"&gt;}&lt;/span&gt;
+      &lt;span class="o"&gt;}&lt;/span&gt;;
+view &lt;span class="s2"&gt;&amp;quot;external-view&amp;quot;&lt;/span&gt; &lt;span class="o"&gt;{&lt;/span&gt;
+      match-clients &lt;span class="o"&gt;{&lt;/span&gt; any; &lt;span class="o"&gt;}&lt;/span&gt;;
+      recursion no;
+
+      zone &lt;span class="s2"&gt;&amp;quot;lasyk.info&amp;quot;&lt;/span&gt; IN &lt;span class="o"&gt;{&lt;/span&gt;
+            &lt;span class="nb"&gt;type &lt;/span&gt;master;
+            file &lt;span class="s2"&gt;&amp;quot;external.lasyk.info.conf&amp;quot;&lt;/span&gt;;
+            allow-transfer &lt;span class="o"&gt;{&lt;/span&gt; none; &lt;span class="o"&gt;}&lt;/span&gt;;
+      &lt;span class="o"&gt;}&lt;/span&gt;;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Now just create proper zone - files, &lt;strong&gt;rndc reload&lt;/strong&gt; and test it with &lt;strong&gt;dig&lt;/strong&gt;&lt;/p&gt;</summary><category term="dns"></category><category term="bind"></category></entry><entry><title>Discourse and Piwik</title><link href="http://maciej.lasyk.info/2014/Aug/23/discourse-and-piwik/" rel="alternate"></link><updated>2014-08-23T00:15:00+02:00</updated><author><name>Maciej Lasyk</name></author><id>tag:maciej.lasyk.info,2014-08-23:2014/Aug/23/discourse-and-piwik/</id><summary type="html">&lt;h3&gt;Erm, what?&lt;/h3&gt;
+&lt;p&gt;For the last couple of years I've been favorizing Open Source software. That's
+why after many years of using &lt;a href="https://www.disqus.com"&gt;Disqus&lt;/a&gt; for comments and
+&lt;a href="https://analytics.google.com"&gt;Google Analytics&lt;/a&gt; for statistics I've decided
+to go Open Source.&lt;/p&gt;
+&lt;h3&gt;Why?&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Because it's open source&lt;/li&gt;
+&lt;li&gt;Because I like hosting my services on my servers&lt;/li&gt;
+&lt;li&gt;Because I value my privacy&lt;/li&gt;
+&lt;li&gt;Because when I host something then it's on my rules&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;Discourse&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;This is Disqus alternative&lt;/li&gt;
+&lt;li&gt;Official webpage: &lt;a href="http://www.discourse.org/"&gt;Discourse&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Install notes via &lt;strong&gt;Docker&lt;/strong&gt;(!): &lt;a href="https://github.com/discourse/discourse/blob/master/docs/INSTALL.md"&gt;github&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;Piwik&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;This is Google analytics alternative&lt;/li&gt;
+&lt;li&gt;Official webpage: &lt;a href="http://piwik.org/"&gt;Piwik&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Install notes: &lt;a href="http://piwik.org/docs/installation/"&gt;here&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Piwik doesn't have official Docker images - I'll work on that within &lt;a href="https://github.com/fedora-cloud/Fedora-Dockerfiles"&gt;Fedora Dockerfiles&lt;/a&gt; 
+and maybe I'll try to push this as another official installation method of Piwik.&lt;/p&gt;</summary><category term="discourse"></category><category term="piwik"></category><category term="disqus"></category><category term="google-analytics"></category></entry><entry><title>Online Courses</title><link href="http://maciej.lasyk.info/2014/Aug/20/online-courses/" rel="alternate"></link><updated>2014-08-20T22:46:00+02:00</updated><author><name>Maciej Lasyk</name></author><id>tag:maciej.lasyk.info,2014-08-20:2014/Aug/20/online-courses/</id><summary type="html">&lt;h3&gt;What about onlince courses?&lt;/h3&gt;
+&lt;p&gt;I've been using couple of online educational services (IT mainly) and wanted
+to share a short list of those I used - with a little comment:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://www.coursera.org/"&gt;Coursera&lt;/a&gt; - library full of varied courses, mainly
+  university level; ++ for mobile apps; courses are not self - paced&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.codeschool.com/"&gt;CodeSchool&lt;/a&gt; - Mainly webdev &amp;amp; mobiledev courses;
+  sometimes I have feeling that videos are too childish; also not that many
+  excercises to do; self - paced&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://www.codecademy.com/"&gt;CodeAcademy&lt;/a&gt; - like &lt;strong&gt;CodeSchool&lt;/strong&gt; mainly webdev
+  courses (and backend ones also); not that childish - I liked using this; 
+  self - paced&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://www.learnstreet.com/"&gt;LearnStreet&lt;/a&gt; - pity it's closed now; this was 
+  really great service with many excercises and rich content; mentioning it
+  because I really believe it will be live again; self - paced&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.udemy.com/"&gt;udemy&lt;/a&gt; - didn't use this one, but my wife does ;) 
+  self - paced, rich of wide angle - courses (not only IT)&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.class-central.com"&gt;ClassCentral&lt;/a&gt; - it's rather an agregator of 
+  many courses - engines (like &lt;strong&gt;Coursera&lt;/strong&gt;). Worth mentioning as provides
+  calendar of courses from many services&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://www.pluralsight.com/"&gt;Pluralsight&lt;/a&gt; - very rich library of self - 
+  paced IT courses; I've moved here as this one covers majority of topics
+  that I wanted to learn about or retrain&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;I think that those services could be a solid base for development planning
+in any company.&lt;/p&gt;</summary><category term="courses"></category></entry><entry><title>Creator Bias</title><link href="http://maciej.lasyk.info/2014/Jul/29/creator-bias/" rel="alternate"></link><updated>2014-07-29T00:15:00+02:00</updated><author><name>Maciej Lasyk</name></author><id>tag:maciej.lasyk.info,2014-07-29:2014/Jul/29/creator-bias/</id><summary type="html">&lt;p&gt;Quote of the day: “Humans are bad at predicting the performance of complex systems [...] Our ability to create large &amp;amp; complex systems fools us into believing that we’re also entitled to understand them”&lt;/p&gt;
+&lt;p&gt;Taken from &lt;a href="http://carlos.bueno.org/optimization/mature-optimization.pdf"&gt;"Mature Optimization Handbook"&lt;/a&gt; by Carlos Bueno&lt;/p&gt;</summary><category term="quotes"></category><category term=""></category></entry></feed>

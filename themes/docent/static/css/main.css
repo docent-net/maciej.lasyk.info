@@ -24,6 +24,8 @@ blockquote cite { display:block; padding:10px 20px 0 0; text-align:right; }
 input, textarea { padding:5px; border:1px solid #8A8A8A; background:#EAEAEA; }
 input:hover, textarea:hover, blockquote:hover { background:#E5E5E5; }
 
+h1.index_page { color: #999999; text-transform:uppercase; padding:0px 15px 15px 0p; margin:8px 0px 15px 0px; }
+
 #wrap { margin:0px auto; text-align:left; font-size: 13px; line-height: 1.4; }
 #container { float:right; }
 #sidebar { overflow:hidden; clear:left; text-align:right; width:250px; height:auto; padding:0px 15px 0px 0px; border-right:1px dotted #C8C8C8; }
@@ -101,16 +103,18 @@ input#s { width:70%; height:auto; margin:5px 0px; }
 #footer li { list-style-type:none; }
 #footer .widget_tag_cloud h2 { display:none; }
 
-ol.article_list { margin-top: 0px; }
+ul.article_list { list-style: none; padding: 0; }
+
+#feedsbar { overflow:hidden; clear:left; text-align:right; width:250px; height:auto; padding:0px 15px 0px 0px; border-right:1px dotted #C8C8C8; }
+#feedsbar li { list-style-type:none; }
+#feedsbar ul { border-bottom:1px dotted #C8C8C8; padding-bottom: 10px; margin-top: -3px; }
 
 #tagcloud { overflow:hidden; clear:left; text-align:right; width:250px; height:auto; padding:0px 15px 0px 0px; border-right:1px dotted #C8C8C8; }
 #tagcloud li { list-style-type:none; }
 #tagcloud ul { border-bottom:1px dotted #C8C8C8; padding-bottom: 20px; }
 
-ul.tagcloud {
-  list-style: none;
-    padding: 0;
-}
+ul.tagcloud { list-style: none; padding: 0; }
+span.blurred { color: #999999; }
 
 ul.tagcloud li { display: inline-block; }
 

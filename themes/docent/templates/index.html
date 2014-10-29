@@ -1,11 +1,18 @@
 {% extends "base.html" %}
 {% block content_title %}{% endblock %}
 {% block content %}        
+{% if tag %}
+<h1 class="index_page">Tag: {{ tag }}</h1>
+{% elif category %}
+<h1 class="index_page">Category: {{ category }}</h1>
+{% else %}
+<h1 class="index_page">Blog Posts</h1>
+{% endif %}
 {% if articles %}
-    <ol class="article_list">
+    <ul class="article_list">
     {% for article in articles %}        
-            <li><a href="{{ SITEURL }}/{{ article.url }}" rel="bookmark" title="{{ article.summary }}">{{ article.title }}</a> - {{ article.summary|striptags }}</li>
+            <li><span class="blurred">{{ article.date|strftime('%d %b %Y') }}</span> >> <a href="{{ SITEURL }}/{{ article.url }}" rel="bookmark" title="{{ article.summary }}">{{ article.title }} - {{ article.summary|striptags }}</a></li>
     {% endfor %}
-    </ol>
+    </ul>
 {% endif %}
 {% endblock content %}
