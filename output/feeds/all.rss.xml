@@ -1,5 +1,42 @@
 <?xml version="1.0" encoding="utf-8"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Many craft. Wow. Such create</title><link>http://maciej.lasyk.info/</link><description></description><atom:link href="http://maciej.lasyk.info/feeds/all.rss.xml" rel="self"></atom:link><lastBuildDate>Mon, 10 Nov 2014 00:00:00 +0100</lastBuildDate><item><title>Orchestrating Docker containers at scale - slides from Linux Autumn 2014</title><link>http://maciej.lasyk.info/2014/Nov/10/orchestrating-docker-containers-at-scale-slides-from-linux-autumn-2014/</link><description>&lt;p&gt;&lt;center&gt;&lt;img alt="Jesien" src="http://maciej.lasyk.info/images/jesien-logo.png" /&gt;&lt;/center&gt;&lt;/p&gt;
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Many craft. Wow. Such create</title><link>http://maciej.lasyk.info/</link><description></description><atom:link href="http://maciej.lasyk.info/feeds/all.rss.xml" rel="self"></atom:link><lastBuildDate>Sun, 16 Nov 2014 00:00:00 +0100</lastBuildDate><item><title>Piwik!</title><link>http://maciej.lasyk.info/2014/Nov/16/piwik/</link><description>&lt;p&gt;&lt;center&gt;&lt;img alt="Piwik" src="http://maciej.lasyk.info/images/piwik.png" /&gt;&lt;/center&gt;&lt;/p&gt;
+&lt;h1&gt;Piwik?&lt;/h1&gt;
+&lt;p&gt;&lt;a href="http://piwik.org"&gt;Piwik&lt;/a&gt; is an open - source alternative to &lt;a href="https://analytics.google.com"&gt;Google Analytics&lt;/a&gt;.
+You can read the &lt;a href="http://smashinghub.com/google-analytics-vs-piwik-the-ultimate-comparison.htm"&gt;ultimate comparison
+here&lt;/a&gt;.&lt;/p&gt;
+&lt;h1&gt;Why change?&lt;/h1&gt;
+&lt;p&gt;I've been using Google Analytics since its beginning. Was I happy with it? Yes. 
+So why did I change it finally? I have couple of reasons:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Because I didn't use 90% functionalities of GA&lt;/li&gt;
+&lt;li&gt;Because I have corporate - paranoia (watched too many movies, played too many
+  games). Don't want Google to control my data&lt;/li&gt;
+&lt;li&gt;Because I like hosting my services and scale those&lt;/li&gt;
+&lt;li&gt;Because I feel great when my way of hosting Piwik runs faster than Google
+  Analytics&lt;/li&gt;
+&lt;li&gt;Because I love learning; and every new service is about learning how to
+  maintain, scale and keep it running smoothly&lt;/li&gt;
+&lt;li&gt;Because it's fun to create yet another Ansible playbook&lt;/li&gt;
+&lt;li&gt;Because it's fun to host yet another service with Docker&lt;/li&gt;
+&lt;li&gt;Because it's fun to have yet another part of cluster (regarding Docker
+  cluster)&lt;/li&gt;
+&lt;li&gt;Because Piwik is 100% open - source&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1&gt;How?&lt;/h1&gt;
+&lt;p&gt;Oh it was simple. There are 2 easy (and fast) methods of rolling up Piwik
+yourself:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;a href="https://github.com/ICTO/ansible-piwik"&gt;Piwik Ansible playbook&lt;/a&gt; - it's quite
+   old and I had to fix couple of lines to make it working with 1.7.2 (created
+   already &lt;a href="https://github.com/ICTO/ansible-piwik/pull/2"&gt;pull request&lt;/a&gt; for those fixes)&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/RyanKung/docker-piwik-mariadb"&gt;Dockerfile for Piwik /
+   MariaDB&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;Just choose a way which fits you the most (or poke around your own one).&lt;/p&gt;
+&lt;h1&gt;Anything else?&lt;/h1&gt;
+&lt;p&gt;Just remember to make sure that Piwik content headers have gzip compression and
+also caching enabled. Hosting own analytics site means many requests to the
+public interfaces so those should be optimized very well.&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Maciej Lasyk</dc:creator><pubDate>Sun, 16 Nov 2014 00:00:00 +0100</pubDate><guid>tag:maciej.lasyk.info,2014-11-16:2014/Nov/16/piwik/</guid><category>piwik</category><category>opensource</category><category>analytics</category></item><item><title>Orchestrating Docker containers at scale - slides from Linux Autumn 2014</title><link>http://maciej.lasyk.info/2014/Nov/10/orchestrating-docker-containers-at-scale-slides-from-linux-autumn-2014/</link><description>&lt;p&gt;&lt;center&gt;&lt;img alt="Jesien" src="http://maciej.lasyk.info/images/jesien-logo.png" /&gt;&lt;/center&gt;&lt;/p&gt;
 &lt;p&gt;That's it. &lt;a href="http://www.jesien.org"&gt;Linux Autumn 2014&lt;/a&gt; is over. This year I finally decided to give a talk
 instead of only listening and networking.&lt;/p&gt;
 &lt;p&gt;The subject of this talk was &lt;strong&gt;Orchestrating Docker containers at scale&lt;/strong&gt;. As

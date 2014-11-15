@@ -17,7 +17,7 @@ a, a:visited { text-decoration:none; color:rgb(17, 170, 34); }
 a:hover { color:#FFF; background-color:#5353CB }
 h1, h2, h3, h4, h5, h6, h7 { margin:0px; text-transform:uppercase; }
 h4, h5, h6 { font-size:14px; }
-h1 { padding:0px 0px 15px; margin:0px 0px 15px 0px; }
+h1 { padding:0px 0px 0px; margin:0px 0px 0px 0px; }
 article#h1 { padding:10px 0px 5px; margin:0px 0px 0px 0px; }
 blockquote { font-style:italic; background:#EAEAEA; margin:20px; padding:5px 10px; }
 blockquote cite { display:block; padding:10px 20px 0 0; text-align:right; }
