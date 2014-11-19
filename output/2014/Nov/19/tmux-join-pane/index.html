@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-        <title>Many craft. Wow. Such create - tech</title>
+        <title>Many craft. Wow. Such create : Tmux: join-pane</title>
         <meta charset="utf-8" />
         <link rel="stylesheet" href="http://maciej.lasyk.info/theme/css/main.css" type="text/css" />
         <link href="http://maciej.lasyk.info/" type="application/atom+xml" rel="alternate" title="Many craft. Wow. Such create ATOM Feed" />
@@ -26,41 +26,63 @@
 
             <div class="entry">
         
-<h1 class="index_page">Category: tech</h1>
-    <ul class="article_list">
-        
-            <li><span class="blurred">19 Nov 2014</span> >> <a href="http://maciej.lasyk.info/2014/Nov/19/poor-mans-vim-sessions/" rel="bookmark" title="<p>How I handle sessions in VIM</p>">Poor man's VIM sessions - How I handle sessions in VIM</a></li>
-        
-            <li><span class="blurred">19 Nov 2014</span> >> <a href="http://maciej.lasyk.info/2014/Nov/19/tmux-join-pane/" rel="bookmark" title="<p>Moving panes between windows</p>">Tmux: join-pane - Moving panes between windows</a></li>
-        
-            <li><span class="blurred">16 Nov 2014</span> >> <a href="http://maciej.lasyk.info/2014/Nov/16/piwik/" rel="bookmark" title="<p>Google Analytics to Piwik migration</p>">Piwik! - Google Analytics to Piwik migration</a></li>
-        
-            <li><span class="blurred">10 Nov 2014</span> >> <a href="http://maciej.lasyk.info/2014/Nov/10/orchestrating-docker-containers-at-scale-slides-from-linux-autumn-2014/" rel="bookmark" title="<p>Slides from my last talk I gave on Linux Autumn 2014 conference</p>">Orchestrating Docker containers at scale - slides from Linux Autumn 2014 - Slides from my last talk I gave on Linux Autumn 2014 conference</a></li>
-        
-            <li><span class="blurred">29 Oct 2014</span> >> <a href="http://maciej.lasyk.info/2014/Oct/29/remark/" rel="bookmark" title="<p>Write your presentations in Markdown!</p>">Remark - Write your presentations in Markdown!</a></li>
-        
-            <li><span class="blurred">27 Oct 2014</span> >> <a href="http://maciej.lasyk.info/2014/Oct/27/focus/" rel="bookmark" title="<p>About focusing on your work</p>">Focus - About focusing on your work</a></li>
-        
-            <li><span class="blurred">14 Oct 2014</span> >> <a href="http://maciej.lasyk.info/2014/Oct/14/invitation-for-linux-autumn-2014/" rel="bookmark" title="<p>Come get some! Docker and cluster management included!</p>">Invitation for Linux Autumn 2014 - Come get some! Docker and cluster management included!</a></li>
-        
-            <li><span class="blurred">22 Sep 2014</span> >> <a href="http://maciej.lasyk.info/2014/Sep/22/openwrt-dnsmasq-external-dns/" rel="bookmark" title="<p>How to setup OpenWRT/DHCP with external DNSes</p>">OpenWRT, Dnsmasq + external DNS - How to setup OpenWRT/DHCP with external DNSes</a></li>
-        
-            <li><span class="blurred">14 Sep 2014</span> >> <a href="http://maciej.lasyk.info/2014/Sep/14/network-manager-dispatcher/" rel="bookmark" title="<p>Short story why one coulde like NetworkManager</p>">Network Manager Dispatcher - Short story why one coulde like NetworkManager</a></li>
-        
-            <li><span class="blurred">12 Sep 2014</span> >> <a href="http://maciej.lasyk.info/2014/Sep/12/ansible-playbook-for-favtools/" rel="bookmark" title="<p>Ansible-playbook for installing my favorite sys-tools on Fedora/Centos</p>">Ansible Playbook for favtools - Ansible-playbook for installing my favorite sys-tools on Fedora/Centos</a></li>
-        
-            <li><span class="blurred">04 Sep 2014</span> >> <a href="http://maciej.lasyk.info/2014/Sep/04/sysadmin-evolution/" rel="bookmark" title="<p>Sysadmin evolution by The Linux Foundation</p>">Sysadmin evolution - Sysadmin evolution by The Linux Foundation</a></li>
-        
-            <li><span class="blurred">02 Sep 2014</span> >> <a href="http://maciej.lasyk.info/2014/Sep/02/dns-views-in-bind/" rel="bookmark" title="<p>How to configure BIND DNS server so it can provide different views of zones for different groups of users?</p>">DNS views in BIND - How to configure BIND DNS server so it can provide different views of zones for different groups of users?</a></li>
-        
-            <li><span class="blurred">23 Aug 2014</span> >> <a href="http://maciej.lasyk.info/2014/Aug/23/discourse-and-piwik/" rel="bookmark" title="<p>My thoughts about moving to Discourse and Piwik</p>">Discourse and Piwik - My thoughts about moving to Discourse and Piwik</a></li>
-        
-            <li><span class="blurred">20 Aug 2014</span> >> <a href="http://maciej.lasyk.info/2014/Aug/20/online-courses/" rel="bookmark" title="<p>Short list of online courses, which I found usable &amp; interesting</p>">Online Courses - Short list of online courses, which I found usable & interesting</a></li>
-        
-            <li><span class="blurred">29 Jul 2014</span> >> <a href="http://maciej.lasyk.info/2014/Jul/29/creator-bias/" rel="bookmark" title="<p>Quote of the day</p>">Creator Bias - Quote of the day</a></li>
-        
-            <li><span class="blurred">05 Aug 2013</span> >> <a href="http://maciej.lasyk.info/2013/Aug/05/mysql-ha/" rel="bookmark" title="<p>Quintessence of achieving high availability in MySQL</p>">Mysql HA - Quintessence of achieving high availability in MySQL</a></li>
-    </ul>
+<header>
+<h1><a href="http://maciej.lasyk.info" id="site-title">  </a>         <a href="http://maciej.lasyk.info/2014/Nov/19/tmux-join-pane/" id="page-title">Tmux: join-pane</a></h1>
+<time datetime="2014-11-19T00:00:00">Wed 19 November 2014</time></header>
+<article>
+    <p><center><img alt="TMUX" src="http://maciej.lasyk.info/images/tmux.png" /></center></p>
+<p>Today I finally learnt how to move a pane between windows in
+<a href="http://tmux.sourceforge.net/">Tmux</a> and yes - I will share this vodoo
+knowledge with you guys.</p>
+<p>Searching through the internet gives us this:</p>
+<div class="highlight"><pre><span class="c"># pane movement</span>
+<span class="nb">bind</span>-key j <span class="nb">command</span>-prompt -p <span class="s2">&quot;join pane from:&quot;</span>  <span class="s2">&quot;join-pane -s &#39;%%&#39;&quot;</span>
+<span class="nb">bind</span>-key s <span class="nb">command</span>-prompt -p <span class="s2">&quot;send pane to:&quot;</span>  <span class="s2">&quot;join-pane -t &#39;%%&#39;&quot;</span>
+</pre></div>
+
+
+<p>This is the most popular binding for this 'moving' purposes. But - when you try
+it entering window number as the destination (or source) you get a message:</p>
+<blockquote>
+<p>Can’t join a pane to its own window</p>
+</blockquote>
+<p>WTF?</p>
+<p>Let's RTFM:</p>
+<blockquote>
+<div class="highlight"><pre> <span class="n">join</span><span class="o">-</span><span class="n">pane</span> <span class="p">[</span><span class="o">-</span><span class="n">bdhv</span><span class="p">]</span> <span class="p">[</span><span class="o">-</span><span class="n">l</span> <span class="n">size</span> <span class="o">|</span> <span class="o">-</span><span class="n">p</span> <span class="n">percentage</span><span class="p">]</span> <span class="p">[</span><span class="o">-</span><span class="n">s</span> <span class="n">src</span><span class="o">-</span><span class="n">pane</span><span class="p">]</span> <span class="p">[</span><span class="o">-</span><span class="n">t</span> <span class="n">dst</span><span class="o">-</span><span class="n">pane</span><span class="p">]</span>
+       <span class="p">(</span><span class="n">alias</span><span class="o">:</span> <span class="n">joinp</span><span class="p">)</span>
+      <span class="n">Like</span> <span class="n">split</span><span class="o">-</span><span class="n">window</span><span class="p">,</span> <span class="n">but</span> <span class="n">instead</span> <span class="n">of</span> <span class="n">splitting</span>
+      <span class="n">dst</span><span class="o">-</span><span class="n">pane</span> <span class="n">and</span> <span class="n">creating</span> <span class="n">a</span> <span class="n">new</span> <span class="n">pane</span><span class="p">,</span> <span class="n">split</span> <span class="n">it</span> <span class="n">and</span>
+      <span class="n">move</span> <span class="n">src</span><span class="o">-</span><span class="n">pane</span> <span class="n">into</span> <span class="n">the</span> <span class="n">space</span><span class="p">.</span>  <span class="n">This</span> <span class="n">can</span> <span class="n">be</span> <span class="n">used</span>
+      <span class="n">to</span> <span class="n">reverse</span> <span class="k">break</span><span class="o">-</span><span class="n">pane</span><span class="p">.</span>
+</pre></div>
+
+
+</blockquote>
+<p>Yes - so this gives us nothing.</p>
+<p>So - lurking through the horizon of the internet I found
+<a href="https://forums.pragprog.com/forums/242/topics/10533">this</a>:</p>
+<p>So it looks like the full path takes 2 arguments: window_number.pane_number</p>
+<p>So yes - bindings are still valid but instead entering single window number we
+should enter exact location like <strong>1.3</strong> (assuming you got at least 2 panes in
+1 window)</p>
+<p>Yes - this was not that obvious</p>
+    <h2>Comments</h2>
+    <div id="disqus_thread"></div>
+    <script type="text/javascript">
+       var disqus_shortname = 'manycraft';
+       var disqus_identifier = '2014/Nov/19/tmux-join-pane/';
+       var disqus_url = 'http://maciej.lasyk.info/2014/Nov/19/tmux-join-pane/';
+       (function() {
+            var dsq = document.createElement('script');
+            dsq.type = 'text/javascript'; dsq.async = true;
+            dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] ||
+             document.getElementsByTagName('body')[0]).appendChild(dsq);
+      })();
+    </script>
+    <noscript>Please enable JavaScript to view the comments.</noscript>
+</article>
             </div>
         </div>
 
