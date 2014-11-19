@@ -1,5 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Many craft. Wow. Such create</title><link>http://maciej.lasyk.info/</link><description></description><atom:link href="http://maciej.lasyk.info/feeds/tech.rss.xml" rel="self"></atom:link><lastBuildDate>Sun, 16 Nov 2014 00:00:00 +0100</lastBuildDate><item><title>Piwik!</title><link>http://maciej.lasyk.info/2014/Nov/16/piwik/</link><description>&lt;p&gt;&lt;center&gt;&lt;img alt="Piwik" src="http://maciej.lasyk.info/images/piwik.png" /&gt;&lt;/center&gt;&lt;/p&gt;
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Many craft. Wow. Such create</title><link>http://maciej.lasyk.info/</link><description></description><atom:link href="http://maciej.lasyk.info/feeds/tech.rss.xml" rel="self"></atom:link><lastBuildDate>Wed, 19 Nov 2014 00:00:00 +0100</lastBuildDate><item><title>Poor man's VIM sessions</title><link>http://maciej.lasyk.info/2014/Nov/19/poor-mans-vim-sessions/</link><description>&lt;p&gt;&lt;center&gt;&lt;img alt="VIM" src="http://maciej.lasyk.info/images/vim.jpg" /&gt;&lt;/center&gt;&lt;/p&gt;
+&lt;p&gt;Some of guys use VIM just like Eclipse - one IDE to rule them all. I don't like
+this approach - instead of this I rather work in couple of
+&lt;a href="http://tmux.sourceforge.net/"&gt;Tmux&lt;/a&gt; windows having exactly one VIM in each (usually top - left pane). &lt;/p&gt;
+&lt;p&gt;If you don't know what Tmux is and how it works check this &lt;a href="http://robots.thoughtbot.com/a-tmux-crash-course"&gt;crash course&lt;/a&gt; or &lt;a href="http://www.techrepublic.com/blog/linux-and-open-source/is-tmux-the-gnu-screen-killer/"&gt;this comparison between GNU Screen and Tmux&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;So - instead of opening new VIM windows and sessions manually everytime I
+start my work I just start vim using bash function (placed in my zsh_profile):&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;$ vims session_name&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;This way I keep one session per task (just like I do with Tmux windows - think 
+about those like feature branches in git!).&lt;/p&gt;
+&lt;p&gt;So the whole workflow looks like:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Create new tmux windows with my custom layout (using &lt;a href="https://github.com/tmuxinator/tmuxinator"&gt;Tmuxinator&lt;/a&gt;)&lt;/li&gt;
+&lt;li&gt;Create feature branch in git repo&lt;/li&gt;
+&lt;li&gt;Open VIM in the top - left pane of VIM using session named exactly the same 
+   like feature branch&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;Yes - I could possibly remove the last step and include it into the tmux 
+window creation, but remember - this is &lt;strong&gt;poor man's way&lt;/strong&gt; ;)&lt;/p&gt;
+&lt;p&gt;And one more thing - I use &lt;a href="https://github.com/xolox/vim-session"&gt;vim-session&lt;/a&gt;
+plugin to handle sessions in VIM.&lt;/p&gt;
+&lt;p&gt;And the function code? See below:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt; vims&lt;span class="o"&gt;()&lt;/span&gt; &lt;span class="o"&gt;{&lt;/span&gt;
+    &lt;span class="nv"&gt;_vim_sess_dir&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;~/.vim/sessions/
+     &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="o"&gt;[&lt;/span&gt; -z &lt;span class="nv"&gt;$1&lt;/span&gt; &lt;span class="o"&gt;]&lt;/span&gt;; &lt;span class="k"&gt;then&lt;/span&gt;
+&lt;span class="k"&gt;         &lt;/span&gt;&lt;span class="nb"&gt;echo&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;You must enter session name!&amp;quot;&lt;/span&gt;
+         ls &lt;span class="nv"&gt;$_vim_sess_dir&lt;/span&gt;                                                                                                  &lt;span class="k"&gt;else                                                                                                                       &lt;/span&gt;&lt;span class="nv"&gt;_vim_sess&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="nv"&gt;$_vim_sess_dir&lt;/span&gt;/&lt;span class="nv"&gt;$1&lt;/span&gt;                                                                                   
+         &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="o"&gt;[&lt;/span&gt; ! -f &lt;span class="nv"&gt;$_vim_sess&lt;/span&gt; &lt;span class="o"&gt;]&lt;/span&gt;; &lt;span class="k"&gt;then&lt;/span&gt;
+&lt;span class="k"&gt;             &lt;/span&gt;cp &lt;span class="nv"&gt;$_vim_sess_dir&lt;/span&gt;/default.vim &lt;span class="nv"&gt;$_vim_sess&lt;/span&gt;
+         &lt;span class="k"&gt;fi&lt;/span&gt;
+&lt;span class="k"&gt;         &lt;/span&gt;vim -S &lt;span class="nv"&gt;$_vim_sess&lt;/span&gt;
+     &lt;span class="k"&gt;fi&lt;/span&gt;
+ &lt;span class="o"&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Maciej Lasyk</dc:creator><pubDate>Wed, 19 Nov 2014 00:00:00 +0100</pubDate><guid>tag:maciej.lasyk.info,2014-11-19:2014/Nov/19/poor-mans-vim-sessions/</guid><category>vim</category><category>sessions</category></item><item><title>Piwik!</title><link>http://maciej.lasyk.info/2014/Nov/16/piwik/</link><description>&lt;p&gt;&lt;center&gt;&lt;img alt="Piwik" src="http://maciej.lasyk.info/images/piwik.png" /&gt;&lt;/center&gt;&lt;/p&gt;
 &lt;h1&gt;Piwik?&lt;/h1&gt;
 &lt;p&gt;&lt;a href="http://piwik.org"&gt;Piwik&lt;/a&gt; is an open - source alternative to &lt;a href="https://analytics.google.com"&gt;Google Analytics&lt;/a&gt;.
 You can read the &lt;a href="http://smashinghub.com/google-analytics-vs-piwik-the-ultimate-comparison.htm"&gt;ultimate comparison

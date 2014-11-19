@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-        <title>Many craft. Wow. Such create : Automating Pelican with Git</title>
+        <title>Many craft. Wow. Such create : Poor man's VIM sessions</title>
         <meta charset="utf-8" />
         <link rel="stylesheet" href="../../../../theme/css/main.css" type="text/css" />
         <link href="../../../../" type="application/atom+xml" rel="alternate" title="Many craft. Wow. Such create ATOM Feed" />
@@ -27,74 +27,51 @@
             <div class="entry">
         
 <header>
-<h1><a href="../../../.." id="site-title">  </a>         <a href="../../../../2014/Aug/19/automating-pelican-with-git/" id="page-title">Automating Pelican with Git</a></h1>
-<time datetime="2014-08-19T00:35:00">Tue 19 August 2014</time></header>
+<h1><a href="../../../.." id="site-title">  </a>         <a href="../../../../2014/Nov/19/poor-mans-vim-sessions/" id="page-title">Poor man's VIM sessions</a></h1>
+<time datetime="2014-11-19T00:00:00">Wed 19 November 2014</time></header>
 <article>
-    <p><center><img alt="Pelican Automation with Git" src="../../../../images/pelican-automation.png" /></center></p>
-<p>This is a first blogpost of a whole series about working with
-<a href="http://docs.getpelican.com/">Pelican</a>. I'll be publishing all future post with
-the hashtag <a href="tag/pelican.html">#pelican</a>.</p>
-<h3>What kind of automation?</h3>
-<p>My first step with migrating my <a href="http://maciek.lasyk.info/sysop">old blog</a> to
-this <strong>Pelican - based</strong> was to automate the whole process of deploying new
-posts. I just want to work with <strong>Markdown</strong> files on my laptop and push those
-to the git repository. And let the rest magically happen in the background.</p>
-<h3>Architecture</h3>
-<p>Basically I write posts on my laptop, then I push changes to the remote bare
-git repo, this repo has <strong>post-update</strong> hook which communicates with my
-webserver and tells him to pull all the changes:</p>
-<div class="highlight"><pre>laptop with markdowns ----<span class="o">(</span>git push<span class="o">)</span>----&gt; remote git bare repo 
-----<span class="o">(</span>post-update hook----&gt; webserver
+    <p><center><img alt="VIM" src="../../../../images/vim.jpg" /></center></p>
+<p>Some of guys use VIM just like Eclipse - one IDE to rule them all. I don't like
+this approach - instead of this I rather work in couple of
+<a href="http://tmux.sourceforge.net/">Tmux</a> windows having exactly one VIM in each (usually top - left pane). </p>
+<p>If you don't know what Tmux is and how it works check this <a href="http://robots.thoughtbot.com/a-tmux-crash-course">crash course</a> or <a href="http://www.techrepublic.com/blog/linux-and-open-source/is-tmux-the-gnu-screen-killer/">this comparison between GNU Screen and Tmux</a>.</p>
+<p>So - instead of opening new VIM windows and sessions manually everytime I
+start my work I just start vim using bash function (placed in my zsh_profile):</p>
+<blockquote>
+<p>$ vims session_name</p>
+</blockquote>
+<p>This way I keep one session per task (just like I do with Tmux windows - think 
+about those like feature branches in git!).</p>
+<p>So the whole workflow looks like:</p>
+<ol>
+<li>Create new tmux windows with my custom layout (using <a href="https://github.com/tmuxinator/tmuxinator">Tmuxinator</a>)</li>
+<li>Create feature branch in git repo</li>
+<li>Open VIM in the top - left pane of VIM using session named exactly the same 
+   like feature branch</li>
+</ol>
+<p>Yes - I could possibly remove the last step and include it into the tmux 
+window creation, but remember - this is <strong>poor man's way</strong> ;)</p>
+<p>And one more thing - I use <a href="https://github.com/xolox/vim-session">vim-session</a>
+plugin to handle sessions in VIM.</p>
+<p>And the function code? See below:</p>
+<div class="highlight"><pre> vims<span class="o">()</span> <span class="o">{</span>
+    <span class="nv">_vim_sess_dir</span><span class="o">=</span>~/.vim/sessions/
+     <span class="k">if</span> <span class="o">[</span> -z <span class="nv">$1</span> <span class="o">]</span>; <span class="k">then</span>
+<span class="k">         </span><span class="nb">echo</span> <span class="s2">&quot;You must enter session name!&quot;</span>
+         ls <span class="nv">$_vim_sess_dir</span>                                                                                                  <span class="k">else                                                                                                                       </span><span class="nv">_vim_sess</span><span class="o">=</span><span class="nv">$_vim_sess_dir</span>/<span class="nv">$1</span>                                                                                   
+         <span class="k">if</span> <span class="o">[</span> ! -f <span class="nv">$_vim_sess</span> <span class="o">]</span>; <span class="k">then</span>
+<span class="k">             </span>cp <span class="nv">$_vim_sess_dir</span>/default.vim <span class="nv">$_vim_sess</span>
+         <span class="k">fi</span>
+<span class="k">         </span>vim -S <span class="nv">$_vim_sess</span>
+     <span class="k">fi</span>
+ <span class="o">}</span>
 </pre></div>
-
-
-<h3>Abracadabra</h3>
-<p>What's important here - I've added to the repo my whole <strong>pelican</strong>
-directory. This is because I'm realy lazy and just wanted to keep all the 
-changes and use this repo also for backup purposes. Of course you'll want to
-play with <strong>.gitignore</strong> file and ommit couple of dirs and files :)</p>
-<p>On the server with git bare repo I've created <strong>hooks/post-update</strong> file
-(perms 0700) with following contents:</p>
-<div class="highlight"><pre><span class="c">#!/bin/sh</span>
-
-<span class="c"># just invoke the update script on the webserver:</span>
-ssh home-docker <span class="s1">&#39;/home/docent/scripts/update_maciej.lasyk.info.sh&#39;</span>
-</pre></div>
-
-
-<p>As you can see I'm using here <strong>ssh home-docker</strong> command. This is an alias
-that exists in my <strong>~/.ssh/config</strong>:</p>
-<div class="highlight"><pre>Host home-docker
-Hostname vm-9-containers.netrunner.lasyk.info
-User docent
-Port 22
-ProxyCommand ssh -p 55555 docent@netrunner.lasyk.info nc %h %p 2&gt; /dev/null
-IdentityFile ~/.ssh/id_rsa
-</pre></div>
-
-
-<p>This basically connects to VM hosting Docker containers through the bastion
-server (no direct SSH allowed to containers VM from outside or DMZ).</p>
-<p>So now anytime I post something and commit it to the repo above script will be
-invoked via SSH. And this calls another script - this time on webserver:</p>
-<div class="highlight"><pre><span class="c">#!/bin/bash</span>
-<span class="nv">GIT</span><span class="o">=</span>/usr/bin/git
-
-<span class="nb">cd</span> /srv/docker_mounts/nginx/public_html/maciej.lasyk.info/
-<span class="nv">$GIT</span> fetch --all
-<span class="nv">$GIT</span> reset --hard docent/master
-</pre></div>
-
-
-<p>Above script fetches all data from the remote repository and then sets the
-last commit as the HEAD. No webserver restart is needed here as those are only
-static files :)</p>
     <h2>Comments</h2>
     <div id="disqus_thread"></div>
     <script type="text/javascript">
        var disqus_shortname = 'manycraft';
-       var disqus_identifier = '2014/Aug/19/automating-pelican-with-git/';
-       var disqus_url = '../../../../2014/Aug/19/automating-pelican-with-git/';
+       var disqus_identifier = '2014/Nov/19/poor-mans-vim-sessions/';
+       var disqus_url = '../../../../2014/Nov/19/poor-mans-vim-sessions/';
        (function() {
             var dsq = document.createElement('script');
             dsq.type = 'text/javascript'; dsq.async = true;
