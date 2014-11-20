@@ -36,15 +36,17 @@ plugin to handle sessions in VIM.
 And the function code? See below:
 
 ```bash
- vims() {
+vims() {
     _vim_sess_dir=~/.vim/sessions/
-     if [ -z $1 ]; then
-         echo "You must enter session name!"
-         ls $_vim_sess_dir                                                                                                  else                                                                                                                       _vim_sess=$_vim_sess_dir/$1                                                                                   
-         if [ ! -f $_vim_sess ]; then
+    if [ -z $1 ]; then
+        echo "You must enter session name!"
+        ls $_vim_sess_dir
+    else
+        _vim_sess=$_vim_sess_dir/$1
+        if [ ! -f $_vim_sess ]; then
              cp $_vim_sess_dir/default.vim $_vim_sess
-         fi
-         vim -S $_vim_sess
-     fi
- }
+        fi
+        vim -S $_vim_sess
+    fi
+}
 ```

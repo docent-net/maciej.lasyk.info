@@ -58,17 +58,19 @@ window creation, but remember - this is &lt;strong&gt;poor man's way&lt;/strong&
 &lt;p&gt;And one more thing - I use &lt;a href="https://github.com/xolox/vim-session"&gt;vim-session&lt;/a&gt;
 plugin to handle sessions in VIM.&lt;/p&gt;
 &lt;p&gt;And the function code? See below:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt; vims&lt;span class="o"&gt;()&lt;/span&gt; &lt;span class="o"&gt;{&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;vims&lt;span class="o"&gt;()&lt;/span&gt; &lt;span class="o"&gt;{&lt;/span&gt;
     &lt;span class="nv"&gt;_vim_sess_dir&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;~/.vim/sessions/
-     &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="o"&gt;[&lt;/span&gt; -z &lt;span class="nv"&gt;$1&lt;/span&gt; &lt;span class="o"&gt;]&lt;/span&gt;; &lt;span class="k"&gt;then&lt;/span&gt;
-&lt;span class="k"&gt;         &lt;/span&gt;&lt;span class="nb"&gt;echo&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;You must enter session name!&amp;quot;&lt;/span&gt;
-         ls &lt;span class="nv"&gt;$_vim_sess_dir&lt;/span&gt;                                                                                                  &lt;span class="k"&gt;else                                                                                                                       &lt;/span&gt;&lt;span class="nv"&gt;_vim_sess&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="nv"&gt;$_vim_sess_dir&lt;/span&gt;/&lt;span class="nv"&gt;$1&lt;/span&gt;                                                                                   
-         &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="o"&gt;[&lt;/span&gt; ! -f &lt;span class="nv"&gt;$_vim_sess&lt;/span&gt; &lt;span class="o"&gt;]&lt;/span&gt;; &lt;span class="k"&gt;then&lt;/span&gt;
+    &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="o"&gt;[&lt;/span&gt; -z &lt;span class="nv"&gt;$1&lt;/span&gt; &lt;span class="o"&gt;]&lt;/span&gt;; &lt;span class="k"&gt;then&lt;/span&gt;
+&lt;span class="k"&gt;        &lt;/span&gt;&lt;span class="nb"&gt;echo&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;You must enter session name!&amp;quot;&lt;/span&gt;
+        ls &lt;span class="nv"&gt;$_vim_sess_dir&lt;/span&gt;
+    &lt;span class="k"&gt;else&lt;/span&gt;
+&lt;span class="k"&gt;        &lt;/span&gt;&lt;span class="nv"&gt;_vim_sess&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="nv"&gt;$_vim_sess_dir&lt;/span&gt;/&lt;span class="nv"&gt;$1&lt;/span&gt;
+        &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="o"&gt;[&lt;/span&gt; ! -f &lt;span class="nv"&gt;$_vim_sess&lt;/span&gt; &lt;span class="o"&gt;]&lt;/span&gt;; &lt;span class="k"&gt;then&lt;/span&gt;
 &lt;span class="k"&gt;             &lt;/span&gt;cp &lt;span class="nv"&gt;$_vim_sess_dir&lt;/span&gt;/default.vim &lt;span class="nv"&gt;$_vim_sess&lt;/span&gt;
-         &lt;span class="k"&gt;fi&lt;/span&gt;
-&lt;span class="k"&gt;         &lt;/span&gt;vim -S &lt;span class="nv"&gt;$_vim_sess&lt;/span&gt;
-     &lt;span class="k"&gt;fi&lt;/span&gt;
- &lt;span class="o"&gt;}&lt;/span&gt;
+        &lt;span class="k"&gt;fi&lt;/span&gt;
+&lt;span class="k"&gt;        &lt;/span&gt;vim -S &lt;span class="nv"&gt;$_vim_sess&lt;/span&gt;
+    &lt;span class="k"&gt;fi&lt;/span&gt;
+&lt;span class="o"&gt;}&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Maciej Lasyk</dc:creator><pubDate>Wed, 19 Nov 2014 00:00:00 +0100</pubDate><guid>tag:maciej.lasyk.info,2014-11-19:2014/Nov/19/poor-mans-vim-sessions/</guid><category>vim</category><category>sessions</category></item><item><title>Tmux: join-pane</title><link>http://maciej.lasyk.info/2014/Nov/19/tmux-join-pane/</link><description>&lt;p&gt;&lt;center&gt;&lt;img alt="TMUX" src="http://maciej.lasyk.info/images/tmux.png" /&gt;&lt;/center&gt;&lt;/p&gt;
 &lt;p&gt;Today I finally learnt how to move a pane between windows in
 &lt;a href="http://tmux.sourceforge.net/"&gt;Tmux&lt;/a&gt; and yes - I will share this vodoo
