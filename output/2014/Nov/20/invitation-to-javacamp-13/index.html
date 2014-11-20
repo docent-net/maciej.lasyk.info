@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-        <title>Many craft. Wow. Such create : DNS views in BIND</title>
+        <title>Many craft. Wow. Such create : Invitation to JavaCamp #13</title>
         <meta charset="utf-8" />
         <link rel="stylesheet" href="../../../../theme/css/main.css" type="text/css" />
         <link href="../../../../" type="application/atom+xml" rel="alternate" title="Many craft. Wow. Such create ATOM Feed" />
@@ -27,69 +27,26 @@
             <div class="entry">
         
 <header>
-<h1><a href="../../../.." id="site-title">  </a>         <a href="../../../../2014/Sep/02/dns-views-in-bind/" id="page-title">DNS views in BIND</a></h1>
-<time datetime="2014-09-02T08:15:00">Tue 02 September 2014</time></header>
+<h1><a href="../../../.." id="site-title">  </a>         <a href="../../../../2014/Nov/20/invitation-to-javacamp-13/" id="page-title">Invitation to JavaCamp #13</a></h1>
+<time datetime="2014-11-20T00:00:00">Thu 20 November 2014</time></header>
 <article>
-    <h3>Why would I use DNS BIND views?</h3>
-<p>From the manual: <strong>The view clause allows BIND to provide different
-functionality based on the hosts accessing it.</strong></p>
-<p>So basically you can provide one group of users with one variant of same zone 
-and different part of users with other variant of zone file.</p>
-<p>This is very important - I've seen many poor - man's solutions when there was a
-need to provide different views in DNSes. <strong>view</strong> clause is the proper
-solution.</p>
-<h3>How?</h3>
-<p><strong>view Clause Syntax:</strong></p>
-<div class="highlight"><pre>view <span class="s2">&quot;view_name&quot;</span> <span class="o">[</span>class<span class="o">]</span> <span class="o">{</span>
-      <span class="o">[</span> match-clients <span class="o">{</span>  address_match_list <span class="o">}</span> ; <span class="o">]</span>
-      <span class="o">[</span> match-destinations <span class="o">{</span> address_match_list <span class="o">}</span> ; <span class="o">]</span>
-      <span class="o">[</span> match-recursive-only <span class="o">{</span> yes | no <span class="o">}</span> ; <span class="o">]</span>
-      // view statements
-      // zone clauses
-<span class="o">}</span>;
-</pre></div>
-
-
-<p>So i.e. when we want to serve different view for <strong>lasyk.info</strong> domain for 2
-grups of users (one would be guys from internet, second - guys from my LAN) we
-would do something like this:</p>
-<p><strong>set up proper ACL:</strong></p>
-<div class="highlight"><pre>acl internal <span class="o">{</span>
-       192.168.10.0/24;
-       localhost;
-<span class="o">}</span>;
-</pre></div>
-
-
-<p><strong>define zone:</strong></p>
-<div class="highlight"><pre>view <span class="s2">&quot;internal-view&quot;</span> <span class="o">{</span>
-      match-clients <span class="o">{</span> internal; <span class="o">}</span>;
-      recursion yes;
-
-      zone <span class="s2">&quot;lasyk.info&quot;</span> IN <span class="o">{</span>
-            <span class="nb">type </span>master;
-            file <span class="s2">&quot;internal.lasyk.info.conf&quot;</span>;
-            allow-transfer <span class="o">{</span> any; <span class="o">}</span>
-      <span class="o">}</span>;
-view <span class="s2">&quot;external-view&quot;</span> <span class="o">{</span>
-      match-clients <span class="o">{</span> any; <span class="o">}</span>;
-      recursion no;
-
-      zone <span class="s2">&quot;lasyk.info&quot;</span> IN <span class="o">{</span>
-            <span class="nb">type </span>master;
-            file <span class="s2">&quot;external.lasyk.info.conf&quot;</span>;
-            allow-transfer <span class="o">{</span> none; <span class="o">}</span>;
-      <span class="o">}</span>;
-</pre></div>
-
-
-<p>Now just create proper zone - files, <strong>rndc reload</strong> and test it with <strong>dig</strong></p>
+    <p><center><img alt="PJUG" src="../../../../images/pjug.jpeg" /></center></p>
+<p>Once again I'll have a talk about Docker cluster management. This time it will
+take place in the Sabre office here in Krk and will be part of the JavaCamp #13
+meeting which details are on the <a href="http://www.meetup.com/Polish-Java-User-Group/events/213331502/">meetup
+webpages</a></p>
+<p>So - see you there!</p>
+<p>Can't make it? This talk is available on the youtube (not exactly this, but
+same subject which I presented on Linux Autumn Conference):</p>
+<iframe width="560" height="315"
+src="//www.youtube.com/embed/Qflntb2ZdlQ?rel=0" frameborder="0"
+allowfullscreen></iframe>
     <h2>Comments</h2>
     <div id="disqus_thread"></div>
     <script type="text/javascript">
        var disqus_shortname = 'manycraft';
-       var disqus_identifier = '2014/Sep/02/dns-views-in-bind/';
-       var disqus_url = '../../../../2014/Sep/02/dns-views-in-bind/';
+       var disqus_identifier = '2014/Nov/20/invitation-to-javacamp-13/';
+       var disqus_url = '../../../../2014/Nov/20/invitation-to-javacamp-13/';
        (function() {
             var dsq = document.createElement('script');
             dsq.type = 'text/javascript'; dsq.async = true;

@@ -24,7 +24,17 @@ mouth ;)&lt;/p&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;p&gt;So this way you'll end up with only one file scrapped from the remote repo.&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Maciej Lasyk</dc:creator><pubDate>Thu, 20 Nov 2014 00:00:00 +0100</pubDate><guid>tag:maciej.lasyk.info,2014-11-20:2014/Nov/20/git-clone-only-one-file/</guid><category>tmux</category></item><item><title>Poor man's VIM sessions</title><link>http://maciej.lasyk.info/2014/Nov/19/poor-mans-vim-sessions/</link><description>&lt;p&gt;&lt;center&gt;&lt;img alt="VIM" src="http://maciej.lasyk.info/images/vim.jpg" /&gt;&lt;/center&gt;&lt;/p&gt;
+&lt;p&gt;So this way you'll end up with only one file scrapped from the remote repo.&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Maciej Lasyk</dc:creator><pubDate>Thu, 20 Nov 2014 00:00:00 +0100</pubDate><guid>tag:maciej.lasyk.info,2014-11-20:2014/Nov/20/git-clone-only-one-file/</guid><category>tmux</category></item><item><title>Invitation to JavaCamp #13</title><link>http://maciej.lasyk.info/2014/Nov/20/invitation-to-javacamp-13/</link><description>&lt;p&gt;&lt;center&gt;&lt;img alt="PJUG" src="http://maciej.lasyk.info/images/pjug.jpeg" /&gt;&lt;/center&gt;&lt;/p&gt;
+&lt;p&gt;Once again I'll have a talk about Docker cluster management. This time it will
+take place in the Sabre office here in Krk and will be part of the JavaCamp #13
+meeting which details are on the &lt;a href="http://www.meetup.com/Polish-Java-User-Group/events/213331502/"&gt;meetup
+webpages&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;So - see you there!&lt;/p&gt;
+&lt;p&gt;Can't make it? This talk is available on the youtube (not exactly this, but
+same subject which I presented on Linux Autumn Conference):&lt;/p&gt;
+&lt;iframe width="560" height="315"
+src="//www.youtube.com/embed/Qflntb2ZdlQ?rel=0" frameborder="0"
+allowfullscreen&gt;&lt;/iframe&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Maciej Lasyk</dc:creator><pubDate>Thu, 20 Nov 2014 00:00:00 +0100</pubDate><guid>tag:maciej.lasyk.info,2014-11-20:2014/Nov/20/invitation-to-javacamp-13/</guid><category>meetups. conferences</category></item><item><title>Poor man's VIM sessions</title><link>http://maciej.lasyk.info/2014/Nov/19/poor-mans-vim-sessions/</link><description>&lt;p&gt;&lt;center&gt;&lt;img alt="VIM" src="http://maciej.lasyk.info/images/vim.jpg" /&gt;&lt;/center&gt;&lt;/p&gt;
 &lt;p&gt;Some of guys use VIM just like Eclipse - one IDE to rule them all. I don't like
 this approach - instead of this I rather work in couple of
 &lt;a href="http://tmux.sourceforge.net/"&gt;Tmux&lt;/a&gt; windows having exactly one VIM in each (usually top - left pane). &lt;/p&gt;
