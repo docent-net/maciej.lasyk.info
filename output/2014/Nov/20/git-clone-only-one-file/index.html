@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-        <title>Many craft. Wow. Such create - dns</title>
+        <title>Many craft. Wow. Such create : GIT: clone only one file</title>
         <meta charset="utf-8" />
         <link rel="stylesheet" href="http://maciej.lasyk.info/theme/css/main.css" type="text/css" />
         <link href="http://maciej.lasyk.info/" type="application/atom+xml" rel="alternate" title="Many craft. Wow. Such create ATOM Feed" />
@@ -26,13 +26,52 @@
 
             <div class="entry">
         
-<h1 class="index_page">Tag: dns</h1>
-    <ul class="article_list">
-        
-            <li><span class="blurred">22 Sep 2014</span> >> <a href="http://maciej.lasyk.info/2014/Sep/22/openwrt-dnsmasq-external-dns/" rel="bookmark" title="<p>How to setup OpenWRT/DHCP with external DNSes</p>">OpenWRT, Dnsmasq + external DNS - How to setup OpenWRT/DHCP with external DNSes</a></li>
-        
-            <li><span class="blurred">02 Sep 2014</span> >> <a href="http://maciej.lasyk.info/2014/Sep/02/dns-views-in-bind/" rel="bookmark" title="<p>How to configure BIND DNS server so it can provide different views of zones for different groups of users?</p>">DNS views in BIND - How to configure BIND DNS server so it can provide different views of zones for different groups of users?</a></li>
-    </ul>
+<header>
+<h1><a href="http://maciej.lasyk.info" id="site-title">  </a>         <a href="http://maciej.lasyk.info/2014/Nov/20/git-clone-only-one-file/" id="page-title">GIT: clone only one file</a></h1>
+<time datetime="2014-11-20T00:00:00">Thu 20 November 2014</time></header>
+<article>
+    <p><center><img alt="GIT" src="http://maciej.lasyk.info/images/git.png" /></center></p>
+<h3>What?</h3>
+<p>So I have a quite big bare repo somewhere and needed to get only one file from
+there (of course - didn't know the exact filename). Frankly my GIT-fu is not 
+that kinky, so the way I did it could cause a little bit of smile on someones 
+mouth ;)</p>
+<h3>How?</h3>
+<p>A slice from my notes:</p>
+<div class="highlight"><pre><span class="c"># on a local FS:</span>
+<span class="nv">$ </span>git init . <span class="c"># create empty repo on local FS</span>
+<span class="nv">$ </span>git remote add remote_name path <span class="c"># add a remote</span>
+</pre></div>
+
+
+<div class="highlight"><pre><span class="c"># on a remote, bare repo:</span>
+<span class="nv">$ </span>git log -n 10 <span class="c"># get last commits id</span>
+<span class="nv">$ </span>git show --name-only commit_id <span class="c"># get listing of files from the last commits</span>
+</pre></div>
+
+
+<div class="highlight"><pre><span class="c"># on a local FS:</span>
+<span class="nv">$ </span>git archive --remote<span class="o">=</span>remote_name HEAD:some/dir/somewhere filename | tar xf -
+</pre></div>
+
+
+<p>So this way you'll end up with only one file scrapped from the remote repo.</p>
+    <h2>Comments</h2>
+    <div id="disqus_thread"></div>
+    <script type="text/javascript">
+       var disqus_shortname = 'manycraft';
+       var disqus_identifier = '2014/Nov/20/git-clone-only-one-file/';
+       var disqus_url = 'http://maciej.lasyk.info/2014/Nov/20/git-clone-only-one-file/';
+       (function() {
+            var dsq = document.createElement('script');
+            dsq.type = 'text/javascript'; dsq.async = true;
+            dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] ||
+             document.getElementsByTagName('body')[0]).appendChild(dsq);
+      })();
+    </script>
+    <noscript>Please enable JavaScript to view the comments.</noscript>
+</article>
             </div>
         </div>
 

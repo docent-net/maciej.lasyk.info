@@ -1,5 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Many craft. Wow. Such create</title><link href="http://maciej.lasyk.info/" rel="alternate"></link><link href="http://maciej.lasyk.info/feeds/all-en.atom.xml" rel="self"></link><id>http://maciej.lasyk.info/</id><updated>2014-11-19T00:00:00+01:00</updated><entry><title>Poor man's VIM sessions</title><link href="http://maciej.lasyk.info/2014/Nov/19/poor-mans-vim-sessions/" rel="alternate"></link><updated>2014-11-19T00:00:00+01:00</updated><author><name>Maciej Lasyk</name></author><id>tag:maciej.lasyk.info,2014-11-19:2014/Nov/19/poor-mans-vim-sessions/</id><summary type="html">&lt;p&gt;&lt;center&gt;&lt;img alt="VIM" src="http://maciej.lasyk.info/images/vim.jpg" /&gt;&lt;/center&gt;&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Many craft. Wow. Such create</title><link href="http://maciej.lasyk.info/" rel="alternate"></link><link href="http://maciej.lasyk.info/feeds/all-en.atom.xml" rel="self"></link><id>http://maciej.lasyk.info/</id><updated>2014-11-20T00:00:00+01:00</updated><entry><title>GIT: clone only one file</title><link href="http://maciej.lasyk.info/2014/Nov/20/git-clone-only-one-file/" rel="alternate"></link><updated>2014-11-20T00:00:00+01:00</updated><author><name>Maciej Lasyk</name></author><id>tag:maciej.lasyk.info,2014-11-20:2014/Nov/20/git-clone-only-one-file/</id><summary type="html">&lt;p&gt;&lt;center&gt;&lt;img alt="GIT" src="http://maciej.lasyk.info/images/git.png" /&gt;&lt;/center&gt;&lt;/p&gt;
+&lt;h3&gt;What?&lt;/h3&gt;
+&lt;p&gt;So I have a quite big bare repo somewhere and needed to get only one file from
+there (of course - didn't know the exact filename). Frankly my GIT-fu is not 
+that kinky, so the way I did it could cause a little bit of smile on someones 
+mouth ;)&lt;/p&gt;
+&lt;h3&gt;How?&lt;/h3&gt;
+&lt;p&gt;A slice from my notes:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="c"&gt;# on a local FS:&lt;/span&gt;
+&lt;span class="nv"&gt;$ &lt;/span&gt;git init . &lt;span class="c"&gt;# create empty repo on local FS&lt;/span&gt;
+&lt;span class="nv"&gt;$ &lt;/span&gt;git remote add remote_name path &lt;span class="c"&gt;# add a remote&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="c"&gt;# on a remote, bare repo:&lt;/span&gt;
+&lt;span class="nv"&gt;$ &lt;/span&gt;git log -n 10 &lt;span class="c"&gt;# get last commits id&lt;/span&gt;
+&lt;span class="nv"&gt;$ &lt;/span&gt;git show --name-only commit_id &lt;span class="c"&gt;# get listing of files from the last commits&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="c"&gt;# on a local FS:&lt;/span&gt;
+&lt;span class="nv"&gt;$ &lt;/span&gt;git archive --remote&lt;span class="o"&gt;=&lt;/span&gt;remote_name HEAD:some/dir/somewhere filename | tar xf -
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;So this way you'll end up with only one file scrapped from the remote repo.&lt;/p&gt;</summary><category term="tmux"></category></entry><entry><title>Poor man's VIM sessions</title><link href="http://maciej.lasyk.info/2014/Nov/19/poor-mans-vim-sessions/" rel="alternate"></link><updated>2014-11-19T00:00:00+01:00</updated><author><name>Maciej Lasyk</name></author><id>tag:maciej.lasyk.info,2014-11-19:2014/Nov/19/poor-mans-vim-sessions/</id><summary type="html">&lt;p&gt;&lt;center&gt;&lt;img alt="VIM" src="http://maciej.lasyk.info/images/vim.jpg" /&gt;&lt;/center&gt;&lt;/p&gt;
 &lt;p&gt;Some of guys use VIM just like Eclipse - one IDE to rule them all. I don't like
 this approach - instead of this I rather work in couple of
 &lt;a href="http://tmux.sourceforge.net/"&gt;Tmux&lt;/a&gt; windows having exactly one VIM in each (usually top - left pane). &lt;/p&gt;

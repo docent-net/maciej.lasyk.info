@@ -1,5 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Many craft. Wow. Such create</title><link>http://maciej.lasyk.info/</link><description></description><atom:link href="http://maciej.lasyk.info/feeds/rss.xml" rel="self"></atom:link><lastBuildDate>Wed, 19 Nov 2014 00:00:00 +0100</lastBuildDate><item><title>Poor man's VIM sessions</title><link>http://maciej.lasyk.info/2014/Nov/19/poor-mans-vim-sessions/</link><description>&lt;p&gt;&lt;center&gt;&lt;img alt="VIM" src="http://maciej.lasyk.info/images/vim.jpg" /&gt;&lt;/center&gt;&lt;/p&gt;
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Many craft. Wow. Such create</title><link>http://maciej.lasyk.info/</link><description></description><atom:link href="http://maciej.lasyk.info/feeds/rss.xml" rel="self"></atom:link><lastBuildDate>Thu, 20 Nov 2014 00:00:00 +0100</lastBuildDate><item><title>GIT: clone only one file</title><link>http://maciej.lasyk.info/2014/Nov/20/git-clone-only-one-file/</link><description>&lt;p&gt;&lt;center&gt;&lt;img alt="GIT" src="http://maciej.lasyk.info/images/git.png" /&gt;&lt;/center&gt;&lt;/p&gt;
+&lt;h3&gt;What?&lt;/h3&gt;
+&lt;p&gt;So I have a quite big bare repo somewhere and needed to get only one file from
+there (of course - didn't know the exact filename). Frankly my GIT-fu is not 
+that kinky, so the way I did it could cause a little bit of smile on someones 
+mouth ;)&lt;/p&gt;
+&lt;h3&gt;How?&lt;/h3&gt;
+&lt;p&gt;A slice from my notes:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="c"&gt;# on a local FS:&lt;/span&gt;
+&lt;span class="nv"&gt;$ &lt;/span&gt;git init . &lt;span class="c"&gt;# create empty repo on local FS&lt;/span&gt;
+&lt;span class="nv"&gt;$ &lt;/span&gt;git remote add remote_name path &lt;span class="c"&gt;# add a remote&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="c"&gt;# on a remote, bare repo:&lt;/span&gt;
+&lt;span class="nv"&gt;$ &lt;/span&gt;git log -n 10 &lt;span class="c"&gt;# get last commits id&lt;/span&gt;
+&lt;span class="nv"&gt;$ &lt;/span&gt;git show --name-only commit_id &lt;span class="c"&gt;# get listing of files from the last commits&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="c"&gt;# on a local FS:&lt;/span&gt;
+&lt;span class="nv"&gt;$ &lt;/span&gt;git archive --remote&lt;span class="o"&gt;=&lt;/span&gt;remote_name HEAD:some/dir/somewhere filename | tar xf -
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;So this way you'll end up with only one file scrapped from the remote repo.&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Maciej Lasyk</dc:creator><pubDate>Thu, 20 Nov 2014 00:00:00 +0100</pubDate><guid>tag:maciej.lasyk.info,2014-11-20:2014/Nov/20/git-clone-only-one-file/</guid><category>tmux</category></item><item><title>Poor man's VIM sessions</title><link>http://maciej.lasyk.info/2014/Nov/19/poor-mans-vim-sessions/</link><description>&lt;p&gt;&lt;center&gt;&lt;img alt="VIM" src="http://maciej.lasyk.info/images/vim.jpg" /&gt;&lt;/center&gt;&lt;/p&gt;
 &lt;p&gt;Some of guys use VIM just like Eclipse - one IDE to rule them all. I don't like
 this approach - instead of this I rather work in couple of
 &lt;a href="http://tmux.sourceforge.net/"&gt;Tmux&lt;/a&gt; windows having exactly one VIM in each (usually top - left pane). &lt;/p&gt;
