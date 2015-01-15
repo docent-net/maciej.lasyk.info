@@ -1,5 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Many craft. Wow. Such create</title><link href="http://maciej.lasyk.info/" rel="alternate"></link><link href="http://maciej.lasyk.info/feeds/all.atom.xml" rel="self"></link><id>http://maciej.lasyk.info/</id><updated>2014-11-20T00:00:00+01:00</updated><entry><title>GIT: clone only one file</title><link href="http://maciej.lasyk.info/2014/Nov/20/git-clone-only-one-file/" rel="alternate"></link><updated>2014-11-20T00:00:00+01:00</updated><author><name>Maciej Lasyk</name></author><id>tag:maciej.lasyk.info,2014-11-20:2014/Nov/20/git-clone-only-one-file/</id><summary type="html">&lt;p&gt;&lt;center&gt;&lt;img alt="GIT" src="http://maciej.lasyk.info/images/git.png" /&gt;&lt;/center&gt;&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Many craft. Wow. Such create</title><link href="http://maciej.lasyk.info/" rel="alternate"></link><link href="http://maciej.lasyk.info/feeds/all.atom.xml" rel="self"></link><id>http://maciej.lasyk.info/</id><updated>2015-01-15T00:00:00+01:00</updated><entry><title>Linux Kernel Networking book</title><link href="http://maciej.lasyk.info/2015/Jan/15/linux-kernel-networking-book/" rel="alternate"></link><updated>2015-01-15T00:00:00+01:00</updated><author><name>Maciej Lasyk</name></author><id>tag:maciej.lasyk.info,2015-01-15:2015/Jan/15/linux-kernel-networking-book/</id><summary type="html">&lt;p&gt;&lt;center&gt;&lt;img alt="Linux Kernel Networking" src="http://maciej.lasyk.info/images/linuxkernelnetworking.jpg" /&gt;&lt;/center&gt;&lt;/p&gt;
+&lt;h3&gt;What it is about?&lt;/h3&gt;
+&lt;p&gt;Aaargh I wish day could be longer than 24h. This books keeps me away
+from my bed.&lt;/p&gt;
+&lt;p&gt;Simply speaking - if you're engineer (DevOPS / systems / whatever linux based)
+this is a first position to read just after passing the CCNA exams if you want
+to improve your knowledge about kernel / networking internals.&lt;/p&gt;
+&lt;h3&gt;Should I read it?&lt;/h3&gt;
+&lt;p&gt;Yes.&lt;/p&gt;
+&lt;p&gt;Even if you're a Linux / networking Ninja (so you can share your thoughts!)&lt;/p&gt;
+&lt;p&gt;And if you're not a ninja and still not sure if should read this... do you know 
+if packets dump saved by tcpdump will show data filtered by iptables or not? 
+(I love asking this question as it is a good orientation point)&lt;/p&gt;
+&lt;p&gt;Also - do you know if you can filter L2 packets w/iptables (e.g. on KVM host
+using L2 bridge)?&lt;/p&gt;
+&lt;h3&gt;What you will find here?&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;netlink sockets&lt;/li&gt;
+&lt;li&gt;ICMP&lt;/li&gt;
+&lt;li&gt;IPv4/6&lt;/li&gt;
+&lt;li&gt;routing&lt;/li&gt;
+&lt;li&gt;neighbouring&lt;/li&gt;
+&lt;li&gt;netfilter&lt;/li&gt;
+&lt;li&gt;ipsec&lt;/li&gt;
+&lt;li&gt;and many, many more&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;What's important is this book is not about Kernel development. It simply
+focuses on the network stack describing concepts.&lt;/p&gt;
+&lt;p&gt;So happy reading and many thanks to the authors!&lt;/p&gt;</summary><category term="ebooks"></category><category term="books"></category></entry><entry><title>GIT: clone only one file</title><link href="http://maciej.lasyk.info/2014/Nov/20/git-clone-only-one-file/" rel="alternate"></link><updated>2014-11-20T00:00:00+01:00</updated><author><name>Maciej Lasyk</name></author><id>tag:maciej.lasyk.info,2014-11-20:2014/Nov/20/git-clone-only-one-file/</id><summary type="html">&lt;p&gt;&lt;center&gt;&lt;img alt="GIT" src="http://maciej.lasyk.info/images/git.png" /&gt;&lt;/center&gt;&lt;/p&gt;
 &lt;h3&gt;What?&lt;/h3&gt;
 &lt;p&gt;So I have a quite big bare repo somewhere and needed to get only one file from
 there (of course - didn't know the exact filename). Frankly my GIT-fu is not 
