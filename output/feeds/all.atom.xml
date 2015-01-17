@@ -1,5 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Many craft. Wow. Such create</title><link href="http://maciej.lasyk.info/" rel="alternate"></link><link href="http://maciej.lasyk.info/feeds/all.atom.xml" rel="self"></link><id>http://maciej.lasyk.info/</id><updated>2015-01-15T00:00:00+01:00</updated><entry><title>Linux Kernel Networking book</title><link href="http://maciej.lasyk.info/2015/Jan/15/linux-kernel-networking-book/" rel="alternate"></link><updated>2015-01-15T00:00:00+01:00</updated><author><name>Maciej Lasyk</name></author><id>tag:maciej.lasyk.info,2015-01-15:2015/Jan/15/linux-kernel-networking-book/</id><summary type="html">&lt;p&gt;&lt;center&gt;&lt;img alt="Linux Kernel Networking" src="http://maciej.lasyk.info/images/linuxkernelnetworking.jpg" /&gt;&lt;/center&gt;&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Many craft. Wow. Such create</title><link href="http://maciej.lasyk.info/" rel="alternate"></link><link href="http://maciej.lasyk.info/feeds/all.atom.xml" rel="self"></link><id>http://maciej.lasyk.info/</id><updated>2015-01-17T00:00:00+01:00</updated><entry><title>1st Kraków Docker Meetup!</title><link href="http://maciej.lasyk.info/2015/Jan/17/1st-krakow-docker-meetup/" rel="alternate"></link><updated>2015-01-17T00:00:00+01:00</updated><author><name>Maciej Lasyk</name></author><id>tag:maciej.lasyk.info,2015-01-17:2015/Jan/17/1st-krakow-docker-meetup/</id><summary type="html">&lt;p&gt;&lt;center&gt;&lt;img alt="Docker Logo" src="http://maciej.lasyk.info/images/docker-logo.png" /&gt;&lt;/center&gt;&lt;/p&gt;
+&lt;h3&gt;Docker?&lt;/h3&gt;
+&lt;p&gt;Yup, &lt;a href="http://www.docker.com"&gt;Docker&lt;/a&gt;. It's An open platform for distributed
+applications.&lt;/p&gt;
+&lt;h3&gt;Should I attend?&lt;/h3&gt;
+&lt;p&gt;If you're developer, sysadmin, DevOPS, technical leader than &lt;strong&gt;yes, you should
+attend&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;Why? Because Linux Containers change the IT infrastructures and the way we
+create and deliver services.&lt;/p&gt;
+&lt;h3&gt;When and where?&lt;/h3&gt;
+&lt;p&gt;All event details, place, agenda, registration etc are on the meetup webpage:
+&lt;a href="http://www.meetup.com/Docker-Krakow-Poland/events/219831894/"&gt;http://www.meetup.com/Docker-Krakow-Poland/events/219831894/&lt;/a&gt;&lt;/p&gt;</summary><category term="meetups"></category><category term="docker"></category></entry><entry><title>Linux Kernel Networking book</title><link href="http://maciej.lasyk.info/2015/Jan/15/linux-kernel-networking-book/" rel="alternate"></link><updated>2015-01-15T00:00:00+01:00</updated><author><name>Maciej Lasyk</name></author><id>tag:maciej.lasyk.info,2015-01-15:2015/Jan/15/linux-kernel-networking-book/</id><summary type="html">&lt;p&gt;&lt;center&gt;&lt;img alt="Linux Kernel Networking" src="http://maciej.lasyk.info/images/linuxkernelnetworking.jpg" /&gt;&lt;/center&gt;&lt;/p&gt;
 &lt;h3&gt;What it is about?&lt;/h3&gt;
 &lt;p&gt;Aaargh I wish day could be longer than 24h. This books keeps me away
 from my bed.&lt;/p&gt;
