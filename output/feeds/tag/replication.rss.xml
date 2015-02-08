@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Many craft. Wow. Such create</title><link>http://maciej.lasyk.info/</link><description></description><atom:link href="http://maciej.lasyk.info/feeds/tag/replication.rss.xml" rel="self"></atom:link><lastBuildDate>Mon, 05 Aug 2013 00:00:00 +0200</lastBuildDate><item><title>Mysql HA</title><link>http://maciej.lasyk.info/2013/Aug/05/mysql-ha/</link><description>&lt;p&gt;&lt;center&gt;&lt;img alt="VIM" src="http://maciej.lasyk.info/images/mysql_logo.png" /&gt;&lt;/center&gt;&lt;/p&gt;
+&lt;p&gt;This is very interesting topic from sysops’ point of view. Honestly – It’s not
+that common to find a well organised HA MySQL environment (I’m talking here
+about good failover solution in master – slave scenario).&lt;/p&gt;
+&lt;p&gt;I won’t write here details for the most known solutions / scenarios – I think
+it’s enough to point those that one can check if it fits his needs.&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;Master – master replication&lt;/strong&gt;. In this scenario we don’t need failover
+– when we have some outage of one of those masters then it’s no problem as
+second one is still working. It’s good to use some LB layer between application
+and MySQL hosts that makes the app always hit the working server.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;MySQL cluster&lt;/strong&gt;. This is very comfortable scenario as MySQL cluster takes care of
+almost everything – this is “no single point of failure” solution. You can read
+about those &lt;a href="http://www.mysql.com/products/cluster/"&gt;here&lt;/a&gt; and &lt;a href="http://dev.mysql.com/downloads/cluster/"&gt;here&lt;/a&gt; -&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;MySQL Galera cluster&lt;/strong&gt; – for synchronous, active – active multi – master
+topology: &lt;a href="http://www.codership.com/content/using-galera-cluste"&gt;click here&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Failover&lt;/strong&gt; – for now I know 2 solutions worth mentioning:&lt;ol&gt;
+&lt;li&gt;Matsunobu Yoshinori created mysql-master-ha (working on MySQL servers 5.0, 5.1
+and later) – this is very good tool, that handles automatic, manual and semi –
+manual failovers (even when slaves are in different relaylog positions). In
+addition You can use it when MySQL master host migration is needed. I recommend
+watching those &lt;a href="http://www.slideshare.net/matsunobu/automated-master-failover"&gt;slides&lt;/a&gt;. Project site is hosted &lt;a href="https://code.google.com/p/mysql-master-ha/"&gt;here&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;MySQL utilities – this is quite simple daemon which primary job is to perform
+automated failover when needed. You can read about it &lt;a href="http://www.clusterdb.com/mysql/mysql-utilities-webinar-qa-replay-now-available/"&gt;here&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;/ol&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Maciej Lasyk</dc:creator><pubDate>Mon, 05 Aug 2013 00:00:00 +0200</pubDate><guid>tag:maciej.lasyk.info,2013-08-05:2013/Aug/05/mysql-ha/</guid><category>mysql</category><category>ha</category><category>high-availability</category><category>replication</category><category>failover</category><category>cluster</category></item></channel></rss>

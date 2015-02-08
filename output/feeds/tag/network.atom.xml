@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Many craft. Wow. Such create</title><link href="http://maciej.lasyk.info/" rel="alternate"></link><link href="http://maciej.lasyk.info/feeds/tag/network.atom.xml" rel="self"></link><id>http://maciej.lasyk.info/</id><updated>2014-09-14T11:46:00+02:00</updated><entry><title>Network Manager Dispatcher</title><link href="http://maciej.lasyk.info/2014/Sep/14/network-manager-dispatcher/" rel="alternate"></link><updated>2014-09-14T11:46:00+02:00</updated><author><name>Maciej Lasyk</name></author><id>tag:maciej.lasyk.info,2014-09-14:2014/Sep/14/network-manager-dispatcher/</id><summary type="html">&lt;p&gt;&lt;a href="https://en.wikipedia.org/wiki/NetworkManager"&gt;NetworkManager&lt;/a&gt; is often 
+associated with some voodoo - network - magic tool, that does the work on 
+laptop, but better switch it off on server. I won't argue about that, just 
+wanted to give you something I personally think make NM more usable.&lt;/p&gt;
+&lt;p&gt;So it is the &lt;strong&gt;/etc/NetworkManager/dispatcher.d&lt;/strong&gt; - this is directory under
+which lay scripts which will be executed on network change. Following
+man-pages:&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;NetworkManager will execute scripts in the /etc/NetworkManager/dispatcher.d 
+directory in alphabetical order in response to network events. Each script 
+should be a regular executable file, owned by root.&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;Furthermore, it must not be writable by group or other, and not setuid.&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;Each script receives two arguments, the first being the interface name of
+the device just activated, and second an action.&lt;/em&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;down&lt;/strong&gt; - The interface has been deactivated.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;vpn-up&lt;/strong&gt; - A VPN connection has been activated.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;vpn-down&lt;/strong&gt; - A VPN connection has been deactivated.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;hostname&lt;/strong&gt; - The system hostname has been updated. Use gethostname(2) to
+  retrieve it.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;dhcp4-change&lt;/strong&gt; - The DHCPv4 lease has changed (renewed, rebound, etc).&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;dhcp6-change&lt;/strong&gt; - The DHCPv6 lease has changed (renewed, rebound, etc).&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;So basically without manually detecting change in network events we may use the
+tool that was created just for this particular goal.&lt;/p&gt;</summary><category term="network"></category><category term="centos"></category><category term="fedora"></category></entry></feed>

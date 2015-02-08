@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Many craft. Wow. Such create</title><link href="http://maciej.lasyk.info/" rel="alternate"></link><link href="http://maciej.lasyk.info/feeds/tag/bind.atom.xml" rel="self"></link><id>http://maciej.lasyk.info/</id><updated>2014-09-02T08:15:00+02:00</updated><entry><title>DNS views in BIND</title><link href="http://maciej.lasyk.info/2014/Sep/02/dns-views-in-bind/" rel="alternate"></link><updated>2014-09-02T08:15:00+02:00</updated><author><name>Maciej Lasyk</name></author><id>tag:maciej.lasyk.info,2014-09-02:2014/Sep/02/dns-views-in-bind/</id><summary type="html">&lt;h3&gt;Why would I use DNS BIND views?&lt;/h3&gt;
+&lt;p&gt;From the manual: &lt;strong&gt;The view clause allows BIND to provide different
+functionality based on the hosts accessing it.&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;So basically you can provide one group of users with one variant of same zone 
+and different part of users with other variant of zone file.&lt;/p&gt;
+&lt;p&gt;This is very important - I've seen many poor - man's solutions when there was a
+need to provide different views in DNSes. &lt;strong&gt;view&lt;/strong&gt; clause is the proper
+solution.&lt;/p&gt;
+&lt;h3&gt;How?&lt;/h3&gt;
+&lt;p&gt;&lt;strong&gt;view Clause Syntax:&lt;/strong&gt;&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;view &lt;span class="s2"&gt;&amp;quot;view_name&amp;quot;&lt;/span&gt; &lt;span class="o"&gt;[&lt;/span&gt;class&lt;span class="o"&gt;]&lt;/span&gt; &lt;span class="o"&gt;{&lt;/span&gt;
+      &lt;span class="o"&gt;[&lt;/span&gt; match-clients &lt;span class="o"&gt;{&lt;/span&gt;  address_match_list &lt;span class="o"&gt;}&lt;/span&gt; ; &lt;span class="o"&gt;]&lt;/span&gt;
+      &lt;span class="o"&gt;[&lt;/span&gt; match-destinations &lt;span class="o"&gt;{&lt;/span&gt; address_match_list &lt;span class="o"&gt;}&lt;/span&gt; ; &lt;span class="o"&gt;]&lt;/span&gt;
+      &lt;span class="o"&gt;[&lt;/span&gt; match-recursive-only &lt;span class="o"&gt;{&lt;/span&gt; yes | no &lt;span class="o"&gt;}&lt;/span&gt; ; &lt;span class="o"&gt;]&lt;/span&gt;
+      // view statements
+      // zone clauses
+&lt;span class="o"&gt;}&lt;/span&gt;;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;So i.e. when we want to serve different view for &lt;strong&gt;lasyk.info&lt;/strong&gt; domain for 2
+grups of users (one would be guys from internet, second - guys from my LAN) we
+would do something like this:&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;set up proper ACL:&lt;/strong&gt;&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;acl internal &lt;span class="o"&gt;{&lt;/span&gt;
+       192.168.10.0/24;
+       localhost;
+&lt;span class="o"&gt;}&lt;/span&gt;;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;&lt;strong&gt;define zone:&lt;/strong&gt;&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;view &lt;span class="s2"&gt;&amp;quot;internal-view&amp;quot;&lt;/span&gt; &lt;span class="o"&gt;{&lt;/span&gt;
+      match-clients &lt;span class="o"&gt;{&lt;/span&gt; internal; &lt;span class="o"&gt;}&lt;/span&gt;;
+      recursion yes;
+
+      zone &lt;span class="s2"&gt;&amp;quot;lasyk.info&amp;quot;&lt;/span&gt; IN &lt;span class="o"&gt;{&lt;/span&gt;
+            &lt;span class="nb"&gt;type &lt;/span&gt;master;
+            file &lt;span class="s2"&gt;&amp;quot;internal.lasyk.info.conf&amp;quot;&lt;/span&gt;;
+            allow-transfer &lt;span class="o"&gt;{&lt;/span&gt; any; &lt;span class="o"&gt;}&lt;/span&gt;
+      &lt;span class="o"&gt;}&lt;/span&gt;;
+view &lt;span class="s2"&gt;&amp;quot;external-view&amp;quot;&lt;/span&gt; &lt;span class="o"&gt;{&lt;/span&gt;
+      match-clients &lt;span class="o"&gt;{&lt;/span&gt; any; &lt;span class="o"&gt;}&lt;/span&gt;;
+      recursion no;
+
+      zone &lt;span class="s2"&gt;&amp;quot;lasyk.info&amp;quot;&lt;/span&gt; IN &lt;span class="o"&gt;{&lt;/span&gt;
+            &lt;span class="nb"&gt;type &lt;/span&gt;master;
+            file &lt;span class="s2"&gt;&amp;quot;external.lasyk.info.conf&amp;quot;&lt;/span&gt;;
+            allow-transfer &lt;span class="o"&gt;{&lt;/span&gt; none; &lt;span class="o"&gt;}&lt;/span&gt;;
+      &lt;span class="o"&gt;}&lt;/span&gt;;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Now just create proper zone - files, &lt;strong&gt;rndc reload&lt;/strong&gt; and test it with &lt;strong&gt;dig&lt;/strong&gt;&lt;/p&gt;</summary><category term="dns"></category><category term="bind"></category></entry></feed>

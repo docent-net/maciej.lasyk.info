@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Many craft. Wow. Such create</title><link href="http://maciej.lasyk.info/" rel="alternate"></link><link href="http://maciej.lasyk.info/feeds/tag/meetups-conferences.atom.xml" rel="self"></link><id>http://maciej.lasyk.info/</id><updated>2014-11-20T00:00:00+01:00</updated><entry><title>Invitation to JavaCamp #13</title><link href="http://maciej.lasyk.info/2014/Nov/20/invitation-to-javacamp-13/" rel="alternate"></link><updated>2014-11-20T00:00:00+01:00</updated><author><name>Maciej Lasyk</name></author><id>tag:maciej.lasyk.info,2014-11-20:2014/Nov/20/invitation-to-javacamp-13/</id><summary type="html">&lt;p&gt;&lt;center&gt;&lt;img alt="PJUG" src="http://maciej.lasyk.info/images/pjug.jpeg" /&gt;&lt;/center&gt;&lt;/p&gt;
+&lt;p&gt;Once again I'll have a talk about Docker cluster management. This time it will
+take place in the Sabre office here in Krk and will be part of the JavaCamp #13
+meeting which details are on the &lt;a href="http://www.meetup.com/Polish-Java-User-Group/events/213331502/"&gt;meetup
+webpages&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;So - see you there!&lt;/p&gt;
+&lt;p&gt;Can't make it? This talk is available on the youtube (not exactly this, but
+same subject which I presented on Linux Autumn Conference):&lt;/p&gt;
+&lt;iframe width="560" height="315"
+src="//www.youtube.com/embed/Qflntb2ZdlQ?rel=0" frameborder="0"
+allowfullscreen&gt;&lt;/iframe&gt;</summary><category term="meetups. conferences"></category></entry></feed>

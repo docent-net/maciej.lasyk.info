@@ -1,13 +1,3 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Many craft. Wow. Such create</title><link href="http://maciej.lasyk.info/" rel="alternate"></link><link href="http://maciej.lasyk.info/feeds/.atom.xml" rel="self"></link><id>http://maciej.lasyk.info/</id><updated>2015-01-17T00:00:00+01:00</updated><entry><title>1st Kraków Docker Meetup!</title><link href="http://maciej.lasyk.info/2015/Jan/17/1st-krakow-docker-meetup/" rel="alternate"></link><updated>2015-01-17T00:00:00+01:00</updated><author><name>Maciej Lasyk</name></author><id>tag:maciej.lasyk.info,2015-01-17:2015/Jan/17/1st-krakow-docker-meetup/</id><summary type="html">&lt;p&gt;&lt;center&gt;&lt;img alt="Docker Logo" src="http://maciej.lasyk.info/images/docker-logo.png" /&gt;&lt;/center&gt;&lt;/p&gt;
-&lt;h3&gt;Docker?&lt;/h3&gt;
-&lt;p&gt;Yup, &lt;a href="http://www.docker.com"&gt;Docker&lt;/a&gt;. It's An open platform for distributed
-applications.&lt;/p&gt;
-&lt;h3&gt;Should I attend?&lt;/h3&gt;
-&lt;p&gt;If you're developer, sysadmin, DevOPS, technical leader than &lt;strong&gt;yes, you should
-attend&lt;/strong&gt;.&lt;/p&gt;
-&lt;p&gt;Why? Because Linux Containers change the IT infrastructures and the way we
-create and deliver services.&lt;/p&gt;
-&lt;h3&gt;When and where?&lt;/h3&gt;
-&lt;p&gt;All event details, place, agenda, registration etc are on the meetup webpage:
-&lt;a href="http://www.meetup.com/Docker-Krakow-Poland/events/219831894/"&gt;http://www.meetup.com/Docker-Krakow-Poland/events/219831894/&lt;/a&gt;&lt;/p&gt;</summary><category term="meetups"></category><category term="docker"></category></entry></feed>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Many craft. Wow. Such create</title><link href="http://maciej.lasyk.info/" rel="alternate"></link><link href="http://maciej.lasyk.info/feeds/.atom.xml" rel="self"></link><id>http://maciej.lasyk.info/</id><updated>2014-07-29T00:15:00+02:00</updated><entry><title>Creator Bias</title><link href="http://maciej.lasyk.info/2014/Jul/29/creator-bias/" rel="alternate"></link><updated>2014-07-29T00:15:00+02:00</updated><author><name>Maciej Lasyk</name></author><id>tag:maciej.lasyk.info,2014-07-29:2014/Jul/29/creator-bias/</id><summary type="html">&lt;p&gt;Quote of the day: “Humans are bad at predicting the performance of complex systems [...] Our ability to create large &amp;amp; complex systems fools us into believing that we’re also entitled to understand them”&lt;/p&gt;
+&lt;p&gt;Taken from &lt;a href="http://carlos.bueno.org/optimization/mature-optimization.pdf"&gt;"Mature Optimization Handbook"&lt;/a&gt; by Carlos Bueno&lt;/p&gt;</summary><category term="quotes"></category><category term=""></category></entry></feed>

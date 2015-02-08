@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Many craft. Wow. Such create</title><link>http://maciej.lasyk.info/</link><description></description><atom:link href="http://maciej.lasyk.info/feeds/tag/centos.rss.xml" rel="self"></atom:link><lastBuildDate>Sun, 14 Sep 2014 11:46:00 +0200</lastBuildDate><item><title>Network Manager Dispatcher</title><link>http://maciej.lasyk.info/2014/Sep/14/network-manager-dispatcher/</link><description>&lt;p&gt;&lt;a href="https://en.wikipedia.org/wiki/NetworkManager"&gt;NetworkManager&lt;/a&gt; is often 
+associated with some voodoo - network - magic tool, that does the work on 
+laptop, but better switch it off on server. I won't argue about that, just 
+wanted to give you something I personally think make NM more usable.&lt;/p&gt;
+&lt;p&gt;So it is the &lt;strong&gt;/etc/NetworkManager/dispatcher.d&lt;/strong&gt; - this is directory under
+which lay scripts which will be executed on network change. Following
+man-pages:&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;NetworkManager will execute scripts in the /etc/NetworkManager/dispatcher.d 
+directory in alphabetical order in response to network events. Each script 
+should be a regular executable file, owned by root.&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;Furthermore, it must not be writable by group or other, and not setuid.&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;Each script receives two arguments, the first being the interface name of
+the device just activated, and second an action.&lt;/em&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;down&lt;/strong&gt; - The interface has been deactivated.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;vpn-up&lt;/strong&gt; - A VPN connection has been activated.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;vpn-down&lt;/strong&gt; - A VPN connection has been deactivated.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;hostname&lt;/strong&gt; - The system hostname has been updated. Use gethostname(2) to
+  retrieve it.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;dhcp4-change&lt;/strong&gt; - The DHCPv4 lease has changed (renewed, rebound, etc).&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;dhcp6-change&lt;/strong&gt; - The DHCPv6 lease has changed (renewed, rebound, etc).&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;So basically without manually detecting change in network events we may use the
+tool that was created just for this particular goal.&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Maciej Lasyk</dc:creator><pubDate>Sun, 14 Sep 2014 11:46:00 +0200</pubDate><guid>tag:maciej.lasyk.info,2014-09-14:2014/Sep/14/network-manager-dispatcher/</guid><category>network</category><category>centos</category><category>fedora</category></item><item><title>Ansible Playbook for favtools</title><link>http://maciej.lasyk.info/2014/Sep/12/ansible-playbook-for-favtools/</link><description>&lt;h3&gt;playbook&lt;/h3&gt;
+&lt;p&gt;This rather doesn't fit my github repo ;)&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;- name: Ensure my favorite tools are installed
+  yum: &lt;span class="nv"&gt;pkg&lt;/span&gt;&lt;span class="o"&gt;={{&lt;/span&gt;item&lt;span class="o"&gt;}}&lt;/span&gt; &lt;span class="nv"&gt;state&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;latest
+  with_items:
+    - strace
+    - ltrace
+    - tcpdump
+    - vim
+    - procps
+    - sysstat
+    - git
+    - make
+    - gcc
+    - tmux
+    - links
+    - man
+    - ntp
+    - &lt;span class="nb"&gt;bind&lt;/span&gt;-utils
+    - nmap
+    - wget
+    - telnet
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;And there would be one &lt;a href="http://docs.ansible.com/playbooks_roles.html#role-dependencies"&gt;dependency&lt;/a&gt; here (&lt;a href="https://fedoraproject.org/wiki/EPEL"&gt;EPEL&lt;/a&gt; repo):&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;- name: install epel repo
+  yum: &lt;span class="nv"&gt;name&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;http://dl.fedoraproject.org/pub/epel/6/x86_64/epel-release-6-8.noarch.rpm &lt;span class="nv"&gt;state&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;present
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;That is only for starters; I'd add here also &lt;a href="http://www.sysdig.org/"&gt;sysdig&lt;/a&gt; and whole playbook for preparing user env.&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Maciej Lasyk</dc:creator><pubDate>Fri, 12 Sep 2014 23:24:00 +0200</pubDate><guid>tag:maciej.lasyk.info,2014-09-12:2014/Sep/12/ansible-playbook-for-favtools/</guid><category>ansible</category><category>centos</category><category>fedora</category></item></channel></rss>

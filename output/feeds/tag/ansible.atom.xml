@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Many craft. Wow. Such create</title><link href="http://maciej.lasyk.info/" rel="alternate"></link><link href="http://maciej.lasyk.info/feeds/tag/ansible.atom.xml" rel="self"></link><id>http://maciej.lasyk.info/</id><updated>2014-09-12T23:24:00+02:00</updated><entry><title>Ansible Playbook for favtools</title><link href="http://maciej.lasyk.info/2014/Sep/12/ansible-playbook-for-favtools/" rel="alternate"></link><updated>2014-09-12T23:24:00+02:00</updated><author><name>Maciej Lasyk</name></author><id>tag:maciej.lasyk.info,2014-09-12:2014/Sep/12/ansible-playbook-for-favtools/</id><summary type="html">&lt;h3&gt;playbook&lt;/h3&gt;
+&lt;p&gt;This rather doesn't fit my github repo ;)&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;- name: Ensure my favorite tools are installed
+  yum: &lt;span class="nv"&gt;pkg&lt;/span&gt;&lt;span class="o"&gt;={{&lt;/span&gt;item&lt;span class="o"&gt;}}&lt;/span&gt; &lt;span class="nv"&gt;state&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;latest
+  with_items:
+    - strace
+    - ltrace
+    - tcpdump
+    - vim
+    - procps
+    - sysstat
+    - git
+    - make
+    - gcc
+    - tmux
+    - links
+    - man
+    - ntp
+    - &lt;span class="nb"&gt;bind&lt;/span&gt;-utils
+    - nmap
+    - wget
+    - telnet
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;And there would be one &lt;a href="http://docs.ansible.com/playbooks_roles.html#role-dependencies"&gt;dependency&lt;/a&gt; here (&lt;a href="https://fedoraproject.org/wiki/EPEL"&gt;EPEL&lt;/a&gt; repo):&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;- name: install epel repo
+  yum: &lt;span class="nv"&gt;name&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;http://dl.fedoraproject.org/pub/epel/6/x86_64/epel-release-6-8.noarch.rpm &lt;span class="nv"&gt;state&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;present
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;That is only for starters; I'd add here also &lt;a href="http://www.sysdig.org/"&gt;sysdig&lt;/a&gt; and whole playbook for preparing user env.&lt;/p&gt;</summary><category term="ansible"></category><category term="centos"></category><category term="fedora"></category></entry></feed>

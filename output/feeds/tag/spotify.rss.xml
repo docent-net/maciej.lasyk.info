@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Many craft. Wow. Such create</title><link>http://maciej.lasyk.info/</link><description></description><atom:link href="http://maciej.lasyk.info/feeds/tag/spotify.rss.xml" rel="self"></atom:link><lastBuildDate>Sun, 08 Feb 2015 00:00:00 +0100</lastBuildDate><item><title>Spotify on Fedora 21</title><link>http://maciej.lasyk.info/2015/Feb/08/spotify-on-fedora-21/</link><description>&lt;p&gt;&lt;center&gt;&lt;img alt="Spotify and Fedora" src="http://maciej.lasyk.info/images/fedspotify.png" /&gt;&lt;/center&gt;&lt;/p&gt;
+&lt;h3&gt;Spotify on Fedora?&lt;/h3&gt;
+&lt;p&gt;Yup, I just got bored of running Spotify on my cellphone when working on
+computer. Unfortunately there is no native support for Spotify on Fedora just
+like in Debian / Ubuntu (which are preferred distros by Spotify for Linux
+today).&lt;/p&gt;
+&lt;h3&gt;So howto Spotify and Fedora?&lt;/h3&gt;
+&lt;p&gt;Quit simple, but a bit kinky ;)&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="http://rpmfusion.org/Configuration"&gt;Install rpmfusion repo&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Install Spotify client: &lt;strong&gt;&lt;em&gt;yum install lpf-spotify-client&lt;/em&gt;&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;This client has some old dependency (libgcrypt.so.11), which is not (and 
+  will not be) in F21. However I found this in &lt;a href="https://copr.fedoraproject.org/coprs/red/libgcrypt.so.11/"&gt;this
+  COPR&lt;/a&gt;, so simple
+  install &lt;a href="https://copr.fedoraproject.org/coprs/red/libgcrypt.so.11/repo/fedora-rawhide/red-libgcrypt.so.11-fedora-rawhide.repo"&gt;this
+  repo&lt;/a&gt;
+  and &lt;strong&gt;&lt;em&gt;yum install compat-libgcrypt&lt;/em&gt;&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;Now just type in terminal: &lt;strong&gt;&lt;em&gt;lpf update&lt;/em&gt;&lt;/strong&gt; and you will get a popup window
+  w/Spotify client updater/installer.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;If you have any issues installing see buildlog (you can view it from this popup
+window)&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Maciej Lasyk</dc:creator><pubDate>Sun, 08 Feb 2015 00:00:00 +0100</pubDate><guid>tag:maciej.lasyk.info,2015-02-08:2015/Feb/08/spotify-on-fedora-21/</guid><category>spotify</category><category>fedora</category></item></channel></rss>

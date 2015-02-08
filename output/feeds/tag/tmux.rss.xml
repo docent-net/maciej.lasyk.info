@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Many craft. Wow. Such create</title><link>http://maciej.lasyk.info/</link><description></description><atom:link href="http://maciej.lasyk.info/feeds/tag/tmux.rss.xml" rel="self"></atom:link><lastBuildDate>Thu, 20 Nov 2014 00:00:00 +0100</lastBuildDate><item><title>GIT: clone only one file</title><link>http://maciej.lasyk.info/2014/Nov/20/git-clone-only-one-file/</link><description>&lt;p&gt;&lt;center&gt;&lt;img alt="GIT" src="http://maciej.lasyk.info/images/git.png" /&gt;&lt;/center&gt;&lt;/p&gt;
+&lt;h3&gt;What?&lt;/h3&gt;
+&lt;p&gt;So I have a quite big bare repo somewhere and needed to get only one file from
+there (of course - didn't know the exact filename). Frankly my GIT-fu is not 
+that kinky, so the way I did it could cause a little bit of smile on someones 
+mouth ;)&lt;/p&gt;
+&lt;h3&gt;How?&lt;/h3&gt;
+&lt;p&gt;A slice from my notes:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="c"&gt;# on a local FS:&lt;/span&gt;
+&lt;span class="nv"&gt;$ &lt;/span&gt;git init . &lt;span class="c"&gt;# create empty repo on local FS&lt;/span&gt;
+&lt;span class="nv"&gt;$ &lt;/span&gt;git remote add remote_name path &lt;span class="c"&gt;# add a remote&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="c"&gt;# on a remote, bare repo:&lt;/span&gt;
+&lt;span class="nv"&gt;$ &lt;/span&gt;git log -n 10 &lt;span class="c"&gt;# get last commits id&lt;/span&gt;
+&lt;span class="nv"&gt;$ &lt;/span&gt;git show --name-only commit_id &lt;span class="c"&gt;# get listing of files from the last commits&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="c"&gt;# on a local FS:&lt;/span&gt;
+&lt;span class="nv"&gt;$ &lt;/span&gt;git archive --remote&lt;span class="o"&gt;=&lt;/span&gt;remote_name HEAD:some/dir/somewhere filename | tar xf -
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;So this way you'll end up with only one file scrapped from the remote repo.&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Maciej Lasyk</dc:creator><pubDate>Thu, 20 Nov 2014 00:00:00 +0100</pubDate><guid>tag:maciej.lasyk.info,2014-11-20:2014/Nov/20/git-clone-only-one-file/</guid><category>tmux</category></item><item><title>Tmux: join-pane</title><link>http://maciej.lasyk.info/2014/Nov/19/tmux-join-pane/</link><description>&lt;p&gt;&lt;center&gt;&lt;img alt="TMUX" src="http://maciej.lasyk.info/images/tmux.png" /&gt;&lt;/center&gt;&lt;/p&gt;
+&lt;p&gt;Today I finally learnt how to move a pane between windows in
+&lt;a href="http://tmux.sourceforge.net/"&gt;Tmux&lt;/a&gt; and yes - I will share this vodoo
+knowledge with you guys.&lt;/p&gt;
+&lt;p&gt;Searching through the internet gives us this:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="c"&gt;# pane movement&lt;/span&gt;
+&lt;span class="nb"&gt;bind&lt;/span&gt;-key j &lt;span class="nb"&gt;command&lt;/span&gt;-prompt -p &lt;span class="s2"&gt;&amp;quot;join pane from:&amp;quot;&lt;/span&gt;  &lt;span class="s2"&gt;&amp;quot;join-pane -s &amp;#39;%%&amp;#39;&amp;quot;&lt;/span&gt;
+&lt;span class="nb"&gt;bind&lt;/span&gt;-key s &lt;span class="nb"&gt;command&lt;/span&gt;-prompt -p &lt;span class="s2"&gt;&amp;quot;send pane to:&amp;quot;&lt;/span&gt;  &lt;span class="s2"&gt;&amp;quot;join-pane -t &amp;#39;%%&amp;#39;&amp;quot;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;This is the most popular binding for this 'moving' purposes. But - when you try
+it entering window number as the destination (or source) you get a message:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Can’t join a pane to its own window&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;WTF?&lt;/p&gt;
+&lt;p&gt;Let's RTFM:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt; &lt;span class="n"&gt;join&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;pane&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;bdhv&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;l&lt;/span&gt; &lt;span class="n"&gt;size&lt;/span&gt; &lt;span class="o"&gt;|&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;p&lt;/span&gt; &lt;span class="n"&gt;percentage&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;s&lt;/span&gt; &lt;span class="n"&gt;src&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;pane&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;t&lt;/span&gt; &lt;span class="n"&gt;dst&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;pane&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+       &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;alias&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;joinp&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+      &lt;span class="n"&gt;Like&lt;/span&gt; &lt;span class="n"&gt;split&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;window&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;but&lt;/span&gt; &lt;span class="n"&gt;instead&lt;/span&gt; &lt;span class="n"&gt;of&lt;/span&gt; &lt;span class="n"&gt;splitting&lt;/span&gt;
+      &lt;span class="n"&gt;dst&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;pane&lt;/span&gt; &lt;span class="n"&gt;and&lt;/span&gt; &lt;span class="n"&gt;creating&lt;/span&gt; &lt;span class="n"&gt;a&lt;/span&gt; &lt;span class="n"&gt;new&lt;/span&gt; &lt;span class="n"&gt;pane&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;split&lt;/span&gt; &lt;span class="n"&gt;it&lt;/span&gt; &lt;span class="n"&gt;and&lt;/span&gt;
+      &lt;span class="n"&gt;move&lt;/span&gt; &lt;span class="n"&gt;src&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;pane&lt;/span&gt; &lt;span class="n"&gt;into&lt;/span&gt; &lt;span class="n"&gt;the&lt;/span&gt; &lt;span class="n"&gt;space&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;  &lt;span class="n"&gt;This&lt;/span&gt; &lt;span class="n"&gt;can&lt;/span&gt; &lt;span class="n"&gt;be&lt;/span&gt; &lt;span class="n"&gt;used&lt;/span&gt;
+      &lt;span class="n"&gt;to&lt;/span&gt; &lt;span class="n"&gt;reverse&lt;/span&gt; &lt;span class="k"&gt;break&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;pane&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;/blockquote&gt;
+&lt;p&gt;Yes - so this gives us nothing.&lt;/p&gt;
+&lt;p&gt;So - lurking through the horizon of the internet I found
+&lt;a href="https://forums.pragprog.com/forums/242/topics/10533"&gt;this&lt;/a&gt;:&lt;/p&gt;
+&lt;p&gt;So it looks like the full path takes 2 arguments: window_number.pane_number&lt;/p&gt;
+&lt;p&gt;So yes - bindings are still valid but instead entering single window number we
+should enter exact location like &lt;strong&gt;1.3&lt;/strong&gt; (assuming you got at least 2 panes in
+1 window)&lt;/p&gt;
+&lt;p&gt;Yes - this was not that obvious&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Maciej Lasyk</dc:creator><pubDate>Wed, 19 Nov 2014 00:00:00 +0100</pubDate><guid>tag:maciej.lasyk.info,2014-11-19:2014/Nov/19/tmux-join-pane/</guid><category>tmux</category></item></channel></rss>

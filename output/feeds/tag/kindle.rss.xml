@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Many craft. Wow. Such create</title><link>http://maciej.lasyk.info/</link><description></description><atom:link href="http://maciej.lasyk.info/feeds/tag/kindle.rss.xml" rel="self"></atom:link><lastBuildDate>Thu, 05 Feb 2015 00:00:00 +0100</lastBuildDate><item><title>Sending Evernote notes to Kindle</title><link>http://maciej.lasyk.info/2015/Feb/05/sending-evernote-notes-to-kindle/</link><description>&lt;p&gt;&lt;center&gt;&lt;img alt="Evernote and Kindle" src="http://maciej.lasyk.info/images/everkindle.png" /&gt;&lt;/center&gt;&lt;/p&gt;
+&lt;h3&gt;Evernote and Kindle?&lt;/h3&gt;
+&lt;p&gt;I use Kindle as my main database for any books, articles or whatever I'd like
+to read. I try to push anything (pdfs, notes from meetings etc) to my Kindle
+so I'm always sure that nothing stays unread (that's a part of my GTD 
+approach).&lt;/p&gt;
+&lt;p&gt;But also I use Evernote for storing all my knowledge, experiences, "to-read"'s
+etc. It's basically huge database of everything / anything I'd like to
+preserve.&lt;/p&gt;
+&lt;p&gt;Using Evernote you'll surely hit the &lt;a href="Evernote Web clipper"&gt;https://evernote.com/webclipper/&lt;/a&gt;.
+It's a browser plugin which main job is to save particular pages in Evernote.&lt;/p&gt;
+&lt;h3&gt;So howto Kindle &amp;amp; Evernote?&lt;/h3&gt;
+&lt;p&gt;I searched for a way to basically send any page directly from Evernote Web
+Clipper to my Kindle (for future reading). And this time &lt;strong&gt;I didn't want to
+create my own solution&lt;/strong&gt; (which would be probably easy to implement: connect via
+&lt;a href="Evernote API"&gt;https://dev.evernote.com/doc/&lt;/a&gt;, fetch any new notes marked for
+Kindle use (e.g. by tags), send to Kindle e-mail address).&lt;/p&gt;
+&lt;p&gt;So I found &lt;a href="en2kindle"&gt;http://en2kindle.com&lt;/a&gt;. It's very simple tool - just authorize it to
+read your notes within Evernote and then authorize it to be a legit sender to
+your Kindle mailbox. Now just decide wheter you'd like to have all notes from
+particular notebook sent to your Kindle or rather only those notes tagged with
+some particular tag.&lt;/p&gt;
+&lt;p&gt;And that's all!&lt;/p&gt;
+&lt;p&gt;Enjoy and support en2kindle - it's ony $6/year!&lt;/p&gt;
+&lt;p&gt;Oh one more thing for people concerning about &lt;strong&gt;security&lt;/strong&gt;. It simple as that -
+it's as secure as keeping data in Evernote. It's internet - deal with it.&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Maciej Lasyk</dc:creator><pubDate>Thu, 05 Feb 2015 00:00:00 +0100</pubDate><guid>tag:maciej.lasyk.info,2015-02-05:2015/Feb/05/sending-evernote-notes-to-kindle/</guid><category>kindle</category><category>evernote</category></item></channel></rss>

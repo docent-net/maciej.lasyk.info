@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Many craft. Wow. Such create</title><link>http://maciej.lasyk.info/</link><description></description><atom:link href="http://maciej.lasyk.info/feeds/tag/dns.rss.xml" rel="self"></atom:link><lastBuildDate>Mon, 22 Sep 2014 00:00:00 +0200</lastBuildDate><item><title>OpenWRT, Dnsmasq + external DNS</title><link>http://maciej.lasyk.info/2014/Sep/22/openwrt-dnsmasq-external-dns/</link><description>&lt;p&gt;I use &lt;a href="https://openwrt.org/"&gt;OpenWRT&lt;/a&gt; on my home access - points instead of
+stock software (due to security concerns and my OpenSourceTheWorld approach).&lt;/p&gt;
+&lt;p&gt;I also have &lt;a href="https://en.wikipedia.org/wiki/BIND"&gt;BIND&lt;/a&gt; in use on my
+home-server, so I can use e.g. &lt;a href="http://maciej.lasyk.info/2014/Sep/02/dns-views-in-bind/"&gt;zones&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;So I was trying to make OpenWRT send DNS IP address to DHCP clients. By default
+OpenWRT will send it's own IP (it's using Dnsmasq onboard). And I just couldn't
+find option to set this manually (using webinteface).&lt;/p&gt;
+&lt;p&gt;Finally I logged into CLI interface via SSH and found that this change can be
+made in two ways.&lt;/p&gt;
+&lt;p&gt;In &lt;strong&gt;/etc/dnsmasq.conf&lt;/strong&gt; by adding line:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;dhcp-option&lt;span class="o"&gt;=&lt;/span&gt;6,IP1,IP2
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Or in &lt;strong&gt;/etc/config/dhcp&lt;/strong&gt; by adding to the section &lt;strong&gt;config dnsmasq&lt;/strong&gt;:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;list &lt;span class="s1"&gt;&amp;#39;dhcp_option&amp;#39;&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;6,192.168.1.29&amp;#39;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Just restart Dnsmaq service afterwards and you're done.&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Maciej Lasyk</dc:creator><pubDate>Mon, 22 Sep 2014 00:00:00 +0200</pubDate><guid>tag:maciej.lasyk.info,2014-09-22:2014/Sep/22/openwrt-dnsmasq-external-dns/</guid><category>dns</category><category>openwrt</category><category>dnsmasq</category><category>dhcp</category></item><item><title>DNS views in BIND</title><link>http://maciej.lasyk.info/2014/Sep/02/dns-views-in-bind/</link><description>&lt;h3&gt;Why would I use DNS BIND views?&lt;/h3&gt;
+&lt;p&gt;From the manual: &lt;strong&gt;The view clause allows BIND to provide different
+functionality based on the hosts accessing it.&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;So basically you can provide one group of users with one variant of same zone 
+and different part of users with other variant of zone file.&lt;/p&gt;
+&lt;p&gt;This is very important - I've seen many poor - man's solutions when there was a
+need to provide different views in DNSes. &lt;strong&gt;view&lt;/strong&gt; clause is the proper
+solution.&lt;/p&gt;
+&lt;h3&gt;How?&lt;/h3&gt;
+&lt;p&gt;&lt;strong&gt;view Clause Syntax:&lt;/strong&gt;&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;view &lt;span class="s2"&gt;&amp;quot;view_name&amp;quot;&lt;/span&gt; &lt;span class="o"&gt;[&lt;/span&gt;class&lt;span class="o"&gt;]&lt;/span&gt; &lt;span class="o"&gt;{&lt;/span&gt;
+      &lt;span class="o"&gt;[&lt;/span&gt; match-clients &lt;span class="o"&gt;{&lt;/span&gt;  address_match_list &lt;span class="o"&gt;}&lt;/span&gt; ; &lt;span class="o"&gt;]&lt;/span&gt;
+      &lt;span class="o"&gt;[&lt;/span&gt; match-destinations &lt;span class="o"&gt;{&lt;/span&gt; address_match_list &lt;span class="o"&gt;}&lt;/span&gt; ; &lt;span class="o"&gt;]&lt;/span&gt;
+      &lt;span class="o"&gt;[&lt;/span&gt; match-recursive-only &lt;span class="o"&gt;{&lt;/span&gt; yes | no &lt;span class="o"&gt;}&lt;/span&gt; ; &lt;span class="o"&gt;]&lt;/span&gt;
+      // view statements
+      // zone clauses
+&lt;span class="o"&gt;}&lt;/span&gt;;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;So i.e. when we want to serve different view for &lt;strong&gt;lasyk.info&lt;/strong&gt; domain for 2
+grups of users (one would be guys from internet, second - guys from my LAN) we
+would do something like this:&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;set up proper ACL:&lt;/strong&gt;&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;acl internal &lt;span class="o"&gt;{&lt;/span&gt;
+       192.168.10.0/24;
+       localhost;
+&lt;span class="o"&gt;}&lt;/span&gt;;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;&lt;strong&gt;define zone:&lt;/strong&gt;&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;view &lt;span class="s2"&gt;&amp;quot;internal-view&amp;quot;&lt;/span&gt; &lt;span class="o"&gt;{&lt;/span&gt;
+      match-clients &lt;span class="o"&gt;{&lt;/span&gt; internal; &lt;span class="o"&gt;}&lt;/span&gt;;
+      recursion yes;
+
+      zone &lt;span class="s2"&gt;&amp;quot;lasyk.info&amp;quot;&lt;/span&gt; IN &lt;span class="o"&gt;{&lt;/span&gt;
+            &lt;span class="nb"&gt;type &lt;/span&gt;master;
+            file &lt;span class="s2"&gt;&amp;quot;internal.lasyk.info.conf&amp;quot;&lt;/span&gt;;
+            allow-transfer &lt;span class="o"&gt;{&lt;/span&gt; any; &lt;span class="o"&gt;}&lt;/span&gt;
+      &lt;span class="o"&gt;}&lt;/span&gt;;
+view &lt;span class="s2"&gt;&amp;quot;external-view&amp;quot;&lt;/span&gt; &lt;span class="o"&gt;{&lt;/span&gt;
+      match-clients &lt;span class="o"&gt;{&lt;/span&gt; any; &lt;span class="o"&gt;}&lt;/span&gt;;
+      recursion no;
+
+      zone &lt;span class="s2"&gt;&amp;quot;lasyk.info&amp;quot;&lt;/span&gt; IN &lt;span class="o"&gt;{&lt;/span&gt;
+            &lt;span class="nb"&gt;type &lt;/span&gt;master;
+            file &lt;span class="s2"&gt;&amp;quot;external.lasyk.info.conf&amp;quot;&lt;/span&gt;;
+            allow-transfer &lt;span class="o"&gt;{&lt;/span&gt; none; &lt;span class="o"&gt;}&lt;/span&gt;;
+      &lt;span class="o"&gt;}&lt;/span&gt;;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Now just create proper zone - files, &lt;strong&gt;rndc reload&lt;/strong&gt; and test it with &lt;strong&gt;dig&lt;/strong&gt;&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Maciej Lasyk</dc:creator><pubDate>Tue, 02 Sep 2014 08:15:00 +0200</pubDate><guid>tag:maciej.lasyk.info,2014-09-02:2014/Sep/02/dns-views-in-bind/</guid><category>dns</category><category>bind</category></item></channel></rss>
