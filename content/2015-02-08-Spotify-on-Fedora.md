@@ -20,7 +20,7 @@ Quit simple, but a bit kinky ;)
 - [Install rpmfusion repo](http://rpmfusion.org/Configuration)
 - Install Spotify client: ***yum install lpf-spotify-client***
 - This client has some old dependency (libgcrypt.so.11), which is not (and 
-  will not be) in F21. However I found this in [this
+  will not be) in F21. However I found it in [this
   COPR](https://copr.fedoraproject.org/coprs/red/libgcrypt.so.11/), so simple
   install [this
   repo](https://copr.fedoraproject.org/coprs/red/libgcrypt.so.11/repo/fedora-rawhide/red-libgcrypt.so.11-fedora-rawhide.repo)
