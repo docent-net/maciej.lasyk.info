@@ -11,7 +11,7 @@ today).&lt;/p&gt;
 &lt;li&gt;&lt;a href="http://rpmfusion.org/Configuration"&gt;Install rpmfusion repo&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;Install Spotify client: &lt;strong&gt;&lt;em&gt;yum install lpf-spotify-client&lt;/em&gt;&lt;/strong&gt;&lt;/li&gt;
 &lt;li&gt;This client has some old dependency (libgcrypt.so.11), which is not (and 
-  will not be) in F21. However I found this in &lt;a href="https://copr.fedoraproject.org/coprs/red/libgcrypt.so.11/"&gt;this
+  will not be) in F21. However I found it in &lt;a href="https://copr.fedoraproject.org/coprs/red/libgcrypt.so.11/"&gt;this
   COPR&lt;/a&gt;, so simple
   install &lt;a href="https://copr.fedoraproject.org/coprs/red/libgcrypt.so.11/repo/fedora-rawhide/red-libgcrypt.so.11-fedora-rawhide.repo"&gt;this
   repo&lt;/a&gt;
