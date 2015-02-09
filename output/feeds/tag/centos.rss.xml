@@ -2,7 +2,7 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Many craft. Wow. Such create</title><link>http://maciej.lasyk.info/</link><description></description><atom:link href="http://maciej.lasyk.info/feeds/tag/centos.rss.xml" rel="self"></atom:link><lastBuildDate>Mon, 09 Feb 2015 00:00:00 +0100</lastBuildDate><item><title>iSCSI boot in RHEL/CentOS7 broken</title><link>http://maciej.lasyk.info/2015/Feb/09/iscsi-boot-in-rhelcentos7-broken/</link><description>&lt;p&gt;&lt;center&gt;&lt;img alt="RHEL" src="http://maciej.lasyk.info/images/rhel-logo-small.png" /&gt;&lt;/center&gt;&lt;/p&gt;
 &lt;h3&gt;WAT?&lt;/h3&gt;
 &lt;p&gt;Today while rolling up new host in my company I hit the following issue after
-successfully installing CentOS7 on remote iSCSI drive. I just rebootted the
+successfully installing CentOS7 on remote iSCSI drive. I just rebooted the
 machine and after GRUB done it's job I just got:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="o"&gt;[&lt;/span&gt;   2.375332&lt;span class="o"&gt;]&lt;/span&gt; i8042: No controller found
 &lt;span class="o"&gt;[&lt;/span&gt;   2.592960&lt;span class="o"&gt;]&lt;/span&gt; dracut: FATAL: For argument 

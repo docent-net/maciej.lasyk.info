@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom"><title>Many craft. Wow. Such create</title><link href="http://maciej.lasyk.info/" rel="alternate"></link><link href="http://maciej.lasyk.info/feeds/atom.xml" rel="self"></link><id>http://maciej.lasyk.info/</id><updated>2015-02-09T00:00:00+01:00</updated><entry><title>iSCSI boot in RHEL/CentOS7 broken</title><link href="http://maciej.lasyk.info/2015/Feb/09/iscsi-boot-in-rhelcentos7-broken/" rel="alternate"></link><updated>2015-02-09T00:00:00+01:00</updated><author><name>Maciej Lasyk</name></author><id>tag:maciej.lasyk.info,2015-02-09:2015/Feb/09/iscsi-boot-in-rhelcentos7-broken/</id><summary type="html">&lt;p&gt;&lt;center&gt;&lt;img alt="RHEL" src="http://maciej.lasyk.info/images/rhel-logo-small.png" /&gt;&lt;/center&gt;&lt;/p&gt;
 &lt;h3&gt;WAT?&lt;/h3&gt;
 &lt;p&gt;Today while rolling up new host in my company I hit the following issue after
-successfully installing CentOS7 on remote iSCSI drive. I just rebootted the
+successfully installing CentOS7 on remote iSCSI drive. I just rebooted the
 machine and after GRUB done it's job I just got:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="o"&gt;[&lt;/span&gt;   2.375332&lt;span class="o"&gt;]&lt;/span&gt; i8042: No controller found
 &lt;span class="o"&gt;[&lt;/span&gt;   2.592960&lt;span class="o"&gt;]&lt;/span&gt; dracut: FATAL: For argument 
