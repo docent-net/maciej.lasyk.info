@@ -9,7 +9,7 @@ Summary: How to fix the iSCSI boot issue in RHEL/CentOS 7
 ### WAT? ###
 
 Today while rolling up new host in my company I hit the following issue after
-successfully installing CentOS7 on remote iSCSI drive. I just rebootted the
+successfully installing CentOS7 on remote iSCSI drive. I just rebooted the
 machine and after GRUB done it's job I just got:
 
 ```bash
