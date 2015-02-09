@@ -4,7 +4,7 @@ Tags: rhel,centos,iscsi,boot,netboot
 Author: Maciej Lasyk
 Summary: How to fix the iSCSI boot issue in RHEL/CentOS 7
 
-<center>![RHEL]({filename}/images/rhel-logo.png)</center>
+<center>![RHEL]({filename}/images/rhel-logo-small.png)</center>
 
 ### WAT? ###
 
