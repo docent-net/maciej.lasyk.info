@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Many craft. Wow. Such create</title><link href="http://maciej.lasyk.info/" rel="alternate"></link><link href="http://maciej.lasyk.info/feeds/tag/netboot.atom.xml" rel="self"></link><id>http://maciej.lasyk.info/</id><updated>2015-02-09T00:00:00+01:00</updated><entry><title>iSCSI boot in RHEL/CentOS7 broken</title><link href="http://maciej.lasyk.info/2015/Feb/09/iscsi-boot-in-rhelcentos7-broken/" rel="alternate"></link><updated>2015-02-09T00:00:00+01:00</updated><author><name>Maciej Lasyk</name></author><id>tag:maciej.lasyk.info,2015-02-09:2015/Feb/09/iscsi-boot-in-rhelcentos7-broken/</id><summary type="html">&lt;p&gt;&lt;center&gt;&lt;img alt="RHEL" src="http://maciej.lasyk.info/images/rhel-logo.png" /&gt;&lt;/center&gt;&lt;/p&gt;
+&lt;h3&gt;WAT?&lt;/h3&gt;
+&lt;p&gt;Today while rolling up new host in my company I hit the following issue after
+successfully installing CentOS7 on remote iSCSI drive. I just rebootted the
+machine and after GRUB done it's job I just got:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="o"&gt;[&lt;/span&gt;   2.375332&lt;span class="o"&gt;]&lt;/span&gt; i8042: No controller found
+&lt;span class="o"&gt;[&lt;/span&gt;   2.592960&lt;span class="o"&gt;]&lt;/span&gt; dracut: FATAL: For argument 
+    &lt;span class="s1"&gt;&amp;#39;ip=::::localhost.localdomain:eno1: none&amp;#39;&lt;/span&gt;&lt;span class="se"&gt;\n&lt;/span&gt;Value &lt;span class="s1"&gt;&amp;#39;none&amp;#39;&lt;/span&gt; 
+    without static configuration does not make sanse
+&lt;span class="o"&gt;[&lt;/span&gt;   2.593074&lt;span class="o"&gt;]&lt;/span&gt; dracut: Refusing to &lt;span class="k"&gt;continue&lt;/span&gt;
+&lt;span class="o"&gt;[&lt;/span&gt;   3.197719&lt;span class="o"&gt;]&lt;/span&gt; System halted.
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h3&gt;What's that?&lt;/h3&gt;
+&lt;p&gt;The answer is &lt;a href="https://access.redhat.com/solutions/905003"&gt;here&lt;/a&gt;. Simply
+installer is broken and it creates broken grub entry for iSCSI nodes.&lt;/p&gt;
+&lt;h3&gt;How to fix this?&lt;/h3&gt;
+&lt;p&gt;There're many ways. I just rebooted the box, entered the grub edit mode and
+fixed the boot param replacing:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;linux16 /vmlinuz-3.10.0-123.el7.x86_64 &lt;span class="o"&gt;[&lt;/span&gt;...&lt;span class="o"&gt;]&lt;/span&gt; 
+    vconsole.font&lt;span class="o"&gt;=&lt;/span&gt;latarcyrheb-sun16 
+    &lt;span class="nv"&gt;ip&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;::::localhost.localdomain:eno1:none &lt;span class="o"&gt;[&lt;/span&gt;...&lt;span class="o"&gt;]&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;with this:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;linux16 /vmlinuz-3.10.0-123.el7.x86_64 &lt;span class="o"&gt;[&lt;/span&gt;...&lt;span class="o"&gt;]&lt;/span&gt; 
+    vconsole.font&lt;span class="o"&gt;=&lt;/span&gt;latarcyrheb-sun16 
+    &lt;span class="nv"&gt;ip&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;192.168.1.15::192.168.1.1:255.255.252.0:localhost.localdomain:eno1:none &lt;span class="o"&gt;[&lt;/span&gt;...&lt;span class="o"&gt;]&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Where &lt;strong&gt;192.168.1.15&lt;/strong&gt; is the initiator IP addr and &lt;strong&gt;192.168.1.1&lt;/strong&gt; is the 
+gateway IP.&lt;/p&gt;
+&lt;p&gt;Of course that above is just a way to successfully boot into the system. After 
+boot the grub2.cfg is still broken so now it's the time for a permanent
+solution:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Fix above again in &lt;strong&gt;/etc/sysconfig/grub&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;Rebuild the grub configuration: &lt;strong&gt;&lt;em&gt;grub2-mkconfig -o /boot/grub2/grub.cfg&lt;/em&gt;&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;That's all. Just reboot and confirm it's working fine&lt;/li&gt;
+&lt;/ul&gt;</summary><category term="rhel"></category><category term="centos"></category><category term="iscsi"></category><category term="boot"></category><category term="netboot"></category></entry></feed>
