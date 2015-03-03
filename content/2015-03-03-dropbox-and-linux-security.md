@@ -4,7 +4,7 @@ Tags: dropbox,security
 Author: Maciej Lasyk
 Summary: Is Dropox secure for you?
 
-<center>![RHEL]({filename}/images/dropbpx-logo.png)</center>
+<center>![RHEL]({filename}/images/dropbox-logo.png)</center>
 
 ### WAT? ###
 
