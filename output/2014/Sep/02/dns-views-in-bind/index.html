@@ -28,7 +28,7 @@
         
 <header>
 <h1><a href="http://maciej.lasyk.info" id="site-title">  </a>         <a href="http://maciej.lasyk.info/2014/Sep/02/dns-views-in-bind/" id="page-title">DNS views in BIND</a></h1>
-<time datetime="2014-09-02T08:15:00">Tue 02 September 2014</time></header>
+<time datetime="2014-09-02T08:15:00+02:00">Tue 02 September 2014</time></header>
 <article>
     <h3>Why would I use DNS BIND views?</h3>
 <p>From the manual: <strong>The view clause allows BIND to provide different
@@ -41,12 +41,12 @@ solution.</p>
 <h3>How?</h3>
 <p><strong>view Clause Syntax:</strong></p>
 <div class="highlight"><pre>view <span class="s2">&quot;view_name&quot;</span> <span class="o">[</span>class<span class="o">]</span> <span class="o">{</span>
-      <span class="o">[</span> match-clients <span class="o">{</span>  address_match_list <span class="o">}</span> ; <span class="o">]</span>
-      <span class="o">[</span> match-destinations <span class="o">{</span> address_match_list <span class="o">}</span> ; <span class="o">]</span>
-      <span class="o">[</span> match-recursive-only <span class="o">{</span> yes | no <span class="o">}</span> ; <span class="o">]</span>
+      <span class="o">[</span> match-clients <span class="o">{</span>  address_match_list <span class="o">}</span> <span class="p">;</span> <span class="o">]</span>
+      <span class="o">[</span> match-destinations <span class="o">{</span> address_match_list <span class="o">}</span> <span class="p">;</span> <span class="o">]</span>
+      <span class="o">[</span> match-recursive-only <span class="o">{</span> yes <span class="p">|</span> no <span class="o">}</span> <span class="p">;</span> <span class="o">]</span>
       // view statements
       // zone clauses
-<span class="o">}</span>;
+<span class="o">}</span><span class="p">;</span>
 </pre></div>
 
 
@@ -55,31 +55,31 @@ grups of users (one would be guys from internet, second - guys from my LAN) we
 would do something like this:</p>
 <p><strong>set up proper ACL:</strong></p>
 <div class="highlight"><pre>acl internal <span class="o">{</span>
-       192.168.10.0/24;
-       localhost;
-<span class="o">}</span>;
+       192.168.10.0/24<span class="p">;</span>
+       localhost<span class="p">;</span>
+<span class="o">}</span><span class="p">;</span>
 </pre></div>
 
 
 <p><strong>define zone:</strong></p>
 <div class="highlight"><pre>view <span class="s2">&quot;internal-view&quot;</span> <span class="o">{</span>
-      match-clients <span class="o">{</span> internal; <span class="o">}</span>;
-      recursion yes;
+      match-clients <span class="o">{</span> internal<span class="p">;</span> <span class="o">}</span><span class="p">;</span>
+      recursion yes<span class="p">;</span>
 
       zone <span class="s2">&quot;lasyk.info&quot;</span> IN <span class="o">{</span>
-            <span class="nb">type </span>master;
-            file <span class="s2">&quot;internal.lasyk.info.conf&quot;</span>;
-            allow-transfer <span class="o">{</span> any; <span class="o">}</span>
-      <span class="o">}</span>;
+            <span class="nb">type </span>master<span class="p">;</span>
+            file <span class="s2">&quot;internal.lasyk.info.conf&quot;</span><span class="p">;</span>
+            allow-transfer <span class="o">{</span> any<span class="p">;</span> <span class="o">}</span>
+      <span class="o">}</span><span class="p">;</span>
 view <span class="s2">&quot;external-view&quot;</span> <span class="o">{</span>
-      match-clients <span class="o">{</span> any; <span class="o">}</span>;
-      recursion no;
+      match-clients <span class="o">{</span> any<span class="p">;</span> <span class="o">}</span><span class="p">;</span>
+      recursion no<span class="p">;</span>
 
       zone <span class="s2">&quot;lasyk.info&quot;</span> IN <span class="o">{</span>
-            <span class="nb">type </span>master;
-            file <span class="s2">&quot;external.lasyk.info.conf&quot;</span>;
-            allow-transfer <span class="o">{</span> none; <span class="o">}</span>;
-      <span class="o">}</span>;
+            <span class="nb">type </span>master<span class="p">;</span>
+            file <span class="s2">&quot;external.lasyk.info.conf&quot;</span><span class="p">;</span>
+            allow-transfer <span class="o">{</span> none<span class="p">;</span> <span class="o">}</span><span class="p">;</span>
+      <span class="o">}</span><span class="p">;</span>
 </pre></div>
 
 
@@ -118,26 +118,26 @@ view <span class="s2">&quot;external-view&quot;</span> <span class="o">{</span>
         <div id="tagcloud">
         <nav>
             <ul class="tagcloud">
-                    <li class="tag-4"><a href="http://maciej.lasyk.info/tag/coreos.html">coreos</a></li>
-                    <li class="tag-1"><a href="http://maciej.lasyk.info/tag/centos.html">centos</a></li>
-                    <li class="tag-4"><a href="http://maciej.lasyk.info/tag/spotify.html">spotify</a></li>
-                    <li class="tag-4"><a href="http://maciej.lasyk.info/tag/fig.html">fig</a></li>
-                    <li class="tag-4"><a href="http://maciej.lasyk.info/tag/dns.html">dns</a></li>
-                    <li class="tag-4"><a href="http://maciej.lasyk.info/tag/network.html">network</a></li>
-                    <li class="tag-4"><a href="http://maciej.lasyk.info/tag/iscsi.html">iscsi</a></li>
-                    <li class="tag-1"><a href="http://maciej.lasyk.info/tag/docker.html">docker</a></li>
-                    <li class="tag-4"><a href="http://maciej.lasyk.info/tag/kubernetes.html">kubernetes</a></li>
-                    <li class="tag-2"><a href="http://maciej.lasyk.info/tag/ebooks.html">ebooks</a></li>
-                    <li class="tag-1"><a href="http://maciej.lasyk.info/tag/fedora.html">fedora</a></li>
-                    <li class="tag-4"><a href="http://maciej.lasyk.info/tag/meetups.html">meetups</a></li>
+                    <li class="tag-4"><a href="http://maciej.lasyk.info/tag/books.html">books</a></li>
+                    <li class="tag-2"><a href="http://maciej.lasyk.info/tag/docker.html">docker</a></li>
                     <li class="tag-2"><a href="http://maciej.lasyk.info/tag/pelican.html">pelican</a></li>
+                    <li class="tag-1"><a href="http://maciej.lasyk.info/tag/centos.html">centos</a></li>
+                    <li class="tag-2"><a href="http://maciej.lasyk.info/tag/fedora.html">fedora</a></li>
+                    <li class="tag-4"><a href="http://maciej.lasyk.info/tag/coreos.html">coreos</a></li>
+                    <li class="tag-4"><a href="http://maciej.lasyk.info/tag/network.html">network</a></li>
+                    <li class="tag-4"><a href="http://maciej.lasyk.info/tag/netboot.html">netboot</a></li>
+                    <li class="tag-4"><a href="http://maciej.lasyk.info/tag/fig.html">fig</a></li>
                     <li class="tag-4"><a href="http://maciej.lasyk.info/tag/boot.html">boot</a></li>
+                    <li class="tag-4"><a href="http://maciej.lasyk.info/tag/iscsi.html">iscsi</a></li>
                     <li class="tag-4"><a href="http://maciej.lasyk.info/tag/rhel.html">rhel</a></li>
+                    <li class="tag-2"><a href="http://maciej.lasyk.info/tag/ebooks.html">ebooks</a></li>
+                    <li class="tag-4"><a href="http://maciej.lasyk.info/tag/conferences.html">conferences</a></li>
+                    <li class="tag-4"><a href="http://maciej.lasyk.info/tag/fleet.html">fleet</a></li>
                     <li class="tag-4"><a href="http://maciej.lasyk.info/tag/tmux.html">tmux</a></li>
+                    <li class="tag-4"><a href="http://maciej.lasyk.info/tag/kubernetes.html">kubernetes</a></li>
                     <li class="tag-4"><a href="http://maciej.lasyk.info/tag/piwik.html">piwik</a></li>
                     <li class="tag-4"><a href="http://maciej.lasyk.info/tag/talks.html">talks</a></li>
-                    <li class="tag-4"><a href="http://maciej.lasyk.info/tag/conferences.html">conferences</a></li>
-                    <li class="tag-4"><a href="http://maciej.lasyk.info/tag/books.html">books</a></li>
+                    <li class="tag-4"><a href="http://maciej.lasyk.info/tag/dns.html">dns</a></li>
             </ul>
         </nav>
         </div>
