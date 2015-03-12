@@ -37,7 +37,7 @@ that exists in my &lt;strong&gt;~/.ssh/config&lt;/strong&gt;:&lt;/p&gt;
 Hostname vm-9-containers.netrunner.lasyk.info
 User docent
 Port 22
-ProxyCommand ssh -p &lt;span class="m"&gt;55555&lt;/span&gt; docent@netrunner.lasyk.info nc %h %p 2&amp;gt; /dev/null
+ProxyCommand ssh -p 55555 docent@netrunner.lasyk.info nc %h %p 2&amp;gt; /dev/null
 IdentityFile ~/.ssh/id_rsa
 &lt;/pre&gt;&lt;/div&gt;
 
