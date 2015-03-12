@@ -41,7 +41,7 @@ next conference day.
   one - day event, which will bring together all the greatest minds of our
   Polish Open - source scene. I'll give there talk about [Docker
   containers](http://opensourcesummit.pl/maciej-lasyk/). And finally I'll have
-  oppurtunity to see [Grzegorz Nosek's]() presentation about Ansible and take
+  opportunity to see [Grzegorz Nosek's]() presentation about Ansible and take
   part in his trainings!
 - \#DevOps meeting, Atmosphere Shuttle - 2015-03-26 - this is a DevOps meetup
   where I'll give a talk about changing old & stiff envs into more devops. This
