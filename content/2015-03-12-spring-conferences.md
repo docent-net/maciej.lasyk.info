@@ -4,7 +4,7 @@ Tags: conferences,events
 Author: Maciej Lasyk
 Summary: Talks I'll give this Spring
 
-<center>![It's me!]({filename}/images/maciek.jpg)</center>
+<center>![Its me!]({filename}/images/maciek.jpg)</center>
 
 ### Spring is near, so conference season is almost here! ###
 

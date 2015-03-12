@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Many craft. Wow. Such create</title><link href="http://maciej.lasyk.info/" rel="alternate"></link><link href="http://maciej.lasyk.info/feeds/maciej-lasyk.atom.xml" rel="self"></link><id>http://maciej.lasyk.info/</id><updated>2015-03-12T00:00:00+01:00</updated><entry><title>Conferences schedule for Spring 2015</title><link href="http://maciej.lasyk.info/2015/Mar/12/conferences-schedule-for-spring-2015/" rel="alternate"></link><updated>2015-03-12T00:00:00+01:00</updated><author><name>Maciej Lasyk</name></author><id>tag:maciej.lasyk.info,2015-03-12:2015/Mar/12/conferences-schedule-for-spring-2015/</id><summary type="html">&lt;p&gt;&lt;center&gt;&lt;img alt="It's me!" src="{filename}/images/maciek.jpg" /&gt;&lt;/center&gt;&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Many craft. Wow. Such create</title><link href="http://maciej.lasyk.info/" rel="alternate"></link><link href="http://maciej.lasyk.info/feeds/maciej-lasyk.atom.xml" rel="self"></link><id>http://maciej.lasyk.info/</id><updated>2015-03-12T00:00:00+01:00</updated><entry><title>Conferences schedule for Spring 2015</title><link href="http://maciej.lasyk.info/2015/Mar/12/conferences-schedule-for-spring-2015/" rel="alternate"></link><updated>2015-03-12T00:00:00+01:00</updated><author><name>Maciej Lasyk</name></author><id>tag:maciej.lasyk.info,2015-03-12:2015/Mar/12/conferences-schedule-for-spring-2015/</id><summary type="html">&lt;p&gt;&lt;center&gt;&lt;img alt="Its me!" src="http://maciej.lasyk.info/images/maciek.jpg" /&gt;&lt;/center&gt;&lt;/p&gt;
 &lt;h3&gt;Spring is near, so conference season is almost here!&lt;/h3&gt;
 &lt;p&gt;As a friend of mine &lt;a href="https://twitter.com/j_palka"&gt;Jarek Pałka&lt;/a&gt; told me 
 yesterday - this is like a snowball. You give your first talk, then next and
@@ -18,7 +18,7 @@ to any Open-Source project you want - just tell them why it rocks!&lt;/p&gt;
 &lt;p&gt;Also it is the only place when you can actually meet the fundaments of our IT
 world. One of my biggest dreams was photo w/Linus Torvalds. And here it is
 (taken 3 years ago at LinuxCon Barcelona):&lt;/p&gt;
-&lt;p&gt;&lt;center&gt;&lt;img alt="LinuxCon" src="{filename}/images/linuxcon.jpeg" /&gt;&lt;/center&gt;&lt;/p&gt;
+&lt;p&gt;&lt;center&gt;&lt;img alt="LinuxCon" src="http://maciej.lasyk.info/images/linuxcon.jpeg" /&gt;&lt;/center&gt;&lt;/p&gt;
 &lt;p&gt;Ahh I simply &amp;lt;3 that. Also I do love travelling w/my pair of running shoes
 getting up @6:00 just to have a morning portion of endorphines before starting
 next conference day.&lt;/p&gt;
