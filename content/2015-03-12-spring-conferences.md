@@ -33,7 +33,7 @@ world. One of my biggest dreams was photo w/Linus Torvalds. And here it is
 
 Ahh I simply <3 that. Also I do love travelling w/my pair of running shoes
 getting up @6:00 just to have a morning portion of endorphines before starting
-next conference day.
+next conference day on a route I completely don't know.
 
 ### The Spring Schedule aka "Come get some!" ###
 
