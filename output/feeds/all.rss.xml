@@ -1,5 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Many craft. Wow. Such create</title><link>http://maciej.lasyk.info/</link><description></description><atom:link href="http://maciej.lasyk.info/feeds/all.rss.xml" rel="self"></atom:link><lastBuildDate>Thu, 12 Mar 2015 00:00:00 +0100</lastBuildDate><item><title>Conferences schedule for Spring 2015</title><link>http://maciej.lasyk.info/2015/Mar/12/conferences-schedule-for-spring-2015/</link><description>&lt;p&gt;&lt;center&gt;&lt;img alt="Its me!" src="http://maciej.lasyk.info/images/maciek.jpg" /&gt;&lt;/center&gt;&lt;/p&gt;
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Many craft. Wow. Such create</title><link>http://maciej.lasyk.info/</link><description></description><atom:link href="http://maciej.lasyk.info/feeds/all.rss.xml" rel="self"></atom:link><lastBuildDate>Sat, 14 Mar 2015 00:00:00 +0100</lastBuildDate><item><title>Cheap SSD arrays for Continuous Integration</title><link>http://maciej.lasyk.info/2015/Mar/14/cheap-ssd-arrays-for-continuous-integration/</link><description>&lt;p&gt;&lt;center&gt;&lt;img alt="Its me!" src="http://maciej.lasyk.info/images/ssd_array.jpg" /&gt;&lt;/center&gt;&lt;/p&gt;
+&lt;h3&gt;The need for iop/s&lt;/h3&gt;
+&lt;p&gt;I think that every sysdamin has this need. It is like "I have a need - the need
+for speed". So basically when I see 400 operations per second as upper limit on
+some SATA drives the I cry very loudly.&lt;/p&gt;
+&lt;p&gt;But bussiness can't always provide RAID10 array of 4x240GB Intel SSD drives /
+$4000.&lt;/p&gt;
+&lt;p&gt;I faced this problem lately. While improving environment performance for continuous integration I noticed how drastically we have this need for iop/s on every Jenkins and Selenium nodes.&lt;/p&gt;
+&lt;p&gt;So we have this bleeding-edge-storage which has couple of enterprise class SSDs
+but honestly I didn't want to sacrifice those holy part of our infrastructure
+for some ephemeral work.&lt;/p&gt;
+&lt;p&gt;I just wanted some drives which would provide me w/about 15-20k iop/s. Simple,
+cheap SSD drives.&lt;/p&gt;
+&lt;p&gt;So I found, that our servers actually have a free drive slots inside. Unused.
+Just waiting to be fulfilled with something. Think local storage :D&lt;/p&gt;
+&lt;p&gt;And this was it. What about buying desktop - class SSD drives?&lt;/p&gt;
+&lt;h3&gt;Trim issue?&lt;/h3&gt;
+&lt;p&gt;It is not an issue. Just make sure you've got &lt;a href="https://turriebuntu.wordpress.com/ubuntu-pages/precise-specific-pages/using-fstrim-to-trim-your-ssd-instead-of-delete-in-fstab/"&gt;fstrim
+running&lt;/a&gt;
+and remember to &lt;a href="http://blog.neutrino.es/2013/howto-properly-activate-trim-for-your-ssd-on-linux-fstrim-lvm-and-dmcrypt/"&gt;trim on all filesystem
+layers(!)&lt;/a&gt;&lt;/p&gt;
+&lt;h3&gt;So... what kind of drives?&lt;/h3&gt;
+&lt;p&gt;&lt;a href="http://techreport.com/review/27909/the-ssd-endurance-experiment-theyre-all-dead"&gt;According to
+this&lt;/a&gt;
+The best price to longevity ratio will give you Kingston HyperX drives ($100
+each 240GB drive). So basically you can set up RAID1 for $200 or RAID10 for
+$400.&lt;/p&gt;
+&lt;p&gt;Of course this is just for some temporary data. Those kind of arrays should't
+be there for crucial datastores. And of course - remember about capacity
+planning. When I see 600TB written as the moment in time when the drive will be
+dead I can basically say, that $200 RAID array will need to be replaced in 18
+months. Wow - this is really nice lifetime for this at this price.&lt;/p&gt;
+&lt;p&gt;Summing this up - CI (Jenkins, Selenium, others) + local storage on cheap SSD drives = &amp;lt;3&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Maciej Lasyk</dc:creator><pubDate>Sat, 14 Mar 2015 00:00:00 +0100</pubDate><guid>tag:maciej.lasyk.info,2015-03-14:2015/Mar/14/cheap-ssd-arrays-for-continuous-integration/</guid><category>hardware</category><category>raid</category><category>ssd</category><category>array</category><category>matrix</category></item><item><title>Conferences schedule for Spring 2015</title><link>http://maciej.lasyk.info/2015/Mar/12/conferences-schedule-for-spring-2015/</link><description>&lt;p&gt;&lt;center&gt;&lt;img alt="Its me!" src="http://maciej.lasyk.info/images/maciek.jpg" /&gt;&lt;/center&gt;&lt;/p&gt;
 &lt;h3&gt;Spring is near, so conference season is almost here!&lt;/h3&gt;
 &lt;p&gt;As a friend of mine &lt;a href="https://twitter.com/j_palka"&gt;Jarek Pałka&lt;/a&gt; told me 
 yesterday - this is like a snowball. You give your first talk, then next and
