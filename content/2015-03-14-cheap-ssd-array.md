@@ -48,6 +48,13 @@ Of course this is just for some temporary data. Those kind of arrays should't
 be there for crucial datastores. And of course - remember about capacity
 planning. When I see 600TB written as the moment in time when the drive will be
 dead I can basically say, that $200 RAID array will need to be replaced in 18
-months. Wow - this is really nice lifetime for this at this price.
+months. Wow - this is really nice lifetime for this at this price. So I actualy
+created 2xRAID10 arrays (240GB Kingston HyperX drives) what gave me 2x0,5TB in
+RAID10 / local storage for $1000. And I'm gonna replace this in about 1,5 year
+(maybe still as a subject of warranty).
+
+Great deal imo. If I did want to but enterprise class disks (like Intel) for
+this purpose I would have to pay 8\*$1000 and that is a horrible amount of
+goldies.
 
 Summing this up - CI (Jenkins, Selenium, others) + local storage on cheap SSD drives = <3

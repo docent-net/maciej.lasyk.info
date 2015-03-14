@@ -30,7 +30,13 @@ $400.&lt;/p&gt;
 be there for crucial datastores. And of course - remember about capacity
 planning. When I see 600TB written as the moment in time when the drive will be
 dead I can basically say, that $200 RAID array will need to be replaced in 18
-months. Wow - this is really nice lifetime for this at this price.&lt;/p&gt;
+months. Wow - this is really nice lifetime for this at this price. So I actualy
+created 2xRAID10 arrays (240GB Kingston HyperX drives) what gave me 2x0,5TB in
+RAID10 / local storage for $1000. And I'm gonna replace this in about 1,5 year
+(maybe still as a subject of warranty).&lt;/p&gt;
+&lt;p&gt;Great deal imo. If I did want to but enterprise class disks (like Intel) for
+this purpose I would have to pay 8*$1000 and that is a horrible amount of
+goldies.&lt;/p&gt;
 &lt;p&gt;Summing this up - CI (Jenkins, Selenium, others) + local storage on cheap SSD drives = &amp;lt;3&lt;/p&gt;</summary><category term="hardware"></category><category term="raid"></category><category term="ssd"></category><category term="array"></category><category term="matrix"></category></entry><entry><title>Conferences schedule for Spring 2015</title><link href="http://maciej.lasyk.info/2015/Mar/12/conferences-schedule-for-spring-2015/" rel="alternate"></link><updated>2015-03-12T00:00:00+01:00</updated><author><name>Maciej Lasyk</name></author><id>tag:maciej.lasyk.info,2015-03-12:2015/Mar/12/conferences-schedule-for-spring-2015/</id><summary type="html">&lt;p&gt;&lt;center&gt;&lt;img alt="Its me!" src="http://maciej.lasyk.info/images/maciek.jpg" /&gt;&lt;/center&gt;&lt;/p&gt;
 &lt;h3&gt;Spring is near, so conference season is almost here!&lt;/h3&gt;
 &lt;p&gt;As a friend of mine &lt;a href="https://twitter.com/j_palka"&gt;Jarek Pałka&lt;/a&gt; told me 
