@@ -1,5 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Many craft. Wow. Such create</title><link href="http://maciej.lasyk.info/" rel="alternate"></link><link href="http://maciej.lasyk.info/feeds/all-en.atom.xml" rel="self"></link><id>http://maciej.lasyk.info/</id><updated>2015-03-14T00:00:00+01:00</updated><entry><title>Cheap SSD arrays for Continuous Integration</title><link href="http://maciej.lasyk.info/2015/Mar/14/cheap-ssd-arrays-for-continuous-integration/" rel="alternate"></link><updated>2015-03-14T00:00:00+01:00</updated><author><name>Maciej Lasyk</name></author><id>tag:maciej.lasyk.info,2015-03-14:2015/Mar/14/cheap-ssd-arrays-for-continuous-integration/</id><summary type="html">&lt;p&gt;&lt;center&gt;&lt;img alt="Its me!" src="http://maciej.lasyk.info/images/ssd_array.jpg" /&gt;&lt;/center&gt;&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Many craft. Wow. Such create</title><link href="http://maciej.lasyk.info/" rel="alternate"></link><link href="http://maciej.lasyk.info/feeds/all-en.atom.xml" rel="self"></link><id>http://maciej.lasyk.info/</id><updated>2015-03-26T00:00:00+01:00</updated><entry><title>About cultural change w/Devops</title><link href="http://maciej.lasyk.info/2015/Mar/26/about-cultural-change-wdevops/" rel="alternate"></link><updated>2015-03-26T00:00:00+01:00</updated><author><name>Maciej Lasyk</name></author><id>tag:maciej.lasyk.info,2015-03-26:2015/Mar/26/about-cultural-change-wdevops/</id><summary type="html">&lt;p&gt;&lt;center&gt;&lt;img alt="Atmosphere Shuttle" src="http://maciej.lasyk.info/images/atmosphere-shuttle.jpeg" /&gt;&lt;/center&gt;&lt;/p&gt;
+&lt;p&gt;This time without any comment - just slides from presentation I gave today in
+&lt;a href="http://www.meetup.com/Atmosphere/events/221099327/"&gt;Atmosphere Shuttle #01&lt;/a&gt;
+meetup:&lt;/p&gt;
+&lt;iframe src="//www.slideshare.net/slideshow/embed_code/46335851" width="425"
+height="355" frameborder="0" marginwidth="0" marginheight="0" scrolling="no"
+style="border:1px solid #CCC; border-width:1px; margin-bottom:5px; max-width:
+100%;" allowfullscreen&gt; &lt;/iframe&gt;
+
+&lt;p&gt;&lt;div style="margin-bottom:5px"&gt; &lt;strong&gt; &lt;a
+href="//www.slideshare.net/d0cent/about-cultural-change-wdevops" title="About
+cultural change w/Devops" target="_blank"&gt;About cultural change w/Devops&lt;/a&gt;
+&lt;/strong&gt; from &lt;strong&gt;&lt;a href="//www.slideshare.net/d0cent"
+target="_blank"&gt;Maciej Lasyk&lt;/a&gt;&lt;/strong&gt; &lt;/div&gt;&lt;/p&gt;</summary><category term="devops"></category><category term="culture"></category><category term="cams"></category><category term="management"></category></entry><entry><title>Cheap SSD arrays for Continuous Integration</title><link href="http://maciej.lasyk.info/2015/Mar/14/cheap-ssd-arrays-for-continuous-integration/" rel="alternate"></link><updated>2015-03-14T00:00:00+01:00</updated><author><name>Maciej Lasyk</name></author><id>tag:maciej.lasyk.info,2015-03-14:2015/Mar/14/cheap-ssd-arrays-for-continuous-integration/</id><summary type="html">&lt;p&gt;&lt;center&gt;&lt;img alt="Its me!" src="http://maciej.lasyk.info/images/ssd_array.jpg" /&gt;&lt;/center&gt;&lt;/p&gt;
 &lt;h3&gt;The need for iop/s&lt;/h3&gt;
 &lt;p&gt;I think that every sysdamin has this need. It is like "I have a need - the need
 for speed". So basically when I see 400 operations per second as upper limit on

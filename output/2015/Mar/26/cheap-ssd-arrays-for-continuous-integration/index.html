@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <title>Many craft. Wow. Such create : Cheap SSD arrays for Continuous Integration</title>
+        <meta charset="utf-8" />
+        <link rel="stylesheet" href="http://maciej.lasyk.info/theme/css/main.css" type="text/css" />
+        <link href="http://maciej.lasyk.info/" type="application/atom+xml" rel="alternate" title="Many craft. Wow. Such create ATOM Feed" />
+        <link href="http://maciej.lasyk.info/feeds/rss.xml" type="application/atom+xml" rel="alternate" title="Many craft. Wow. Such create RSS Feed" />
+
+        <!--[if IE]>
+                <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+
+        <!--[if lte IE 7]>
+                <link rel="stylesheet" type="text/css" media="all" href="http://maciej.lasyk.info/css/ie.css"/>
+                <script src="http://maciej.lasyk.info/js/IE8.js" type="text/javascript"></script><![endif]-->
+
+        <!--[if lt IE 7]>
+                <link rel="stylesheet" type="text/css" media="all" href="http://maciej.lasyk.info/css/ie6.css"/><![endif]-->
+
+</head>
+
+<body>
+	<div id="wrap" style="width:850px">
+	    <div id="container" style="width:560px">
+
+
+            <div class="entry">
+        
+<header>
+<h1><a href="http://maciej.lasyk.info" id="site-title">  </a>         <a href="http://maciej.lasyk.info/2015/Mar/26/cheap-ssd-arrays-for-continuous-integration/" id="page-title">Cheap SSD arrays for Continuous Integration</a></h1>
+<time datetime="2015-03-26T00:00:00">Thu 26 March 2015</time></header>
+<article>
+    <p><center><img alt="Its me!" src="http://maciej.lasyk.info/images/ssd_array.jpg" /></center></p>
+<h3>The need for iop/s</h3>
+<p>I think that every sysdamin has this need. It is like "I have a need - the need
+for speed". So basically when I see 400 operations per second as upper limit on
+some SATA drives the I cry very loudly.</p>
+<p>But bussiness can't always provide RAID10 array of 4x240GB Intel SSD drives /
+$4000.</p>
+<p>I faced this problem lately. While improving environment performance for continuous integration I noticed how drastically we have this need for iop/s on every Jenkins and Selenium nodes.</p>
+<p>So we have this bleeding-edge-storage which has couple of enterprise class SSDs
+but honestly I didn't want to sacrifice those holy part of our infrastructure
+for some ephemeral work.</p>
+<p>I just wanted some drives which would provide me w/about 15-20k iop/s. Simple,
+cheap SSD drives.</p>
+<p>So I found, that our servers actually have a free drive slots inside. Unused.
+Just waiting to be fulfilled with something. Think local storage :D</p>
+<p>And this was it. What about buying desktop - class SSD drives?</p>
+<h3>Trim issue?</h3>
+<p>It is not an issue. Just make sure you've got <a href="https://turriebuntu.wordpress.com/ubuntu-pages/precise-specific-pages/using-fstrim-to-trim-your-ssd-instead-of-delete-in-fstab/">fstrim
+running</a>
+and remember to <a href="http://blog.neutrino.es/2013/howto-properly-activate-trim-for-your-ssd-on-linux-fstrim-lvm-and-dmcrypt/">trim on all filesystem
+layers(!)</a></p>
+<h3>So... what kind of drives?</h3>
+<p><a href="http://techreport.com/review/27909/the-ssd-endurance-experiment-theyre-all-dead">According to
+this</a>
+The best price to longevity ratio will give you Kingston HyperX drives ($100
+each 240GB drive). So basically you can set up RAID1 for $200 or RAID10 for
+$400.</p>
+<p>Of course this is just for some temporary data. Those kind of arrays should't
+be there for crucial datastores. And of course - remember about capacity
+planning. When I see 600TB written as the moment in time when the drive will be
+dead I can basically say, that $200 RAID array will need to be replaced in 18
+months. Wow - this is really nice lifetime for this at this price. So I actualy
+created 2xRAID10 arrays (240GB Kingston HyperX drives) what gave me 2x0,5TB in
+RAID10 / local storage for $1000. And I'm gonna replace this in about 1,5 year
+(maybe still as a subject of warranty).</p>
+<p>Great deal imo. If I did want to but enterprise class disks (like Intel) for
+this purpose I would have to pay 8*$1000 and that is a horrible amount of
+goldies.</p>
+<p>Summing this up - CI (Jenkins, Selenium, others) + local storage on cheap SSD drives = &lt;3</p>
+    <h2>Comments</h2>
+    <div id="disqus_thread"></div>
+    <script type="text/javascript">
+       var disqus_shortname = 'manycraft';
+       var disqus_identifier = '2015/Mar/26/cheap-ssd-arrays-for-continuous-integration/';
+       var disqus_url = 'http://maciej.lasyk.info/2015/Mar/26/cheap-ssd-arrays-for-continuous-integration/';
+       (function() {
+            var dsq = document.createElement('script');
+            dsq.type = 'text/javascript'; dsq.async = true;
+            dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] ||
+             document.getElementsByTagName('body')[0]).appendChild(dsq);
+      })();
+    </script>
+    <noscript>Please enable JavaScript to view the comments.</noscript>
+</article>
+            </div>
+        </div>
+
+        <div id="sidebar">
+            <h1><a href="http://maciej.lasyk.info" title="title">Many craft. Wow. Such create</a><br><img
+                src="/theme/img/chunkybacon.png"></h1>
+            <span class="description"> </span>
+        </div>
+
+        <div id="feedsbar">
+            <ul>
+            <li><a href="/feeds/rss.xml">RSS</a> | <a href="/feeds/atom.xml">Atom</a></li>
+            </ul>
+        </div>
+
+        <div id="tagcloud">
+        <nav>
+            <ul class="tagcloud">
+                    <li class="tag-4"><a href="http://maciej.lasyk.info/tag/piwik.html">piwik</a></li>
+                    <li class="tag-1"><a href="http://maciej.lasyk.info/tag/docker.html">docker</a></li>
+                    <li class="tag-4"><a href="http://maciej.lasyk.info/tag/tmux.html">tmux</a></li>
+                    <li class="tag-4"><a href="http://maciej.lasyk.info/tag/matrix.html">matrix</a></li>
+                    <li class="tag-4"><a href="http://maciej.lasyk.info/tag/books.html">books</a></li>
+                    <li class="tag-1"><a href="http://maciej.lasyk.info/tag/centos.html">centos</a></li>
+                    <li class="tag-4"><a href="http://maciej.lasyk.info/tag/iscsi.html">iscsi</a></li>
+                    <li class="tag-2"><a href="http://maciej.lasyk.info/tag/ebooks.html">ebooks</a></li>
+                    <li class="tag-4"><a href="http://maciej.lasyk.info/tag/raid.html">raid</a></li>
+                    <li class="tag-4"><a href="http://maciej.lasyk.info/tag/rhel.html">rhel</a></li>
+                    <li class="tag-4"><a href="http://maciej.lasyk.info/tag/dns.html">dns</a></li>
+                    <li class="tag-4"><a href="http://maciej.lasyk.info/tag/boot.html">boot</a></li>
+                    <li class="tag-2"><a href="http://maciej.lasyk.info/tag/pelican.html">pelican</a></li>
+                    <li class="tag-4"><a href="http://maciej.lasyk.info/tag/array.html">array</a></li>
+                    <li class="tag-1"><a href="http://maciej.lasyk.info/tag/fedora.html">fedora</a></li>
+                    <li class="tag-4"><a href="http://maciej.lasyk.info/tag/hardware.html">hardware</a></li>
+                    <li class="tag-4"><a href="http://maciej.lasyk.info/tag/spotify.html">spotify</a></li>
+                    <li class="tag-2"><a href="http://maciej.lasyk.info/tag/conferences.html">conferences</a></li>
+                    <li class="tag-4"><a href="http://maciej.lasyk.info/tag/talks.html">talks</a></li>
+                    <li class="tag-4"><a href="http://maciej.lasyk.info/tag/ssd.html">ssd</a></li>
+            </ul>
+        </nav>
+        </div>
+
+        <div id="footer">
+            <div id="credits">
+                <span>Adapted from <a
+                        href="http://wordpress.org/themes/monospace">Monospace</a>
+                || Created with <a href="">Pelican</a> || Hosted with <a
+                    href="http://docker.io/">Docker</a></span>
+                <p>content copyrights &copy; Maciej Lasyk</p>
+            </div>
+                
+        </div>
+
+    <script type="text/javascript">
+    var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+    document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+    </script>
+    <script type="text/javascript">
+    try {
+        var pageTracker = _gat._getTracker("UA-61452-19");
+    pageTracker._trackPageview();
+    } catch(err) {}</script>
+    <script type="text/javascript">
+        var pkBaseURL = (("https:" == document.location.protocol) ? "https://analytics.lasyk.info/" : "http://analytics.lasyk.info/");
+    document.write(unescape("%3Cscript src='" + pkBaseURL + "piwik.js' type='text/javascript'%3E%3C/script%3E"));
+    </script><script type="text/javascript">
+    try {
+    var piwikTracker = Piwik.getTracker(pkBaseURL + "piwik.php", 1);
+    piwikTracker.trackPageView();
+    piwikTracker.enableLinkTracking();
+    } catch( err ) {}
+    </script><noscript><p><img src="http://analytics.lasyk.info/piwik.php?idsite=1" style="border:0" alt="" /></p></noscript>
+<script type="text/javascript">
+    var disqus_shortname = 'manycraft';
+    (function () {
+        var s = document.createElement('script'); s.async = true;
+        s.type = 'text/javascript';
+        s.src = 'http://' + disqus_shortname + '.disqus.com/count.js';
+        (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+    }());
+</script>
+
+    </div>
+
+</body>
+</html>
