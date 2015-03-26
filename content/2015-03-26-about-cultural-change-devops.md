@@ -4,7 +4,7 @@ Tags: devops,culture,cams,management
 Author: Maciej Lasyk
 Summary: Embrace the Devops
 
-<center>![Atmosphere Shuttle]({filename}/images/atmosphere1.jpg)</center>
+<center>![Atmosphere Shuttle]({filename}/images/atmosphere-1.jpg)</center>
 
 This time without any comment - just slides from presentation I gave today in
 [Atmosphere Shuttle #01](http://www.meetup.com/Atmosphere/events/221099327/)
