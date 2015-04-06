@@ -1,5 +1,167 @@
 <?xml version="1.0" encoding="utf-8"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Many craft. Wow. Such create</title><link>http://maciej.lasyk.info/</link><description></description><atom:link href="http://maciej.lasyk.info/feeds/rss.xml" rel="self"></atom:link><lastBuildDate>Thu, 26 Mar 2015 00:00:00 +0100</lastBuildDate><item><title>About cultural change w/Devops</title><link>http://maciej.lasyk.info/2015/Mar/26/about-cultural-change-wdevops/</link><description>&lt;p&gt;&lt;center&gt;&lt;img alt="Atmosphere Shuttle" src="http://maciej.lasyk.info/images/atmosphere-1.jpg" /&gt;&lt;/center&gt;&lt;/p&gt;
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Many craft. Wow. Such create</title><link>http://maciej.lasyk.info/</link><description></description><atom:link href="http://maciej.lasyk.info/feeds/rss.xml" rel="self"></atom:link><lastBuildDate>Mon, 06 Apr 2015 00:00:00 +0200</lastBuildDate><item><title>libvirt-daemon-driver-storage bug in Centos 7</title><link>http://maciej.lasyk.info/2015/Apr/06/libvirt-daemon-driver-storage-bug-in-centos-7/</link><description>&lt;p&gt;&lt;center&gt;&lt;img alt="libvirt" src="http://maciej.lasyk.info/images/libvirt.png" /&gt;&lt;/center&gt;&lt;/p&gt;
+&lt;h1&gt;failed to load module libvirt_driver_storage.so&lt;/h1&gt;
+&lt;p&gt;Today I was installing
+&lt;a href="http://libguestfs.org/virt-sysprep.1.html"&gt;virt-sysprep&lt;/a&gt; tool on one of KVM
+hosts. When this was done I couldn't list VMs anymore using &lt;strong&gt;virsh&lt;/strong&gt;:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="o"&gt;[&lt;/span&gt;root@host1 ~&lt;span class="o"&gt;]&lt;/span&gt;&lt;span class="c"&gt;# virsh list --all&lt;/span&gt;
+&lt;span class="o"&gt;[&lt;/span&gt;454/564&lt;span class="o"&gt;]&lt;/span&gt;
+ Id    Name                           State
+ ----------------------------------------------------
+ &lt;span class="sb"&gt;```&lt;/span&gt;
+
+Hmm that&lt;span class="err"&gt;&amp;#39;&lt;/span&gt;s not normal obsiously. Checked the **libvirtd** status:
+
+&lt;span class="sb"&gt;```&lt;/span&gt;bash
+&lt;span class="o"&gt;[&lt;/span&gt;root@host1 ~&lt;span class="o"&gt;]&lt;/span&gt;&lt;span class="c"&gt;# service libvirtd status&lt;/span&gt;
+Redirecting to /bin/systemctl status  libvirtd.service
+libvirtd.service - Virtualization daemon
+   Loaded: loaded &lt;span class="o"&gt;(&lt;/span&gt;/usr/lib/systemd/system/libvirtd.service; enabled&lt;span class="o"&gt;)&lt;/span&gt;
+   Active: active &lt;span class="o"&gt;(&lt;/span&gt;running&lt;span class="o"&gt;)&lt;/span&gt; since Mon 2015-04-06 15:43:55 CEST; 1h 16min ago
+     Docs: man:libvirtd&lt;span class="o"&gt;(&lt;/span&gt;8&lt;span class="o"&gt;)&lt;/span&gt;
+           http://libvirt.org
+ Main PID: 21191 &lt;span class="o"&gt;(&lt;/span&gt;libvirtd&lt;span class="o"&gt;)&lt;/span&gt;
+   CGroup: /system.slice/libvirtd.service
+           ├─ 5865 /sbin/dnsmasq --conf-file&lt;span class="o"&gt;=&lt;/span&gt;/var/lib/libvirt/dnsmasq/default.conf
+           └─21191 /usr/sbin/libvirtd
+
+...
+Apr 06 17:01:42 host1.devops.ent libvirtd&lt;span class="o"&gt;[&lt;/span&gt;6254&lt;span class="o"&gt;]&lt;/span&gt;: failed to load module 
+/usr/lib64/libvirt/connection-driver/libvirt_driver_storage.so 
+/usr/lib64/libvirt/connection-driver/libvirt_driver_storage.so: symbol 
+dm_task_get_info_with_deferred_remove, version Base not defined in file 
+libdevmapper.so.1.02 with link &lt;span class="nb"&gt;time &lt;/span&gt;reference
+Apr 06 17:01:42 host1.devops.ent libvirtd&lt;span class="o"&gt;[&lt;/span&gt;6254&lt;span class="o"&gt;]&lt;/span&gt;: failed to load module 
+/usr/lib64/libvirt/connection-driver/libvirt_driver_qemu.so 
+/usr/lib64/libvirt/connection-driver/libvirt_driver_qemu.so: undefined 
+symbol: virStorageFileCreate
+...
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;I confirmed that installing &lt;strong&gt;virt-sysprep&lt;/strong&gt; caused also upgrading libvirtd related packages:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt; Updated     libvirt-1.1.1-29.el7_0.7.x86_64                         @updates
+    Update              1.2.8-16.el7_1.2.x86_64                         @updates
+    Updated     libvirt-client-1.1.1-29.el7_0.7.x86_64                  @updates
+    Update                     1.2.8-16.el7_1.2.x86_64                  @updates
+    Updated     libvirt-daemon-1.1.1-29.el7_0.7.x86_64                  @updates
+    Update                     1.2.8-16.el7_1.2.x86_64                  @updates
+    Updated     libvirt-daemon-config-network-1.1.1-29.el7_0.7.x86_64   @updates
+    Update                                    1.2.8-16.el7_1.2.x86_64   @updates
+    Updated     libvirt-daemon-config-nwfilter-1.1.1-29.el7_0.7.x86_64  @updates
+    Update                                     1.2.8-16.el7_1.2.x86_64  @updates
+    Updated     libvirt-daemon-driver-interface-1.1.1-29.el7_0.7.x86_64 @updates
+    Update                                      1.2.8-16.el7_1.2.x86_64 @updates
+    Updated     libvirt-daemon-driver-lxc-1.1.1-29.el7_0.7.x86_64       @updates
+    Update                                1.2.8-16.el7_1.2.x86_64       @updates
+    Updated     libvirt-daemon-driver-network-1.1.1-29.el7_0.7.x86_64   @updates
+    Update                                    1.2.8-16.el7_1.2.x86_64   @updates
+    Updated     libvirt-daemon-driver-nodedev-1.1.1-29.el7_0.7.x86_64   @updates
+    Update                                    1.2.8-16.el7_1.2.x86_64   @updates
+    Updated     libvirt-daemon-driver-nwfilter-1.1.1-29.el7_0.7.x86_64  @updates
+    Update                                     1.2.8-16.el7_1.2.x86_64  @updates
+    Updated     libvirt-daemon-driver-qemu-1.1.1-29.el7_0.7.x86_64      @updates
+    Update                                 1.2.8-16.el7_1.2.x86_64      @updates
+    Updated     libvirt-daemon-driver-secret-1.1.1-29.el7_0.7.x86_64    @updates
+    Update                                   1.2.8-16.el7_1.2.x86_64    @updates
+    Updated     libvirt-daemon-driver-storage-1.1.1-29.el7_0.7.x86_64   @updates
+    Update                                    1.2.8-16.el7_1.2.x86_64   @updates
+    Dep-Install libvirt-daemon-kvm-1.2.8-16.el7_1.2.x86_64              @updates
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;So once more I read the problematic log entry:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;failed to load module /usr/lib64/libvirt/connection-driver/libvirt_driver_storage.so /usr/lib64/libvirt/connection-driver/libvirt_driver_storage.so: symbol dm_task_get_info_wit
+h_deferred_remove, version Base not defined in file libdevmapper.so.1.02 with link &lt;span class="nb"&gt;time &lt;/span&gt;reference
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;and decided to &lt;strong&gt;yum upgrade device-mapper-libs&lt;/strong&gt;. Afterwards I restarted &lt;strong&gt;libvirtd&lt;/strong&gt;
+and everything started working perfectly.&lt;/p&gt;
+&lt;p&gt;This would not happen if I had updated all the libraries, but unfortunately 
+all I wanted was &lt;strong&gt;virt-sysprep&lt;/strong&gt; installed - not update'ing all packages.&lt;/p&gt;
+&lt;p&gt;Finally &lt;a href="http://bugs.centos.org/view.php?id=8403"&gt;filed a bugrequest&lt;/a&gt;&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Maciej Lasyk</dc:creator><pubDate>Mon, 06 Apr 2015 00:00:00 +0200</pubDate><guid>tag:maciej.lasyk.info,2015-04-06:2015/Apr/06/libvirt-daemon-driver-storage-bug-in-centos-7/</guid><category>centos7</category><category>bug</category><category>centos</category><category>libvirt</category><category>kvm</category></item><item><title>libvirt-daemon-driver-storage bug in Centos 7</title><link>http://maciej.lasyk.info/2015/Apr/06/libvirt-daemon-driver-storage-bug-in-centos-7/</link><description>&lt;p&gt;&lt;center&gt;&lt;img alt="libvirt" src="http://maciej.lasyk.info/images/libvirt.png" /&gt;&lt;/center&gt;&lt;/p&gt;
+&lt;h1&gt;failed to load module libvirt_driver_storage.so&lt;/h1&gt;
+&lt;p&gt;Today I was installing
+&lt;a href="http://libguestfs.org/virt-sysprep.1.html"&gt;virt-sysprep&lt;/a&gt; tool on one of KVM
+hosts. When this was done I couldn't list VMs anymore using &lt;strong&gt;virsh&lt;/strong&gt;:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="o"&gt;[&lt;/span&gt;root@host1 ~&lt;span class="o"&gt;]&lt;/span&gt;&lt;span class="c"&gt;# virsh list --all&lt;/span&gt;
+&lt;span class="o"&gt;[&lt;/span&gt;454/564&lt;span class="o"&gt;]&lt;/span&gt;
+ Id    Name                           State
+ ----------------------------------------------------
+ &lt;span class="sb"&gt;```&lt;/span&gt;
+
+Hmm that&lt;span class="err"&gt;&amp;#39;&lt;/span&gt;s not normal obsiously. Checked the **libvirtd** status:
+
+&lt;span class="sb"&gt;```&lt;/span&gt;bash
+&lt;span class="o"&gt;[&lt;/span&gt;root@host1 ~&lt;span class="o"&gt;]&lt;/span&gt;&lt;span class="c"&gt;# service libvirtd status&lt;/span&gt;
+Redirecting to /bin/systemctl status  libvirtd.service
+libvirtd.service - Virtualization daemon
+   Loaded: loaded &lt;span class="o"&gt;(&lt;/span&gt;/usr/lib/systemd/system/libvirtd.service; enabled&lt;span class="o"&gt;)&lt;/span&gt;
+   Active: active &lt;span class="o"&gt;(&lt;/span&gt;running&lt;span class="o"&gt;)&lt;/span&gt; since Mon 2015-04-06 15:43:55 CEST; 1h 16min ago
+     Docs: man:libvirtd&lt;span class="o"&gt;(&lt;/span&gt;8&lt;span class="o"&gt;)&lt;/span&gt;
+           http://libvirt.org
+ Main PID: 21191 &lt;span class="o"&gt;(&lt;/span&gt;libvirtd&lt;span class="o"&gt;)&lt;/span&gt;
+   CGroup: /system.slice/libvirtd.service
+           ├─ 5865 /sbin/dnsmasq --conf-file&lt;span class="o"&gt;=&lt;/span&gt;/var/lib/libvirt/dnsmasq/default.conf
+           └─21191 /usr/sbin/libvirtd
+
+...
+Apr 06 17:01:42 host1.devops.ent libvirtd&lt;span class="o"&gt;[&lt;/span&gt;6254&lt;span class="o"&gt;]&lt;/span&gt;: failed to load module 
+/usr/lib64/libvirt/connection-driver/libvirt_driver_storage.so 
+/usr/lib64/libvirt/connection-driver/libvirt_driver_storage.so: symbol 
+dm_task_get_info_with_deferred_remove, version Base not defined in file 
+libdevmapper.so.1.02 with link &lt;span class="nb"&gt;time &lt;/span&gt;reference
+Apr 06 17:01:42 host1.devops.ent libvirtd&lt;span class="o"&gt;[&lt;/span&gt;6254&lt;span class="o"&gt;]&lt;/span&gt;: failed to load module 
+/usr/lib64/libvirt/connection-driver/libvirt_driver_qemu.so 
+/usr/lib64/libvirt/connection-driver/libvirt_driver_qemu.so: undefined 
+symbol: virStorageFileCreate
+...
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;I confirmed that installing &lt;strong&gt;virt-sysprep&lt;/strong&gt; caused also upgrading libvirtd related packages:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt; Updated     libvirt-1.1.1-29.el7_0.7.x86_64                         @updates
+    Update              1.2.8-16.el7_1.2.x86_64                         @updates
+    Updated     libvirt-client-1.1.1-29.el7_0.7.x86_64                  @updates
+    Update                     1.2.8-16.el7_1.2.x86_64                  @updates
+    Updated     libvirt-daemon-1.1.1-29.el7_0.7.x86_64                  @updates
+    Update                     1.2.8-16.el7_1.2.x86_64                  @updates
+    Updated     libvirt-daemon-config-network-1.1.1-29.el7_0.7.x86_64   @updates
+    Update                                    1.2.8-16.el7_1.2.x86_64   @updates
+    Updated     libvirt-daemon-config-nwfilter-1.1.1-29.el7_0.7.x86_64  @updates
+    Update                                     1.2.8-16.el7_1.2.x86_64  @updates
+    Updated     libvirt-daemon-driver-interface-1.1.1-29.el7_0.7.x86_64 @updates
+    Update                                      1.2.8-16.el7_1.2.x86_64 @updates
+    Updated     libvirt-daemon-driver-lxc-1.1.1-29.el7_0.7.x86_64       @updates
+    Update                                1.2.8-16.el7_1.2.x86_64       @updates
+    Updated     libvirt-daemon-driver-network-1.1.1-29.el7_0.7.x86_64   @updates
+    Update                                    1.2.8-16.el7_1.2.x86_64   @updates
+    Updated     libvirt-daemon-driver-nodedev-1.1.1-29.el7_0.7.x86_64   @updates
+    Update                                    1.2.8-16.el7_1.2.x86_64   @updates
+    Updated     libvirt-daemon-driver-nwfilter-1.1.1-29.el7_0.7.x86_64  @updates
+    Update                                     1.2.8-16.el7_1.2.x86_64  @updates
+    Updated     libvirt-daemon-driver-qemu-1.1.1-29.el7_0.7.x86_64      @updates
+    Update                                 1.2.8-16.el7_1.2.x86_64      @updates
+    Updated     libvirt-daemon-driver-secret-1.1.1-29.el7_0.7.x86_64    @updates
+    Update                                   1.2.8-16.el7_1.2.x86_64    @updates
+    Updated     libvirt-daemon-driver-storage-1.1.1-29.el7_0.7.x86_64   @updates
+    Update                                    1.2.8-16.el7_1.2.x86_64   @updates
+    Dep-Install libvirt-daemon-kvm-1.2.8-16.el7_1.2.x86_64              @updates
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;So once more I read the problematic log entry:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;failed to load module /usr/lib64/libvirt/connection-driver/libvirt_driver_storage.so /usr/lib64/libvirt/connection-driver/libvirt_driver_storage.so: symbol dm_task_get_info_wit
+h_deferred_remove, version Base not defined in file libdevmapper.so.1.02 with link &lt;span class="nb"&gt;time &lt;/span&gt;reference
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;and decided to &lt;strong&gt;yum upgrade device-mapper-libs&lt;/strong&gt;. Afterwards I restarted &lt;strong&gt;libvirtd&lt;/strong&gt;
+and everything started working perfectly.&lt;/p&gt;
+&lt;p&gt;This would not happen if I had updated all the libraries, but unfortunately 
+all I wanted was &lt;strong&gt;virt-sysprep&lt;/strong&gt; installed - not update'ing all packages.&lt;/p&gt;
+&lt;p&gt;Finally &lt;a href="http://bugs.centos.org/view.php?id=8403"&gt;filed a bugrequest&lt;/a&gt;&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Maciej Lasyk</dc:creator><pubDate>Mon, 06 Apr 2015 00:00:00 +0200</pubDate><guid>tag:maciej.lasyk.info,2015-04-06:2015/Apr/06/libvirt-daemon-driver-storage-bug-in-centos-7/</guid><category>centos7</category><category>bug</category><category>centos</category><category>libvirt</category><category>kvm</category></item><item><title>About cultural change w/Devops</title><link>http://maciej.lasyk.info/2015/Mar/26/about-cultural-change-wdevops/</link><description>&lt;p&gt;&lt;center&gt;&lt;img alt="Atmosphere Shuttle" src="http://maciej.lasyk.info/images/atmosphere-1.jpg" /&gt;&lt;/center&gt;&lt;/p&gt;
 &lt;p&gt;This time without any comment - just slides from presentation I gave today in
 &lt;a href="http://www.meetup.com/Atmosphere/events/221099327/"&gt;Atmosphere Shuttle #01&lt;/a&gt;
 meetup:&lt;/p&gt;
