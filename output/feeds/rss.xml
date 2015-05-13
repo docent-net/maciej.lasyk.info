@@ -22,7 +22,7 @@ still under the dome of SELinux confinement (which by default is set to
 &lt;p&gt;But &lt;strong&gt;should&lt;/strong&gt; may not be enough. So I'm gonna say this - you &lt;strong&gt;can&lt;/strong&gt; sleep
 well thanks to MCS (Multi-Level security) &amp;amp; MLC (Multi-Category security) 
 in SELinux.&lt;/p&gt;
-&lt;p&gt;What I wrote above tells us that every virtual machine has &lt;strong&gt;svirt_d&lt;/strong&gt; security
+&lt;p&gt;What I wrote above tells us that every virtual machine has &lt;strong&gt;svirt_t&lt;/strong&gt; security
 type by default. This is a confinement configuration for each VM. And there is
 more. Each virtualized guest process is labeled and runs with a dynamically 
 generated level. Each process is isolated from other VMs with different MCS 
