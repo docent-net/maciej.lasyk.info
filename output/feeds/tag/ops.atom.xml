@@ -1,5 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Many craft. Wow. Such create</title><link href="http://maciej.lasyk.info/" rel="alternate"></link><link href="http://maciej.lasyk.info/feeds/tag/ops.atom.xml" rel="self"></link><id>http://maciej.lasyk.info/</id><updated>2014-09-04T18:38:00+02:00</updated><entry><title>Sysadmin evolution</title><link href="http://maciej.lasyk.info/2014/Sep/04/sysadmin-evolution/" rel="alternate"></link><updated>2014-09-04T18:38:00+02:00</updated><author><name>Maciej Lasyk</name></author><id>tag:maciej.lasyk.info,2014-09-04:2014/Sep/04/sysadmin-evolution/</id><summary type="html">&lt;h3&gt;Sysadmin evolution&lt;/h3&gt;
-&lt;p&gt;A couple of days ago on &lt;a href="http://training.linuxfoundation.org/sysadmin-evolution"&gt;The Linux Foundation&lt;/a&gt;
-appeared an image showing how could sysadmin advance his experience. I think
-that it's really worth mentioning, so check this &lt;a href="http://maciej.lasyk.info/images/EvolutionSysadmin_Infographic.png"&gt;image&lt;/a&gt;&lt;/p&gt;</summary><category term="ops"></category></entry></feed>

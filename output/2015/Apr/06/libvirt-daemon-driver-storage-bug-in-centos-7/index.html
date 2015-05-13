@@ -28,7 +28,7 @@
         
 <header>
 <h1><a href="../../../.." id="site-title">  </a>         <a href="../../../../2015/Apr/06/libvirt-daemon-driver-storage-bug-in-centos-7/" id="page-title">libvirt-daemon-driver-storage bug in Centos 7</a></h1>
-<time datetime="2015-04-06T00:00:00">Mon 06 April 2015</time></header>
+<time datetime="2015-04-06T00:00:00+02:00">Mon 06 April 2015</time></header>
 <article>
     <p><center><img alt="libvirt" src="../../../../images/libvirt.png" /></center></p>
 <h1>failed to load module libvirt_driver_storage.so</h1>
@@ -47,22 +47,22 @@ Hmm that<span class="err">&#39;</span>s not normal obsiously. Checked the **libv
 <span class="o">[</span>root@host1 ~<span class="o">]</span><span class="c"># service libvirtd status</span>
 Redirecting to /bin/systemctl status  libvirtd.service
 libvirtd.service - Virtualization daemon
-   Loaded: loaded <span class="o">(</span>/usr/lib/systemd/system/libvirtd.service; enabled<span class="o">)</span>
-   Active: active <span class="o">(</span>running<span class="o">)</span> since Mon 2015-04-06 15:43:55 CEST; 1h 16min ago
+   Loaded: loaded <span class="o">(</span>/usr/lib/systemd/system/libvirtd.service<span class="p">;</span> enabled<span class="o">)</span>
+   Active: active <span class="o">(</span>running<span class="o">)</span> since Mon 2015-04-06 15:43:55 CEST<span class="p">;</span> 1h 16min ago
      Docs: man:libvirtd<span class="o">(</span>8<span class="o">)</span>
            http://libvirt.org
- Main PID: 21191 <span class="o">(</span>libvirtd<span class="o">)</span>
+ Main PID: <span class="m">21191</span> <span class="o">(</span>libvirtd<span class="o">)</span>
    CGroup: /system.slice/libvirtd.service
-           ├─ 5865 /sbin/dnsmasq --conf-file<span class="o">=</span>/var/lib/libvirt/dnsmasq/default.conf
+           ├─ <span class="m">5865</span> /sbin/dnsmasq --conf-file<span class="o">=</span>/var/lib/libvirt/dnsmasq/default.conf
            └─21191 /usr/sbin/libvirtd
 
 ...
-Apr 06 17:01:42 host1.devops.ent libvirtd<span class="o">[</span>6254<span class="o">]</span>: failed to load module 
+Apr <span class="m">06</span> 17:01:42 host1.devops.ent libvirtd<span class="o">[</span>6254<span class="o">]</span>: failed to load module 
 /usr/lib64/libvirt/connection-driver/libvirt_driver_storage.so 
 /usr/lib64/libvirt/connection-driver/libvirt_driver_storage.so: symbol 
 dm_task_get_info_with_deferred_remove, version Base not defined in file 
 libdevmapper.so.1.02 with link <span class="nb">time </span>reference
-Apr 06 17:01:42 host1.devops.ent libvirtd<span class="o">[</span>6254<span class="o">]</span>: failed to load module 
+Apr <span class="m">06</span> 17:01:42 host1.devops.ent libvirtd<span class="o">[</span>6254<span class="o">]</span>: failed to load module 
 /usr/lib64/libvirt/connection-driver/libvirt_driver_qemu.so 
 /usr/lib64/libvirt/connection-driver/libvirt_driver_qemu.so: undefined 
 symbol: virStorageFileCreate
@@ -146,26 +146,26 @@ all I wanted was <strong>virt-sysprep</strong> installed - not update'ing all pa
         <div id="tagcloud">
         <nav>
             <ul class="tagcloud">
-                    <li class="tag-3"><a href="../../../../tag/ebooks.html">ebooks</a></li>
-                    <li class="tag-5"><a href="../../../../tag/kubernetes.html">kubernetes</a></li>
-                    <li class="tag-5"><a href="../../../../tag/rhel.html">rhel</a></li>
-                    <li class="tag-5"><a href="../../../../tag/kvm.html">kvm</a></li>
-                    <li class="tag-3"><a href="../../../../tag/pelican.html">pelican</a></li>
-                    <li class="tag-5"><a href="../../../../tag/spotify.html">spotify</a></li>
-                    <li class="tag-5"><a href="../../../../tag/libvirt.html">libvirt</a></li>
-                    <li class="tag-5"><a href="../../../../tag/talks.html">talks</a></li>
-                    <li class="tag-2"><a href="../../../../tag/fedora.html">fedora</a></li>
                     <li class="tag-3"><a href="../../../../tag/conferences.html">conferences</a></li>
-                    <li class="tag-5"><a href="../../../../tag/tmux.html">tmux</a></li>
-                    <li class="tag-2"><a href="../../../../tag/docker.html">docker</a></li>
-                    <li class="tag-5"><a href="../../../../tag/iscsi.html">iscsi</a></li>
-                    <li class="tag-5"><a href="../../../../tag/books.html">books</a></li>
-                    <li class="tag-5"><a href="../../../../tag/fig.html">fig</a></li>
-                    <li class="tag-5"><a href="../../../../tag/dns.html">dns</a></li>
+                    <li class="tag-4"><a href="../../../../tag/piwik.html">piwik</a></li>
+                    <li class="tag-4"><a href="../../../../tag/spotify.html">spotify</a></li>
+                    <li class="tag-4"><a href="../../../../tag/talks.html">talks</a></li>
+                    <li class="tag-3"><a href="../../../../tag/ebooks.html">ebooks</a></li>
+                    <li class="tag-4"><a href="../../../../tag/kubernetes.html">kubernetes</a></li>
+                    <li class="tag-4"><a href="../../../../tag/boot.html">boot</a></li>
+                    <li class="tag-4"><a href="../../../../tag/rhel.html">rhel</a></li>
+                    <li class="tag-4"><a href="../../../../tag/tmux.html">tmux</a></li>
+                    <li class="tag-4"><a href="../../../../tag/books.html">books</a></li>
+                    <li class="tag-3"><a href="../../../../tag/pelican.html">pelican</a></li>
+                    <li class="tag-4"><a href="../../../../tag/kvm.html">kvm</a></li>
+                    <li class="tag-4"><a href="../../../../tag/fig.html">fig</a></li>
                     <li class="tag-1"><a href="../../../../tag/centos.html">centos</a></li>
-                    <li class="tag-5"><a href="../../../../tag/boot.html">boot</a></li>
-                    <li class="tag-5"><a href="../../../../tag/piwik.html">piwik</a></li>
-                    <li class="tag-5"><a href="../../../../tag/centos7.html">centos7</a></li>
+                    <li class="tag-4"><a href="../../../../tag/coreos.html">coreos</a></li>
+                    <li class="tag-4"><a href="../../../../tag/iscsi.html">iscsi</a></li>
+                    <li class="tag-1"><a href="../../../../tag/fedora.html">fedora</a></li>
+                    <li class="tag-4"><a href="../../../../tag/dns.html">dns</a></li>
+                    <li class="tag-4"><a href="../../../../tag/libvirt.html">libvirt</a></li>
+                    <li class="tag-1"><a href="../../../../tag/docker.html">docker</a></li>
             </ul>
         </nav>
         </div>
