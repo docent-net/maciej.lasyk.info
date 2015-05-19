@@ -39,7 +39,7 @@ But **should** may not be enough. So I'm gonna say this - you **can** sleep
 well thanks to MCS (Multi-Level security) & MLC (Multi-Category security) 
 in SELinux.
 
-What I wrote above tells us that every virtual machine has **svirt_d** security
+What I wrote above tells us that every virtual machine has **svirt_t** security
 type by default. This is a confinement configuration for each VM. And there is
 more. Each virtualized guest process is labeled and runs with a dynamically 
 generated level. Each process is isolated from other VMs with different MCS 
@@ -80,3 +80,5 @@ yum update qemu-kvm
 ```
 
 (or update all pkgs - whatever)
+
+EDIT: [Dan Walsh confirmed](http://danwalsh.livejournal.com/71489.html) that Venom is not an issue w/ SELinux enabled.
