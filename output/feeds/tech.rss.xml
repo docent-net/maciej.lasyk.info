@@ -58,7 +58,8 @@ so it's better to fix Qemu. How? Simply:&lt;/p&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;p&gt;(or update all pkgs - whatever)&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Maciej Lasyk</dc:creator><pubDate>Wed, 13 May 2015 00:00:00 +0200</pubDate><guid>tag:maciej.lasyk.info,2015-05-13:2015/May/13/selinux-svirt-vs-venom-vulnerability/</guid><category>kvm</category><category>libvirt</category><category>selinux</category><category>sirt</category><category>security</category><category>qemu</category></item><item><title>libvirt-daemon-driver-storage bug in Centos 7</title><link>http://maciej.lasyk.info/2015/Apr/06/libvirt-daemon-driver-storage-bug-in-centos-7/</link><description>&lt;p&gt;&lt;center&gt;&lt;img alt="libvirt" src="http://maciej.lasyk.info/images/libvirt.png" /&gt;&lt;/center&gt;&lt;/p&gt;
+&lt;p&gt;(or update all pkgs - whatever)&lt;/p&gt;
+&lt;p&gt;EDIT: &lt;a href="http://danwalsh.livejournal.com/71489.html"&gt;Dan Walsh confirmed&lt;/a&gt; that Venom is not an issue w/ SELinux enabled.&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Maciej Lasyk</dc:creator><pubDate>Wed, 13 May 2015 00:00:00 +0200</pubDate><guid>tag:maciej.lasyk.info,2015-05-13:2015/May/13/selinux-svirt-vs-venom-vulnerability/</guid><category>kvm</category><category>libvirt</category><category>selinux</category><category>sirt</category><category>security</category><category>qemu</category></item><item><title>libvirt-daemon-driver-storage bug in Centos 7</title><link>http://maciej.lasyk.info/2015/Apr/06/libvirt-daemon-driver-storage-bug-in-centos-7/</link><description>&lt;p&gt;&lt;center&gt;&lt;img alt="libvirt" src="http://maciej.lasyk.info/images/libvirt.png" /&gt;&lt;/center&gt;&lt;/p&gt;
 &lt;h1&gt;failed to load module libvirt_driver_storage.so&lt;/h1&gt;
 &lt;p&gt;Today I was installing
 &lt;a href="http://libguestfs.org/virt-sysprep.1.html"&gt;virt-sysprep&lt;/a&gt; tool on one of KVM
