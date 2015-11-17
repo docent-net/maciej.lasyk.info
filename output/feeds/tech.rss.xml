@@ -1,5 +1,244 @@
 <?xml version="1.0" encoding="utf-8"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Many craft. Wow. Such create</title><link>http://maciej.lasyk.info/</link><description></description><atom:link href="http://maciej.lasyk.info/feeds/tech.rss.xml" rel="self"></atom:link><lastBuildDate>Tue, 03 Mar 2015 00:00:00 +0100</lastBuildDate><item><title>Dropbox and security of your files in Linux</title><link>http://maciej.lasyk.info/2015/Mar/03/dropbox-and-security-of-your-files-in-linux/</link><description>&lt;p&gt;&lt;center&gt;&lt;img alt="RHEL" src="http://maciej.lasyk.info/images/dropbox-logo.png" /&gt;&lt;/center&gt;&lt;/p&gt;
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Many craft. Wow. Such create</title><link>http://maciej.lasyk.info/</link><description></description><atom:link href="http://maciej.lasyk.info/feeds/tech.rss.xml" rel="self"></atom:link><lastBuildDate>Wed, 13 May 2015 00:00:00 +0200</lastBuildDate><item><title>SELinux / sVirt vs Venom vulnerability</title><link>http://maciej.lasyk.info/2015/May/13/selinux-svirt-vs-venom-vulnerability/</link><description>&lt;p&gt;&lt;center&gt;&lt;img alt="libvirt" src="http://maciej.lasyk.info/images/venom.png" /&gt;&lt;/center&gt;&lt;/p&gt;
+&lt;h1&gt;Venom?&lt;/h1&gt;
+&lt;p&gt;Basically it's a vulnerability that may be used to escape hypervisor (Qemu
+based, e.g. KVM. XEN) and obtain root permissions on host machine (and from
+that on also other virtual machines).&lt;/p&gt;
+&lt;p&gt;This vulnerability has interesting PR - nice logo, name and a website
+:O Real triplet of security marketing: &lt;a href="http://venom.crowdstrike.com/"&gt;Venom
+webpage&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Also check &lt;a href="https://access.redhat.com/articles/1444903"&gt;RedHat article on this
+CVE&lt;/a&gt;&lt;/p&gt;
+&lt;h1&gt;Am I fucked?&lt;/h1&gt;
+&lt;p&gt;Maybe. If you're using Qemu driver then you might have a problem...&lt;/p&gt;
+&lt;p&gt;...but...&lt;/p&gt;
+&lt;p&gt;... &lt;strong&gt;not when using SELinux / sVirt&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;With &lt;a href="http://www.selinuxproject.org/page/SVirt"&gt;sVirt&lt;/a&gt; and SELinux securing
+your system &lt;a href="https://securityblog.redhat.com/2015/05/13/venom-dont-get-bitten/"&gt;you should sleep
+well&lt;/a&gt;. 
+Because even if attacker successfully escapes hypervisor confinement he will be
+still under the dome of SELinux confinement (which by default is set to
+&lt;strong&gt;system_u:system_r:svirt_t&lt;/strong&gt;; &lt;/p&gt;
+&lt;p&gt;But &lt;strong&gt;should&lt;/strong&gt; may not be enough. So I'm gonna say this - you &lt;strong&gt;can&lt;/strong&gt; sleep
+well thanks to MCS (Multi-Level security) &amp;amp; MLC (Multi-Category security) 
+in SELinux.&lt;/p&gt;
+&lt;p&gt;What I wrote above tells us that every virtual machine has &lt;strong&gt;svirt_t&lt;/strong&gt; security
+type by default. This is a confinement configuration for each VM. And there is
+more. Each virtualized guest process is labeled and runs with a dynamically 
+generated level. Each process is isolated from other VMs with different MCS 
+levels. Example from one of my boxes:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;system_u:system_r:svirt_t:s0:c14,c894
+system_u:system_r:svirt_t:s0:c393,c652
+system_u:system_r:svirt_t:s0:c730,c767
+system_u:system_r:svirt_t:s0:c465,c623
+system_u:system_r:svirt_t:s0:c246,c630
+system_u:system_r:svirt_t:s0:c37,c395
+system_u:system_r:svirt_t:s0:c225,c437
+system_u:system_r:svirt_t:s0:c40,c846
+system_u:system_r:svirt_t:s0:c523,c530
+system_u:system_r:svirt_t:s0:c361,c630
+system_u:system_r:svirt_t:s0:c63,c827
+system_u:system_r:svirt_t:s0:c52,c133
+system_u:system_r:svirt_t:s0:c416,c722
+system_u:system_r:svirt_t:s0:c36,c814
+system_u:system_r:svirt_t:s0:c615,c661
+system_u:system_r:svirt_t:s0:c96,c792
+system_u:system_r:svirt_t:s0:c60,c74
+system_u:system_r:svirt_t:s0:c492,c659
+system_u:system_r:svirt_t:s0:c72,c693
+system_u:system_r:svirt_t:s0:c499,c536
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;This is just a slice. As you can see each process (VM) has other MLC.&lt;/p&gt;
+&lt;h1&gt;Solution?&lt;/h1&gt;
+&lt;p&gt;Yup - even SELinux might have some security vulnerabilities we don't know about
+so it's better to fix Qemu. How? Simply:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;yum update qemu-kvm
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;(or update all pkgs - whatever)&lt;/p&gt;
+&lt;p&gt;EDIT: &lt;a href="http://danwalsh.livejournal.com/71489.html"&gt;Dan Walsh confirmed&lt;/a&gt; that Venom is not an issue w/ SELinux enabled.&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Maciej Lasyk</dc:creator><pubDate>Wed, 13 May 2015 00:00:00 +0200</pubDate><guid>tag:maciej.lasyk.info,2015-05-13:2015/May/13/selinux-svirt-vs-venom-vulnerability/</guid><category>kvm</category><category>libvirt</category><category>selinux</category><category>sirt</category><category>security</category><category>qemu</category></item><item><title>libvirt-daemon-driver-storage bug in Centos 7</title><link>http://maciej.lasyk.info/2015/Apr/06/libvirt-daemon-driver-storage-bug-in-centos-7/</link><description>&lt;p&gt;&lt;center&gt;&lt;img alt="libvirt" src="http://maciej.lasyk.info/images/libvirt.png" /&gt;&lt;/center&gt;&lt;/p&gt;
+&lt;h1&gt;failed to load module libvirt_driver_storage.so&lt;/h1&gt;
+&lt;p&gt;Today I was installing
+&lt;a href="http://libguestfs.org/virt-sysprep.1.html"&gt;virt-sysprep&lt;/a&gt; tool on one of KVM
+hosts. When this was done I couldn't list VMs anymore using &lt;strong&gt;virsh&lt;/strong&gt;:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="o"&gt;[&lt;/span&gt;root@host1 ~&lt;span class="o"&gt;]&lt;/span&gt;&lt;span class="c"&gt;# virsh list --all&lt;/span&gt;
+&lt;span class="o"&gt;[&lt;/span&gt;454/564&lt;span class="o"&gt;]&lt;/span&gt;
+ Id    Name                           State
+ ----------------------------------------------------
+ &lt;span class="sb"&gt;```&lt;/span&gt;
+
+Hmm that&lt;span class="err"&gt;&amp;#39;&lt;/span&gt;s not normal obsiously. Checked the **libvirtd** status:
+
+&lt;span class="sb"&gt;```&lt;/span&gt;bash
+&lt;span class="o"&gt;[&lt;/span&gt;root@host1 ~&lt;span class="o"&gt;]&lt;/span&gt;&lt;span class="c"&gt;# service libvirtd status&lt;/span&gt;
+Redirecting to /bin/systemctl status  libvirtd.service
+libvirtd.service - Virtualization daemon
+   Loaded: loaded &lt;span class="o"&gt;(&lt;/span&gt;/usr/lib/systemd/system/libvirtd.service&lt;span class="p"&gt;;&lt;/span&gt; enabled&lt;span class="o"&gt;)&lt;/span&gt;
+   Active: active &lt;span class="o"&gt;(&lt;/span&gt;running&lt;span class="o"&gt;)&lt;/span&gt; since Mon 2015-04-06 15:43:55 CEST&lt;span class="p"&gt;;&lt;/span&gt; 1h 16min ago
+     Docs: man:libvirtd&lt;span class="o"&gt;(&lt;/span&gt;8&lt;span class="o"&gt;)&lt;/span&gt;
+           http://libvirt.org
+ Main PID: &lt;span class="m"&gt;21191&lt;/span&gt; &lt;span class="o"&gt;(&lt;/span&gt;libvirtd&lt;span class="o"&gt;)&lt;/span&gt;
+   CGroup: /system.slice/libvirtd.service
+           ├─ &lt;span class="m"&gt;5865&lt;/span&gt; /sbin/dnsmasq --conf-file&lt;span class="o"&gt;=&lt;/span&gt;/var/lib/libvirt/dnsmasq/default.conf
+           └─21191 /usr/sbin/libvirtd
+
+...
+Apr &lt;span class="m"&gt;06&lt;/span&gt; 17:01:42 host1.devops.ent libvirtd&lt;span class="o"&gt;[&lt;/span&gt;6254&lt;span class="o"&gt;]&lt;/span&gt;: failed to load module 
+/usr/lib64/libvirt/connection-driver/libvirt_driver_storage.so 
+/usr/lib64/libvirt/connection-driver/libvirt_driver_storage.so: symbol 
+dm_task_get_info_with_deferred_remove, version Base not defined in file 
+libdevmapper.so.1.02 with link &lt;span class="nb"&gt;time &lt;/span&gt;reference
+Apr &lt;span class="m"&gt;06&lt;/span&gt; 17:01:42 host1.devops.ent libvirtd&lt;span class="o"&gt;[&lt;/span&gt;6254&lt;span class="o"&gt;]&lt;/span&gt;: failed to load module 
+/usr/lib64/libvirt/connection-driver/libvirt_driver_qemu.so 
+/usr/lib64/libvirt/connection-driver/libvirt_driver_qemu.so: undefined 
+symbol: virStorageFileCreate
+...
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;I confirmed that installing &lt;strong&gt;virt-sysprep&lt;/strong&gt; caused also upgrading libvirtd related packages:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt; Updated     libvirt-1.1.1-29.el7_0.7.x86_64                         @updates
+    Update              1.2.8-16.el7_1.2.x86_64                         @updates
+    Updated     libvirt-client-1.1.1-29.el7_0.7.x86_64                  @updates
+    Update                     1.2.8-16.el7_1.2.x86_64                  @updates
+    Updated     libvirt-daemon-1.1.1-29.el7_0.7.x86_64                  @updates
+    Update                     1.2.8-16.el7_1.2.x86_64                  @updates
+    Updated     libvirt-daemon-config-network-1.1.1-29.el7_0.7.x86_64   @updates
+    Update                                    1.2.8-16.el7_1.2.x86_64   @updates
+    Updated     libvirt-daemon-config-nwfilter-1.1.1-29.el7_0.7.x86_64  @updates
+    Update                                     1.2.8-16.el7_1.2.x86_64  @updates
+    Updated     libvirt-daemon-driver-interface-1.1.1-29.el7_0.7.x86_64 @updates
+    Update                                      1.2.8-16.el7_1.2.x86_64 @updates
+    Updated     libvirt-daemon-driver-lxc-1.1.1-29.el7_0.7.x86_64       @updates
+    Update                                1.2.8-16.el7_1.2.x86_64       @updates
+    Updated     libvirt-daemon-driver-network-1.1.1-29.el7_0.7.x86_64   @updates
+    Update                                    1.2.8-16.el7_1.2.x86_64   @updates
+    Updated     libvirt-daemon-driver-nodedev-1.1.1-29.el7_0.7.x86_64   @updates
+    Update                                    1.2.8-16.el7_1.2.x86_64   @updates
+    Updated     libvirt-daemon-driver-nwfilter-1.1.1-29.el7_0.7.x86_64  @updates
+    Update                                     1.2.8-16.el7_1.2.x86_64  @updates
+    Updated     libvirt-daemon-driver-qemu-1.1.1-29.el7_0.7.x86_64      @updates
+    Update                                 1.2.8-16.el7_1.2.x86_64      @updates
+    Updated     libvirt-daemon-driver-secret-1.1.1-29.el7_0.7.x86_64    @updates
+    Update                                   1.2.8-16.el7_1.2.x86_64    @updates
+    Updated     libvirt-daemon-driver-storage-1.1.1-29.el7_0.7.x86_64   @updates
+    Update                                    1.2.8-16.el7_1.2.x86_64   @updates
+    Dep-Install libvirt-daemon-kvm-1.2.8-16.el7_1.2.x86_64              @updates
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;So once more I read the problematic log entry:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;failed to load module /usr/lib64/libvirt/connection-driver/libvirt_driver_storage.so /usr/lib64/libvirt/connection-driver/libvirt_driver_storage.so: symbol dm_task_get_info_wit
+h_deferred_remove, version Base not defined in file libdevmapper.so.1.02 with link &lt;span class="nb"&gt;time &lt;/span&gt;reference
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;and decided to &lt;strong&gt;yum upgrade device-mapper-libs&lt;/strong&gt;. Afterwards I restarted &lt;strong&gt;libvirtd&lt;/strong&gt;
+and everything started working perfectly.&lt;/p&gt;
+&lt;p&gt;This would not happen if I had updated all the libraries, but unfortunately 
+all I wanted was &lt;strong&gt;virt-sysprep&lt;/strong&gt; installed - not update'ing all packages.&lt;/p&gt;
+&lt;p&gt;Finally &lt;a href="http://bugs.centos.org/view.php?id=8403"&gt;filed a bugrequest&lt;/a&gt;&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Maciej Lasyk</dc:creator><pubDate>Mon, 06 Apr 2015 00:00:00 +0200</pubDate><guid>tag:maciej.lasyk.info,2015-04-06:2015/Apr/06/libvirt-daemon-driver-storage-bug-in-centos-7/</guid><category>centos7</category><category>bug</category><category>centos</category><category>libvirt</category><category>kvm</category></item><item><title>About cultural change w/Devops</title><link>http://maciej.lasyk.info/2015/Mar/26/about-cultural-change-wdevops/</link><description>&lt;p&gt;&lt;center&gt;&lt;img alt="Atmosphere Shuttle" src="http://maciej.lasyk.info/images/atmosphere-1.jpg" /&gt;&lt;/center&gt;&lt;/p&gt;
+&lt;p&gt;This time without any comment - just slides from presentation I gave today in
+&lt;a href="http://www.meetup.com/Atmosphere/events/221099327/"&gt;Atmosphere Shuttle #01&lt;/a&gt;
+meetup:&lt;/p&gt;
+&lt;iframe src="//www.slideshare.net/slideshow/embed_code/46335851" width="425"
+height="355" frameborder="0" marginwidth="0" marginheight="0" scrolling="no"
+style="border:1px solid #CCC; border-width:1px; margin-bottom:5px; max-width:
+100%;" allowfullscreen&gt; &lt;/iframe&gt;
+
+&lt;p&gt;&lt;div style="margin-bottom:5px"&gt; &lt;strong&gt; &lt;a
+href="//www.slideshare.net/d0cent/about-cultural-change-wdevops" title="About
+cultural change w/Devops" target="_blank"&gt;About cultural change w/Devops&lt;/a&gt;
+&lt;/strong&gt; from &lt;strong&gt;&lt;a href="//www.slideshare.net/d0cent"
+target="_blank"&gt;Maciej Lasyk&lt;/a&gt;&lt;/strong&gt; &lt;/div&gt;&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Maciej Lasyk</dc:creator><pubDate>Thu, 26 Mar 2015 00:00:00 +0100</pubDate><guid>tag:maciej.lasyk.info,2015-03-26:2015/Mar/26/about-cultural-change-wdevops/</guid><category>devops</category><category>culture</category><category>cams</category><category>management</category></item><item><title>Cheap SSD arrays for Continuous Integration</title><link>http://maciej.lasyk.info/2015/Mar/14/cheap-ssd-arrays-for-continuous-integration/</link><description>&lt;p&gt;&lt;center&gt;&lt;img alt="Its me!" src="http://maciej.lasyk.info/images/ssd_array.jpg" /&gt;&lt;/center&gt;&lt;/p&gt;
+&lt;h3&gt;The need for iop/s&lt;/h3&gt;
+&lt;p&gt;I think that every sysdamin has this need. It is like "I have a need - the need
+for speed". So basically when I see 400 operations per second as upper limit on
+some SATA drives the I cry very loudly.&lt;/p&gt;
+&lt;p&gt;But bussiness can't always provide RAID10 array of 4x240GB Intel SSD drives /
+$4000.&lt;/p&gt;
+&lt;p&gt;I faced this problem lately. While improving environment performance for continuous integration I noticed how drastically we have this need for iop/s on every Jenkins and Selenium nodes.&lt;/p&gt;
+&lt;p&gt;So we have this bleeding-edge-storage which has couple of enterprise class SSDs
+but honestly I didn't want to sacrifice those holy part of our infrastructure
+for some ephemeral work.&lt;/p&gt;
+&lt;p&gt;I just wanted some drives which would provide me w/about 15-20k iop/s. Simple,
+cheap SSD drives.&lt;/p&gt;
+&lt;p&gt;So I found, that our servers actually have a free drive slots inside. Unused.
+Just waiting to be fulfilled with something. Think local storage :D&lt;/p&gt;
+&lt;p&gt;And this was it. What about buying desktop - class SSD drives?&lt;/p&gt;
+&lt;h3&gt;Trim issue?&lt;/h3&gt;
+&lt;p&gt;It is not an issue. Just make sure you've got &lt;a href="https://turriebuntu.wordpress.com/ubuntu-pages/precise-specific-pages/using-fstrim-to-trim-your-ssd-instead-of-delete-in-fstab/"&gt;fstrim
+running&lt;/a&gt;
+and remember to &lt;a href="http://blog.neutrino.es/2013/howto-properly-activate-trim-for-your-ssd-on-linux-fstrim-lvm-and-dmcrypt/"&gt;trim on all filesystem
+layers(!)&lt;/a&gt;&lt;/p&gt;
+&lt;h3&gt;So... what kind of drives?&lt;/h3&gt;
+&lt;p&gt;&lt;a href="http://techreport.com/review/27909/the-ssd-endurance-experiment-theyre-all-dead"&gt;According to
+this&lt;/a&gt;
+The best price to longevity ratio will give you Kingston HyperX drives ($100
+each 240GB drive). So basically you can set up RAID1 for $200 or RAID10 for
+$400.&lt;/p&gt;
+&lt;p&gt;Of course this is just for some temporary data. Those kind of arrays should't
+be there for crucial datastores. And of course - remember about capacity
+planning. When I see 600TB written as the moment in time when the drive will be
+dead I can basically say, that $200 RAID array will need to be replaced in 18
+months. Wow - this is really nice lifetime for this at this price. So I actualy
+created 2xRAID10 arrays (240GB Kingston HyperX drives) what gave me 2x0,5TB in
+RAID10 / local storage for $1000. And I'm gonna replace this in about 1,5 year
+(maybe still as a subject of warranty).&lt;/p&gt;
+&lt;p&gt;Great deal imo. If I did want to but enterprise class disks (like Intel) for
+this purpose I would have to pay 8*$1000 and that is a horrible amount of
+goldies.&lt;/p&gt;
+&lt;p&gt;Summing this up - CI (Jenkins, Selenium, others) + local storage on cheap SSD drives = &amp;lt;3&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Maciej Lasyk</dc:creator><pubDate>Sat, 14 Mar 2015 00:00:00 +0100</pubDate><guid>tag:maciej.lasyk.info,2015-03-14:2015/Mar/14/cheap-ssd-arrays-for-continuous-integration/</guid><category>hardware</category><category>raid</category><category>ssd</category><category>array</category><category>matrix</category></item><item><title>Conferences schedule for Spring 2015</title><link>http://maciej.lasyk.info/2015/Mar/12/conferences-schedule-for-spring-2015/</link><description>&lt;p&gt;&lt;center&gt;&lt;img alt="Its me!" src="http://maciej.lasyk.info/images/maciek.jpg" /&gt;&lt;/center&gt;&lt;/p&gt;
+&lt;h3&gt;Spring is near, so conference season is almost here!&lt;/h3&gt;
+&lt;p&gt;As a friend of mine &lt;a href="https://twitter.com/j_palka"&gt;Jarek Pałka&lt;/a&gt; told me 
+yesterday - this is like a snowball. You give your first talk, then next and
+next and you event don't blink an eye and you find yourself in a place where
+some year you have 5 talks scheduled in a row during one month.&lt;/p&gt;
+&lt;p&gt;But.. I really do like it. Conferences are great. Just like a sport - you
+prepare, train, test, rest and again over and over again. Then there is this
+day where you can finally unleash accumulated endorphines and let yourself into
+this flow of talks, discussions, chip-chats and off-the-record confabulations
+;)&lt;/p&gt;
+&lt;p&gt;And then there is it. Couple of weeks later someone tries to get hired in your
+company just because your presentation showed guys that it is really a good
+place. Months later it appears that your idea was developed more and someone
+else in some other event talks about it. There is more - you can attract people
+to any Open-Source project you want - just tell them why it rocks!&lt;/p&gt;
+&lt;p&gt;Also it is the only place when you can actually meet the fundaments of our IT
+world. One of my biggest dreams was photo w/Linus Torvalds. And here it is
+(taken 3 years ago at LinuxCon Barcelona):&lt;/p&gt;
+&lt;p&gt;&lt;center&gt;&lt;img alt="LinuxCon" src="http://maciej.lasyk.info/images/linuxcon.jpeg" /&gt;&lt;/center&gt;&lt;/p&gt;
+&lt;p&gt;Ahh I simply &amp;lt;3 that. Also I do love travelling w/my pair of running shoes
+getting up @6:00 just to have a morning portion of endorphines before starting
+next conference day on a route I completely don't know.&lt;/p&gt;
+&lt;h3&gt;The Spring Schedule aka "Come get some!"&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="http://opensourcesummit.pl"&gt;OpenSource Summit 2015&lt;/a&gt; - 2015-03-24 - this is a
+  one - day event, which will bring together all the greatest minds of our
+  Polish Open - source scene. I'll give there talk about &lt;a href="http://opensourcesummit.pl/maciej-lasyk/"&gt;Docker
+  containers&lt;/a&gt;. And finally I'll have
+  opportunity to see &lt;a href=""&gt;Grzegorz Nosek's&lt;/a&gt; presentation about Ansible and take
+  part in his trainings!&lt;/li&gt;
+&lt;li&gt;#DevOps meeting, Atmosphere Shuttle - 2015-03-26 - this is a DevOps meetup
+  where I'll give a talk about changing old &amp;amp; stiff envs into more devops. This
+  event is part of a tour which main job is to introduce Atmosphere Conference.&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://12.sesja.linuksowa.pl/"&gt;12th Linux Session&lt;/a&gt; - 2015-04-(18-19) - I'll
+  give here a talk about Orchestrating Docker Containers. And there will be
+  Lennart Poettering speaking there, so fingers crossed to catch him and thanks
+  him for his great work on Systemd!&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://www.4developers.org.pl/"&gt;4Developers&lt;/a&gt; - 2015-04-20 - I'll have 2
+  talks here. First in the "Application Architectures" track titled [Under the
+  dome (of failure driven
+  pipeline)](http://www.4developers.org.pl/en/agenda/lecture/under-dome-failure-driven-pipeline/]
+  and second &lt;strong&gt;Continuous Security in DevOps&lt;/strong&gt; (which is still not published) in
+  the security track.&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://www.atmosphere-conference.com/"&gt;Atmosphere Conference&lt;/a&gt; -
+  2015-05-(18-19) - this is the biggest DevOps event in Poland. I'll be there
+  for the second time giving a talk about Enterprise DevOps.&lt;/li&gt;
+&lt;/ul&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Maciej Lasyk</dc:creator><pubDate>Thu, 12 Mar 2015 00:00:00 +0100</pubDate><guid>tag:maciej.lasyk.info,2015-03-12:2015/Mar/12/conferences-schedule-for-spring-2015/</guid><category>conferences</category><category>events</category></item><item><title>Dropbox and security of your files in Linux</title><link>http://maciej.lasyk.info/2015/Mar/03/dropbox-and-security-of-your-files-in-linux/</link><description>&lt;p&gt;&lt;center&gt;&lt;img alt="RHEL" src="http://maciej.lasyk.info/images/dropbox-logo.png" /&gt;&lt;/center&gt;&lt;/p&gt;
 &lt;h3&gt;WAT?&lt;/h3&gt;
 &lt;p&gt;So there's been discussion about &lt;a href="http://www.e-siber.com/guvenlik/dropbox-accesses-all-the-files-in-your-pc-not-just-sync-folder-and-steals-everything/"&gt;Dropbox indexing all files on Windows
 boxes&lt;/a&gt;&lt;/p&gt;
