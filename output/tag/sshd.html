@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-        <title>Many craft. Wow. Such create : Cheap SSD arrays for Continuous Integration</title>
+        <title>Many craft. Wow. Such create - sshd</title>
         <meta charset="utf-8" />
         <link rel="stylesheet" href="http://maciej.lasyk.info/theme/css/main.css" type="text/css" />
         <link href="http://maciej.lasyk.info/" type="application/atom+xml" rel="alternate" title="Many craft. Wow. Such create ATOM Feed" />
@@ -26,65 +26,11 @@
 
             <div class="entry">
         
-<header>
-<h1><a href="http://maciej.lasyk.info" id="site-title">  </a>         <a href="http://maciej.lasyk.info/2015/Mar/14/cheap-ssd-arrays-for-continuous-integration/" id="page-title">Cheap SSD arrays for Continuous Integration</a></h1>
-<time datetime="2015-03-14T00:00:00+01:00">Sat 14 March 2015</time></header>
-<article>
-    <p><center><img alt="Its me!" src="http://maciej.lasyk.info/images/ssd_array.jpg" /></center></p>
-<h3>The need for iop/s</h3>
-<p>I think that every sysdamin has this need. It is like "I have a need - the need
-for speed". So basically when I see 400 operations per second as upper limit on
-some SATA drives the I cry very loudly.</p>
-<p>But bussiness can't always provide RAID10 array of 4x240GB Intel SSD drives /
-$4000.</p>
-<p>I faced this problem lately. While improving environment performance for continuous integration I noticed how drastically we have this need for iop/s on every Jenkins and Selenium nodes.</p>
-<p>So we have this bleeding-edge-storage which has couple of enterprise class SSDs
-but honestly I didn't want to sacrifice those holy part of our infrastructure
-for some ephemeral work.</p>
-<p>I just wanted some drives which would provide me w/about 15-20k iop/s. Simple,
-cheap SSD drives.</p>
-<p>So I found, that our servers actually have a free drive slots inside. Unused.
-Just waiting to be fulfilled with something. Think local storage :D</p>
-<p>And this was it. What about buying desktop - class SSD drives?</p>
-<h3>Trim issue?</h3>
-<p>It is not an issue. Just make sure you've got <a href="https://turriebuntu.wordpress.com/ubuntu-pages/precise-specific-pages/using-fstrim-to-trim-your-ssd-instead-of-delete-in-fstab/">fstrim
-running</a>
-and remember to <a href="http://blog.neutrino.es/2013/howto-properly-activate-trim-for-your-ssd-on-linux-fstrim-lvm-and-dmcrypt/">trim on all filesystem
-layers(!)</a></p>
-<h3>So... what kind of drives?</h3>
-<p><a href="http://techreport.com/review/27909/the-ssd-endurance-experiment-theyre-all-dead">According to
-this</a>
-The best price to longevity ratio will give you Kingston HyperX drives ($100
-each 240GB drive). So basically you can set up RAID1 for $200 or RAID10 for
-$400.</p>
-<p>Of course this is just for some temporary data. Those kind of arrays should't
-be there for crucial datastores. And of course - remember about capacity
-planning. When I see 600TB written as the moment in time when the drive will be
-dead I can basically say, that $200 RAID array will need to be replaced in 18
-months. Wow - this is really nice lifetime for this at this price. So I actualy
-created 2xRAID10 arrays (240GB Kingston HyperX drives) what gave me 2x0,5TB in
-RAID10 / local storage for $1000. And I'm gonna replace this in about 1,5 year
-(maybe still as a subject of warranty).</p>
-<p>Great deal imo. If I did want to but enterprise class disks (like Intel) for
-this purpose I would have to pay 8*$1000 and that is a horrible amount of
-goldies.</p>
-<p>Summing this up - CI (Jenkins, Selenium, others) + local storage on cheap SSD drives = &lt;3</p>
-    <h2>Comments</h2>
-    <div id="disqus_thread"></div>
-    <script type="text/javascript">
-       var disqus_shortname = 'manycraft';
-       var disqus_identifier = '2015/Mar/14/cheap-ssd-arrays-for-continuous-integration/';
-       var disqus_url = 'http://maciej.lasyk.info/2015/Mar/14/cheap-ssd-arrays-for-continuous-integration/';
-       (function() {
-            var dsq = document.createElement('script');
-            dsq.type = 'text/javascript'; dsq.async = true;
-            dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
-            (document.getElementsByTagName('head')[0] ||
-             document.getElementsByTagName('body')[0]).appendChild(dsq);
-      })();
-    </script>
-    <noscript>Please enable JavaScript to view the comments.</noscript>
-</article>
+<h1 class="index_page">Tag: sshd</h1>
+    <ul class="article_list">
+        
+            <li><span class="blurred">17 Nov 2015</span> >> <a href="http://maciej.lasyk.info/2015/Nov/17/running-sshd-on-443tcp/" rel="bookmark" title="<p>Managing Selinux context regarding 443/tcp port</p>">Running sshd on 443/tcp - Managing Selinux context regarding 443/tcp port</a></li>
+    </ul>
             </div>
         </div>
 

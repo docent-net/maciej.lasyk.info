@@ -1,5 +1,51 @@
 <?xml version="1.0" encoding="utf-8"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Many craft. Wow. Such create</title><link>http://maciej.lasyk.info/</link><description></description><atom:link href="http://maciej.lasyk.info/feeds/maciej-lasyk.rss.xml" rel="self"></atom:link><lastBuildDate>Wed, 13 May 2015 00:00:00 +0200</lastBuildDate><item><title>SELinux / sVirt vs Venom vulnerability</title><link>http://maciej.lasyk.info/2015/May/13/selinux-svirt-vs-venom-vulnerability/</link><description>&lt;p&gt;&lt;center&gt;&lt;img alt="libvirt" src="http://maciej.lasyk.info/images/venom.png" /&gt;&lt;/center&gt;&lt;/p&gt;
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Many craft. Wow. Such create</title><link>http://maciej.lasyk.info/</link><description></description><atom:link href="http://maciej.lasyk.info/feeds/maciej-lasyk.rss.xml" rel="self"></atom:link><lastBuildDate>Tue, 17 Nov 2015 00:00:00 +0100</lastBuildDate><item><title>Running sshd on 443/tcp</title><link>http://maciej.lasyk.info/2015/Nov/17/running-sshd-on-443tcp/</link><description>&lt;p&gt;&lt;center&gt;&lt;img alt="Selinux" src="{filename}/images/selinux-logo.png" /&gt;&lt;/center&gt;&lt;/p&gt;
+&lt;h3&gt;What?&lt;/h3&gt;
+&lt;p&gt;So I had this need to run &lt;strong&gt;ssh&lt;/strong&gt; daemon on port 443/TCP. I reconfigured sshd daemon, iptables and stucked with Selinux
+policy, when I wanted to assign port 443 to sshd_port_t (so I thought I'd need to remove in the first step actual 
+assignment of port 443 which is http_port_t):&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="o"&gt;[&lt;/span&gt;root@srv ~&lt;span class="o"&gt;]&lt;/span&gt;&lt;span class="c"&gt;# semanage port -d -t http_port_t -p tcp 443                                                                                                          &lt;/span&gt;
+ValueError: Port tcp/443 is defined in policy, cannot be deleted
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h3&gt;SSH on port 443? sshd configuration + iptables&lt;/h3&gt;
+&lt;p&gt;Yup, it happens ;)&lt;/p&gt;
+&lt;p&gt;It's simple reconfiguration done in &lt;strong&gt;/etc/ssh/sshd_config&lt;/strong&gt;:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;Port 22
+Port 443
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;So as you can see I left sshd running also on port 22/tcp. Also reconfigured iptables (Centos 7, no firewalld yet):&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="o"&gt;[&lt;/span&gt;root@srv ~&lt;span class="o"&gt;]&lt;/span&gt;&lt;span class="c"&gt;# grep 443 /etc/sysconfig/iptables&lt;/span&gt;
+-A INPUT -p tcp -m state --state NEW -m tcp --dport &lt;span class="m"&gt;443&lt;/span&gt; -j ACCEPT
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h3&gt;Back to Selinux - how to fix this?&lt;/h3&gt;
+&lt;p&gt;Actually answer lays in documentation:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;man semanage-port
+
+       -m, --modify
+              Modify a record of the specified object &lt;span class="nb"&gt;type&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;So basically instead of removing this httpd_port_t assignment, what is impossible without recompiling the policy I just
+modified it:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="o"&gt;[&lt;/span&gt;root@srv ~&lt;span class="o"&gt;]&lt;/span&gt;&lt;span class="c"&gt;# semanage port -m -t ssh_port_t -p tcp 443&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;And now we have:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="o"&gt;[&lt;/span&gt;root@netrunner ~&lt;span class="o"&gt;]&lt;/span&gt;&lt;span class="c"&gt;# semanage port -l | grep 443                                                                                                                         &lt;/span&gt;
+http_port_t                    tcp      80, 81, 443, 488, 8008, 8009, 8443, 9000
+ssh_port_t                     tcp      443, 444, 22
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Works for me ;)&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Maciej Lasyk</dc:creator><pubDate>Tue, 17 Nov 2015 00:00:00 +0100</pubDate><guid>tag:maciej.lasyk.info,2015-11-17:2015/Nov/17/running-sshd-on-443tcp/</guid><category>selinux</category><category>sshd</category><category>tcp</category><category>security</category></item><item><title>SELinux / sVirt vs Venom vulnerability</title><link>http://maciej.lasyk.info/2015/May/13/selinux-svirt-vs-venom-vulnerability/</link><description>&lt;p&gt;&lt;center&gt;&lt;img alt="libvirt" src="http://maciej.lasyk.info/images/venom.png" /&gt;&lt;/center&gt;&lt;/p&gt;
 &lt;h1&gt;Venom?&lt;/h1&gt;
 &lt;p&gt;Basically it's a vulnerability that may be used to escape hypervisor (Qemu
 based, e.g. KVM. XEN) and obtain root permissions on host machine (and from
