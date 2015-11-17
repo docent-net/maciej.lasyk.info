@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-        <title>Many craft. Wow. Such create - kindle</title>
+        <title>Many craft. Wow. Such create : Isolation</title>
         <meta charset="utf-8" />
         <link rel="stylesheet" href="http://maciej.lasyk.info/theme/css/main.css" type="text/css" />
         <link href="http://maciej.lasyk.info/" type="application/atom+xml" rel="alternate" title="Many craft. Wow. Such create ATOM Feed" />
@@ -26,11 +26,64 @@
 
             <div class="entry">
         
-<h1 class="index_page">Tag: kindle</h1>
-    <ul class="article_list">
-        
-            <li><span class="blurred">05 Feb 2015</span> >> <a href="http://maciej.lasyk.info/2015/Feb/05/sending-evernote-notes-to-kindle/" rel="bookmark" title="<p>How to send Evernote notes to Kindle?</p>">Sending Evernote notes to Kindle - How to send Evernote notes to Kindle?</a></li>
-    </ul>
+<header>
+<h1><a href="http://maciej.lasyk.info" id="site-title">  </a>         <a href="http://maciej.lasyk.info/2014/Oct/22/isolation/" id="page-title">Isolation</a></h1>
+<time datetime="2014-10-22T00:00:00+02:00">Wed 22 October 2014</time></header>
+<article>
+    <h1>Isolation - what?</h1>
+<p>Many of guys I talk to tend to run their Linux containers (LXC, Docker, you
+name it) straight on bare. And I call this a bad idea. This is because when
+running all the containers within one single box you will be hit by network or
+security problems. Not today, but it will happen. Why?</p>
+<h1>Clusterfuck network</h1>
+<p>This term is used to describe a network where noone knows what's happening.
+Frankly it's working but don't-try-to-change-that (unless you're stupid  brave
+/ enough).</p>
+<p><center><img alt="Clusterfuck network" src="http://maciej.lasyk.info/images/clusterfucknetwork.jpg" /></center></p>
+<p>How does it refers to containers? Imagine that above wires are iptables rules.
+Should I write more? What happens when you restart iptables? Did you just
+killed the network in 300 containers running on that box? Oh whatever iptables
+- think docker0 interface + bonding/teaming + multiple bridges + veths + VIPs +
+vlans + whatever-your-sysadmins-come-with</p>
+<p>And now one single junior - sysadmin just reloads iptables as was written in
+the 5th point of never-updated-procedure.</p>
+<p>That's why I really like to have containers grouped on KVM VMs. KVM overhead is
+minimal these years. And it can save your ass. Just make a proper Ha planning
+and even if you kill some group of containers you will not have to firefight
+having 5 managers simultaneously on 3 calls ;)</p>
+<h1>Security</h1>
+<p>Yes I know - this term is usually some big-fucking-unknown for most of guys /
+ignorants. And that is why you should isolate groups of containers from each other. Throw
+the first rock who uses SELinux / enforcing (under these circumstances you
+could possibly cover the security subject in the terms on containers). But even
+if you do then see &gt; <strong>Clusterfuck network</strong> paragraph).</p>
+<p>Btw - I had this talk during Infosec meetup some time ago about Docker
+security - <a href="http://www.slideshare.net/d0cent/docker-rhel">enjoy</a>!</p>
+<h1>What about IaaSes?</h1>
+<p>Yes - if you're running <a href="https://openshift.github.io/">OpenShift</a> (or any other
+Open: Nebula / Stack / Whatever) then probably you will not care about isolation at
+all because this will be done for you without your interference. But -
+seriously? Usually people rather use VMs for hosting nodes of IaaSes.</p>
+<h1>Recap?</h1>
+<p>No. Just wrote this after having a failure with LXC containers on Centos7 and
+no-real-explanation just "have-you-tried-to-turn-it-off-and-on-again?".</p>
+<p><center><img alt="Isolation" src="http://maciej.lasyk.info/images/isolation.jpg" /></center></p>
+    <h2>Comments</h2>
+    <div id="disqus_thread"></div>
+    <script type="text/javascript">
+       var disqus_shortname = 'manycraft';
+       var disqus_identifier = '2014/Oct/22/isolation/';
+       var disqus_url = 'http://maciej.lasyk.info/2014/Oct/22/isolation/';
+       (function() {
+            var dsq = document.createElement('script');
+            dsq.type = 'text/javascript'; dsq.async = true;
+            dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] ||
+             document.getElementsByTagName('body')[0]).appendChild(dsq);
+      })();
+    </script>
+    <noscript>Please enable JavaScript to view the comments.</noscript>
+</article>
             </div>
         </div>
 

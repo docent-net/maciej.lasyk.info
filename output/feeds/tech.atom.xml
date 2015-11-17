@@ -875,7 +875,44 @@ open - space (or similiar) area is sometimes fatiguing.&lt;/p&gt;
 me oppurtunity to do a lot more. Great win for anyone that is interested in
 almost all field of life ;)&lt;/p&gt;
 &lt;p&gt;But.. truly to be winners we have to practice all the time. Loosing focus is
-very easy and kinda natural. So we have to control it. Good luck :)&lt;/p&gt;</summary><category term="procrastination"></category><category term="focus"></category><category term="gtd"></category></entry><entry><title>Invitation for Linux Autumn 2014</title><link href="http://maciej.lasyk.info/2014/Oct/14/invitation-for-linux-autumn-2014/" rel="alternate"></link><updated>2014-10-14T00:00:00+02:00</updated><author><name>Maciej Lasyk</name></author><id>tag:maciej.lasyk.info,2014-10-14:2014/Oct/14/invitation-for-linux-autumn-2014/</id><summary type="html">&lt;p&gt;&lt;center&gt;&lt;img alt="Jesien" src="http://maciej.lasyk.info/images/jesien-logo.png" /&gt;&lt;/center&gt;&lt;/p&gt;
+very easy and kinda natural. So we have to control it. Good luck :)&lt;/p&gt;</summary><category term="procrastination"></category><category term="focus"></category><category term="gtd"></category></entry><entry><title>Isolation</title><link href="http://maciej.lasyk.info/2014/Oct/22/isolation/" rel="alternate"></link><updated>2014-10-22T00:00:00+02:00</updated><author><name>Maciej Lasyk</name></author><id>tag:maciej.lasyk.info,2014-10-22:2014/Oct/22/isolation/</id><summary type="html">&lt;h1&gt;Isolation - what?&lt;/h1&gt;
+&lt;p&gt;Many of guys I talk to tend to run their Linux containers (LXC, Docker, you
+name it) straight on bare. And I call this a bad idea. This is because when
+running all the containers within one single box you will be hit by network or
+security problems. Not today, but it will happen. Why?&lt;/p&gt;
+&lt;h1&gt;Clusterfuck network&lt;/h1&gt;
+&lt;p&gt;This term is used to describe a network where noone knows what's happening.
+Frankly it's working but don't-try-to-change-that (unless you're stupid  brave
+/ enough).&lt;/p&gt;
+&lt;p&gt;&lt;center&gt;&lt;img alt="Clusterfuck network" src="http://maciej.lasyk.info/images/clusterfucknetwork.jpg" /&gt;&lt;/center&gt;&lt;/p&gt;
+&lt;p&gt;How does it refers to containers? Imagine that above wires are iptables rules.
+Should I write more? What happens when you restart iptables? Did you just
+killed the network in 300 containers running on that box? Oh whatever iptables
+- think docker0 interface + bonding/teaming + multiple bridges + veths + VIPs +
+vlans + whatever-your-sysadmins-come-with&lt;/p&gt;
+&lt;p&gt;And now one single junior - sysadmin just reloads iptables as was written in
+the 5th point of never-updated-procedure.&lt;/p&gt;
+&lt;p&gt;That's why I really like to have containers grouped on KVM VMs. KVM overhead is
+minimal these years. And it can save your ass. Just make a proper Ha planning
+and even if you kill some group of containers you will not have to firefight
+having 5 managers simultaneously on 3 calls ;)&lt;/p&gt;
+&lt;h1&gt;Security&lt;/h1&gt;
+&lt;p&gt;Yes I know - this term is usually some big-fucking-unknown for most of guys /
+ignorants. And that is why you should isolate groups of containers from each other. Throw
+the first rock who uses SELinux / enforcing (under these circumstances you
+could possibly cover the security subject in the terms on containers). But even
+if you do then see &amp;gt; &lt;strong&gt;Clusterfuck network&lt;/strong&gt; paragraph).&lt;/p&gt;
+&lt;p&gt;Btw - I had this talk during Infosec meetup some time ago about Docker
+security - &lt;a href="http://www.slideshare.net/d0cent/docker-rhel"&gt;enjoy&lt;/a&gt;!&lt;/p&gt;
+&lt;h1&gt;What about IaaSes?&lt;/h1&gt;
+&lt;p&gt;Yes - if you're running &lt;a href="https://openshift.github.io/"&gt;OpenShift&lt;/a&gt; (or any other
+Open: Nebula / Stack / Whatever) then probably you will not care about isolation at
+all because this will be done for you without your interference. But -
+seriously? Usually people rather use VMs for hosting nodes of IaaSes.&lt;/p&gt;
+&lt;h1&gt;Recap?&lt;/h1&gt;
+&lt;p&gt;No. Just wrote this after having a failure with LXC containers on Centos7 and
+no-real-explanation just "have-you-tried-to-turn-it-off-and-on-again?".&lt;/p&gt;
+&lt;p&gt;&lt;center&gt;&lt;img alt="Isolation" src="http://maciej.lasyk.info/images/isolation.jpg" /&gt;&lt;/center&gt;&lt;/p&gt;</summary><category term="containers"></category><category term="lxc"></category><category term="docker"></category><category term="kvm"></category><category term="virtualization"></category><category term="security"></category></entry><entry><title>Invitation for Linux Autumn 2014</title><link href="http://maciej.lasyk.info/2014/Oct/14/invitation-for-linux-autumn-2014/" rel="alternate"></link><updated>2014-10-14T00:00:00+02:00</updated><author><name>Maciej Lasyk</name></author><id>tag:maciej.lasyk.info,2014-10-14:2014/Oct/14/invitation-for-linux-autumn-2014/</id><summary type="html">&lt;p&gt;&lt;center&gt;&lt;img alt="Jesien" src="http://maciej.lasyk.info/images/jesien-logo.png" /&gt;&lt;/center&gt;&lt;/p&gt;
 &lt;p&gt;My speaker - break is over. Another major conference on the horizon. This time it's one of
 the biggest Linux Conferences here in Poland.&lt;/p&gt;
 &lt;p&gt;I'll talk there about taking next step in automation of Linux containers
