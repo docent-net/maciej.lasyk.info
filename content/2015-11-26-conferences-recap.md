@@ -82,6 +82,12 @@ Also just couldn't resist and not take a photo on the Fedora booth ;)
 On the second day there were workshops / sprint sessions. I took part in webscraping workshop and GIS. Everything I
 worked on during those events is now placed [on my github account](https://github.com/docent-net/pyconcz-2015-hacking)
 
+I personally traveled those 300km mainly to take part in workshops and I must say that i really liked it! I found it
+very helpful and well organized. Also the workshop venue was great - yet another co-working space with hipster factor 
+8/10 (even more than in Berlin in systemd.conf!)
+
+Many thanks to organizers - keep it this way guys!
+
 ## Devopsdays Warsaw 2015 ##
 
 <center>![Devopsdays]({filename}/images/devopsdays-warsaw-logo.png)</center>
@@ -122,4 +128,3 @@ My favorite ones:
 - **Continuous Delivery - success stories** - self explaining ;)
 - **Hard vs Soft skills** - oh seriously we discussed everything that was not technical-related
 - **Moving to systemd** - we tried to answer questions about systemd
-
