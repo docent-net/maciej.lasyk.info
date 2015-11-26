@@ -27,7 +27,7 @@ opportunity to actually see the those interesting parts of cities.
 This was the first edition of **systemd** conference. It took place in Berlin, place where 
 [Lennart Poettering](https://en.wikipedia.org/wiki/Lennart_Poettering) lies in his cave ;)
 
-I really looked forward this event, so many props for [Marcin Skarbek](https://en.wikipedia.org/wiki/Lennart_Poettering)
+I really looked forward this event, so many thanks to [Marcin Skarbek](https://en.wikipedia.org/wiki/Lennart_Poettering)
 for the idea of travelling to Berlin.
 
 What I liked about the event?
