@@ -1,5 +1,97 @@
 <?xml version="1.0" encoding="utf-8"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Many craft. Wow. Such create</title><link>http://maciej.lasyk.info/</link><description></description><atom:link href="http://maciej.lasyk.info/feeds/rss.xml" rel="self"></atom:link><lastBuildDate>Tue, 17 Nov 2015 00:00:00 +0100</lastBuildDate><item><title>Running sshd on 443/tcp</title><link>http://maciej.lasyk.info/2015/Nov/17/running-sshd-on-443tcp/</link><description>&lt;p&gt;&lt;center&gt;&lt;img alt="Selinux" src="http://maciej.lasyk.info/images/selinux-logo.png" /&gt;&lt;/center&gt;&lt;/p&gt;
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Many craft. Wow. Such create</title><link>http://maciej.lasyk.info/</link><description></description><atom:link href="http://maciej.lasyk.info/feeds/rss.xml" rel="self"></atom:link><lastBuildDate>Thu, 26 Nov 2015 00:00:00 +0100</lastBuildDate><item><title>Autumn conferences recap</title><link>http://maciej.lasyk.info/2015/Nov/26/autumn-conferences-recap/</link><description>&lt;p&gt;I do like taking part in conferences. I still think, that conferences are one of the most important places where people
+get motivated (e.g. by meeting influencers, talking to other engineers, listening to completely new ideas or having
+opportunity to ask).&lt;/p&gt;
+&lt;p&gt;Also I'm certain that thanks to conferences we improve ourselves. We improve our communication &amp;amp; soft skills, we learn
+to ask proper questions or polish our engineering skills during deep technical discussions. And also we actually have
+the opportunity to show others our achievements during ignite talks.&lt;/p&gt;
+&lt;p&gt;Also I really do love travelling to new places. My private motivation behind this is always the same - to have even a 
+while for a short run in a new place; just like this:&lt;/p&gt;
+&lt;p&gt;&lt;center&gt;&lt;img alt="Lazienki" src="http://maciej.lasyk.info/images/lazienki.jpg" /&gt;&lt;/center&gt;&lt;/p&gt;
+&lt;p&gt;Last but not least. Always try to commute using some public bicycle rentals. Thanks to that we have this unique 
+opportunity to actually see the those interesting parts of cities.&lt;/p&gt;
+&lt;h2&gt;systemd.event&lt;/h2&gt;
+&lt;p&gt;&lt;center&gt;&lt;img alt="systemd" src="http://maciej.lasyk.info/images/systemd-event-2015-lennart.jpg" /&gt;&lt;/center&gt;&lt;/p&gt;
+&lt;p&gt;This was the first edition of &lt;strong&gt;systemd&lt;/strong&gt; conference. It took place in Berlin, place where 
+&lt;a href="https://en.wikipedia.org/wiki/Lennart_Poettering"&gt;Lennart Poettering&lt;/a&gt; lies in his cave ;)&lt;/p&gt;
+&lt;p&gt;I really looked forward this event, so many props for &lt;a href="https://en.wikipedia.org/wiki/Lennart_Poettering"&gt;Marcin Skarbek&lt;/a&gt;
+for the idea of travelling to Berlin.&lt;/p&gt;
+&lt;p&gt;What I liked about the event?&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;agenda&lt;/strong&gt; - basically most of presentations were deeply, technical about systemd; bullshit factor: 1/10 - that's a 
+great score!&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;hackfest&lt;/strong&gt; - during 3rd day we took part in a hackfest. we wrote down some ideas and worked on those. My idea was
+not that strictly connected to systemd; I just wanted to run some service (GoCD) on different containerization engines
+so I'd be able to compare those and make my own opinion. I've put everything I did there on 
+&lt;a href="https://github.com/docent-net/systemd-conference-2015-hacking"&gt;github&lt;/a&gt; - not that much as I was struggling with
+some Docker/FS issue for a majority of time (generally speaking &lt;strong&gt;docker-storage-setup&lt;/strong&gt; is an abomination)&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;venue&lt;/strong&gt; - conference was placed in a co-working place with 7/10 hipster factor ;) The room was not that huge - but
+there were no problems with crowd or whatever - there was plenty of space&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;city&lt;/strong&gt; - I've been to Berlin for the first time and I must say - I liked it! 
+&lt;a href="https://plus.google.com/+MaciejLasykDocent/posts/LsgcAWfeR4H"&gt;I've put some photos in G+&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;Which talks I liked the most?&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://www.youtube.com/watch?v=9Sq6FgOW6p8"&gt;Fedora Chicanery: How to use systemd nonsense hacks to solve real problems&lt;/a&gt; 
+by &lt;a href="https://twitter.com/sgallagh_redhat"&gt;Stephen Gallagher&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.youtube.com/watch?v=eqr_rtlNY_Y"&gt;journald and the new options for remote logging&lt;/a&gt; by 
+Zbigniew Jędrzejewski-Szmek&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.youtube.com/watch?v=zVy1lQqJJj8"&gt;Making Docker and systemd play nice together&lt;/a&gt; by &lt;a href="https://twitter.com/rhatdan"&gt;Dan Walsh&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.youtube.com/watch?v=wVk-NWtiIZY"&gt;Challenges Deploying Over 5,000 Containers per Host&lt;/a&gt; by 
+&lt;a href="https://twitter.com/DavidStrauss"&gt;David Strauss&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.youtube.com/watch?v=7CWmuhkgZWs"&gt;systemd and Control Groups&lt;/a&gt; by Lennart Poettering&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;The official webpage of conference is here: &lt;a href="https://systemd.events/"&gt;https://systemd.events/&lt;/a&gt;. You can also watch
+all the &lt;a href="https://www.youtube.com/channel/UCvq_RgZp3kljp9X8Io9Z1DA"&gt;videos here on youtube channel&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Of course remember to &lt;a href="https://wiki.freedesktop.org/www/Software/systemd/"&gt;check the official systemd page&lt;/a&gt;&lt;/p&gt;
+&lt;h2&gt;pycon.cz&lt;/h2&gt;
+&lt;p&gt;&lt;center&gt;&lt;img alt="pycon" src="http://maciej.lasyk.info/images/pycon-cz-logo.png" /&gt;&lt;/center&gt;&lt;/p&gt;
+&lt;p&gt;Actually this was first conference where I saw serving vodka with Redbulls (starting from.. 11a.m.?). Incredible :D&lt;/p&gt;
+&lt;p&gt;About the conference - this was my first Python conference, and just like with the systemd.event I really liked the idea
+of one day of talks and second day of workshops and sprints.&lt;/p&gt;
+&lt;p&gt;Also just couldn't resist and not take a photo on the Fedora booth ;)&lt;/p&gt;
+&lt;p&gt;&lt;center&gt;&lt;img alt="fedorabooth" src="http://maciej.lasyk.info/images/pycon-cz-fedora.jpg" /&gt;&lt;/center&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;About presentations I liked:&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://speakerdeck.com/hawkowl/the-future-of-twisted-and-pretty-much-everything-else-pycon-cz-keynote-2015"&gt;The future of Twisted&lt;/a&gt;
+ by &lt;a href="https://twitter.com/hawkieowl"&gt;Amber Brown&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;So you have an Python app and now what?&lt;/strong&gt; by &lt;a href="https://twitter.com/verosk"&gt;Věroš Kaplan&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;On the second day there were workshops / sprint sessions. I took part in webscraping workshop and GIS. Everything I
+worked on during those events is now placed &lt;a href="https://github.com/docent-net/pyconcz-2015-hacking"&gt;on my github account&lt;/a&gt;&lt;/p&gt;
+&lt;h2&gt;Devopsdays Warsaw 2015&lt;/h2&gt;
+&lt;p&gt;&lt;center&gt;&lt;img alt="Devopsdays" src="http://maciej.lasyk.info/images/devopsdays-warsaw-logo.png" /&gt;&lt;/center&gt;&lt;/p&gt;
+&lt;p&gt;This year was a second edition of &lt;strong&gt;Devopsdays&lt;/strong&gt; here in Poland. We hosted many great 
+&lt;a href="http://2015.devopsdays.pl/agenda/speakers/"&gt;presenters&lt;/a&gt; and audience.&lt;/p&gt;
+&lt;p&gt;This time I was asked to be part of the Program Committee (thanks for that guys!), so I had this unique opportunity
+to actually have an impact on the agenda of this event. We all did our best to make sure that this would be an awesome
+conference :)&lt;/p&gt;
+&lt;p&gt;Actually there were many good ideas (Ignite Talks and Open Spaces were the most interesting imo).&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Which presentation I liked the most?&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="http://2015.devopsdays.pl/agenda/talk/the-dark-art-of-container-monitoring/"&gt;The dark art of container monitoring&lt;/a&gt; by
+&lt;a href="https://twitter.com/luca3m"&gt;Luca Marturana&lt;/a&gt;. It's about tool that should be already well known by systems engineers - it
+ is called &lt;a href="https://sysdig.com/"&gt;Sysdig&lt;/a&gt; and it rocks in terms of OS excavations. &lt;/li&gt;
+&lt;li&gt;&lt;a href="http://2015.devopsdays.pl/agenda/talk/hidden-cost-microservices-architecture/"&gt;The hidden cost of the microservices architecture&lt;/a&gt;
+by &lt;a href="https://twitter.com/miroslawnagas"&gt;Mirosław Nagaś&lt;/a&gt;. Mirek told a story of impelmenting Microservices in &lt;a href="https://lab.getbase.com/"&gt;Base&lt;/a&gt;
+company. This was a classical case-study, which are so needed on conferences. I really appreciate when people share
+their experiences - many props for that Mirek!&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://2015.devopsdays.pl/agenda/talk/jaac-jenkins-as-a-code/"&gt;Jenkins as a Code&lt;/a&gt; by 
+&lt;a href="https://twitter.com/wybczu"&gt;Łukasz Szczęsny&lt;/a&gt;. Łukasz showed us, how to approach Jenkins in an automated way forgetting
+non-fancy UI, hell of configuration-clickin' and maintaining dependencies between jobs. And he actually used Ansible - 
+so many props ;)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;Ignite talks&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;center&gt;&lt;img alt="Devopsdays Openspaces" src="http://maciej.lasyk.info/images/devopsdays-openspaces.jpg" /&gt;&lt;/center&gt;&lt;/p&gt;
+&lt;p&gt;This was a great and simple idea: people write down subjects to discuss, then all of us vote for the most interesting
+topics and finally we start discussions.&lt;/p&gt;
+&lt;p&gt;My favorite ones:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;life and work balance&lt;/strong&gt; - it was about understanding how we get the idea of work-life balance and where're limits&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Continuous Delivery - success stories&lt;/strong&gt; - self explaining ;)&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Hard vs Soft skills&lt;/strong&gt; - oh seriously we discussed everything that was not technical-related&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Moving to systemd&lt;/strong&gt; - we tried to answer questions about systemd&lt;/li&gt;
+&lt;/ul&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Maciej Lasyk</dc:creator><pubDate>Thu, 26 Nov 2015 00:00:00 +0100</pubDate><guid>tag:maciej.lasyk.info,2015-11-26:2015/Nov/26/autumn-conferences-recap/</guid><category>conference</category><category>devops</category><category>devopsdays</category><category>pycon</category><category>systemd</category></item><item><title>Running sshd on 443/tcp</title><link>http://maciej.lasyk.info/2015/Nov/17/running-sshd-on-443tcp/</link><description>&lt;p&gt;&lt;center&gt;&lt;img alt="Selinux" src="http://maciej.lasyk.info/images/selinux-logo.png" /&gt;&lt;/center&gt;&lt;/p&gt;
 &lt;h3&gt;What?&lt;/h3&gt;
 &lt;p&gt;So I had this need to run &lt;strong&gt;ssh&lt;/strong&gt; daemon on port 443/TCP. I reconfigured sshd daemon, iptables and stucked with Selinux
 policy, when I wanted to assign port 443 to sshd_port_t (so I thought I'd need to remove in the first step actual 
