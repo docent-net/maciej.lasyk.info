@@ -1,5 +1,52 @@
 <?xml version="1.0" encoding="utf-8"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Many craft. Wow. Such create</title><link>http://maciej.lasyk.info/</link><description></description><atom:link href="http://maciej.lasyk.info/feeds/maciej-lasyk.rss.xml" rel="self"></atom:link><lastBuildDate>Fri, 27 Nov 2015 00:00:00 +0100</lastBuildDate><item><title>Containers do not contain</title><link>http://maciej.lasyk.info/2015/Nov/27/containers-do-not-contain/</link><description>&lt;p&gt;&lt;center&gt;&lt;img alt="Devopsdays" src="http://maciej.lasyk.info/images/devopsdays-logo.png" /&gt;&lt;/center&gt;&lt;/p&gt;
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Many craft. Wow. Such create</title><link>http://maciej.lasyk.info/</link><description></description><atom:link href="http://maciej.lasyk.info/feeds/maciej-lasyk.rss.xml" rel="self"></atom:link><lastBuildDate>Mon, 21 Dec 2015 00:00:00 +0100</lastBuildDate><item><title>Fixing text highlighting in tmux/man/less</title><link>http://maciej.lasyk.info/2015/Dec/21/fixing-text-highlighting-in-tmuxmanless/</link><description>&lt;p&gt;&lt;center&gt;&lt;img alt="tmux" src="http://maciej.lasyk.info/images/tmux.png" /&gt;&lt;/center&gt;&lt;/p&gt;
+&lt;p&gt;So today I spotted an in issue while using search function when reading man
+pages. Basically &lt;strong&gt;I didn't have results highlighted&lt;/strong&gt;, but search worked
+(position of screen scrolled to somewhere near first spotted result).&lt;/p&gt;
+&lt;p&gt;Firstly tried to blame &lt;a href="https://en.wikipedia.org/wiki/Terminator_%28terminal_emulator%29"&gt;Terminator&lt;/a&gt;
+but I had same issue in &lt;a href="https://en.wikipedia.org/wiki/Guake"&gt;Guake&lt;/a&gt; session. Finally I found that
+the common denominator here was tmux. Outside of tmux there was no such problems.&lt;/p&gt;
+&lt;h3&gt;Solution?&lt;/h3&gt;
+&lt;p&gt;So I dug the internets and &lt;a href="http://tmux.svn.sourceforge.net/viewvc/tmux/trunk/FAQ"&gt;found a solution&lt;/a&gt;:&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;vim displays reverse video instead of italics, while less displays italics
+  (or just regular text) instead of reverse. What's wrong?&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;Screen's terminfo description lacks italics mode and has standout mode in its
+place, but using the same escape sequence that urxvt uses for italics. This
+means applications (like vim) looking for italics will not find it and might
+turn to reverse in its place, while applications (like less) asking for
+standout will end up with italics instead of reverse. To make applications
+aware that tmux supports italics and to use a proper escape sequence for
+standout, you'll need to create a new terminfo file with modified sgr, smso,
+rmso, sitm and ritm entries:&lt;/em&gt;&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;mkdir &lt;span class="nv"&gt;$HOME&lt;/span&gt;/.terminfo/
+&lt;span class="nv"&gt;$ screen_terminfo&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;screen&amp;quot;&lt;/span&gt;
+&lt;span class="nv"&gt;$ &lt;/span&gt;infocmp &lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="nv"&gt;$screen_terminfo&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt; &lt;span class="p"&gt;|&lt;/span&gt; sed &lt;span class="se"&gt;\&lt;/span&gt;
+  -e &lt;span class="s1"&gt;&amp;#39;s/^screen[^|]*|[^,]*,/screen-it|screen with italics support,/&amp;#39;&lt;/span&gt; &lt;span class="se"&gt;\&lt;/span&gt;
+  -e &lt;span class="s1"&gt;&amp;#39;s/%?%p1%t;3%/%?%p1%t;7%/&amp;#39;&lt;/span&gt; &lt;span class="se"&gt;\&lt;/span&gt;
+  -e &lt;span class="s1"&gt;&amp;#39;s/smso=[^,]*,/smso=\\E[7m,/&amp;#39;&lt;/span&gt; &lt;span class="se"&gt;\&lt;/span&gt;
+  -e &lt;span class="s1"&gt;&amp;#39;s/rmso=[^,]*,/rmso=\\E[27m,/&amp;#39;&lt;/span&gt; &lt;span class="se"&gt;\&lt;/span&gt;
+  -e &lt;span class="s1"&gt;&amp;#39;$s/$/ sitm=\\E[3m, ritm=\\E[23m,/&amp;#39;&lt;/span&gt; &amp;gt; /tmp/screen.terminfo
+&lt;span class="nv"&gt;$ &lt;/span&gt;tic /tmp/screen.terminfo
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;&lt;em&gt;And tell tmux to use it in ~/.tmux.conf:&lt;/em&gt;&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;set -g default-terminal &amp;quot;screen-it&amp;quot;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;&lt;em&gt;If your terminal supports 256 colors, use:&lt;/em&gt;&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ screen_terminfo&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;screen-256color&amp;quot;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;&lt;em&gt;instead of "screen".&lt;/em&gt;&lt;/p&gt;
+&lt;h3&gt;Ansible playbook for this&lt;/h3&gt;
+&lt;p&gt;So I created &lt;a href="https://github.com/docent-net/fedora-desktop-ansible/commit/d314aedd61e6973df3de16bd557de7e3f3aecb3d"&gt;Ansible implementation&lt;/a&gt;
+and put in inside of &lt;a href="https://github.com/docent-net/fedora-desktop-ansible"&gt;fedora-desktop-ansible&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;You can test it with:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;ansible-playbook master.yml --tags tmux
+&lt;/pre&gt;&lt;/div&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Maciej Lasyk</dc:creator><pubDate>Mon, 21 Dec 2015 00:00:00 +0100</pubDate><guid>tag:maciej.lasyk.info,2015-12-21:2015/Dec/21/fixing-text-highlighting-in-tmuxmanless/</guid><category>tmux</category><category>screen</category><category>man</category></item><item><title>Containers do not contain</title><link>http://maciej.lasyk.info/2015/Nov/27/containers-do-not-contain/</link><description>&lt;p&gt;&lt;center&gt;&lt;img alt="Devopsdays" src="http://maciej.lasyk.info/images/devopsdays-logo.png" /&gt;&lt;/center&gt;&lt;/p&gt;
 &lt;p&gt;The title of this presentation is borrowed from &lt;a href="https://www.youtube.com/watch?v=zWGFqMuEHdw"&gt;Dan's Walsh&lt;/a&gt; 
 presentations about security of Linux containers.&lt;/p&gt;
 &lt;p&gt;I worked on this presentation only for about 45 minutes. It was an emergency one - one of the speakers couldn't make it
