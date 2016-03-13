@@ -1,5 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Many craft. Wow. Such create</title><link href="http://maciej.lasyk.info/" rel="alternate"></link><link href="http://maciej.lasyk.info/feeds/maciej-lasyk.atom.xml" rel="self"></link><id>http://maciej.lasyk.info/</id><updated>2015-12-21T00:00:00+01:00</updated><entry><title>Fixing text highlighting in tmux/man/less</title><link href="http://maciej.lasyk.info/2015/Dec/21/fixing-text-highlighting-in-tmuxmanless/" rel="alternate"></link><updated>2015-12-21T00:00:00+01:00</updated><author><name>Maciej Lasyk</name></author><id>tag:maciej.lasyk.info,2015-12-21:2015/Dec/21/fixing-text-highlighting-in-tmuxmanless/</id><summary type="html">&lt;p&gt;&lt;center&gt;&lt;img alt="tmux" src="http://maciej.lasyk.info/images/tmux.png" /&gt;&lt;/center&gt;&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Many craft. Wow. Such create</title><link href="http://maciej.lasyk.info/" rel="alternate"></link><link href="http://maciej.lasyk.info/feeds/maciej-lasyk.atom.xml" rel="self"></link><id>http://maciej.lasyk.info/</id><updated>2016-03-13T00:00:00+01:00</updated><entry><title>Nixnote (Evernote client) on Fedora</title><link href="http://maciej.lasyk.info/2016/Mar/13/nixnote-evernote-client-on-fedora/" rel="alternate"></link><updated>2016-03-13T00:00:00+01:00</updated><author><name>Maciej Lasyk</name></author><id>tag:maciej.lasyk.info,2016-03-13:2016/Mar/13/nixnote-evernote-client-on-fedora/</id><summary type="html">&lt;p&gt;&lt;center&gt;&lt;img alt="Evernote" src="http://maciej.lasyk.info/images/evernote_logo.png" /&gt;&lt;/center&gt;&lt;/p&gt;
+&lt;p&gt;I've been using &lt;a href="http://www.evernote.com"&gt;Evernote&lt;/a&gt; for years now (Grzegorz, still 
+remember, thanks!). What I've been missing since 1st day was a decent, Linux native
+client. That's why I've been using webapp (which is a really nice piece of work, but
+sometimes performs terribly).&lt;/p&gt;
+&lt;p&gt;There's always been this &lt;a href="http://nevernote.sourceforge.net/"&gt;Nevernote&lt;/a&gt; app, which was
+a desktop open-source client for Evernote, later called &lt;strong&gt;Nixnote&lt;/strong&gt; and project webpage
+was moved &lt;a href="https://sourceforge.net/projects/nevernote/?source=navbar"&gt;here&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Back then version 1.x was developed in Java and it's performance was even more 
+terrible than native Evernote webapp. But since couple of months we've got a solution
+- guys created 2.x version which is based on QT and performs really good. It's still in
+beta however but "so far so good" :)&lt;/p&gt;
+&lt;p&gt;As usual I created ansible-role for this Nixnote - it's very simple - you can check it
+in my &lt;a href="https://github.com/docent-net/fedora-desktop-ansible"&gt;fedora-desktop-ansible&lt;/a&gt; project
+on github.&lt;/p&gt;</summary><category term="evernote"></category><category term="nixnote"></category></entry><entry><title>Fixing text highlighting in tmux/man/less</title><link href="http://maciej.lasyk.info/2015/Dec/21/fixing-text-highlighting-in-tmuxmanless/" rel="alternate"></link><updated>2015-12-21T00:00:00+01:00</updated><author><name>Maciej Lasyk</name></author><id>tag:maciej.lasyk.info,2015-12-21:2015/Dec/21/fixing-text-highlighting-in-tmuxmanless/</id><summary type="html">&lt;p&gt;&lt;center&gt;&lt;img alt="tmux" src="http://maciej.lasyk.info/images/tmux.png" /&gt;&lt;/center&gt;&lt;/p&gt;
 &lt;p&gt;So today I spotted an in issue while using search function when reading man
 pages. Basically &lt;strong&gt;I didn't have results highlighted&lt;/strong&gt;, but search worked
 (position of screen scrolled to somewhere near first spotted result).&lt;/p&gt;
