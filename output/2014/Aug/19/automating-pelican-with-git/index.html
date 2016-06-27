@@ -33,7 +33,7 @@
     <p><center><img alt="Pelican Automation with Git" src="http://maciej.lasyk.info/images/pelican-automation.png" /></center></p>
 <p>This is a first blogpost of a whole series about working with
 <a href="http://docs.getpelican.com/">Pelican</a>. I'll be publishing all future post with
-the hashtag <a href="tag/pelican.html">#pelican</a>.</p>
+the hashtag <a href="http://maciej.lasyk.info/tag/pelican.html">#pelican</a>.</p>
 <h3>What kind of automation?</h3>
 <p>My first step with migrating my <a href="http://maciek.lasyk.info/sysop">old blog</a> to
 this <strong>Pelican - based</strong> was to automate the whole process of deploying new
@@ -43,7 +43,7 @@ to the git repository. And let the rest magically happen in the background.</p>
 <p>Basically I write posts on my laptop, then I push changes to the remote bare
 git repo, this repo has <strong>post-update</strong> hook which communicates with my
 webserver and tells him to pull all the changes:</p>
-<div class="highlight"><pre>laptop with markdowns ----<span class="o">(</span>git push<span class="o">)</span>----&gt; remote git bare repo 
+<div class="highlight"><pre><span></span>laptop with markdowns ----<span class="o">(</span>git push<span class="o">)</span>----&gt; remote git bare repo 
 ----<span class="o">(</span>post-update hook----&gt; webserver
 </pre></div>
 
@@ -55,16 +55,16 @@ changes and use this repo also for backup purposes. Of course you'll want to
 play with <strong>.gitignore</strong> file and ommit couple of dirs and files :)</p>
 <p>On the server with git bare repo I've created <strong>hooks/post-update</strong> file
 (perms 0700) with following contents:</p>
-<div class="highlight"><pre><span class="c">#!/bin/sh</span>
+<div class="highlight"><pre><span></span><span class="ch">#!/bin/sh</span>
 
-<span class="c"># just invoke the update script on the webserver:</span>
+<span class="c1"># just invoke the update script on the webserver:</span>
 ssh home-docker <span class="s1">&#39;/home/docent/scripts/update_maciej.lasyk.info.sh&#39;</span>
 </pre></div>
 
 
 <p>As you can see I'm using here <strong>ssh home-docker</strong> command. This is an alias
 that exists in my <strong>~/.ssh/config</strong>:</p>
-<div class="highlight"><pre>Host home-docker
+<div class="highlight"><pre><span></span>Host home-docker
 Hostname vm-9-containers.netrunner.lasyk.info
 User docent
 Port 22
@@ -77,7 +77,7 @@ IdentityFile ~/.ssh/id_rsa
 server (no direct SSH allowed to containers VM from outside or DMZ).</p>
 <p>So now anytime I post something and commit it to the repo above script will be
 invoked via SSH. And this calls another script - this time on webserver:</p>
-<div class="highlight"><pre><span class="c">#!/bin/bash</span>
+<div class="highlight"><pre><span></span><span class="ch">#!/bin/bash</span>
 <span class="nv">GIT</span><span class="o">=</span>/usr/bin/git
 
 <span class="nb">cd</span> /srv/docker_mounts/nginx/public_html/maciej.lasyk.info/
@@ -123,26 +123,6 @@ static files :)</p>
         <div id="tagcloud">
         <nav>
             <ul class="tagcloud">
-                    <li class="tag-4"><a href="http://maciej.lasyk.info/tag/books.html">books</a></li>
-                    <li class="tag-4"><a href="http://maciej.lasyk.info/tag/piwik.html">piwik</a></li>
-                    <li class="tag-3"><a href="http://maciej.lasyk.info/tag/fedora.html">fedora</a></li>
-                    <li class="tag-3"><a href="http://maciej.lasyk.info/tag/kvm.html">kvm</a></li>
-                    <li class="tag-4"><a href="http://maciej.lasyk.info/tag/containers.html">containers</a></li>
-                    <li class="tag-4"><a href="http://maciej.lasyk.info/tag/netboot.html">netboot</a></li>
-                    <li class="tag-4"><a href="http://maciej.lasyk.info/tag/rhel.html">rhel</a></li>
-                    <li class="tag-3"><a href="http://maciej.lasyk.info/tag/ebooks.html">ebooks</a></li>
-                    <li class="tag-1"><a href="http://maciej.lasyk.info/tag/docker.html">docker</a></li>
-                    <li class="tag-4"><a href="http://maciej.lasyk.info/tag/network.html">network</a></li>
-                    <li class="tag-3"><a href="http://maciej.lasyk.info/tag/talks.html">talks</a></li>
-                    <li class="tag-3"><a href="http://maciej.lasyk.info/tag/pelican.html">pelican</a></li>
-                    <li class="tag-1"><a href="http://maciej.lasyk.info/tag/centos.html">centos</a></li>
-                    <li class="tag-3"><a href="http://maciej.lasyk.info/tag/tmux.html">tmux</a></li>
-                    <li class="tag-3"><a href="http://maciej.lasyk.info/tag/selinux.html">selinux</a></li>
-                    <li class="tag-4"><a href="http://maciej.lasyk.info/tag/dns.html">dns</a></li>
-                    <li class="tag-4"><a href="http://maciej.lasyk.info/tag/devops.html">devops</a></li>
-                    <li class="tag-1"><a href="http://maciej.lasyk.info/tag/security.html">security</a></li>
-                    <li class="tag-1"><a href="http://maciej.lasyk.info/tag/conferences.html">conferences</a></li>
-                    <li class="tag-4"><a href="http://maciej.lasyk.info/tag/evernote.html">evernote</a></li>
             </ul>
         </nav>
         </div>

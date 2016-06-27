@@ -35,7 +35,7 @@
 <p>Today I was installing
 <a href="http://libguestfs.org/virt-sysprep.1.html">virt-sysprep</a> tool on one of KVM
 hosts. When this was done I couldn't list VMs anymore using <strong>virsh</strong>:</p>
-<div class="highlight"><pre><span class="o">[</span>root@host1 ~<span class="o">]</span><span class="c"># virsh list --all</span>
+<div class="highlight"><pre><span></span><span class="o">[</span>root@host1 ~<span class="o">]</span><span class="c1"># virsh list --all</span>
 <span class="o">[</span>454/564<span class="o">]</span>
  Id    Name                           State
  ----------------------------------------------------
@@ -44,7 +44,7 @@ hosts. When this was done I couldn't list VMs anymore using <strong>virsh</stron
 Hmm that<span class="err">&#39;</span>s not normal obsiously. Checked the **libvirtd** status:
 
 <span class="sb">```</span>bash
-<span class="o">[</span>root@host1 ~<span class="o">]</span><span class="c"># service libvirtd status</span>
+<span class="o">[</span>root@host1 ~<span class="o">]</span><span class="c1"># service libvirtd status</span>
 Redirecting to /bin/systemctl status  libvirtd.service
 libvirtd.service - Virtualization daemon
    Loaded: loaded <span class="o">(</span>/usr/lib/systemd/system/libvirtd.service<span class="p">;</span> enabled<span class="o">)</span>
@@ -61,7 +61,7 @@ Apr <span class="m">06</span> 17:01:42 host1.devops.ent libvirtd<span class="o">
 /usr/lib64/libvirt/connection-driver/libvirt_driver_storage.so 
 /usr/lib64/libvirt/connection-driver/libvirt_driver_storage.so: symbol 
 dm_task_get_info_with_deferred_remove, version Base not defined in file 
-libdevmapper.so.1.02 with link <span class="nb">time </span>reference
+libdevmapper.so.1.02 with link <span class="nb">time</span> reference
 Apr <span class="m">06</span> 17:01:42 host1.devops.ent libvirtd<span class="o">[</span>6254<span class="o">]</span>: failed to load module 
 /usr/lib64/libvirt/connection-driver/libvirt_driver_qemu.so 
 /usr/lib64/libvirt/connection-driver/libvirt_driver_qemu.so: undefined 
@@ -71,7 +71,7 @@ symbol: virStorageFileCreate
 
 
 <p>I confirmed that installing <strong>virt-sysprep</strong> caused also upgrading libvirtd related packages:</p>
-<div class="highlight"><pre> Updated     libvirt-1.1.1-29.el7_0.7.x86_64                         @updates
+<div class="highlight"><pre><span></span> Updated     libvirt-1.1.1-29.el7_0.7.x86_64                         @updates
     Update              1.2.8-16.el7_1.2.x86_64                         @updates
     Updated     libvirt-client-1.1.1-29.el7_0.7.x86_64                  @updates
     Update                     1.2.8-16.el7_1.2.x86_64                  @updates
@@ -102,8 +102,8 @@ symbol: virStorageFileCreate
 
 
 <p>So once more I read the problematic log entry:</p>
-<div class="highlight"><pre>failed to load module /usr/lib64/libvirt/connection-driver/libvirt_driver_storage.so /usr/lib64/libvirt/connection-driver/libvirt_driver_storage.so: symbol dm_task_get_info_wit
-h_deferred_remove, version Base not defined in file libdevmapper.so.1.02 with link <span class="nb">time </span>reference
+<div class="highlight"><pre><span></span>failed to load module /usr/lib64/libvirt/connection-driver/libvirt_driver_storage.so /usr/lib64/libvirt/connection-driver/libvirt_driver_storage.so: symbol dm_task_get_info_wit
+h_deferred_remove, version Base not defined in file libdevmapper.so.1.02 with link <span class="nb">time</span> reference
 </pre></div>
 
 
@@ -146,26 +146,6 @@ all I wanted was <strong>virt-sysprep</strong> installed - not update'ing all pa
         <div id="tagcloud">
         <nav>
             <ul class="tagcloud">
-                    <li class="tag-4"><a href="http://maciej.lasyk.info/tag/books.html">books</a></li>
-                    <li class="tag-4"><a href="http://maciej.lasyk.info/tag/piwik.html">piwik</a></li>
-                    <li class="tag-3"><a href="http://maciej.lasyk.info/tag/fedora.html">fedora</a></li>
-                    <li class="tag-3"><a href="http://maciej.lasyk.info/tag/kvm.html">kvm</a></li>
-                    <li class="tag-4"><a href="http://maciej.lasyk.info/tag/containers.html">containers</a></li>
-                    <li class="tag-4"><a href="http://maciej.lasyk.info/tag/netboot.html">netboot</a></li>
-                    <li class="tag-4"><a href="http://maciej.lasyk.info/tag/rhel.html">rhel</a></li>
-                    <li class="tag-3"><a href="http://maciej.lasyk.info/tag/ebooks.html">ebooks</a></li>
-                    <li class="tag-1"><a href="http://maciej.lasyk.info/tag/docker.html">docker</a></li>
-                    <li class="tag-4"><a href="http://maciej.lasyk.info/tag/network.html">network</a></li>
-                    <li class="tag-3"><a href="http://maciej.lasyk.info/tag/talks.html">talks</a></li>
-                    <li class="tag-3"><a href="http://maciej.lasyk.info/tag/pelican.html">pelican</a></li>
-                    <li class="tag-1"><a href="http://maciej.lasyk.info/tag/centos.html">centos</a></li>
-                    <li class="tag-3"><a href="http://maciej.lasyk.info/tag/tmux.html">tmux</a></li>
-                    <li class="tag-3"><a href="http://maciej.lasyk.info/tag/selinux.html">selinux</a></li>
-                    <li class="tag-4"><a href="http://maciej.lasyk.info/tag/dns.html">dns</a></li>
-                    <li class="tag-4"><a href="http://maciej.lasyk.info/tag/devops.html">devops</a></li>
-                    <li class="tag-1"><a href="http://maciej.lasyk.info/tag/security.html">security</a></li>
-                    <li class="tag-1"><a href="http://maciej.lasyk.info/tag/conferences.html">conferences</a></li>
-                    <li class="tag-4"><a href="http://maciej.lasyk.info/tag/evernote.html">evernote</a></li>
             </ul>
         </nav>
         </div>

@@ -1,5 +1,124 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Many craft. Wow. Such create</title><link href="http://maciej.lasyk.info/" rel="alternate"></link><link href="http://maciej.lasyk.info/feeds/all.atom.xml" rel="self"></link><id>http://maciej.lasyk.info/</id><updated>2016-03-13T00:00:00+01:00</updated><entry><title>Nixnote (Evernote client) on Fedora</title><link href="http://maciej.lasyk.info/2016/Mar/13/nixnote-evernote-client-on-fedora/" rel="alternate"></link><updated>2016-03-13T00:00:00+01:00</updated><author><name>Maciej Lasyk</name></author><id>tag:maciej.lasyk.info,2016-03-13:2016/Mar/13/nixnote-evernote-client-on-fedora/</id><summary type="html">&lt;p&gt;&lt;center&gt;&lt;img alt="Evernote" src="http://maciej.lasyk.info/images/evernote_logo.png" /&gt;&lt;/center&gt;&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Many craft. Wow. Such create</title><link href="http://maciej.lasyk.info/" rel="alternate"></link><link href="http://maciej.lasyk.info/feeds/all.atom.xml" rel="self"></link><id>http://maciej.lasyk.info/</id><updated>2016-06-27T00:00:00+02:00</updated><entry><title>Working with virtualenv and Ansible</title><link href="http://maciej.lasyk.info/2016/Jun/27/working-with-virtualenv-and-ansible/" rel="alternate"></link><published>2016-06-27T00:00:00+02:00</published><author><name>Maciej Lasyk</name></author><id>tag:maciej.lasyk.info,2016-06-27:2016/Jun/27/working-with-virtualenv-and-ansible/</id><summary type="html">&lt;p&gt;&lt;center&gt;&lt;img alt="Evernote" src="http://maciej.lasyk.info/images/Ansible_Logo.png" /&gt;&lt;/center&gt;&lt;/p&gt;
+&lt;h2&gt;What this is about?&lt;/h2&gt;
+&lt;p&gt;So after upgrading to &lt;a href="https://getfedora.org/?wkfpF24"&gt;Fedora 24&lt;/a&gt; I wanted to have
+a clean installation and use only system libraries (no more &lt;strong&gt;sudo pip install..&lt;/strong&gt;).
+I already achieved that by using
+&lt;a href="https://www.freedesktop.org/software/systemd/man/systemd-nspawn.html"&gt;systemd-nspawn containers&lt;/a&gt;
+for application isolation (instead of using virtual machines) and &lt;a href="http://docs.python-guide.org/en/latest/dev/virtualenvs/"&gt;virtualenv&lt;/a&gt;
+for Python libraries during pydevelopment.&lt;/p&gt;
+&lt;p&gt;But.. while working with Ansible there's still a problem. E.g. when working with cloud
+providers (like AWS, Google, Rackspace, Digital Ocean - you name it) you usually use
+local connections for sending API requests, e.g.:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;- hosts: localhost
+  connection: local
+  tasks:
+  - name: Provision a set of instances
+    ec2:
+        ...
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;In order to make above working you need to have &lt;strong&gt;boto&lt;/strong&gt; and &lt;strong&gt;Ansible&lt;/strong&gt; installed on
+your box. That's a no - brainer.&lt;/p&gt;
+&lt;p&gt;But what if every ansible repository contains requirements.txt which declares specific
+Ansible and boto versions? E.g.:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;ansible==2.0.1.0
+boto==2.40.0
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Yes, you could simply:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;sudo pip install ansible==2.0.1.0
+sudo pip install boto==2.40.0
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;But this would actually break your system - wide libraries. If another project needs
+&lt;strong&gt;ansible==2.1.0.0&lt;/strong&gt; then you're in trouble.&lt;/p&gt;
+&lt;h2&gt;Ansible and virtualenv?&lt;/h2&gt;
+&lt;p&gt;So - the solution is to use &lt;a href="http://docs.python-guide.org/en/latest/dev/virtualenvs/"&gt;Python virtualenv&lt;/a&gt;.
+It might be obvious, but it's not that easy with Ansible. When working from defined virtual environment
+and using &lt;strong&gt;local&lt;/strong&gt; connection Ansible actually creates SSH connection via loopback device and enters login shell
+using configured account (e.g. &lt;strong&gt;remote_user&lt;/strong&gt; set it ansible.cfg; more on this topic &lt;a href="http://docs.ansible.com/ansible/intro_configuration.html#remote-user"&gt;here&lt;/a&gt;.
+After logging back in to your account we're using default Python interpreter (global one, probably &lt;strong&gt;/usr/bin/python&lt;/strong&gt;) -
+not the one we want to (from our virtualenv). Kaboom!&lt;/p&gt;
+&lt;p&gt;Ok, so there's a solution. It's called &lt;strong&gt;ansible_python_interpreter&lt;/strong&gt; and it's mentioned
+in &lt;a href="http://docs.ansible.com/faq.html"&gt;Ansible FAQ&lt;/a&gt; (but regarding other case). Basically
+if we tell Ansible to use Python interpreter from our virtualenv it will work:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;ansible-playbook -i inventory/ec2.py magic_cloud.yml \
+-e &amp;quot;ansible_python_interpreter=/home/ukleftue/.virtualenvs/ilovebaleares/bin/python&amp;quot;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;In above example virtualenv we use is called &lt;strong&gt;ilovebaleares&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;So using this hack'ish way we can marry Ansible and virtualenvs together.&lt;/p&gt;
+&lt;h2&gt;There's more to it!&lt;/h2&gt;
+&lt;p&gt;Remember that you can have couple of plays in playbook? Imagine, that first play
+actually spawns instances (using API calls invoked from local tasks) and second one
+applies roles using direct SSH connections to remote (freshly spawned) instances:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="x"&gt;- hosts: localhost&lt;/span&gt;
+&lt;span class="x"&gt;  connection: local&lt;/span&gt;
+&lt;span class="x"&gt;  tasks:&lt;/span&gt;
+&lt;span class="x"&gt;  - name: Provision a set of instances&lt;/span&gt;
+&lt;span class="x"&gt;    ec2:&lt;/span&gt;
+&lt;span class="x"&gt;        ...&lt;/span&gt;
+&lt;span class="x"&gt;    register: ec2&lt;/span&gt;
+
+&lt;span class="x"&gt;  - name: Add host to temporary group&lt;/span&gt;
+&lt;span class="x"&gt;    add_host: &amp;gt;&lt;/span&gt;
+&lt;span class="x"&gt;      hostname=&amp;quot;&lt;/span&gt;&lt;span class="cp"&gt;{{&lt;/span&gt; &lt;span class="nv"&gt;item.private_ip&lt;/span&gt; &lt;span class="cp"&gt;}}&lt;/span&gt;&lt;span class="x"&gt;&amp;quot;&lt;/span&gt;
+&lt;span class="x"&gt;      groupname=&amp;quot;tag_awesomehosts&amp;quot;&lt;/span&gt;
+&lt;span class="x"&gt;    with_items: &amp;quot;&lt;/span&gt;&lt;span class="cp"&gt;{{&lt;/span&gt; &lt;span class="nv"&gt;ec2.tagged_instances&lt;/span&gt; &lt;span class="cp"&gt;}}&lt;/span&gt;&lt;span class="x"&gt;&amp;quot;&lt;/span&gt;
+&lt;span class="x"&gt;    changed_when: false&lt;/span&gt;
+
+&lt;span class="x"&gt;- name: Configure instances&lt;/span&gt;
+&lt;span class="x"&gt;  hosts:&lt;/span&gt;
+&lt;span class="x"&gt;  - &amp;quot;tag_awesomehosts&amp;quot;&lt;/span&gt;
+&lt;span class="x"&gt;  roles:&lt;/span&gt;
+&lt;span class="x"&gt;    - do_something&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;So in above example using &lt;strong&gt;ansible_python_interpreter&lt;/strong&gt; will work for first play,
+but for second it will cause:&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;fatal: [some_ip_addr]: UNREACHABLE! =&amp;gt; {"changed": false, "msg": "SSH Error: data could not be sent to the remote host. Make sure this host can be reached over ssh", "unreachable": true}&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Why is that? If we run ansible-playbook in verbose mode (add -vvvvv) we'll get:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&amp;lt;some_ip_addr&amp;gt; SSH: EXEC ssh -C -vvv -o ControlMaster=auto
+-o ControlPersist=60s -o StrictHostKeyChecking=no -o
+KbdInteractiveAuthentication=no -o
+PreferredAuthentications=gssapi-with-mic,gssapi-keyex,hostbased,
+publickey -o PasswordAuthentication=no -o User=ec2-user
+-o ConnectTimeout=20 -o ControlPath=/tmp/ansible-ssh-%h-%p-%r some_ip_addr
+&amp;#39;/bin/sh -c &amp;#39;&amp;quot;&amp;#39;&amp;quot;&amp;#39;sudo -H -S -n -u root /bin/sh -c &amp;#39;&amp;quot;&amp;#39;&amp;quot;&amp;#39;&amp;quot;&amp;#39;&amp;quot;&amp;#39;&amp;quot;&amp;#39;&amp;quot;&amp;#39;&amp;quot;&amp;#39;&amp;quot;&amp;#39;echo
+BECOME-SUCCESS; /bin/sh -c &amp;#39;&amp;quot;&amp;#39;&amp;quot;&amp;#39;&amp;quot;&amp;#39;&amp;quot;&amp;#39;&amp;quot;&amp;#39;&amp;quot;&amp;#39;&amp;quot;&amp;#39;&amp;quot;&amp;#39;&amp;quot;&amp;#39;&amp;quot;&amp;#39;&amp;quot;&amp;#39;&amp;quot;&amp;#39;&amp;quot;&amp;#39;&amp;quot;&amp;#39;&amp;quot;&amp;#39;&amp;quot;&amp;#39;&amp;quot;&amp;#39;&amp;quot;&amp;#39;&amp;quot;&amp;#39;&amp;quot;&amp;#39;&amp;quot;&amp;#39;&amp;quot;&amp;#39;&amp;quot;&amp;#39;&amp;quot;&amp;#39;&amp;quot;&amp;#39;&amp;quot;&amp;#39;
+LANG=C LC_ALL=C LC_MESSAGES=C
+/home/ukleftue//.virtualenvs/ilovebaleares/bin/python&amp;#39;
+&amp;quot;&amp;#39;&amp;quot;&amp;#39;&amp;quot;&amp;#39;&amp;quot;&amp;#39;&amp;quot;&amp;#39;&amp;quot;&amp;#39;&amp;quot;&amp;#39;&amp;quot;&amp;#39;&amp;quot;&amp;#39;&amp;quot;&amp;#39;&amp;quot;&amp;#39;&amp;quot;&amp;#39;&amp;quot;&amp;#39;&amp;quot;&amp;#39;&amp;quot;&amp;#39;&amp;quot;&amp;#39;&amp;quot;&amp;#39;&amp;quot;&amp;#39;&amp;quot;&amp;#39;&amp;quot;&amp;#39;&amp;quot;&amp;#39;&amp;quot;&amp;#39;&amp;quot;&amp;#39;&amp;quot;&amp;#39;&amp;quot;&amp;#39;&amp;quot;&amp;#39;&amp;#39;&amp;quot;&amp;#39;&amp;quot;&amp;#39;&amp;quot;&amp;#39;&amp;quot;&amp;#39;&amp;quot;&amp;#39;&amp;quot;&amp;#39;&amp;quot;&amp;#39;&amp;quot;&amp;#39;&amp;#39;&amp;quot;&amp;#39;&amp;quot;&amp;#39;&amp;#39;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Notice last: &lt;strong&gt;/home/ukleftue//.virtualenvs/ilovebaleares/bin/python&lt;/strong&gt; - see? This is
+our problem - setting &lt;strong&gt;ansible_python_interpreter&lt;/strong&gt; works globally for all plays
+within playbook.&lt;/p&gt;
+&lt;p&gt;So I found solution for this - actually you can set &lt;strong&gt;ansible_python_interpreter&lt;/strong&gt; per
+host basis in inventory (told you that sometimes when I don't hate Ansible I really
+love it?). So just prepare yourself file like &lt;strong&gt;inventory/local&lt;/strong&gt; which could look
+like this:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="k"&gt;[localhost]&lt;/span&gt;
+&lt;span class="na"&gt;localhost ansible_python_interpreter&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;/home/ukleftue/.virtualenvs/ilovebaleares/bin/python&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;and run above playbook without passing directly &lt;strong&gt;ansible_python_interpreter&lt;/strong&gt; on command
+line (as it is already set in inventory), but providing additional inventory file:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;ansible-playbook -i inventory/ec2.py -i inventory/local magic_cloud.yml&amp;quot;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h2&gt;Whoah, that really works?&lt;/h2&gt;
+&lt;p&gt;Erm, SOA#1: Works for me ;)&lt;/p&gt;
+&lt;p&gt;Enjoy!&lt;/p&gt;</summary><category term="ansible"></category><category term="virtualenv"></category><category term="inventory"></category></entry><entry><title>Nixnote (Evernote client) on Fedora</title><link href="http://maciej.lasyk.info/2016/Mar/13/nixnote-evernote-client-on-fedora/" rel="alternate"></link><published>2016-03-13T00:00:00+01:00</published><author><name>Maciej Lasyk</name></author><id>tag:maciej.lasyk.info,2016-03-13:2016/Mar/13/nixnote-evernote-client-on-fedora/</id><summary type="html">&lt;p&gt;&lt;center&gt;&lt;img alt="Evernote" src="http://maciej.lasyk.info/images/evernote_logo.png" /&gt;&lt;/center&gt;&lt;/p&gt;
 &lt;p&gt;I've been using &lt;a href="http://www.evernote.com"&gt;Evernote&lt;/a&gt; for years now (Grzegorz, still 
 remember, thanks!). What I've been missing since 1st day was a decent, Linux native
 client. That's why I've been using webapp (which is a really nice piece of work, but
@@ -13,7 +132,7 @@ terrible than native Evernote webapp. But since couple of months we've got a sol
 beta however but "so far so good" :)&lt;/p&gt;
 &lt;p&gt;As usual I created ansible-role for this Nixnote - it's very simple - you can check it
 in my &lt;a href="https://github.com/docent-net/fedora-desktop-ansible"&gt;fedora-desktop-ansible&lt;/a&gt; project
-on github.&lt;/p&gt;</summary><category term="evernote"></category><category term="nixnote"></category></entry><entry><title>Fixing text highlighting in tmux/man/less</title><link href="http://maciej.lasyk.info/2015/Dec/21/fixing-text-highlighting-in-tmuxmanless/" rel="alternate"></link><updated>2015-12-21T00:00:00+01:00</updated><author><name>Maciej Lasyk</name></author><id>tag:maciej.lasyk.info,2015-12-21:2015/Dec/21/fixing-text-highlighting-in-tmuxmanless/</id><summary type="html">&lt;p&gt;&lt;center&gt;&lt;img alt="tmux" src="http://maciej.lasyk.info/images/tmux.png" /&gt;&lt;/center&gt;&lt;/p&gt;
+on github.&lt;/p&gt;</summary><category term="evernote"></category><category term="nixnote"></category></entry><entry><title>Fixing text highlighting in tmux/man/less</title><link href="http://maciej.lasyk.info/2015/Dec/21/fixing-text-highlighting-in-tmuxmanless/" rel="alternate"></link><published>2015-12-21T00:00:00+01:00</published><author><name>Maciej Lasyk</name></author><id>tag:maciej.lasyk.info,2015-12-21:2015/Dec/21/fixing-text-highlighting-in-tmuxmanless/</id><summary type="html">&lt;p&gt;&lt;center&gt;&lt;img alt="tmux" src="http://maciej.lasyk.info/images/tmux.png" /&gt;&lt;/center&gt;&lt;/p&gt;
 &lt;p&gt;So today I spotted an in issue while using search function when reading man
 pages. Basically &lt;strong&gt;I didn't have results highlighted&lt;/strong&gt;, but search worked
 (position of screen scrolled to somewhere near first spotted result).&lt;/p&gt;
@@ -32,25 +151,25 @@ standout will end up with italics instead of reverse. To make applications
 aware that tmux supports italics and to use a proper escape sequence for
 standout, you'll need to create a new terminfo file with modified sgr, smso,
 rmso, sitm and ritm entries:&lt;/em&gt;&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;mkdir &lt;span class="nv"&gt;$HOME&lt;/span&gt;/.terminfo/
-&lt;span class="nv"&gt;$ screen_terminfo&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;screen&amp;quot;&lt;/span&gt;
-&lt;span class="nv"&gt;$ &lt;/span&gt;infocmp &lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="nv"&gt;$screen_terminfo&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt; &lt;span class="p"&gt;|&lt;/span&gt; sed &lt;span class="se"&gt;\&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;$ mkdir &lt;span class="nv"&gt;$HOME&lt;/span&gt;/.terminfo/
+$ &lt;span class="nv"&gt;screen_terminfo&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;screen&amp;quot;&lt;/span&gt;
+$ infocmp &lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="nv"&gt;$screen_terminfo&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt; &lt;span class="p"&gt;|&lt;/span&gt; sed &lt;span class="se"&gt;\&lt;/span&gt;
   -e &lt;span class="s1"&gt;&amp;#39;s/^screen[^|]*|[^,]*,/screen-it|screen with italics support,/&amp;#39;&lt;/span&gt; &lt;span class="se"&gt;\&lt;/span&gt;
   -e &lt;span class="s1"&gt;&amp;#39;s/%?%p1%t;3%/%?%p1%t;7%/&amp;#39;&lt;/span&gt; &lt;span class="se"&gt;\&lt;/span&gt;
   -e &lt;span class="s1"&gt;&amp;#39;s/smso=[^,]*,/smso=\\E[7m,/&amp;#39;&lt;/span&gt; &lt;span class="se"&gt;\&lt;/span&gt;
   -e &lt;span class="s1"&gt;&amp;#39;s/rmso=[^,]*,/rmso=\\E[27m,/&amp;#39;&lt;/span&gt; &lt;span class="se"&gt;\&lt;/span&gt;
   -e &lt;span class="s1"&gt;&amp;#39;$s/$/ sitm=\\E[3m, ritm=\\E[23m,/&amp;#39;&lt;/span&gt; &amp;gt; /tmp/screen.terminfo
-&lt;span class="nv"&gt;$ &lt;/span&gt;tic /tmp/screen.terminfo
+$ tic /tmp/screen.terminfo
 &lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;p&gt;&lt;em&gt;And tell tmux to use it in ~/.tmux.conf:&lt;/em&gt;&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;set -g default-terminal &amp;quot;screen-it&amp;quot;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;set -g default-terminal &amp;quot;screen-it&amp;quot;
 &lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;p&gt;&lt;em&gt;If your terminal supports 256 colors, use:&lt;/em&gt;&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ screen_terminfo&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;screen-256color&amp;quot;&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;$ &lt;span class="nv"&gt;screen_terminfo&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;screen-256color&amp;quot;&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
@@ -59,8 +178,8 @@ rmso, sitm and ritm entries:&lt;/em&gt;&lt;/p&gt;
 &lt;p&gt;So I created &lt;a href="https://github.com/docent-net/fedora-desktop-ansible/commit/d314aedd61e6973df3de16bd557de7e3f3aecb3d"&gt;Ansible implementation&lt;/a&gt;
 and put in inside of &lt;a href="https://github.com/docent-net/fedora-desktop-ansible"&gt;fedora-desktop-ansible&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;You can test it with:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;ansible-playbook master.yml --tags tmux
-&lt;/pre&gt;&lt;/div&gt;</summary><category term="tmux"></category><category term="screen"></category><category term="man"></category></entry><entry><title>Containers do not contain</title><link href="http://maciej.lasyk.info/2015/Nov/27/containers-do-not-contain/" rel="alternate"></link><updated>2015-11-27T00:00:00+01:00</updated><author><name>Maciej Lasyk</name></author><id>tag:maciej.lasyk.info,2015-11-27:2015/Nov/27/containers-do-not-contain/</id><summary type="html">&lt;p&gt;&lt;center&gt;&lt;img alt="Devopsdays" src="http://maciej.lasyk.info/images/devopsdays-logo.png" /&gt;&lt;/center&gt;&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;ansible-playbook master.yml --tags tmux
+&lt;/pre&gt;&lt;/div&gt;</summary><category term="tmux"></category><category term="screen"></category><category term="man"></category></entry><entry><title>Containers do not contain</title><link href="http://maciej.lasyk.info/2015/Nov/27/containers-do-not-contain/" rel="alternate"></link><published>2015-11-27T00:00:00+01:00</published><author><name>Maciej Lasyk</name></author><id>tag:maciej.lasyk.info,2015-11-27:2015/Nov/27/containers-do-not-contain/</id><summary type="html">&lt;p&gt;&lt;center&gt;&lt;img alt="Devopsdays" src="http://maciej.lasyk.info/images/devopsdays-logo.png" /&gt;&lt;/center&gt;&lt;/p&gt;
 &lt;p&gt;The title of this presentation is borrowed from &lt;a href="https://www.youtube.com/watch?v=zWGFqMuEHdw"&gt;Dan's Walsh&lt;/a&gt; 
 presentations about security of Linux containers.&lt;/p&gt;
 &lt;p&gt;I worked on this presentation only for about 45 minutes. It was an emergency one - one of the speakers couldn't make it
@@ -69,7 +188,7 @@ to the Devopsdays Warsaw 2015 and I was asked to replace him on very short notic
 those very quickly, added some more and tried to improvise on the scene ;)&lt;/p&gt;
 &lt;p&gt;&lt;center&gt;
 &lt;iframe src="//www.slideshare.net/slideshow/embed_code/key/7enDSiQ4NYiYkI" width="510" height="420" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" style="border:1px solid #CCC; border-width:1px; margin-bottom:5px; max-width: 100%;" allowfullscreen&gt; &lt;/iframe&gt; &lt;div style="margin-bottom:5px"&gt; &lt;strong&gt; &lt;a href="//www.slideshare.net/d0cent/containers-do-not-contain" title="&amp;quot;Containers do not contain&amp;quot;" target="_blank"&gt;&amp;quot;Containers do not contain&amp;quot;&lt;/a&gt; &lt;/strong&gt; from &lt;strong&gt;&lt;a href="//www.slideshare.net/d0cent" target="_blank"&gt;Maciej Lasyk&lt;/a&gt;&lt;/strong&gt; &lt;/div&gt;
-&lt;/center&gt;&lt;/p&gt;</summary><category term="talks"></category><category term="conferences"></category><category term="docker"></category><category term="selinux"></category><category term="security"></category><category term="containers"></category></entry><entry><title>Autumn conferences recap</title><link href="http://maciej.lasyk.info/2015/Nov/26/autumn-conferences-recap/" rel="alternate"></link><updated>2015-11-26T00:00:00+01:00</updated><author><name>Maciej Lasyk</name></author><id>tag:maciej.lasyk.info,2015-11-26:2015/Nov/26/autumn-conferences-recap/</id><summary type="html">&lt;p&gt;I do like taking part in conferences. I still think, that conferences are one of the most important places where people
+&lt;/center&gt;&lt;/p&gt;</summary><category term="talks"></category><category term="conferences"></category><category term="docker"></category><category term="selinux"></category><category term="security"></category><category term="containers"></category></entry><entry><title>Autumn conferences recap</title><link href="http://maciej.lasyk.info/2015/Nov/26/autumn-conferences-recap/" rel="alternate"></link><published>2015-11-26T00:00:00+01:00</published><author><name>Maciej Lasyk</name></author><id>tag:maciej.lasyk.info,2015-11-26:2015/Nov/26/autumn-conferences-recap/</id><summary type="html">&lt;p&gt;I do like taking part in conferences. I still think, that conferences are one of the most important places where people
 get motivated (e.g. by meeting influencers, talking to other engineers, listening to completely new ideas or having
 opportunity to ask).&lt;/p&gt;
 &lt;p&gt;Also I'm certain that thanks to conferences we improve ourselves. We improve our communication &amp;amp; soft skills, we learn
@@ -165,12 +284,12 @@ topics and finally we start discussions.&lt;/p&gt;
 &lt;li&gt;&lt;strong&gt;Continuous Delivery - success stories&lt;/strong&gt; - self explaining ;)&lt;/li&gt;
 &lt;li&gt;&lt;strong&gt;Hard vs Soft skills&lt;/strong&gt; - oh seriously we discussed everything that was not technical-related&lt;/li&gt;
 &lt;li&gt;&lt;strong&gt;Moving to systemd&lt;/strong&gt; - we tried to answer questions about systemd&lt;/li&gt;
-&lt;/ul&gt;</summary><category term="conference"></category><category term="devops"></category><category term="devopsdays"></category><category term="pycon"></category><category term="systemd"></category></entry><entry><title>Running sshd on 443/tcp</title><link href="http://maciej.lasyk.info/2015/Nov/17/running-sshd-on-443tcp/" rel="alternate"></link><updated>2015-11-17T00:00:00+01:00</updated><author><name>Maciej Lasyk</name></author><id>tag:maciej.lasyk.info,2015-11-17:2015/Nov/17/running-sshd-on-443tcp/</id><summary type="html">&lt;p&gt;&lt;center&gt;&lt;img alt="Selinux" src="http://maciej.lasyk.info/images/selinux-logo.png" /&gt;&lt;/center&gt;&lt;/p&gt;
+&lt;/ul&gt;</summary><category term="conference"></category><category term="devops"></category><category term="devopsdays"></category><category term="pycon"></category><category term="systemd"></category></entry><entry><title>Running sshd on 443/tcp</title><link href="http://maciej.lasyk.info/2015/Nov/17/running-sshd-on-443tcp/" rel="alternate"></link><published>2015-11-17T00:00:00+01:00</published><author><name>Maciej Lasyk</name></author><id>tag:maciej.lasyk.info,2015-11-17:2015/Nov/17/running-sshd-on-443tcp/</id><summary type="html">&lt;p&gt;&lt;center&gt;&lt;img alt="Selinux" src="http://maciej.lasyk.info/images/selinux-logo.png" /&gt;&lt;/center&gt;&lt;/p&gt;
 &lt;h3&gt;What?&lt;/h3&gt;
 &lt;p&gt;So I had this need to run &lt;strong&gt;ssh&lt;/strong&gt; daemon on port 443/TCP. I reconfigured sshd daemon, iptables and stucked with Selinux
 policy, when I wanted to assign port 443 to sshd_port_t (so I thought I'd need to remove in the first step actual 
 assignment of port 443 which is http_port_t):&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="o"&gt;[&lt;/span&gt;root@srv ~&lt;span class="o"&gt;]&lt;/span&gt;&lt;span class="c"&gt;# semanage port -d -t http_port_t -p tcp 443                                                                                                          &lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="o"&gt;[&lt;/span&gt;root@srv ~&lt;span class="o"&gt;]&lt;/span&gt;&lt;span class="c1"&gt;# semanage port -d -t http_port_t -p tcp 443                                                                                                          &lt;/span&gt;
 ValueError: Port tcp/443 is defined in policy, cannot be deleted
 &lt;/pre&gt;&lt;/div&gt;
 
@@ -178,20 +297,20 @@ ValueError: Port tcp/443 is defined in policy, cannot be deleted
 &lt;h3&gt;SSH on port 443? sshd configuration + iptables&lt;/h3&gt;
 &lt;p&gt;Yup, it happens ;)&lt;/p&gt;
 &lt;p&gt;It's simple reconfiguration done in &lt;strong&gt;/etc/ssh/sshd_config&lt;/strong&gt;:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;Port 22
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;Port 22
 Port 443
 &lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;p&gt;So as you can see I left sshd running also on port 22/tcp. Also reconfigured iptables (Centos 7, no firewalld yet):&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="o"&gt;[&lt;/span&gt;root@srv ~&lt;span class="o"&gt;]&lt;/span&gt;&lt;span class="c"&gt;# grep 443 /etc/sysconfig/iptables&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="o"&gt;[&lt;/span&gt;root@srv ~&lt;span class="o"&gt;]&lt;/span&gt;&lt;span class="c1"&gt;# grep 443 /etc/sysconfig/iptables&lt;/span&gt;
 -A INPUT -p tcp -m state --state NEW -m tcp --dport &lt;span class="m"&gt;443&lt;/span&gt; -j ACCEPT
 &lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;h3&gt;Back to Selinux - how to fix this?&lt;/h3&gt;
 &lt;p&gt;Actually answer lays in documentation:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;man semanage-port
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;$ man semanage-port
 
        -m, --modify
               Modify a record of the specified object &lt;span class="nb"&gt;type&lt;/span&gt;
@@ -200,18 +319,18 @@ Port 443
 
 &lt;p&gt;So basically instead of removing this httpd_port_t assignment, what is impossible without recompiling the policy I just
 modified it:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="o"&gt;[&lt;/span&gt;root@srv ~&lt;span class="o"&gt;]&lt;/span&gt;&lt;span class="c"&gt;# semanage port -m -t ssh_port_t -p tcp 443&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="o"&gt;[&lt;/span&gt;root@srv ~&lt;span class="o"&gt;]&lt;/span&gt;&lt;span class="c1"&gt;# semanage port -m -t ssh_port_t -p tcp 443&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;p&gt;And now we have:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="o"&gt;[&lt;/span&gt;root@netrunner ~&lt;span class="o"&gt;]&lt;/span&gt;&lt;span class="c"&gt;# semanage port -l | grep 443                                                                                                                         &lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="o"&gt;[&lt;/span&gt;root@netrunner ~&lt;span class="o"&gt;]&lt;/span&gt;&lt;span class="c1"&gt;# semanage port -l | grep 443                                                                                                                         &lt;/span&gt;
 http_port_t                    tcp      80, 81, 443, 488, 8008, 8009, 8443, 9000
 ssh_port_t                     tcp      443, 444, 22
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;p&gt;Works for me ;)&lt;/p&gt;</summary><category term="selinux"></category><category term="sshd"></category><category term="tcp"></category><category term="security"></category></entry><entry><title>SELinux / sVirt vs Venom vulnerability</title><link href="http://maciej.lasyk.info/2015/May/13/selinux-svirt-vs-venom-vulnerability/" rel="alternate"></link><updated>2015-05-13T00:00:00+02:00</updated><author><name>Maciej Lasyk</name></author><id>tag:maciej.lasyk.info,2015-05-13:2015/May/13/selinux-svirt-vs-venom-vulnerability/</id><summary type="html">&lt;p&gt;&lt;center&gt;&lt;img alt="libvirt" src="http://maciej.lasyk.info/images/venom.png" /&gt;&lt;/center&gt;&lt;/p&gt;
+&lt;p&gt;Works for me ;)&lt;/p&gt;</summary><category term="selinux"></category><category term="sshd"></category><category term="tcp"></category><category term="security"></category></entry><entry><title>SELinux / sVirt vs Venom vulnerability</title><link href="http://maciej.lasyk.info/2015/May/13/selinux-svirt-vs-venom-vulnerability/" rel="alternate"></link><published>2015-05-13T00:00:00+02:00</published><author><name>Maciej Lasyk</name></author><id>tag:maciej.lasyk.info,2015-05-13:2015/May/13/selinux-svirt-vs-venom-vulnerability/</id><summary type="html">&lt;p&gt;&lt;center&gt;&lt;img alt="libvirt" src="http://maciej.lasyk.info/images/venom.png" /&gt;&lt;/center&gt;&lt;/p&gt;
 &lt;h1&gt;Venom?&lt;/h1&gt;
 &lt;p&gt;Basically it's a vulnerability that may be used to escape hypervisor (Qemu
 based, e.g. KVM. XEN) and obtain root permissions on host machine (and from
@@ -239,7 +358,7 @@ type by default. This is a confinement configuration for each VM. And there is
 more. Each virtualized guest process is labeled and runs with a dynamically 
 generated level. Each process is isolated from other VMs with different MCS 
 levels. Example from one of my boxes:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;system_u:system_r:svirt_t:s0:c14,c894
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;system_u:system_r:svirt_t:s0:c14,c894
 system_u:system_r:svirt_t:s0:c393,c652
 system_u:system_r:svirt_t:s0:c730,c767
 system_u:system_r:svirt_t:s0:c465,c623
@@ -266,17 +385,17 @@ system_u:system_r:svirt_t:s0:c499,c536
 &lt;h1&gt;Solution?&lt;/h1&gt;
 &lt;p&gt;Yup - even SELinux might have some security vulnerabilities we don't know about
 so it's better to fix Qemu. How? Simply:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;yum update qemu-kvm
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;yum update qemu-kvm
 &lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;p&gt;(or update all pkgs - whatever)&lt;/p&gt;
-&lt;p&gt;EDIT: &lt;a href="http://danwalsh.livejournal.com/71489.html"&gt;Dan Walsh confirmed&lt;/a&gt; that Venom is not an issue w/ SELinux enabled.&lt;/p&gt;</summary><category term="kvm"></category><category term="libvirt"></category><category term="selinux"></category><category term="sirt"></category><category term="security"></category><category term="qemu"></category></entry><entry><title>libvirt-daemon-driver-storage bug in Centos 7</title><link href="http://maciej.lasyk.info/2015/Apr/06/libvirt-daemon-driver-storage-bug-in-centos-7/" rel="alternate"></link><updated>2015-04-06T00:00:00+02:00</updated><author><name>Maciej Lasyk</name></author><id>tag:maciej.lasyk.info,2015-04-06:2015/Apr/06/libvirt-daemon-driver-storage-bug-in-centos-7/</id><summary type="html">&lt;p&gt;&lt;center&gt;&lt;img alt="libvirt" src="http://maciej.lasyk.info/images/libvirt.png" /&gt;&lt;/center&gt;&lt;/p&gt;
+&lt;p&gt;EDIT: &lt;a href="http://danwalsh.livejournal.com/71489.html"&gt;Dan Walsh confirmed&lt;/a&gt; that Venom is not an issue w/ SELinux enabled.&lt;/p&gt;</summary><category term="kvm"></category><category term="libvirt"></category><category term="selinux"></category><category term="sirt"></category><category term="security"></category><category term="qemu"></category></entry><entry><title>libvirt-daemon-driver-storage bug in Centos 7</title><link href="http://maciej.lasyk.info/2015/Apr/06/libvirt-daemon-driver-storage-bug-in-centos-7/" rel="alternate"></link><published>2015-04-06T00:00:00+02:00</published><author><name>Maciej Lasyk</name></author><id>tag:maciej.lasyk.info,2015-04-06:2015/Apr/06/libvirt-daemon-driver-storage-bug-in-centos-7/</id><summary type="html">&lt;p&gt;&lt;center&gt;&lt;img alt="libvirt" src="http://maciej.lasyk.info/images/libvirt.png" /&gt;&lt;/center&gt;&lt;/p&gt;
 &lt;h1&gt;failed to load module libvirt_driver_storage.so&lt;/h1&gt;
 &lt;p&gt;Today I was installing
 &lt;a href="http://libguestfs.org/virt-sysprep.1.html"&gt;virt-sysprep&lt;/a&gt; tool on one of KVM
 hosts. When this was done I couldn't list VMs anymore using &lt;strong&gt;virsh&lt;/strong&gt;:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="o"&gt;[&lt;/span&gt;root@host1 ~&lt;span class="o"&gt;]&lt;/span&gt;&lt;span class="c"&gt;# virsh list --all&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="o"&gt;[&lt;/span&gt;root@host1 ~&lt;span class="o"&gt;]&lt;/span&gt;&lt;span class="c1"&gt;# virsh list --all&lt;/span&gt;
 &lt;span class="o"&gt;[&lt;/span&gt;454/564&lt;span class="o"&gt;]&lt;/span&gt;
  Id    Name                           State
  ----------------------------------------------------
@@ -285,7 +404,7 @@ hosts. When this was done I couldn't list VMs anymore using &lt;strong&gt;virsh&
 Hmm that&lt;span class="err"&gt;&amp;#39;&lt;/span&gt;s not normal obsiously. Checked the **libvirtd** status:
 
 &lt;span class="sb"&gt;```&lt;/span&gt;bash
-&lt;span class="o"&gt;[&lt;/span&gt;root@host1 ~&lt;span class="o"&gt;]&lt;/span&gt;&lt;span class="c"&gt;# service libvirtd status&lt;/span&gt;
+&lt;span class="o"&gt;[&lt;/span&gt;root@host1 ~&lt;span class="o"&gt;]&lt;/span&gt;&lt;span class="c1"&gt;# service libvirtd status&lt;/span&gt;
 Redirecting to /bin/systemctl status  libvirtd.service
 libvirtd.service - Virtualization daemon
    Loaded: loaded &lt;span class="o"&gt;(&lt;/span&gt;/usr/lib/systemd/system/libvirtd.service&lt;span class="p"&gt;;&lt;/span&gt; enabled&lt;span class="o"&gt;)&lt;/span&gt;
@@ -302,7 +421,7 @@ Apr &lt;span class="m"&gt;06&lt;/span&gt; 17:01:42 host1.devops.ent libvirtd&lt;
 /usr/lib64/libvirt/connection-driver/libvirt_driver_storage.so 
 /usr/lib64/libvirt/connection-driver/libvirt_driver_storage.so: symbol 
 dm_task_get_info_with_deferred_remove, version Base not defined in file 
-libdevmapper.so.1.02 with link &lt;span class="nb"&gt;time &lt;/span&gt;reference
+libdevmapper.so.1.02 with link &lt;span class="nb"&gt;time&lt;/span&gt; reference
 Apr &lt;span class="m"&gt;06&lt;/span&gt; 17:01:42 host1.devops.ent libvirtd&lt;span class="o"&gt;[&lt;/span&gt;6254&lt;span class="o"&gt;]&lt;/span&gt;: failed to load module 
 /usr/lib64/libvirt/connection-driver/libvirt_driver_qemu.so 
 /usr/lib64/libvirt/connection-driver/libvirt_driver_qemu.so: undefined 
@@ -312,7 +431,7 @@ symbol: virStorageFileCreate
 
 
 &lt;p&gt;I confirmed that installing &lt;strong&gt;virt-sysprep&lt;/strong&gt; caused also upgrading libvirtd related packages:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt; Updated     libvirt-1.1.1-29.el7_0.7.x86_64                         @updates
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt; Updated     libvirt-1.1.1-29.el7_0.7.x86_64                         @updates
     Update              1.2.8-16.el7_1.2.x86_64                         @updates
     Updated     libvirt-client-1.1.1-29.el7_0.7.x86_64                  @updates
     Update                     1.2.8-16.el7_1.2.x86_64                  @updates
@@ -343,8 +462,8 @@ symbol: virStorageFileCreate
 
 
 &lt;p&gt;So once more I read the problematic log entry:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;failed to load module /usr/lib64/libvirt/connection-driver/libvirt_driver_storage.so /usr/lib64/libvirt/connection-driver/libvirt_driver_storage.so: symbol dm_task_get_info_wit
-h_deferred_remove, version Base not defined in file libdevmapper.so.1.02 with link &lt;span class="nb"&gt;time &lt;/span&gt;reference
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;failed to load module /usr/lib64/libvirt/connection-driver/libvirt_driver_storage.so /usr/lib64/libvirt/connection-driver/libvirt_driver_storage.so: symbol dm_task_get_info_wit
+h_deferred_remove, version Base not defined in file libdevmapper.so.1.02 with link &lt;span class="nb"&gt;time&lt;/span&gt; reference
 &lt;/pre&gt;&lt;/div&gt;
 
 
@@ -352,7 +471,7 @@ h_deferred_remove, version Base not defined in file libdevmapper.so.1.02 with li
 and everything started working perfectly.&lt;/p&gt;
 &lt;p&gt;This would not happen if I had updated all the libraries, but unfortunately 
 all I wanted was &lt;strong&gt;virt-sysprep&lt;/strong&gt; installed - not update'ing all packages.&lt;/p&gt;
-&lt;p&gt;Finally &lt;a href="http://bugs.centos.org/view.php?id=8403"&gt;filed a bugrequest&lt;/a&gt;&lt;/p&gt;</summary><category term="centos7"></category><category term="bug"></category><category term="centos"></category><category term="libvirt"></category><category term="kvm"></category></entry><entry><title>About cultural change w/Devops</title><link href="http://maciej.lasyk.info/2015/Mar/26/about-cultural-change-wdevops/" rel="alternate"></link><updated>2015-03-26T00:00:00+01:00</updated><author><name>Maciej Lasyk</name></author><id>tag:maciej.lasyk.info,2015-03-26:2015/Mar/26/about-cultural-change-wdevops/</id><summary type="html">&lt;p&gt;&lt;center&gt;&lt;img alt="Atmosphere Shuttle" src="http://maciej.lasyk.info/images/atmosphere-1.jpg" /&gt;&lt;/center&gt;&lt;/p&gt;
+&lt;p&gt;Finally &lt;a href="http://bugs.centos.org/view.php?id=8403"&gt;filed a bugrequest&lt;/a&gt;&lt;/p&gt;</summary><category term="centos7"></category><category term="bug"></category><category term="centos"></category><category term="libvirt"></category><category term="kvm"></category></entry><entry><title>About cultural change w/Devops</title><link href="http://maciej.lasyk.info/2015/Mar/26/about-cultural-change-wdevops/" rel="alternate"></link><published>2015-03-26T00:00:00+01:00</published><author><name>Maciej Lasyk</name></author><id>tag:maciej.lasyk.info,2015-03-26:2015/Mar/26/about-cultural-change-wdevops/</id><summary type="html">&lt;p&gt;&lt;center&gt;&lt;img alt="Atmosphere Shuttle" src="http://maciej.lasyk.info/images/atmosphere-1.jpg" /&gt;&lt;/center&gt;&lt;/p&gt;
 &lt;p&gt;This time without any comment - just slides from presentation I gave today in
 &lt;a href="http://www.meetup.com/Atmosphere/events/221099327/"&gt;Atmosphere Shuttle #01&lt;/a&gt;
 meetup:&lt;/p&gt;
@@ -365,7 +484,7 @@ style="border:1px solid #CCC; border-width:1px; margin-bottom:5px; max-width:
 href="//www.slideshare.net/d0cent/about-cultural-change-wdevops" title="About
 cultural change w/Devops" target="_blank"&gt;About cultural change w/Devops&lt;/a&gt;
 &lt;/strong&gt; from &lt;strong&gt;&lt;a href="//www.slideshare.net/d0cent"
-target="_blank"&gt;Maciej Lasyk&lt;/a&gt;&lt;/strong&gt; &lt;/div&gt;&lt;/p&gt;</summary><category term="devops"></category><category term="culture"></category><category term="cams"></category><category term="management"></category></entry><entry><title>Cheap SSD arrays for Continuous Integration</title><link href="http://maciej.lasyk.info/2015/Mar/14/cheap-ssd-arrays-for-continuous-integration/" rel="alternate"></link><updated>2015-03-14T00:00:00+01:00</updated><author><name>Maciej Lasyk</name></author><id>tag:maciej.lasyk.info,2015-03-14:2015/Mar/14/cheap-ssd-arrays-for-continuous-integration/</id><summary type="html">&lt;p&gt;&lt;center&gt;&lt;img alt="Its me!" src="http://maciej.lasyk.info/images/ssd_array.jpg" /&gt;&lt;/center&gt;&lt;/p&gt;
+target="_blank"&gt;Maciej Lasyk&lt;/a&gt;&lt;/strong&gt; &lt;/div&gt;&lt;/p&gt;</summary><category term="devops"></category><category term="culture"></category><category term="cams"></category><category term="management"></category></entry><entry><title>Cheap SSD arrays for Continuous Integration</title><link href="http://maciej.lasyk.info/2015/Mar/14/cheap-ssd-arrays-for-continuous-integration/" rel="alternate"></link><published>2015-03-14T00:00:00+01:00</published><author><name>Maciej Lasyk</name></author><id>tag:maciej.lasyk.info,2015-03-14:2015/Mar/14/cheap-ssd-arrays-for-continuous-integration/</id><summary type="html">&lt;p&gt;&lt;center&gt;&lt;img alt="Its me!" src="http://maciej.lasyk.info/images/ssd_array.jpg" /&gt;&lt;/center&gt;&lt;/p&gt;
 &lt;h3&gt;The need for iop/s&lt;/h3&gt;
 &lt;p&gt;I think that every sysdamin has this need. It is like "I have a need - the need
 for speed". So basically when I see 400 operations per second as upper limit on
@@ -403,7 +522,7 @@ RAID10 / local storage for $1000. And I'm gonna replace this in about 1,5 year
 &lt;p&gt;Great deal imo. If I did want to but enterprise class disks (like Intel) for
 this purpose I would have to pay 8*$1000 and that is a horrible amount of
 goldies.&lt;/p&gt;
-&lt;p&gt;Summing this up - CI (Jenkins, Selenium, others) + local storage on cheap SSD drives = &amp;lt;3&lt;/p&gt;</summary><category term="hardware"></category><category term="raid"></category><category term="ssd"></category><category term="array"></category><category term="matrix"></category></entry><entry><title>Conferences schedule for Spring 2015</title><link href="http://maciej.lasyk.info/2015/Mar/12/conferences-schedule-for-spring-2015/" rel="alternate"></link><updated>2015-03-12T00:00:00+01:00</updated><author><name>Maciej Lasyk</name></author><id>tag:maciej.lasyk.info,2015-03-12:2015/Mar/12/conferences-schedule-for-spring-2015/</id><summary type="html">&lt;p&gt;&lt;center&gt;&lt;img alt="Its me!" src="http://maciej.lasyk.info/images/maciek.jpg" /&gt;&lt;/center&gt;&lt;/p&gt;
+&lt;p&gt;Summing this up - CI (Jenkins, Selenium, others) + local storage on cheap SSD drives = &amp;lt;3&lt;/p&gt;</summary><category term="hardware"></category><category term="raid"></category><category term="ssd"></category><category term="array"></category><category term="matrix"></category></entry><entry><title>Conferences schedule for Spring 2015</title><link href="http://maciej.lasyk.info/2015/Mar/12/conferences-schedule-for-spring-2015/" rel="alternate"></link><published>2015-03-12T00:00:00+01:00</published><author><name>Maciej Lasyk</name></author><id>tag:maciej.lasyk.info,2015-03-12:2015/Mar/12/conferences-schedule-for-spring-2015/</id><summary type="html">&lt;p&gt;&lt;center&gt;&lt;img alt="Its me!" src="http://maciej.lasyk.info/images/maciek.jpg" /&gt;&lt;/center&gt;&lt;/p&gt;
 &lt;h3&gt;Spring is near, so conference season is almost here!&lt;/h3&gt;
 &lt;p&gt;As a friend of mine &lt;a href="https://twitter.com/j_palka"&gt;Jarek Pałka&lt;/a&gt; told me 
 yesterday - this is like a snowball. You give your first talk, then next and
@@ -450,7 +569,7 @@ next conference day on a route I completely don't know.&lt;/p&gt;
 &lt;li&gt;&lt;a href="http://www.atmosphere-conference.com/"&gt;Atmosphere Conference&lt;/a&gt; -
   2015-05-(18-19) - this is the biggest DevOps event in Poland. I'll be there
   for the second time giving a talk about Enterprise DevOps.&lt;/li&gt;
-&lt;/ul&gt;</summary><category term="conferences"></category><category term="events"></category></entry><entry><title>Dropbox and security of your files in Linux</title><link href="http://maciej.lasyk.info/2015/Mar/03/dropbox-and-security-of-your-files-in-linux/" rel="alternate"></link><updated>2015-03-03T00:00:00+01:00</updated><author><name>Maciej Lasyk</name></author><id>tag:maciej.lasyk.info,2015-03-03:2015/Mar/03/dropbox-and-security-of-your-files-in-linux/</id><summary type="html">&lt;p&gt;&lt;center&gt;&lt;img alt="RHEL" src="http://maciej.lasyk.info/images/dropbox-logo.png" /&gt;&lt;/center&gt;&lt;/p&gt;
+&lt;/ul&gt;</summary><category term="conferences"></category><category term="events"></category></entry><entry><title>Dropbox and security of your files in Linux</title><link href="http://maciej.lasyk.info/2015/Mar/03/dropbox-and-security-of-your-files-in-linux/" rel="alternate"></link><published>2015-03-03T00:00:00+01:00</published><author><name>Maciej Lasyk</name></author><id>tag:maciej.lasyk.info,2015-03-03:2015/Mar/03/dropbox-and-security-of-your-files-in-linux/</id><summary type="html">&lt;p&gt;&lt;center&gt;&lt;img alt="RHEL" src="http://maciej.lasyk.info/images/dropbox-logo.png" /&gt;&lt;/center&gt;&lt;/p&gt;
 &lt;h3&gt;WAT?&lt;/h3&gt;
 &lt;p&gt;So there's been discussion about &lt;a href="http://www.e-siber.com/guvenlik/dropbox-accesses-all-the-files-in-your-pc-not-just-sync-folder-and-steals-everything/"&gt;Dropbox indexing all files on Windows
 boxes&lt;/a&gt;&lt;/p&gt;
@@ -476,12 +595,12 @@ you. Then you will never find yourself again in such hard position.&lt;/p&gt;
 &lt;p&gt;Ok, let's say you don't use SELinux (because if you did you wouldn't have to
 read this).&lt;/p&gt;
 &lt;p&gt;So I run Dropbox (default datadir in ~/Dropbox) and fetched its PID and attached strace:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;strace -f -e &lt;span class="nv"&gt;trace&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;file -s &lt;span class="m"&gt;1024&lt;/span&gt; -p &lt;span class="m"&gt;6033&lt;/span&gt; -o ~/tmp/dropbox-wtf.txt
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;strace -f -e &lt;span class="nv"&gt;trace&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;file -s &lt;span class="m"&gt;1024&lt;/span&gt; -p &lt;span class="m"&gt;6033&lt;/span&gt; -o ~/tmp/dropbox-wtf.txt
 &lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;p&gt;Now I tried to create a file outside of ~/Dropbox directory:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;touch ~/tmp/wtf.txt
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;touch ~/tmp/wtf.txt
 &lt;/pre&gt;&lt;/div&gt;
 
 
@@ -492,7 +611,7 @@ read this).&lt;/p&gt;
 &lt;p&gt;Later on just to confirm I created a file in ~/Dropbox/tmp and got a ton of
 crap from the strace - filtered out the ENOENT so it's more clear (nothing
 interesting there):&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="m"&gt;6308&lt;/span&gt;  lstat&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;/home/putinstopattackingukraine/Dropbox/tmp/wtf.txt&amp;quot;&lt;/span&gt;, &lt;span class="o"&gt;{&lt;/span&gt;&lt;span class="nv"&gt;st_mode&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;S_IFREG&lt;span class="p"&gt;|&lt;/span&gt;0664, &lt;span class="nv"&gt;st_size&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;4, ...&lt;span class="o"&gt;})&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; 0
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="m"&gt;6308&lt;/span&gt;  lstat&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;/home/putinstopattackingukraine/Dropbox/tmp/wtf.txt&amp;quot;&lt;/span&gt;, &lt;span class="o"&gt;{&lt;/span&gt;&lt;span class="nv"&gt;st_mode&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;S_IFREG&lt;span class="p"&gt;|&lt;/span&gt;0664, &lt;span class="nv"&gt;st_size&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;4, ...&lt;span class="o"&gt;})&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; 0
 &lt;span class="m"&gt;6308&lt;/span&gt;  open&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;/home/putinstopattackingukraine/Dropbox/tmp/wtf.txt&amp;quot;&lt;/span&gt;, O_RDONLY&lt;span class="p"&gt;|&lt;/span&gt;O_NOCTTY&lt;span class="p"&gt;|&lt;/span&gt;O_NONBLOCK&lt;span class="p"&gt;|&lt;/span&gt;O_NOFOLLOW&lt;span class="p"&gt;|&lt;/span&gt;O_NOATIME&lt;span class="o"&gt;)&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; 35
 &lt;span class="m"&gt;6308&lt;/span&gt;  lstat&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;/home/putinstopattackingukraine/Dropbox/tmp/wtf.txt&amp;quot;&lt;/span&gt;, &lt;span class="o"&gt;{&lt;/span&gt;&lt;span class="nv"&gt;st_mode&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;S_IFREG&lt;span class="p"&gt;|&lt;/span&gt;0664, &lt;span class="nv"&gt;st_size&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;4, ...&lt;span class="o"&gt;})&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; 0
 &lt;span class="m"&gt;6308&lt;/span&gt;  open&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;/home/putinstopattackingukraine/Dropbox/tmp/wtf.txt&amp;quot;&lt;/span&gt;, O_RDONLY&lt;span class="p"&gt;|&lt;/span&gt;O_NOCTTY&lt;span class="p"&gt;|&lt;/span&gt;O_NONBLOCK&lt;span class="p"&gt;|&lt;/span&gt;O_NOFOLLOW&lt;span class="p"&gt;|&lt;/span&gt;O_NOATIME&lt;span class="o"&gt;)&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; 35
@@ -684,7 +803,7 @@ interesting there):&lt;/p&gt;
 and /var/tmp (not sure however what kind of tmpfiles it creates - but this
 would be rather performance question).&lt;/p&gt;
 &lt;p&gt;So we're safe. Dropbox does not read all the file contents on Linux.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;But once again - start using Linux Security Modules!&lt;/strong&gt;&lt;/p&gt;</summary><category term="dropbox"></category><category term="security"></category></entry><entry><title>Dracut, netboot and default gateway in RHEL/CentOS 7</title><link href="http://maciej.lasyk.info/2015/Feb/18/dracut-netboot-and-default-gateway-in-rhelcentos-7/" rel="alternate"></link><updated>2015-02-18T00:00:00+01:00</updated><author><name>Maciej Lasyk</name></author><id>tag:maciej.lasyk.info,2015-02-18:2015/Feb/18/dracut-netboot-and-default-gateway-in-rhelcentos-7/</id><summary type="html">&lt;p&gt;&lt;center&gt;&lt;img alt="RHEL" src="http://maciej.lasyk.info/images/rhel-logo-small.png" /&gt;&lt;/center&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;But once again - start using Linux Security Modules!&lt;/strong&gt;&lt;/p&gt;</summary><category term="dropbox"></category><category term="security"></category></entry><entry><title>Dracut, netboot and default gateway in RHEL/CentOS 7</title><link href="http://maciej.lasyk.info/2015/Feb/18/dracut-netboot-and-default-gateway-in-rhelcentos-7/" rel="alternate"></link><published>2015-02-18T00:00:00+01:00</published><author><name>Maciej Lasyk</name></author><id>tag:maciej.lasyk.info,2015-02-18:2015/Feb/18/dracut-netboot-and-default-gateway-in-rhelcentos-7/</id><summary type="html">&lt;p&gt;&lt;center&gt;&lt;img alt="RHEL" src="http://maciej.lasyk.info/images/rhel-logo-small.png" /&gt;&lt;/center&gt;&lt;/p&gt;
 &lt;h3&gt;WAT?&lt;/h3&gt;
 &lt;p&gt;Ok, so I've rolled up a new host and made it boot OS from the iSCSI drive.
 Great. I have 4 NICs in this box.&lt;/p&gt;
@@ -705,7 +824,7 @@ didn't find the answer - even after debugging the
 overwriting the default route during boot after NetworkManager did it's job.&lt;/p&gt;
 &lt;p&gt;I came back to this problem after while and poked around this one ifcfg config
 for the iSCSI NIC:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="c"&gt;# Generated by dracut initrd&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="c1"&gt;# Generated by dracut initrd&lt;/span&gt;
 &lt;span class="nv"&gt;DEVICE&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;eno2&amp;quot;&lt;/span&gt;
 &lt;span class="nv"&gt;ONBOOT&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;yes
 &lt;span class="nv"&gt;NETBOOT&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;yes
@@ -724,38 +843,38 @@ for the iSCSI NIC:&lt;/p&gt;
 While installing this host I had to reconfigure dracut a little bit to make 
 grub boot this OS from network via iSCSI (I wrote about &lt;a href="http://maciej.lasyk.info/2015/Feb/09/iscsi-boot-in-rhelcentos7-broken/"&gt;it here&lt;/a&gt; 
 as this is a bug in CentOS/RHEL7). In &lt;strong&gt;/etc/default/grub&lt;/strong&gt; I entered:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;GRUB_TIMEOUT&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;5
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="nv"&gt;GRUB_TIMEOUT&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;5
 &lt;span class="nv"&gt;GRUB_DISTRIBUTOR&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="k"&gt;$(&lt;/span&gt;sed &lt;span class="s1"&gt;&amp;#39;s, release .*$,,g&amp;#39;&lt;/span&gt; /etc/system-release&lt;span class="k"&gt;)&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;
 &lt;span class="nv"&gt;GRUB_DEFAULT&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;saved
 &lt;span class="nv"&gt;GRUB_DISABLE_SUBMENU&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="nb"&gt;true&lt;/span&gt;
 &lt;span class="nv"&gt;GRUB_TERMINAL_OUTPUT&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;console&amp;quot;&lt;/span&gt;
 &lt;span class="nv"&gt;GRUB_CMDLINE_LINUX&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;ip=192.168.1.2::192.168.1.1:255.255.255.0:[...]&lt;/span&gt;
-&lt;span class="s2"&gt;GRUB_DISABLE_RECOVERY=&amp;quot;&lt;/span&gt;&lt;span class="nb"&gt;true&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;
+&lt;span class="s2"&gt;GRUB_DISABLE_RECOVERY=&amp;quot;&lt;/span&gt;true&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;p&gt;That's it! This iSCSI network is a simple P2P connection, so it does not need
 the gateway there! Basing on &lt;a href="http://people.redhat.com/harald/dracut.html#id536255"&gt;this article&lt;/a&gt;
 the proper format for dracut is:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;ip&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&amp;lt;client-IP&amp;gt;:&lt;span class="o"&gt;[&lt;/span&gt; &amp;lt;server-id&amp;gt; &lt;span class="o"&gt;]&lt;/span&gt;:&amp;lt;gateway-IP&amp;gt;:
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="nv"&gt;ip&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&amp;lt;client-IP&amp;gt;:&lt;span class="o"&gt;[&lt;/span&gt; &amp;lt;server-id&amp;gt; &lt;span class="o"&gt;]&lt;/span&gt;:&amp;lt;gateway-IP&amp;gt;:
     &amp;lt;netmask&amp;gt;:&amp;lt;client_hostname&amp;gt;:&amp;lt;interface&amp;gt;:&lt;span class="o"&gt;{&lt;/span&gt;none&lt;span class="p"&gt;|&lt;/span&gt;off&lt;span class="o"&gt;}&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;p&gt;So I simply removed the gateway &lt;strong&gt;192.168.1.1&lt;/strong&gt; from the grub default config, 
 regenerated grub with:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;grub2-mkconfig -o /boot/grub2/grub.cfg
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;grub2-mkconfig -o /boot/grub2/grub.cfg
 &lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;p&gt;And after reboot my default gateway was set up exactly like I configured it in 
 &lt;strong&gt;/etc/sysconfig/network&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;Yes - that was truly pain in the ass!&lt;/p&gt;</summary><category term="rhel"></category><category term="centos"></category><category term="iscsi"></category><category term="boot"></category><category term="netboot"></category><category term="dracut"></category><category term="network"></category></entry><entry><title>iSCSI boot in RHEL/CentOS7 broken</title><link href="http://maciej.lasyk.info/2015/Feb/09/iscsi-boot-in-rhelcentos7-broken/" rel="alternate"></link><updated>2015-02-09T00:00:00+01:00</updated><author><name>Maciej Lasyk</name></author><id>tag:maciej.lasyk.info,2015-02-09:2015/Feb/09/iscsi-boot-in-rhelcentos7-broken/</id><summary type="html">&lt;p&gt;&lt;center&gt;&lt;img alt="RHEL" src="http://maciej.lasyk.info/images/rhel-logo-small.png" /&gt;&lt;/center&gt;&lt;/p&gt;
+&lt;p&gt;Yes - that was truly pain in the ass!&lt;/p&gt;</summary><category term="rhel"></category><category term="centos"></category><category term="iscsi"></category><category term="boot"></category><category term="netboot"></category><category term="dracut"></category><category term="network"></category></entry><entry><title>iSCSI boot in RHEL/CentOS7 broken</title><link href="http://maciej.lasyk.info/2015/Feb/09/iscsi-boot-in-rhelcentos7-broken/" rel="alternate"></link><published>2015-02-09T00:00:00+01:00</published><author><name>Maciej Lasyk</name></author><id>tag:maciej.lasyk.info,2015-02-09:2015/Feb/09/iscsi-boot-in-rhelcentos7-broken/</id><summary type="html">&lt;p&gt;&lt;center&gt;&lt;img alt="RHEL" src="http://maciej.lasyk.info/images/rhel-logo-small.png" /&gt;&lt;/center&gt;&lt;/p&gt;
 &lt;h3&gt;WAT?&lt;/h3&gt;
 &lt;p&gt;Today while rolling up new host in my company I hit the following issue after
 successfully installing CentOS7 on remote iSCSI drive. I just rebooted the
 machine and after GRUB done it's job I just got:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="o"&gt;[&lt;/span&gt;   2.375332&lt;span class="o"&gt;]&lt;/span&gt; i8042: No controller found
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="o"&gt;[&lt;/span&gt;   2.375332&lt;span class="o"&gt;]&lt;/span&gt; i8042: No controller found
 &lt;span class="o"&gt;[&lt;/span&gt;   2.592960&lt;span class="o"&gt;]&lt;/span&gt; dracut: FATAL: For argument 
     &lt;span class="s1"&gt;&amp;#39;ip=::::localhost.localdomain:eno1: none&amp;#39;&lt;/span&gt;&lt;span class="se"&gt;\n&lt;/span&gt;Value &lt;span class="s1"&gt;&amp;#39;none&amp;#39;&lt;/span&gt; 
     without static configuration does not make sanse
@@ -770,14 +889,14 @@ installer is broken and it creates broken grub entry for iSCSI nodes.&lt;/p&gt;
 &lt;h3&gt;How to fix this?&lt;/h3&gt;
 &lt;p&gt;There're many ways. I just rebooted the box, entered the grub edit mode and
 fixed the boot param replacing:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;linux16 /vmlinuz-3.10.0-123.el7.x86_64 &lt;span class="o"&gt;[&lt;/span&gt;...&lt;span class="o"&gt;]&lt;/span&gt; 
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;linux16 /vmlinuz-3.10.0-123.el7.x86_64 &lt;span class="o"&gt;[&lt;/span&gt;...&lt;span class="o"&gt;]&lt;/span&gt; 
     vconsole.font&lt;span class="o"&gt;=&lt;/span&gt;latarcyrheb-sun16 
     &lt;span class="nv"&gt;ip&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;::::localhost.localdomain:eno1:none &lt;span class="o"&gt;[&lt;/span&gt;...&lt;span class="o"&gt;]&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;p&gt;with this:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;linux16 /vmlinuz-3.10.0-123.el7.x86_64 &lt;span class="o"&gt;[&lt;/span&gt;...&lt;span class="o"&gt;]&lt;/span&gt; 
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;linux16 /vmlinuz-3.10.0-123.el7.x86_64 &lt;span class="o"&gt;[&lt;/span&gt;...&lt;span class="o"&gt;]&lt;/span&gt; 
     vconsole.font&lt;span class="o"&gt;=&lt;/span&gt;latarcyrheb-sun16 
     &lt;span class="nv"&gt;ip&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;192.168.1.15::192.168.1.1:255.255.252.0:localhost.localdomain:eno1:none &lt;span class="o"&gt;[&lt;/span&gt;...&lt;span class="o"&gt;]&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
@@ -792,7 +911,7 @@ solution:&lt;/p&gt;
 &lt;li&gt;Fix above again in &lt;strong&gt;/etc/sysconfig/grub&lt;/strong&gt;&lt;/li&gt;
 &lt;li&gt;Rebuild the grub configuration: &lt;strong&gt;&lt;em&gt;grub2-mkconfig -o /boot/grub2/grub.cfg&lt;/em&gt;&lt;/strong&gt;&lt;/li&gt;
 &lt;li&gt;That's all. Just reboot and confirm it's working fine&lt;/li&gt;
-&lt;/ul&gt;</summary><category term="rhel"></category><category term="centos"></category><category term="iscsi"></category><category term="boot"></category><category term="netboot"></category></entry><entry><title>Spotify on Fedora 21</title><link href="http://maciej.lasyk.info/2015/Feb/08/spotify-on-fedora-21/" rel="alternate"></link><updated>2015-02-08T00:00:00+01:00</updated><author><name>Maciej Lasyk</name></author><id>tag:maciej.lasyk.info,2015-02-08:2015/Feb/08/spotify-on-fedora-21/</id><summary type="html">&lt;p&gt;&lt;center&gt;&lt;img alt="Spotify and Fedora" src="http://maciej.lasyk.info/images/fedspotify.png" /&gt;&lt;/center&gt;&lt;/p&gt;
+&lt;/ul&gt;</summary><category term="rhel"></category><category term="centos"></category><category term="iscsi"></category><category term="boot"></category><category term="netboot"></category></entry><entry><title>Spotify on Fedora 21</title><link href="http://maciej.lasyk.info/2015/Feb/08/spotify-on-fedora-21/" rel="alternate"></link><published>2015-02-08T00:00:00+01:00</published><author><name>Maciej Lasyk</name></author><id>tag:maciej.lasyk.info,2015-02-08:2015/Feb/08/spotify-on-fedora-21/</id><summary type="html">&lt;p&gt;&lt;center&gt;&lt;img alt="Spotify and Fedora" src="http://maciej.lasyk.info/images/fedspotify.png" /&gt;&lt;/center&gt;&lt;/p&gt;
 &lt;h3&gt;Spotify on Fedora?&lt;/h3&gt;
 &lt;p&gt;Yup, I just got bored of running Spotify on my cellphone when working on
 computer. Unfortunately there is no native support for Spotify on Fedora just
@@ -813,7 +932,7 @@ today).&lt;/p&gt;
   w/Spotify client updater/installer.&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;If you have any issues installing see buildlog (you can view it from this popup
-window)&lt;/p&gt;</summary><category term="spotify"></category><category term="fedora"></category></entry><entry><title>Sending Evernote notes to Kindle</title><link href="http://maciej.lasyk.info/2015/Feb/05/sending-evernote-notes-to-kindle/" rel="alternate"></link><updated>2015-02-05T00:00:00+01:00</updated><author><name>Maciej Lasyk</name></author><id>tag:maciej.lasyk.info,2015-02-05:2015/Feb/05/sending-evernote-notes-to-kindle/</id><summary type="html">&lt;p&gt;&lt;center&gt;&lt;img alt="Evernote and Kindle" src="http://maciej.lasyk.info/images/everkindle.png" /&gt;&lt;/center&gt;&lt;/p&gt;
+window)&lt;/p&gt;</summary><category term="spotify"></category><category term="fedora"></category></entry><entry><title>Sending Evernote notes to Kindle</title><link href="http://maciej.lasyk.info/2015/Feb/05/sending-evernote-notes-to-kindle/" rel="alternate"></link><published>2015-02-05T00:00:00+01:00</published><author><name>Maciej Lasyk</name></author><id>tag:maciej.lasyk.info,2015-02-05:2015/Feb/05/sending-evernote-notes-to-kindle/</id><summary type="html">&lt;p&gt;&lt;center&gt;&lt;img alt="Evernote and Kindle" src="http://maciej.lasyk.info/images/everkindle.png" /&gt;&lt;/center&gt;&lt;/p&gt;
 &lt;h3&gt;Evernote and Kindle?&lt;/h3&gt;
 &lt;p&gt;I use Kindle as my main database for any books, articles or whatever I'd like
 to read. I try to push anything (pdfs, notes from meetings etc) to my Kindle
@@ -838,7 +957,7 @@ some particular tag.&lt;/p&gt;
 &lt;p&gt;And that's all!&lt;/p&gt;
 &lt;p&gt;Enjoy and support en2kindle - it's ony $6/year!&lt;/p&gt;
 &lt;p&gt;Oh one more thing for people concerning about &lt;strong&gt;security&lt;/strong&gt;. It simple as that -
-it's as secure as keeping data in Evernote. It's internet - deal with it.&lt;/p&gt;</summary><category term="kindle"></category><category term="evernote"></category></entry><entry><title>1st Kraków Docker Meetup!</title><link href="http://maciej.lasyk.info/2015/Jan/17/1st-krakow-docker-meetup/" rel="alternate"></link><updated>2015-01-17T00:00:00+01:00</updated><author><name>Maciej Lasyk</name></author><id>tag:maciej.lasyk.info,2015-01-17:2015/Jan/17/1st-krakow-docker-meetup/</id><summary type="html">&lt;p&gt;&lt;center&gt;&lt;img alt="Docker Logo" src="http://maciej.lasyk.info/images/docker-logo.png" /&gt;&lt;/center&gt;&lt;/p&gt;
+it's as secure as keeping data in Evernote. It's internet - deal with it.&lt;/p&gt;</summary><category term="kindle"></category><category term="evernote"></category></entry><entry><title>1st Kraków Docker Meetup!</title><link href="http://maciej.lasyk.info/2015/Jan/17/1st-krakow-docker-meetup/" rel="alternate"></link><published>2015-01-17T00:00:00+01:00</published><author><name>Maciej Lasyk</name></author><id>tag:maciej.lasyk.info,2015-01-17:2015/Jan/17/1st-krakow-docker-meetup/</id><summary type="html">&lt;p&gt;&lt;center&gt;&lt;img alt="Docker Logo" src="http://maciej.lasyk.info/images/docker-logo.png" /&gt;&lt;/center&gt;&lt;/p&gt;
 &lt;h3&gt;Docker?&lt;/h3&gt;
 &lt;p&gt;Yup, &lt;a href="http://www.docker.com"&gt;Docker&lt;/a&gt;. It's An open platform for distributed
 applications.&lt;/p&gt;
@@ -849,7 +968,7 @@ attend&lt;/strong&gt;.&lt;/p&gt;
 create and deliver services.&lt;/p&gt;
 &lt;h3&gt;When and where?&lt;/h3&gt;
 &lt;p&gt;All event details, place, agenda, registration etc are on the meetup webpage:
-&lt;a href="http://www.meetup.com/Docker-Krakow-Poland/events/219831894/"&gt;http://www.meetup.com/Docker-Krakow-Poland/events/219831894/&lt;/a&gt;&lt;/p&gt;</summary><category term="meetups"></category><category term="docker"></category></entry><entry><title>Linux Kernel Networking book</title><link href="http://maciej.lasyk.info/2015/Jan/15/linux-kernel-networking-book/" rel="alternate"></link><updated>2015-01-15T00:00:00+01:00</updated><author><name>Maciej Lasyk</name></author><id>tag:maciej.lasyk.info,2015-01-15:2015/Jan/15/linux-kernel-networking-book/</id><summary type="html">&lt;p&gt;&lt;center&gt;&lt;img alt="Linux Kernel Networking" src="http://maciej.lasyk.info/images/linuxkernelnetworking.jpg" /&gt;&lt;/center&gt;&lt;/p&gt;
+&lt;a href="http://www.meetup.com/Docker-Krakow-Poland/events/219831894/"&gt;http://www.meetup.com/Docker-Krakow-Poland/events/219831894/&lt;/a&gt;&lt;/p&gt;</summary><category term="meetups"></category><category term="docker"></category></entry><entry><title>Linux Kernel Networking book</title><link href="http://maciej.lasyk.info/2015/Jan/15/linux-kernel-networking-book/" rel="alternate"></link><published>2015-01-15T00:00:00+01:00</published><author><name>Maciej Lasyk</name></author><id>tag:maciej.lasyk.info,2015-01-15:2015/Jan/15/linux-kernel-networking-book/</id><summary type="html">&lt;p&gt;&lt;center&gt;&lt;img alt="Linux Kernel Networking" src="http://maciej.lasyk.info/images/linuxkernelnetworking.jpg" /&gt;&lt;/center&gt;&lt;/p&gt;
 &lt;h3&gt;What it is about?&lt;/h3&gt;
 &lt;p&gt;Aaargh I wish day could be longer than 24h. This books keeps me away
 from my bed.&lt;/p&gt;
@@ -877,7 +996,7 @@ using L2 bridge)?&lt;/p&gt;
 &lt;/ul&gt;
 &lt;p&gt;What's important is this book is not about Kernel development. It simply
 focuses on the network stack describing concepts.&lt;/p&gt;
-&lt;p&gt;So happy reading and many thanks to the authors!&lt;/p&gt;</summary><category term="ebooks"></category><category term="books"></category></entry><entry><title>GIT: clone only one file</title><link href="http://maciej.lasyk.info/2014/Nov/20/git-clone-only-one-file/" rel="alternate"></link><updated>2014-11-20T00:00:00+01:00</updated><author><name>Maciej Lasyk</name></author><id>tag:maciej.lasyk.info,2014-11-20:2014/Nov/20/git-clone-only-one-file/</id><summary type="html">&lt;p&gt;&lt;center&gt;&lt;img alt="GIT" src="http://maciej.lasyk.info/images/git.png" /&gt;&lt;/center&gt;&lt;/p&gt;
+&lt;p&gt;So happy reading and many thanks to the authors!&lt;/p&gt;</summary><category term="ebooks"></category><category term="books"></category></entry><entry><title>GIT: clone only one file</title><link href="http://maciej.lasyk.info/2014/Nov/20/git-clone-only-one-file/" rel="alternate"></link><published>2014-11-20T00:00:00+01:00</published><author><name>Maciej Lasyk</name></author><id>tag:maciej.lasyk.info,2014-11-20:2014/Nov/20/git-clone-only-one-file/</id><summary type="html">&lt;p&gt;&lt;center&gt;&lt;img alt="GIT" src="http://maciej.lasyk.info/images/git.png" /&gt;&lt;/center&gt;&lt;/p&gt;
 &lt;h3&gt;What?&lt;/h3&gt;
 &lt;p&gt;So I have a quite big bare repo somewhere and needed to get only one file from
 there (of course - didn't know the exact filename). Frankly my GIT-fu is not 
@@ -885,24 +1004,24 @@ that kinky, so the way I did it could cause a little bit of smile on someones
 mouth ;)&lt;/p&gt;
 &lt;h3&gt;How?&lt;/h3&gt;
 &lt;p&gt;A slice from my notes:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="c"&gt;# on a local FS:&lt;/span&gt;
-&lt;span class="nv"&gt;$ &lt;/span&gt;git init . &lt;span class="c"&gt;# create empty repo on local FS&lt;/span&gt;
-&lt;span class="nv"&gt;$ &lt;/span&gt;git remote add remote_name path &lt;span class="c"&gt;# add a remote&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="c1"&gt;# on a local FS:&lt;/span&gt;
+$ git init . &lt;span class="c1"&gt;# create empty repo on local FS&lt;/span&gt;
+$ git remote add remote_name path &lt;span class="c1"&gt;# add a remote&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="c"&gt;# on a remote, bare repo:&lt;/span&gt;
-&lt;span class="nv"&gt;$ &lt;/span&gt;git log -n &lt;span class="m"&gt;10&lt;/span&gt; &lt;span class="c"&gt;# get last commits id&lt;/span&gt;
-&lt;span class="nv"&gt;$ &lt;/span&gt;git show --name-only commit_id &lt;span class="c"&gt;# get listing of files from the last commits&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="c1"&gt;# on a remote, bare repo:&lt;/span&gt;
+$ git log -n &lt;span class="m"&gt;10&lt;/span&gt; &lt;span class="c1"&gt;# get last commits id&lt;/span&gt;
+$ git show --name-only commit_id &lt;span class="c1"&gt;# get listing of files from the last commits&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="c"&gt;# on a local FS:&lt;/span&gt;
-&lt;span class="nv"&gt;$ &lt;/span&gt;git archive --remote&lt;span class="o"&gt;=&lt;/span&gt;remote_name HEAD:some/dir/somewhere filename &lt;span class="p"&gt;|&lt;/span&gt; tar xf -
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="c1"&gt;# on a local FS:&lt;/span&gt;
+$ git archive --remote&lt;span class="o"&gt;=&lt;/span&gt;remote_name HEAD:some/dir/somewhere filename &lt;span class="p"&gt;|&lt;/span&gt; tar xf -
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;p&gt;So this way you'll end up with only one file scrapped from the remote repo.&lt;/p&gt;</summary><category term="tmux"></category></entry><entry><title>Invitation to JavaCamp #13</title><link href="http://maciej.lasyk.info/2014/Nov/20/invitation-to-javacamp-13/" rel="alternate"></link><updated>2014-11-20T00:00:00+01:00</updated><author><name>Maciej Lasyk</name></author><id>tag:maciej.lasyk.info,2014-11-20:2014/Nov/20/invitation-to-javacamp-13/</id><summary type="html">&lt;p&gt;&lt;center&gt;&lt;img alt="PJUG" src="http://maciej.lasyk.info/images/pjug.jpeg" /&gt;&lt;/center&gt;&lt;/p&gt;
+&lt;p&gt;So this way you'll end up with only one file scrapped from the remote repo.&lt;/p&gt;</summary><category term="tmux"></category></entry><entry><title>Invitation to JavaCamp #13</title><link href="http://maciej.lasyk.info/2014/Nov/20/invitation-to-javacamp-13/" rel="alternate"></link><published>2014-11-20T00:00:00+01:00</published><author><name>Maciej Lasyk</name></author><id>tag:maciej.lasyk.info,2014-11-20:2014/Nov/20/invitation-to-javacamp-13/</id><summary type="html">&lt;p&gt;&lt;center&gt;&lt;img alt="PJUG" src="http://maciej.lasyk.info/images/pjug.jpeg" /&gt;&lt;/center&gt;&lt;/p&gt;
 &lt;p&gt;Once again I'll have a talk about Docker cluster management. This time it will
 take place in the Sabre office here in Krk and will be part of the JavaCamp #13
 meeting which details are on the &lt;a href="http://www.meetup.com/Polish-Java-User-Group/events/213331502/"&gt;meetup
@@ -912,7 +1031,7 @@ webpages&lt;/a&gt;&lt;/p&gt;
 same subject which I presented on Linux Autumn Conference):&lt;/p&gt;
 &lt;iframe width="560" height="315"
 src="//www.youtube.com/embed/Qflntb2ZdlQ?rel=0" frameborder="0"
-allowfullscreen&gt;&lt;/iframe&gt;</summary><category term="meetups. conferences"></category></entry><entry><title>Poor man's VIM sessions</title><link href="http://maciej.lasyk.info/2014/Nov/19/poor-mans-vim-sessions/" rel="alternate"></link><updated>2014-11-19T00:00:00+01:00</updated><author><name>Maciej Lasyk</name></author><id>tag:maciej.lasyk.info,2014-11-19:2014/Nov/19/poor-mans-vim-sessions/</id><summary type="html">&lt;p&gt;&lt;center&gt;&lt;img alt="VIM" src="http://maciej.lasyk.info/images/vim.jpg" /&gt;&lt;/center&gt;&lt;/p&gt;
+allowfullscreen&gt;&lt;/iframe&gt;</summary><category term="meetups. conferences"></category></entry><entry><title>Poor man's VIM sessions</title><link href="http://maciej.lasyk.info/2014/Nov/19/poor-mans-vim-sessions/" rel="alternate"></link><published>2014-11-19T00:00:00+01:00</published><author><name>Maciej Lasyk</name></author><id>tag:maciej.lasyk.info,2014-11-19:2014/Nov/19/poor-mans-vim-sessions/</id><summary type="html">&lt;p&gt;&lt;center&gt;&lt;img alt="VIM" src="http://maciej.lasyk.info/images/vim.jpg" /&gt;&lt;/center&gt;&lt;/p&gt;
 &lt;p&gt;Some of guys use VIM just like Eclipse - one IDE to rule them all. I don't like
 this approach - instead of this I rather work in couple of
 &lt;a href="http://tmux.sourceforge.net/"&gt;Tmux&lt;/a&gt; windows having exactly one VIM in each (usually top - left pane). &lt;/p&gt;
@@ -936,7 +1055,7 @@ window creation, but remember - this is &lt;strong&gt;poor man's way&lt;/strong&
 &lt;p&gt;And one more thing - I use &lt;a href="https://github.com/xolox/vim-session"&gt;vim-session&lt;/a&gt;
 plugin to handle sessions in VIM.&lt;/p&gt;
 &lt;p&gt;And the function code? See below:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;vims&lt;span class="o"&gt;()&lt;/span&gt; &lt;span class="o"&gt;{&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;vims&lt;span class="o"&gt;()&lt;/span&gt; &lt;span class="o"&gt;{&lt;/span&gt;
     &lt;span class="nv"&gt;_vim_sess_dir&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;~/.vim/sessions/
     &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="o"&gt;[&lt;/span&gt; -z &lt;span class="nv"&gt;$1&lt;/span&gt; &lt;span class="o"&gt;]&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="k"&gt;then&lt;/span&gt;
         &lt;span class="nb"&gt;echo&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;You must enter session name!&amp;quot;&lt;/span&gt;
@@ -949,14 +1068,14 @@ plugin to handle sessions in VIM.&lt;/p&gt;
         vim -S &lt;span class="nv"&gt;$_vim_sess&lt;/span&gt;
     &lt;span class="k"&gt;fi&lt;/span&gt;
 &lt;span class="o"&gt;}&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;</summary><category term="vim"></category><category term="sessions"></category></entry><entry><title>Tmux: join-pane</title><link href="http://maciej.lasyk.info/2014/Nov/19/tmux-join-pane/" rel="alternate"></link><updated>2014-11-19T00:00:00+01:00</updated><author><name>Maciej Lasyk</name></author><id>tag:maciej.lasyk.info,2014-11-19:2014/Nov/19/tmux-join-pane/</id><summary type="html">&lt;p&gt;&lt;center&gt;&lt;img alt="TMUX" src="http://maciej.lasyk.info/images/tmux.png" /&gt;&lt;/center&gt;&lt;/p&gt;
+&lt;/pre&gt;&lt;/div&gt;</summary><category term="vim"></category><category term="sessions"></category></entry><entry><title>Tmux: join-pane</title><link href="http://maciej.lasyk.info/2014/Nov/19/tmux-join-pane/" rel="alternate"></link><published>2014-11-19T00:00:00+01:00</published><author><name>Maciej Lasyk</name></author><id>tag:maciej.lasyk.info,2014-11-19:2014/Nov/19/tmux-join-pane/</id><summary type="html">&lt;p&gt;&lt;center&gt;&lt;img alt="TMUX" src="http://maciej.lasyk.info/images/tmux.png" /&gt;&lt;/center&gt;&lt;/p&gt;
 &lt;p&gt;Today I finally learnt how to move a pane between windows in
 &lt;a href="http://tmux.sourceforge.net/"&gt;Tmux&lt;/a&gt; and yes - I will share this vodoo
 knowledge with you guys.&lt;/p&gt;
 &lt;p&gt;Searching through the internet gives us this:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="c"&gt;# pane movement&lt;/span&gt;
-&lt;span class="nb"&gt;bind&lt;/span&gt;-key j &lt;span class="nb"&gt;command&lt;/span&gt;-prompt -p &lt;span class="s2"&gt;&amp;quot;join pane from:&amp;quot;&lt;/span&gt;  &lt;span class="s2"&gt;&amp;quot;join-pane -s &amp;#39;%%&amp;#39;&amp;quot;&lt;/span&gt;
-&lt;span class="nb"&gt;bind&lt;/span&gt;-key s &lt;span class="nb"&gt;command&lt;/span&gt;-prompt -p &lt;span class="s2"&gt;&amp;quot;send pane to:&amp;quot;&lt;/span&gt;  &lt;span class="s2"&gt;&amp;quot;join-pane -t &amp;#39;%%&amp;#39;&amp;quot;&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="c1"&gt;# pane movement&lt;/span&gt;
+bind-key j command-prompt -p &lt;span class="s2"&gt;&amp;quot;join pane from:&amp;quot;&lt;/span&gt;  &lt;span class="s2"&gt;&amp;quot;join-pane -s &amp;#39;%%&amp;#39;&amp;quot;&lt;/span&gt;
+bind-key s command-prompt -p &lt;span class="s2"&gt;&amp;quot;send pane to:&amp;quot;&lt;/span&gt;  &lt;span class="s2"&gt;&amp;quot;join-pane -t &amp;#39;%%&amp;#39;&amp;quot;&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
@@ -968,7 +1087,7 @@ it entering window number as the destination (or source) you get a message:&lt;/
 &lt;p&gt;WTF?&lt;/p&gt;
 &lt;p&gt;Let's RTFM:&lt;/p&gt;
 &lt;blockquote&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt; join-pane [-bdhv] [-l size | -p percentage] [-s src-pane] [-t dst-pane]
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt; join-pane [-bdhv] [-l size | -p percentage] [-s src-pane] [-t dst-pane]
        (alias: joinp)
       Like split-window, but instead of splitting
       dst-pane and creating a new pane, split it and
@@ -985,7 +1104,7 @@ it entering window number as the destination (or source) you get a message:&lt;/
 &lt;p&gt;So yes - bindings are still valid but instead entering single window number we
 should enter exact location like &lt;strong&gt;1.3&lt;/strong&gt; (assuming you got at least 2 panes in
 1 window)&lt;/p&gt;
-&lt;p&gt;Yes - this was not that obvious&lt;/p&gt;</summary><category term="tmux"></category></entry><entry><title>Piwik!</title><link href="http://maciej.lasyk.info/2014/Nov/16/piwik/" rel="alternate"></link><updated>2014-11-16T00:00:00+01:00</updated><author><name>Maciej Lasyk</name></author><id>tag:maciej.lasyk.info,2014-11-16:2014/Nov/16/piwik/</id><summary type="html">&lt;p&gt;&lt;center&gt;&lt;img alt="Piwik" src="http://maciej.lasyk.info/images/piwik.png" /&gt;&lt;/center&gt;&lt;/p&gt;
+&lt;p&gt;Yes - this was not that obvious&lt;/p&gt;</summary><category term="tmux"></category></entry><entry><title>Piwik!</title><link href="http://maciej.lasyk.info/2014/Nov/16/piwik/" rel="alternate"></link><published>2014-11-16T00:00:00+01:00</published><author><name>Maciej Lasyk</name></author><id>tag:maciej.lasyk.info,2014-11-16:2014/Nov/16/piwik/</id><summary type="html">&lt;p&gt;&lt;center&gt;&lt;img alt="Piwik" src="http://maciej.lasyk.info/images/piwik.png" /&gt;&lt;/center&gt;&lt;/p&gt;
 &lt;h1&gt;Piwik?&lt;/h1&gt;
 &lt;p&gt;&lt;a href="http://piwik.org"&gt;Piwik&lt;/a&gt; is an open - source alternative to &lt;a href="https://analytics.google.com"&gt;Google Analytics&lt;/a&gt;.
 You can read the &lt;a href="http://smashinghub.com/google-analytics-vs-piwik-the-ultimate-comparison.htm"&gt;ultimate comparison
@@ -1022,7 +1141,7 @@ yourself:&lt;/p&gt;
 &lt;h1&gt;Anything else?&lt;/h1&gt;
 &lt;p&gt;Just remember to make sure that Piwik content headers have gzip compression and
 also caching enabled. Hosting own analytics site means many requests to the
-public interfaces so those should be optimized very well.&lt;/p&gt;</summary><category term="piwik"></category><category term="opensource"></category><category term="analytics"></category></entry><entry><title>Orchestrating Docker containers at scale - slides from Linux Autumn 2014</title><link href="http://maciej.lasyk.info/2014/Nov/10/orchestrating-docker-containers-at-scale-slides-from-linux-autumn-2014/" rel="alternate"></link><updated>2014-11-10T00:00:00+01:00</updated><author><name>Maciej Lasyk</name></author><id>tag:maciej.lasyk.info,2014-11-10:2014/Nov/10/orchestrating-docker-containers-at-scale-slides-from-linux-autumn-2014/</id><summary type="html">&lt;p&gt;&lt;center&gt;&lt;img alt="Jesien" src="http://maciej.lasyk.info/images/jesien-logo.png" /&gt;&lt;/center&gt;&lt;/p&gt;
+public interfaces so those should be optimized very well.&lt;/p&gt;</summary><category term="piwik"></category><category term="opensource"></category><category term="analytics"></category></entry><entry><title>Orchestrating Docker containers at scale - slides from Linux Autumn 2014</title><link href="http://maciej.lasyk.info/2014/Nov/10/orchestrating-docker-containers-at-scale-slides-from-linux-autumn-2014/" rel="alternate"></link><published>2014-11-10T00:00:00+01:00</published><author><name>Maciej Lasyk</name></author><id>tag:maciej.lasyk.info,2014-11-10:2014/Nov/10/orchestrating-docker-containers-at-scale-slides-from-linux-autumn-2014/</id><summary type="html">&lt;p&gt;&lt;center&gt;&lt;img alt="Jesien" src="http://maciej.lasyk.info/images/jesien-logo.png" /&gt;&lt;/center&gt;&lt;/p&gt;
 &lt;p&gt;That's it. &lt;a href="http://www.jesien.org"&gt;Linux Autumn 2014&lt;/a&gt; is over. This year I finally decided to give a talk
 instead of only listening and networking.&lt;/p&gt;
 &lt;p&gt;The subject of this talk was &lt;strong&gt;Orchestrating Docker containers at scale&lt;/strong&gt;. As
@@ -1046,7 +1165,7 @@ about the presentation! Hope to see you at &lt;a href="www.meetup.com/Krakow-Dev
 &lt;p&gt;Btw - Szczyrk and it's area are really great for hiking, MTB and running.
 Could't resist those mountains so had a &lt;a href="http://www.strava.com/activities/216556430"&gt;30-km run on
 Friday&lt;/a&gt;:&lt;/p&gt;
-&lt;p&gt;&lt;center&gt;&lt;img alt="Beskid Śląski" src="http://maciej.lasyk.info/images/beskid_slaski.jpg" /&gt;&lt;/center&gt;&lt;/p&gt;</summary><category term="talks"></category><category term="conferences"></category><category term="docker"></category><category term="coreos"></category><category term="kubernetes"></category><category term="fleet"></category><category term="fig"></category></entry><entry><title>Remark</title><link href="http://maciej.lasyk.info/2014/Oct/29/remark/" rel="alternate"></link><updated>2014-10-29T00:00:00+01:00</updated><author><name>Maciej Lasyk</name></author><id>tag:maciej.lasyk.info,2014-10-29:2014/Oct/29/remark/</id><summary type="html">&lt;p&gt;&lt;center&gt;&lt;img alt="VIM" src="http://maciej.lasyk.info/images/vim.jpg" /&gt;&lt;/center&gt;&lt;/p&gt;
+&lt;p&gt;&lt;center&gt;&lt;img alt="Beskid Śląski" src="http://maciej.lasyk.info/images/beskid_slaski.jpg" /&gt;&lt;/center&gt;&lt;/p&gt;</summary><category term="talks"></category><category term="conferences"></category><category term="docker"></category><category term="coreos"></category><category term="kubernetes"></category><category term="fleet"></category><category term="fig"></category></entry><entry><title>Remark</title><link href="http://maciej.lasyk.info/2014/Oct/29/remark/" rel="alternate"></link><published>2014-10-29T00:00:00+01:00</published><author><name>Maciej Lasyk</name></author><id>tag:maciej.lasyk.info,2014-10-29:2014/Oct/29/remark/</id><summary type="html">&lt;p&gt;&lt;center&gt;&lt;img alt="VIM" src="http://maciej.lasyk.info/images/vim.jpg" /&gt;&lt;/center&gt;&lt;/p&gt;
 &lt;p&gt;One of the rules that stay assures my productivity is using same tools
 for many tasks. That's why I've been looking for Powerpoint / LibreImpress replacement.&lt;/p&gt;
 &lt;p&gt;But it had to fullfill couple of requirements:&lt;/p&gt;
@@ -1058,8 +1177,8 @@ for many tasks. That's why I've been looking for Powerpoint / LibreImpress repla
 &lt;/ul&gt;
 &lt;p&gt;And it's here: &lt;a href="http://remarkjs.com/"&gt;Remark&lt;/a&gt;. Hosted on &lt;a href="https://github.com/gnab/remark"&gt;GitHub&lt;/a&gt;, simple to use, quite a community around.&lt;/p&gt;
 &lt;p&gt;Running those slideshows with use of:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;python&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;m&lt;/span&gt; &lt;span class="n"&gt;SimpleHTTPServer&lt;/span&gt; &lt;span class="mi"&gt;8001&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;</summary><category term="markdown"></category><category term="remark"></category><category term="pelican"></category></entry><entry><title>Focus</title><link href="http://maciej.lasyk.info/2014/Oct/27/focus/" rel="alternate"></link><updated>2014-10-27T00:00:00+01:00</updated><author><name>Maciej Lasyk</name></author><id>tag:maciej.lasyk.info,2014-10-27:2014/Oct/27/focus/</id><summary type="html">&lt;p&gt;&lt;center&gt;&lt;img alt="Focus" src="http://maciej.lasyk.info/images/focus.jpg" /&gt;&lt;/center&gt;&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;python&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;m&lt;/span&gt; &lt;span class="n"&gt;SimpleHTTPServer&lt;/span&gt; &lt;span class="mi"&gt;8001&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;</summary><category term="markdown"></category><category term="remark"></category><category term="pelican"></category></entry><entry><title>Focus</title><link href="http://maciej.lasyk.info/2014/Oct/27/focus/" rel="alternate"></link><published>2014-10-27T00:00:00+01:00</published><author><name>Maciej Lasyk</name></author><id>tag:maciej.lasyk.info,2014-10-27:2014/Oct/27/focus/</id><summary type="html">&lt;p&gt;&lt;center&gt;&lt;img alt="Focus" src="http://maciej.lasyk.info/images/focus.jpg" /&gt;&lt;/center&gt;&lt;/p&gt;
 &lt;h1&gt;Focus&lt;/h1&gt;
 &lt;p&gt;In 2001 a friend of mine wrote me via IM one sentence which remains in my
 memory up to now. It was about 1am and he wrote:&lt;/p&gt;
@@ -1115,7 +1234,7 @@ open - space (or similiar) area is sometimes fatiguing.&lt;/p&gt;
 me oppurtunity to do a lot more. Great win for anyone that is interested in
 almost all field of life ;)&lt;/p&gt;
 &lt;p&gt;But.. truly to be winners we have to practice all the time. Loosing focus is
-very easy and kinda natural. So we have to control it. Good luck :)&lt;/p&gt;</summary><category term="procrastination"></category><category term="focus"></category><category term="gtd"></category></entry><entry><title>Isolation</title><link href="http://maciej.lasyk.info/2014/Oct/22/isolation/" rel="alternate"></link><updated>2014-10-22T00:00:00+02:00</updated><author><name>Maciej Lasyk</name></author><id>tag:maciej.lasyk.info,2014-10-22:2014/Oct/22/isolation/</id><summary type="html">&lt;h1&gt;Isolation - what?&lt;/h1&gt;
+very easy and kinda natural. So we have to control it. Good luck :)&lt;/p&gt;</summary><category term="procrastination"></category><category term="focus"></category><category term="gtd"></category></entry><entry><title>Isolation</title><link href="http://maciej.lasyk.info/2014/Oct/22/isolation/" rel="alternate"></link><published>2014-10-22T00:00:00+02:00</published><author><name>Maciej Lasyk</name></author><id>tag:maciej.lasyk.info,2014-10-22:2014/Oct/22/isolation/</id><summary type="html">&lt;h1&gt;Isolation - what?&lt;/h1&gt;
 &lt;p&gt;Many of guys I talk to tend to run their Linux containers (LXC, Docker, you
 name it) straight on bare. And I call this a bad idea. This is because when
 running all the containers within one single box you will be hit by network or
@@ -1152,7 +1271,7 @@ seriously? Usually people rather use VMs for hosting nodes of IaaSes.&lt;/p&gt;
 &lt;h1&gt;Recap?&lt;/h1&gt;
 &lt;p&gt;No. Just wrote this after having a failure with LXC containers on Centos7 and
 no-real-explanation just "have-you-tried-to-turn-it-off-and-on-again?".&lt;/p&gt;
-&lt;p&gt;&lt;center&gt;&lt;img alt="Isolation" src="http://maciej.lasyk.info/images/isolation.jpg" /&gt;&lt;/center&gt;&lt;/p&gt;</summary><category term="containers"></category><category term="lxc"></category><category term="docker"></category><category term="kvm"></category><category term="virtualization"></category><category term="security"></category></entry><entry><title>Invitation for Linux Autumn 2014</title><link href="http://maciej.lasyk.info/2014/Oct/14/invitation-for-linux-autumn-2014/" rel="alternate"></link><updated>2014-10-14T00:00:00+02:00</updated><author><name>Maciej Lasyk</name></author><id>tag:maciej.lasyk.info,2014-10-14:2014/Oct/14/invitation-for-linux-autumn-2014/</id><summary type="html">&lt;p&gt;&lt;center&gt;&lt;img alt="Jesien" src="http://maciej.lasyk.info/images/jesien-logo.png" /&gt;&lt;/center&gt;&lt;/p&gt;
+&lt;p&gt;&lt;center&gt;&lt;img alt="Isolation" src="http://maciej.lasyk.info/images/isolation.jpg" /&gt;&lt;/center&gt;&lt;/p&gt;</summary><category term="containers"></category><category term="lxc"></category><category term="docker"></category><category term="kvm"></category><category term="virtualization"></category><category term="security"></category></entry><entry><title>Invitation for Linux Autumn 2014</title><link href="http://maciej.lasyk.info/2014/Oct/14/invitation-for-linux-autumn-2014/" rel="alternate"></link><published>2014-10-14T00:00:00+02:00</published><author><name>Maciej Lasyk</name></author><id>tag:maciej.lasyk.info,2014-10-14:2014/Oct/14/invitation-for-linux-autumn-2014/</id><summary type="html">&lt;p&gt;&lt;center&gt;&lt;img alt="Jesien" src="http://maciej.lasyk.info/images/jesien-logo.png" /&gt;&lt;/center&gt;&lt;/p&gt;
 &lt;p&gt;My speaker - break is over. Another major conference on the horizon. This time it's one of
 the biggest Linux Conferences here in Poland.&lt;/p&gt;
 &lt;p&gt;I'll talk there about taking next step in automation of Linux containers
@@ -1164,7 +1283,7 @@ tell couple of words about &lt;a href="http://www.fig.sh/"&gt;fig&lt;/a&gt; and 
 &lt;a href="http://www.jesien.org/2014/en/hotel"&gt;location&lt;/a&gt; of the event! Remember to take
 a bike (great mtb and road trails there) or running shoes - this is one of the
 best places to have a workout :)&lt;/p&gt;
-&lt;p&gt;See you there guys!&lt;/p&gt;</summary><category term="talks"></category><category term="conferences"></category><category term="docker"></category><category term="coreos"></category><category term="kubernetes"></category><category term="fleet"></category><category term="fig"></category></entry><entry><title>OpenWRT, Dnsmasq + external DNS</title><link href="http://maciej.lasyk.info/2014/Sep/22/openwrt-dnsmasq-external-dns/" rel="alternate"></link><updated>2014-09-22T00:00:00+02:00</updated><author><name>Maciej Lasyk</name></author><id>tag:maciej.lasyk.info,2014-09-22:2014/Sep/22/openwrt-dnsmasq-external-dns/</id><summary type="html">&lt;p&gt;I use &lt;a href="https://openwrt.org/"&gt;OpenWRT&lt;/a&gt; on my home access - points instead of
+&lt;p&gt;See you there guys!&lt;/p&gt;</summary><category term="talks"></category><category term="conferences"></category><category term="docker"></category><category term="coreos"></category><category term="kubernetes"></category><category term="fleet"></category><category term="fig"></category></entry><entry><title>OpenWRT, Dnsmasq + external DNS</title><link href="http://maciej.lasyk.info/2014/Sep/22/openwrt-dnsmasq-external-dns/" rel="alternate"></link><published>2014-09-22T00:00:00+02:00</published><author><name>Maciej Lasyk</name></author><id>tag:maciej.lasyk.info,2014-09-22:2014/Sep/22/openwrt-dnsmasq-external-dns/</id><summary type="html">&lt;p&gt;I use &lt;a href="https://openwrt.org/"&gt;OpenWRT&lt;/a&gt; on my home access - points instead of
 stock software (due to security concerns and my OpenSourceTheWorld approach).&lt;/p&gt;
 &lt;p&gt;I also have &lt;a href="https://en.wikipedia.org/wiki/BIND"&gt;BIND&lt;/a&gt; in use on my
 home-server, so I can use e.g. &lt;a href="http://maciej.lasyk.info/2014/Sep/02/dns-views-in-bind/"&gt;zones&lt;/a&gt;.&lt;/p&gt;
@@ -1174,16 +1293,16 @@ find option to set this manually (using webinteface).&lt;/p&gt;
 &lt;p&gt;Finally I logged into CLI interface via SSH and found that this change can be
 made in two ways.&lt;/p&gt;
 &lt;p&gt;In &lt;strong&gt;/etc/dnsmasq.conf&lt;/strong&gt; by adding line:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;dhcp-option&lt;span class="o"&gt;=&lt;/span&gt;6,IP1,IP2
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;dhcp-option&lt;span class="o"&gt;=&lt;/span&gt;6,IP1,IP2
 &lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;p&gt;Or in &lt;strong&gt;/etc/config/dhcp&lt;/strong&gt; by adding to the section &lt;strong&gt;config dnsmasq&lt;/strong&gt;:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;list &lt;span class="s1"&gt;&amp;#39;dhcp_option&amp;#39;&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;6,192.168.1.29&amp;#39;&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;list &lt;span class="s1"&gt;&amp;#39;dhcp_option&amp;#39;&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;6,192.168.1.29&amp;#39;&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;p&gt;Just restart Dnsmaq service afterwards and you're done.&lt;/p&gt;</summary><category term="dns"></category><category term="openwrt"></category><category term="dnsmasq"></category><category term="dhcp"></category></entry><entry><title>Network Manager Dispatcher</title><link href="http://maciej.lasyk.info/2014/Sep/14/network-manager-dispatcher/" rel="alternate"></link><updated>2014-09-14T11:46:00+02:00</updated><author><name>Maciej Lasyk</name></author><id>tag:maciej.lasyk.info,2014-09-14:2014/Sep/14/network-manager-dispatcher/</id><summary type="html">&lt;p&gt;&lt;a href="https://en.wikipedia.org/wiki/NetworkManager"&gt;NetworkManager&lt;/a&gt; is often 
+&lt;p&gt;Just restart Dnsmaq service afterwards and you're done.&lt;/p&gt;</summary><category term="dns"></category><category term="openwrt"></category><category term="dnsmasq"></category><category term="dhcp"></category></entry><entry><title>Network Manager Dispatcher</title><link href="http://maciej.lasyk.info/2014/Sep/14/network-manager-dispatcher/" rel="alternate"></link><published>2014-09-14T11:46:00+02:00</published><author><name>Maciej Lasyk</name></author><id>tag:maciej.lasyk.info,2014-09-14:2014/Sep/14/network-manager-dispatcher/</id><summary type="html">&lt;p&gt;&lt;a href="https://en.wikipedia.org/wiki/NetworkManager"&gt;NetworkManager&lt;/a&gt; is often 
 associated with some voodoo - network - magic tool, that does the work on 
 laptop, but better switch it off on server. I won't argue about that, just 
 wanted to give you something I personally think make NM more usable.&lt;/p&gt;
@@ -1206,9 +1325,9 @@ the device just activated, and second an action.&lt;/em&gt;&lt;/p&gt;
 &lt;li&gt;&lt;strong&gt;dhcp6-change&lt;/strong&gt; - The DHCPv6 lease has changed (renewed, rebound, etc).&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;So basically without manually detecting change in network events we may use the
-tool that was created just for this particular goal.&lt;/p&gt;</summary><category term="network"></category><category term="centos"></category><category term="fedora"></category></entry><entry><title>Ansible Playbook for favtools</title><link href="http://maciej.lasyk.info/2014/Sep/12/ansible-playbook-for-favtools/" rel="alternate"></link><updated>2014-09-12T23:24:00+02:00</updated><author><name>Maciej Lasyk</name></author><id>tag:maciej.lasyk.info,2014-09-12:2014/Sep/12/ansible-playbook-for-favtools/</id><summary type="html">&lt;h3&gt;playbook&lt;/h3&gt;
+tool that was created just for this particular goal.&lt;/p&gt;</summary><category term="network"></category><category term="centos"></category><category term="fedora"></category></entry><entry><title>Ansible Playbook for favtools</title><link href="http://maciej.lasyk.info/2014/Sep/12/ansible-playbook-for-favtools/" rel="alternate"></link><published>2014-09-12T23:24:00+02:00</published><author><name>Maciej Lasyk</name></author><id>tag:maciej.lasyk.info,2014-09-12:2014/Sep/12/ansible-playbook-for-favtools/</id><summary type="html">&lt;h3&gt;playbook&lt;/h3&gt;
 &lt;p&gt;This rather doesn't fit my github repo ;)&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;- name: Ensure my favorite tools are installed
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;- name: Ensure my favorite tools are installed
   yum: &lt;span class="nv"&gt;pkg&lt;/span&gt;&lt;span class="o"&gt;={{&lt;/span&gt;item&lt;span class="o"&gt;}}&lt;/span&gt; &lt;span class="nv"&gt;state&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;latest
   with_items:
     - strace
@@ -1224,7 +1343,7 @@ tool that was created just for this particular goal.&lt;/p&gt;</summary><categor
     - links
     - man
     - ntp
-    - &lt;span class="nb"&gt;bind&lt;/span&gt;-utils
+    - bind-utils
     - nmap
     - wget
     - telnet
@@ -1232,15 +1351,15 @@ tool that was created just for this particular goal.&lt;/p&gt;</summary><categor
 
 
 &lt;p&gt;And there would be one &lt;a href="http://docs.ansible.com/playbooks_roles.html#role-dependencies"&gt;dependency&lt;/a&gt; here (&lt;a href="https://fedoraproject.org/wiki/EPEL"&gt;EPEL&lt;/a&gt; repo):&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;- name: install epel repo
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;- name: install epel repo
   yum: &lt;span class="nv"&gt;name&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;http://dl.fedoraproject.org/pub/epel/6/x86_64/epel-release-6-8.noarch.rpm &lt;span class="nv"&gt;state&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;present
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;p&gt;That is only for starters; I'd add here also &lt;a href="http://www.sysdig.org/"&gt;sysdig&lt;/a&gt; and whole playbook for preparing user env.&lt;/p&gt;</summary><category term="ansible"></category><category term="centos"></category><category term="fedora"></category></entry><entry><title>Sysadmin evolution</title><link href="http://maciej.lasyk.info/2014/Sep/04/sysadmin-evolution/" rel="alternate"></link><updated>2014-09-04T18:38:00+02:00</updated><author><name>Maciej Lasyk</name></author><id>tag:maciej.lasyk.info,2014-09-04:2014/Sep/04/sysadmin-evolution/</id><summary type="html">&lt;h3&gt;Sysadmin evolution&lt;/h3&gt;
+&lt;p&gt;That is only for starters; I'd add here also &lt;a href="http://www.sysdig.org/"&gt;sysdig&lt;/a&gt; and whole playbook for preparing user env.&lt;/p&gt;</summary><category term="ansible"></category><category term="centos"></category><category term="fedora"></category></entry><entry><title>Sysadmin evolution</title><link href="http://maciej.lasyk.info/2014/Sep/04/sysadmin-evolution/" rel="alternate"></link><published>2014-09-04T18:38:00+02:00</published><author><name>Maciej Lasyk</name></author><id>tag:maciej.lasyk.info,2014-09-04:2014/Sep/04/sysadmin-evolution/</id><summary type="html">&lt;h3&gt;Sysadmin evolution&lt;/h3&gt;
 &lt;p&gt;A couple of days ago on &lt;a href="http://training.linuxfoundation.org/sysadmin-evolution"&gt;The Linux Foundation&lt;/a&gt;
 appeared an image showing how could sysadmin advance his experience. I think
-that it's really worth mentioning, so check this &lt;a href="http://maciej.lasyk.info/images/EvolutionSysadmin_Infographic.png"&gt;image&lt;/a&gt;&lt;/p&gt;</summary><category term="ops"></category></entry><entry><title>DNS views in BIND</title><link href="http://maciej.lasyk.info/2014/Sep/02/dns-views-in-bind/" rel="alternate"></link><updated>2014-09-02T08:15:00+02:00</updated><author><name>Maciej Lasyk</name></author><id>tag:maciej.lasyk.info,2014-09-02:2014/Sep/02/dns-views-in-bind/</id><summary type="html">&lt;h3&gt;Why would I use DNS BIND views?&lt;/h3&gt;
+that it's really worth mentioning, so check this &lt;a href="http://maciej.lasyk.info/images/EvolutionSysadmin_Infographic.png"&gt;image&lt;/a&gt;&lt;/p&gt;</summary><category term="ops"></category></entry><entry><title>DNS views in BIND</title><link href="http://maciej.lasyk.info/2014/Sep/02/dns-views-in-bind/" rel="alternate"></link><published>2014-09-02T08:15:00+02:00</published><author><name>Maciej Lasyk</name></author><id>tag:maciej.lasyk.info,2014-09-02:2014/Sep/02/dns-views-in-bind/</id><summary type="html">&lt;h3&gt;Why would I use DNS BIND views?&lt;/h3&gt;
 &lt;p&gt;From the manual: &lt;strong&gt;The view clause allows BIND to provide different
 functionality based on the hosts accessing it.&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;So basically you can provide one group of users with one variant of same zone 
@@ -1250,7 +1369,7 @@ need to provide different views in DNSes. &lt;strong&gt;view&lt;/strong&gt; clau
 solution.&lt;/p&gt;
 &lt;h3&gt;How?&lt;/h3&gt;
 &lt;p&gt;&lt;strong&gt;view Clause Syntax:&lt;/strong&gt;&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;view &lt;span class="s2"&gt;&amp;quot;view_name&amp;quot;&lt;/span&gt; &lt;span class="o"&gt;[&lt;/span&gt;class&lt;span class="o"&gt;]&lt;/span&gt; &lt;span class="o"&gt;{&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;view &lt;span class="s2"&gt;&amp;quot;view_name&amp;quot;&lt;/span&gt; &lt;span class="o"&gt;[&lt;/span&gt;class&lt;span class="o"&gt;]&lt;/span&gt; &lt;span class="o"&gt;{&lt;/span&gt;
       &lt;span class="o"&gt;[&lt;/span&gt; match-clients &lt;span class="o"&gt;{&lt;/span&gt;  address_match_list &lt;span class="o"&gt;}&lt;/span&gt; &lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="o"&gt;]&lt;/span&gt;
       &lt;span class="o"&gt;[&lt;/span&gt; match-destinations &lt;span class="o"&gt;{&lt;/span&gt; address_match_list &lt;span class="o"&gt;}&lt;/span&gt; &lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="o"&gt;]&lt;/span&gt;
       &lt;span class="o"&gt;[&lt;/span&gt; match-recursive-only &lt;span class="o"&gt;{&lt;/span&gt; yes &lt;span class="p"&gt;|&lt;/span&gt; no &lt;span class="o"&gt;}&lt;/span&gt; &lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="o"&gt;]&lt;/span&gt;
@@ -1264,7 +1383,7 @@ solution.&lt;/p&gt;
 grups of users (one would be guys from internet, second - guys from my LAN) we
 would do something like this:&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;set up proper ACL:&lt;/strong&gt;&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;acl internal &lt;span class="o"&gt;{&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;acl internal &lt;span class="o"&gt;{&lt;/span&gt;
        192.168.10.0/24&lt;span class="p"&gt;;&lt;/span&gt;
        localhost&lt;span class="p"&gt;;&lt;/span&gt;
 &lt;span class="o"&gt;}&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
@@ -1272,12 +1391,12 @@ would do something like this:&lt;/p&gt;
 
 
 &lt;p&gt;&lt;strong&gt;define zone:&lt;/strong&gt;&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;view &lt;span class="s2"&gt;&amp;quot;internal-view&amp;quot;&lt;/span&gt; &lt;span class="o"&gt;{&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;view &lt;span class="s2"&gt;&amp;quot;internal-view&amp;quot;&lt;/span&gt; &lt;span class="o"&gt;{&lt;/span&gt;
       match-clients &lt;span class="o"&gt;{&lt;/span&gt; internal&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="o"&gt;}&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
       recursion yes&lt;span class="p"&gt;;&lt;/span&gt;
 
       zone &lt;span class="s2"&gt;&amp;quot;lasyk.info&amp;quot;&lt;/span&gt; IN &lt;span class="o"&gt;{&lt;/span&gt;
-            &lt;span class="nb"&gt;type &lt;/span&gt;master&lt;span class="p"&gt;;&lt;/span&gt;
+            &lt;span class="nb"&gt;type&lt;/span&gt; master&lt;span class="p"&gt;;&lt;/span&gt;
             file &lt;span class="s2"&gt;&amp;quot;internal.lasyk.info.conf&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
             allow-transfer &lt;span class="o"&gt;{&lt;/span&gt; any&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="o"&gt;}&lt;/span&gt;
       &lt;span class="o"&gt;}&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
@@ -1286,14 +1405,14 @@ view &lt;span class="s2"&gt;&amp;quot;external-view&amp;quot;&lt;/span&gt; &lt;s
       recursion no&lt;span class="p"&gt;;&lt;/span&gt;
 
       zone &lt;span class="s2"&gt;&amp;quot;lasyk.info&amp;quot;&lt;/span&gt; IN &lt;span class="o"&gt;{&lt;/span&gt;
-            &lt;span class="nb"&gt;type &lt;/span&gt;master&lt;span class="p"&gt;;&lt;/span&gt;
+            &lt;span class="nb"&gt;type&lt;/span&gt; master&lt;span class="p"&gt;;&lt;/span&gt;
             file &lt;span class="s2"&gt;&amp;quot;external.lasyk.info.conf&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
             allow-transfer &lt;span class="o"&gt;{&lt;/span&gt; none&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="o"&gt;}&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
       &lt;span class="o"&gt;}&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;p&gt;Now just create proper zone - files, &lt;strong&gt;rndc reload&lt;/strong&gt; and test it with &lt;strong&gt;dig&lt;/strong&gt;&lt;/p&gt;</summary><category term="dns"></category><category term="bind"></category></entry><entry><title>Discourse and Piwik</title><link href="http://maciej.lasyk.info/2014/Aug/23/discourse-and-piwik/" rel="alternate"></link><updated>2014-08-23T00:15:00+02:00</updated><author><name>Maciej Lasyk</name></author><id>tag:maciej.lasyk.info,2014-08-23:2014/Aug/23/discourse-and-piwik/</id><summary type="html">&lt;h3&gt;Erm, what?&lt;/h3&gt;
+&lt;p&gt;Now just create proper zone - files, &lt;strong&gt;rndc reload&lt;/strong&gt; and test it with &lt;strong&gt;dig&lt;/strong&gt;&lt;/p&gt;</summary><category term="dns"></category><category term="bind"></category></entry><entry><title>Discourse and Piwik</title><link href="http://maciej.lasyk.info/2014/Aug/23/discourse-and-piwik/" rel="alternate"></link><published>2014-08-23T00:15:00+02:00</published><author><name>Maciej Lasyk</name></author><id>tag:maciej.lasyk.info,2014-08-23:2014/Aug/23/discourse-and-piwik/</id><summary type="html">&lt;h3&gt;Erm, what?&lt;/h3&gt;
 &lt;p&gt;For the last couple of years I've been favorizing Open Source software. That's
 why after many years of using &lt;a href="https://www.disqus.com"&gt;Disqus&lt;/a&gt; for comments and
 &lt;a href="https://analytics.google.com"&gt;Google Analytics&lt;/a&gt; for statistics I've decided
@@ -1318,7 +1437,7 @@ to go Open Source.&lt;/p&gt;
 &lt;li&gt;Install notes: &lt;a href="http://piwik.org/docs/installation/"&gt;here&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;Piwik doesn't have official Docker images - I'll work on that within &lt;a href="https://github.com/fedora-cloud/Fedora-Dockerfiles"&gt;Fedora Dockerfiles&lt;/a&gt; 
-and maybe I'll try to push this as another official installation method of Piwik.&lt;/p&gt;</summary><category term="discourse"></category><category term="piwik"></category><category term="disqus"></category><category term="google-analytics"></category></entry><entry><title>Logout from Facebook</title><link href="http://maciej.lasyk.info/2014/Aug/22/logout-from-facebook/" rel="alternate"></link><updated>2014-08-22T21:58:00+02:00</updated><author><name>Maciej Lasyk</name></author><id>tag:maciej.lasyk.info,2014-08-22:2014/Aug/22/logout-from-facebook/</id><summary type="html">&lt;h3&gt;Why?&lt;/h3&gt;
+and maybe I'll try to push this as another official installation method of Piwik.&lt;/p&gt;</summary><category term="discourse"></category><category term="piwik"></category><category term="disqus"></category><category term="google-analytics"></category></entry><entry><title>Logout from Facebook</title><link href="http://maciej.lasyk.info/2014/Aug/22/logout-from-facebook/" rel="alternate"></link><published>2014-08-22T21:58:00+02:00</published><author><name>Maciej Lasyk</name></author><id>tag:maciej.lasyk.info,2014-08-22:2014/Aug/22/logout-from-facebook/</id><summary type="html">&lt;h3&gt;Why?&lt;/h3&gt;
 &lt;p&gt;It could be a surprize that I won't mention here Facebook privacy policy. I'm 
 rather open person on the web, so I really don't care about anyone stalking my
 actions (as I rather keep private matters outside the Internet). It's about
@@ -1368,7 +1487,7 @@ with other people who you don't have to know or cannot contact personally.&lt;/p
 level of dopamine during day :)&lt;/p&gt;
 &lt;p&gt;Moreover I removed login&amp;amp;pwd from the browser memory on my laptop - anytime I
 want to check on FB I have to login manually. Lastly - I set up one-time-per-day
-session of FB (~5min). Just to check on my family.&lt;/p&gt;</summary><category term="facebook"></category></entry><entry><title>Online Courses</title><link href="http://maciej.lasyk.info/2014/Aug/20/online-courses/" rel="alternate"></link><updated>2014-08-20T22:46:00+02:00</updated><author><name>Maciej Lasyk</name></author><id>tag:maciej.lasyk.info,2014-08-20:2014/Aug/20/online-courses/</id><summary type="html">&lt;h3&gt;What about onlince courses?&lt;/h3&gt;
+session of FB (~5min). Just to check on my family.&lt;/p&gt;</summary><category term="facebook"></category></entry><entry><title>Online Courses</title><link href="http://maciej.lasyk.info/2014/Aug/20/online-courses/" rel="alternate"></link><published>2014-08-20T22:46:00+02:00</published><author><name>Maciej Lasyk</name></author><id>tag:maciej.lasyk.info,2014-08-20:2014/Aug/20/online-courses/</id><summary type="html">&lt;h3&gt;What about onlince courses?&lt;/h3&gt;
 &lt;p&gt;I've been using couple of online educational services (IT mainly) and wanted
 to share a short list of those I used - with a little comment:&lt;/p&gt;
 &lt;ul&gt;
@@ -1393,7 +1512,7 @@ to share a short list of those I used - with a little comment:&lt;/p&gt;
   that I wanted to learn about or retrain&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;I think that those services could be a solid base for development planning
-in any company.&lt;/p&gt;</summary><category term="courses"></category></entry><entry><title>Lectures during holidays</title><link href="http://maciej.lasyk.info/2014/Aug/20/lectures-during-holidays/" rel="alternate"></link><updated>2014-08-20T00:31:00+02:00</updated><author><name>Maciej Lasyk</name></author><id>tag:maciej.lasyk.info,2014-08-20:2014/Aug/20/lectures-during-holidays/</id><summary type="html">&lt;h3&gt;Reading It books during holidays?&lt;/h3&gt;
+in any company.&lt;/p&gt;</summary><category term="courses"></category></entry><entry><title>Lectures during holidays</title><link href="http://maciej.lasyk.info/2014/Aug/20/lectures-during-holidays/" rel="alternate"></link><published>2014-08-20T00:31:00+02:00</published><author><name>Maciej Lasyk</name></author><id>tag:maciej.lasyk.info,2014-08-20:2014/Aug/20/lectures-during-holidays/</id><summary type="html">&lt;h3&gt;Reading It books during holidays?&lt;/h3&gt;
 &lt;p&gt;&lt;strong&gt;Are you insanse?&lt;/strong&gt; Someone could ask me this question, but seriously - 
 during holidays I read just whatever I have on my list; I don't divide lectures
 into "workdays" and "holidays". I just read what I'd like to read and what I'm 
@@ -1432,10 +1551,10 @@ other books (especially &lt;a href="http://www.amazon.com/Cyclists-Training-Bibl
 and I really found those lectures very rich about good practices, training
 sessions examples and whole training theory.&lt;/p&gt;
 &lt;h3&gt;2 weeks&lt;/h3&gt;
-&lt;p&gt;...and couple ot thousands of pages to read &amp;amp; understand &amp;amp; make notes. Yeah ;)&lt;/p&gt;</summary><category term="ebooks"></category><category term="books"></category></entry><entry><title>Automating Pelican with Git</title><link href="http://maciej.lasyk.info/2014/Aug/19/automating-pelican-with-git/" rel="alternate"></link><updated>2014-08-19T00:35:00+02:00</updated><author><name>Maciej Lasyk</name></author><id>tag:maciej.lasyk.info,2014-08-19:2014/Aug/19/automating-pelican-with-git/</id><summary type="html">&lt;p&gt;&lt;center&gt;&lt;img alt="Pelican Automation with Git" src="http://maciej.lasyk.info/images/pelican-automation.png" /&gt;&lt;/center&gt;&lt;/p&gt;
+&lt;p&gt;...and couple ot thousands of pages to read &amp;amp; understand &amp;amp; make notes. Yeah ;)&lt;/p&gt;</summary><category term="ebooks"></category><category term="books"></category></entry><entry><title>Automating Pelican with Git</title><link href="http://maciej.lasyk.info/2014/Aug/19/automating-pelican-with-git/" rel="alternate"></link><published>2014-08-19T00:35:00+02:00</published><author><name>Maciej Lasyk</name></author><id>tag:maciej.lasyk.info,2014-08-19:2014/Aug/19/automating-pelican-with-git/</id><summary type="html">&lt;p&gt;&lt;center&gt;&lt;img alt="Pelican Automation with Git" src="http://maciej.lasyk.info/images/pelican-automation.png" /&gt;&lt;/center&gt;&lt;/p&gt;
 &lt;p&gt;This is a first blogpost of a whole series about working with
 &lt;a href="http://docs.getpelican.com/"&gt;Pelican&lt;/a&gt;. I'll be publishing all future post with
-the hashtag &lt;a href="tag/pelican.html"&gt;#pelican&lt;/a&gt;.&lt;/p&gt;
+the hashtag &lt;a href="http://maciej.lasyk.info/tag/pelican.html"&gt;#pelican&lt;/a&gt;.&lt;/p&gt;
 &lt;h3&gt;What kind of automation?&lt;/h3&gt;
 &lt;p&gt;My first step with migrating my &lt;a href="http://maciek.lasyk.info/sysop"&gt;old blog&lt;/a&gt; to
 this &lt;strong&gt;Pelican - based&lt;/strong&gt; was to automate the whole process of deploying new
@@ -1445,7 +1564,7 @@ to the git repository. And let the rest magically happen in the background.&lt;/
 &lt;p&gt;Basically I write posts on my laptop, then I push changes to the remote bare
 git repo, this repo has &lt;strong&gt;post-update&lt;/strong&gt; hook which communicates with my
 webserver and tells him to pull all the changes:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;laptop with markdowns ----&lt;span class="o"&gt;(&lt;/span&gt;git push&lt;span class="o"&gt;)&lt;/span&gt;----&amp;gt; remote git bare repo 
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;laptop with markdowns ----&lt;span class="o"&gt;(&lt;/span&gt;git push&lt;span class="o"&gt;)&lt;/span&gt;----&amp;gt; remote git bare repo 
 ----&lt;span class="o"&gt;(&lt;/span&gt;post-update hook----&amp;gt; webserver
 &lt;/pre&gt;&lt;/div&gt;
 
@@ -1457,16 +1576,16 @@ changes and use this repo also for backup purposes. Of course you'll want to
 play with &lt;strong&gt;.gitignore&lt;/strong&gt; file and ommit couple of dirs and files :)&lt;/p&gt;
 &lt;p&gt;On the server with git bare repo I've created &lt;strong&gt;hooks/post-update&lt;/strong&gt; file
 (perms 0700) with following contents:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="c"&gt;#!/bin/sh&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="ch"&gt;#!/bin/sh&lt;/span&gt;
 
-&lt;span class="c"&gt;# just invoke the update script on the webserver:&lt;/span&gt;
+&lt;span class="c1"&gt;# just invoke the update script on the webserver:&lt;/span&gt;
 ssh home-docker &lt;span class="s1"&gt;&amp;#39;/home/docent/scripts/update_maciej.lasyk.info.sh&amp;#39;&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;p&gt;As you can see I'm using here &lt;strong&gt;ssh home-docker&lt;/strong&gt; command. This is an alias
 that exists in my &lt;strong&gt;~/.ssh/config&lt;/strong&gt;:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;Host home-docker
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;Host home-docker
 Hostname vm-9-containers.netrunner.lasyk.info
 User docent
 Port 22
@@ -1479,7 +1598,7 @@ IdentityFile ~/.ssh/id_rsa
 server (no direct SSH allowed to containers VM from outside or DMZ).&lt;/p&gt;
 &lt;p&gt;So now anytime I post something and commit it to the repo above script will be
 invoked via SSH. And this calls another script - this time on webserver:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="c"&gt;#!/bin/bash&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="ch"&gt;#!/bin/bash&lt;/span&gt;
 &lt;span class="nv"&gt;GIT&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;/usr/bin/git
 
 &lt;span class="nb"&gt;cd&lt;/span&gt; /srv/docker_mounts/nginx/public_html/maciej.lasyk.info/
@@ -1490,7 +1609,7 @@ invoked via SSH. And this calls another script - this time on webserver:&lt;/p&g
 
 &lt;p&gt;Above script fetches all data from the remote repository and then sets the
 last commit as the HEAD. No webserver restart is needed here as those are only
-static files :)&lt;/p&gt;</summary><category term="pelican"></category><category term="git"></category></entry><entry><title>Network Warrior</title><link href="http://maciej.lasyk.info/2014/Aug/18/network-warrior/" rel="alternate"></link><updated>2014-08-18T17:54:00+02:00</updated><author><name>Maciej Lasyk</name></author><id>tag:maciej.lasyk.info,2014-08-18:2014/Aug/18/network-warrior/</id><summary type="html">&lt;p&gt;&lt;center&gt;&lt;img alt="Network Warrior" src="http://maciej.lasyk.info/images/networkwarrior.jpg" /&gt;&lt;/center&gt;&lt;/p&gt;
+static files :)&lt;/p&gt;</summary><category term="pelican"></category><category term="git"></category></entry><entry><title>Network Warrior</title><link href="http://maciej.lasyk.info/2014/Aug/18/network-warrior/" rel="alternate"></link><published>2014-08-18T17:54:00+02:00</published><author><name>Maciej Lasyk</name></author><id>tag:maciej.lasyk.info,2014-08-18:2014/Aug/18/network-warrior/</id><summary type="html">&lt;p&gt;&lt;center&gt;&lt;img alt="Network Warrior" src="http://maciej.lasyk.info/images/networkwarrior.jpg" /&gt;&lt;/center&gt;&lt;/p&gt;
 &lt;p&gt;Some time ago I bought an e-book "&lt;strong&gt;Network Warrior&lt;/strong&gt;" by &lt;strong&gt;Gary A. Donahue&lt;/strong&gt;. As this
 is rather a long reading (more than 700 pages) I didn't have enough time to
 finish it. But right now - on holidays - once more I went through table of
@@ -1521,7 +1640,7 @@ as teamplayer.&lt;/p&gt;
 what is important - he wrote how to react and behave so everybody is content
 and our work is effective and goes in right direction. A totally "&lt;strong&gt;must read&lt;/strong&gt;"
 for everyone that have any doubts.&lt;/p&gt;
-&lt;p&gt;You can check the book details on &lt;a href="http://www.amazon.com/Network-Warrior-Gary-A-Donahue/dp/1449387861"&gt;Amazon&lt;/a&gt;&lt;/p&gt;</summary><category term="ebooks"></category><category term="networking"></category></entry><entry><title>Moving to Pelican</title><link href="http://maciej.lasyk.info/2014/Aug/08/moving-to-pelican/" rel="alternate"></link><updated>2014-08-08T00:21:00+02:00</updated><author><name>Maciej Lasyk</name></author><id>tag:maciej.lasyk.info,2014-08-08:2014/Aug/08/moving-to-pelican/</id><summary type="html">&lt;p&gt;So it finally happened. After 6 months I started migrating my blog from crapy
+&lt;p&gt;You can check the book details on &lt;a href="http://www.amazon.com/Network-Warrior-Gary-A-Donahue/dp/1449387861"&gt;Amazon&lt;/a&gt;&lt;/p&gt;</summary><category term="ebooks"></category><category term="networking"></category></entry><entry><title>Moving to Pelican</title><link href="http://maciej.lasyk.info/2014/Aug/08/moving-to-pelican/" rel="alternate"></link><published>2014-08-08T00:21:00+02:00</published><author><name>Maciej Lasyk</name></author><id>tag:maciej.lasyk.info,2014-08-08:2014/Aug/08/moving-to-pelican/</id><summary type="html">&lt;p&gt;So it finally happened. After 6 months I started migrating my blog from crapy
 Wordpress to &lt;a href="https://github.com/getpelican/pelican/"&gt;Pelican&lt;/a&gt;. There're still plenty of things I have to take care of:&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;git automation (pull / push)&lt;/li&gt;
@@ -1539,8 +1658,8 @@ Wordpress to &lt;a href="https://github.com/getpelican/pelican/"&gt;Pelican&lt;/
 &lt;p&gt;Looks like a plate is full. ETA? Will be delivered somehow between Monday and
 end of the next year ;)&lt;/p&gt;
 &lt;p&gt;What's beautiful here? It's 100% Markdown &amp;lt;- Pelican &amp;lt;- Nginx &amp;lt;- Docker &amp;lt;-
-Fedora &amp;lt;- my home server :)&lt;/p&gt;</summary><category term="pelican"></category></entry><entry><title>Creator Bias</title><link href="http://maciej.lasyk.info/2014/Jul/29/creator-bias/" rel="alternate"></link><updated>2014-07-29T00:15:00+02:00</updated><author><name>Maciej Lasyk</name></author><id>tag:maciej.lasyk.info,2014-07-29:2014/Jul/29/creator-bias/</id><summary type="html">&lt;p&gt;Quote of the day: “Humans are bad at predicting the performance of complex systems [...] Our ability to create large &amp;amp; complex systems fools us into believing that we’re also entitled to understand them”&lt;/p&gt;
-&lt;p&gt;Taken from &lt;a href="http://carlos.bueno.org/optimization/mature-optimization.pdf"&gt;"Mature Optimization Handbook"&lt;/a&gt; by Carlos Bueno&lt;/p&gt;</summary><category term="quotes"></category><category term=""></category></entry><entry><title>Mysql HA</title><link href="http://maciej.lasyk.info/2013/Aug/05/mysql-ha/" rel="alternate"></link><updated>2013-08-05T00:00:00+02:00</updated><author><name>Maciej Lasyk</name></author><id>tag:maciej.lasyk.info,2013-08-05:2013/Aug/05/mysql-ha/</id><summary type="html">&lt;p&gt;&lt;center&gt;&lt;img alt="VIM" src="http://maciej.lasyk.info/images/mysql_logo.png" /&gt;&lt;/center&gt;&lt;/p&gt;
+Fedora &amp;lt;- my home server :)&lt;/p&gt;</summary><category term="pelican"></category></entry><entry><title>Creator Bias</title><link href="http://maciej.lasyk.info/2014/Jul/29/creator-bias/" rel="alternate"></link><published>2014-07-29T00:15:00+02:00</published><author><name>Maciej Lasyk</name></author><id>tag:maciej.lasyk.info,2014-07-29:2014/Jul/29/creator-bias/</id><summary type="html">&lt;p&gt;Quote of the day: “Humans are bad at predicting the performance of complex systems [...] Our ability to create large &amp;amp; complex systems fools us into believing that we’re also entitled to understand them”&lt;/p&gt;
+&lt;p&gt;Taken from &lt;a href="http://carlos.bueno.org/optimization/mature-optimization.pdf"&gt;"Mature Optimization Handbook"&lt;/a&gt; by Carlos Bueno&lt;/p&gt;</summary><category term="quotes"></category></entry><entry><title>Mysql HA</title><link href="http://maciej.lasyk.info/2013/Aug/05/mysql-ha/" rel="alternate"></link><published>2013-08-05T00:00:00+02:00</published><author><name>Maciej Lasyk</name></author><id>tag:maciej.lasyk.info,2013-08-05:2013/Aug/05/mysql-ha/</id><summary type="html">&lt;p&gt;&lt;center&gt;&lt;img alt="VIM" src="http://maciej.lasyk.info/images/mysql_logo.png" /&gt;&lt;/center&gt;&lt;/p&gt;
 &lt;p&gt;This is very interesting topic from sysops’ point of view. Honestly – It’s not
 that common to find a well organised HA MySQL environment (I’m talking here
 about good failover solution in master – slave scenario).&lt;/p&gt;

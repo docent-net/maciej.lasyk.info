@@ -32,7 +32,7 @@
 <article>
     <h3>playbook</h3>
 <p>This rather doesn't fit my github repo ;)</p>
-<div class="highlight"><pre>- name: Ensure my favorite tools are installed
+<div class="highlight"><pre><span></span>- name: Ensure my favorite tools are installed
   yum: <span class="nv">pkg</span><span class="o">={{</span>item<span class="o">}}</span> <span class="nv">state</span><span class="o">=</span>latest
   with_items:
     - strace
@@ -48,7 +48,7 @@
     - links
     - man
     - ntp
-    - <span class="nb">bind</span>-utils
+    - bind-utils
     - nmap
     - wget
     - telnet
@@ -56,7 +56,7 @@
 
 
 <p>And there would be one <a href="http://docs.ansible.com/playbooks_roles.html#role-dependencies">dependency</a> here (<a href="https://fedoraproject.org/wiki/EPEL">EPEL</a> repo):</p>
-<div class="highlight"><pre>- name: install epel repo
+<div class="highlight"><pre><span></span>- name: install epel repo
   yum: <span class="nv">name</span><span class="o">=</span>http://dl.fedoraproject.org/pub/epel/6/x86_64/epel-release-6-8.noarch.rpm <span class="nv">state</span><span class="o">=</span>present
 </pre></div>
 
@@ -96,26 +96,6 @@
         <div id="tagcloud">
         <nav>
             <ul class="tagcloud">
-                    <li class="tag-4"><a href="http://maciej.lasyk.info/tag/books.html">books</a></li>
-                    <li class="tag-4"><a href="http://maciej.lasyk.info/tag/piwik.html">piwik</a></li>
-                    <li class="tag-3"><a href="http://maciej.lasyk.info/tag/fedora.html">fedora</a></li>
-                    <li class="tag-3"><a href="http://maciej.lasyk.info/tag/kvm.html">kvm</a></li>
-                    <li class="tag-4"><a href="http://maciej.lasyk.info/tag/containers.html">containers</a></li>
-                    <li class="tag-4"><a href="http://maciej.lasyk.info/tag/netboot.html">netboot</a></li>
-                    <li class="tag-4"><a href="http://maciej.lasyk.info/tag/rhel.html">rhel</a></li>
-                    <li class="tag-3"><a href="http://maciej.lasyk.info/tag/ebooks.html">ebooks</a></li>
-                    <li class="tag-1"><a href="http://maciej.lasyk.info/tag/docker.html">docker</a></li>
-                    <li class="tag-4"><a href="http://maciej.lasyk.info/tag/network.html">network</a></li>
-                    <li class="tag-3"><a href="http://maciej.lasyk.info/tag/talks.html">talks</a></li>
-                    <li class="tag-3"><a href="http://maciej.lasyk.info/tag/pelican.html">pelican</a></li>
-                    <li class="tag-1"><a href="http://maciej.lasyk.info/tag/centos.html">centos</a></li>
-                    <li class="tag-3"><a href="http://maciej.lasyk.info/tag/tmux.html">tmux</a></li>
-                    <li class="tag-3"><a href="http://maciej.lasyk.info/tag/selinux.html">selinux</a></li>
-                    <li class="tag-4"><a href="http://maciej.lasyk.info/tag/dns.html">dns</a></li>
-                    <li class="tag-4"><a href="http://maciej.lasyk.info/tag/devops.html">devops</a></li>
-                    <li class="tag-1"><a href="http://maciej.lasyk.info/tag/security.html">security</a></li>
-                    <li class="tag-1"><a href="http://maciej.lasyk.info/tag/conferences.html">conferences</a></li>
-                    <li class="tag-4"><a href="http://maciej.lasyk.info/tag/evernote.html">evernote</a></li>
             </ul>
         </nav>
         </div>

@@ -56,12 +56,12 @@ you. Then you will never find yourself again in such hard position.</p>
 <p>Ok, let's say you don't use SELinux (because if you did you wouldn't have to
 read this).</p>
 <p>So I run Dropbox (default datadir in ~/Dropbox) and fetched its PID and attached strace:</p>
-<div class="highlight"><pre>strace -f -e <span class="nv">trace</span><span class="o">=</span>file -s <span class="m">1024</span> -p <span class="m">6033</span> -o ~/tmp/dropbox-wtf.txt
+<div class="highlight"><pre><span></span>strace -f -e <span class="nv">trace</span><span class="o">=</span>file -s <span class="m">1024</span> -p <span class="m">6033</span> -o ~/tmp/dropbox-wtf.txt
 </pre></div>
 
 
 <p>Now I tried to create a file outside of ~/Dropbox directory:</p>
-<div class="highlight"><pre>touch ~/tmp/wtf.txt
+<div class="highlight"><pre><span></span>touch ~/tmp/wtf.txt
 </pre></div>
 
 
@@ -72,7 +72,7 @@ read this).</p>
 <p>Later on just to confirm I created a file in ~/Dropbox/tmp and got a ton of
 crap from the strace - filtered out the ENOENT so it's more clear (nothing
 interesting there):</p>
-<div class="highlight"><pre><span class="m">6308</span>  lstat<span class="o">(</span><span class="s2">&quot;/home/putinstopattackingukraine/Dropbox/tmp/wtf.txt&quot;</span>, <span class="o">{</span><span class="nv">st_mode</span><span class="o">=</span>S_IFREG<span class="p">|</span>0664, <span class="nv">st_size</span><span class="o">=</span>4, ...<span class="o">})</span> <span class="o">=</span> 0
+<div class="highlight"><pre><span></span><span class="m">6308</span>  lstat<span class="o">(</span><span class="s2">&quot;/home/putinstopattackingukraine/Dropbox/tmp/wtf.txt&quot;</span>, <span class="o">{</span><span class="nv">st_mode</span><span class="o">=</span>S_IFREG<span class="p">|</span>0664, <span class="nv">st_size</span><span class="o">=</span>4, ...<span class="o">})</span> <span class="o">=</span> 0
 <span class="m">6308</span>  open<span class="o">(</span><span class="s2">&quot;/home/putinstopattackingukraine/Dropbox/tmp/wtf.txt&quot;</span>, O_RDONLY<span class="p">|</span>O_NOCTTY<span class="p">|</span>O_NONBLOCK<span class="p">|</span>O_NOFOLLOW<span class="p">|</span>O_NOATIME<span class="o">)</span> <span class="o">=</span> 35
 <span class="m">6308</span>  lstat<span class="o">(</span><span class="s2">&quot;/home/putinstopattackingukraine/Dropbox/tmp/wtf.txt&quot;</span>, <span class="o">{</span><span class="nv">st_mode</span><span class="o">=</span>S_IFREG<span class="p">|</span>0664, <span class="nv">st_size</span><span class="o">=</span>4, ...<span class="o">})</span> <span class="o">=</span> 0
 <span class="m">6308</span>  open<span class="o">(</span><span class="s2">&quot;/home/putinstopattackingukraine/Dropbox/tmp/wtf.txt&quot;</span>, O_RDONLY<span class="p">|</span>O_NOCTTY<span class="p">|</span>O_NONBLOCK<span class="p">|</span>O_NOFOLLOW<span class="p">|</span>O_NOATIME<span class="o">)</span> <span class="o">=</span> 35
@@ -299,26 +299,6 @@ would be rather performance question).</p>
         <div id="tagcloud">
         <nav>
             <ul class="tagcloud">
-                    <li class="tag-4"><a href="http://maciej.lasyk.info/tag/books.html">books</a></li>
-                    <li class="tag-4"><a href="http://maciej.lasyk.info/tag/piwik.html">piwik</a></li>
-                    <li class="tag-3"><a href="http://maciej.lasyk.info/tag/fedora.html">fedora</a></li>
-                    <li class="tag-3"><a href="http://maciej.lasyk.info/tag/kvm.html">kvm</a></li>
-                    <li class="tag-4"><a href="http://maciej.lasyk.info/tag/containers.html">containers</a></li>
-                    <li class="tag-4"><a href="http://maciej.lasyk.info/tag/netboot.html">netboot</a></li>
-                    <li class="tag-4"><a href="http://maciej.lasyk.info/tag/rhel.html">rhel</a></li>
-                    <li class="tag-3"><a href="http://maciej.lasyk.info/tag/ebooks.html">ebooks</a></li>
-                    <li class="tag-1"><a href="http://maciej.lasyk.info/tag/docker.html">docker</a></li>
-                    <li class="tag-4"><a href="http://maciej.lasyk.info/tag/network.html">network</a></li>
-                    <li class="tag-3"><a href="http://maciej.lasyk.info/tag/talks.html">talks</a></li>
-                    <li class="tag-3"><a href="http://maciej.lasyk.info/tag/pelican.html">pelican</a></li>
-                    <li class="tag-1"><a href="http://maciej.lasyk.info/tag/centos.html">centos</a></li>
-                    <li class="tag-3"><a href="http://maciej.lasyk.info/tag/tmux.html">tmux</a></li>
-                    <li class="tag-3"><a href="http://maciej.lasyk.info/tag/selinux.html">selinux</a></li>
-                    <li class="tag-4"><a href="http://maciej.lasyk.info/tag/dns.html">dns</a></li>
-                    <li class="tag-4"><a href="http://maciej.lasyk.info/tag/devops.html">devops</a></li>
-                    <li class="tag-1"><a href="http://maciej.lasyk.info/tag/security.html">security</a></li>
-                    <li class="tag-1"><a href="http://maciej.lasyk.info/tag/conferences.html">conferences</a></li>
-                    <li class="tag-4"><a href="http://maciej.lasyk.info/tag/evernote.html">evernote</a></li>
             </ul>
         </nav>
         </div>

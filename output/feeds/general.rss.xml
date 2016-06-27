@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Many craft. Wow. Such create</title><link>http://maciej.lasyk.info/</link><description></description><atom:link href="http://maciej.lasyk.info/feeds/general.rss.xml" rel="self"></atom:link><lastBuildDate>Fri, 22 Aug 2014 21:58:00 +0200</lastBuildDate><item><title>Logout from Facebook</title><link>http://maciej.lasyk.info/2014/Aug/22/logout-from-facebook/</link><description>&lt;h3&gt;Why?&lt;/h3&gt;
+<rss version="2.0"><channel><title>Many craft. Wow. Such create</title><link>http://maciej.lasyk.info/</link><description></description><lastBuildDate>Fri, 22 Aug 2014 21:58:00 +0200</lastBuildDate><item><title>Logout from Facebook</title><link>http://maciej.lasyk.info/2014/Aug/22/logout-from-facebook/</link><description>&lt;h3&gt;Why?&lt;/h3&gt;
 &lt;p&gt;It could be a surprize that I won't mention here Facebook privacy policy. I'm 
 rather open person on the web, so I really don't care about anyone stalking my
 actions (as I rather keep private matters outside the Internet). It's about
@@ -49,4 +49,4 @@ with other people who you don't have to know or cannot contact personally.&lt;/p
 level of dopamine during day :)&lt;/p&gt;
 &lt;p&gt;Moreover I removed login&amp;amp;pwd from the browser memory on my laptop - anytime I
 want to check on FB I have to login manually. Lastly - I set up one-time-per-day
-session of FB (~5min). Just to check on my family.&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Maciej Lasyk</dc:creator><pubDate>Fri, 22 Aug 2014 21:58:00 +0200</pubDate><guid>tag:maciej.lasyk.info,2014-08-22:2014/Aug/22/logout-from-facebook/</guid><category>facebook</category></item></channel></rss>
+session of FB (~5min). Just to check on my family.&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Maciej Lasyk</dc:creator><pubDate>Fri, 22 Aug 2014 21:58:00 +0200</pubDate><guid isPermaLink="false">tag:maciej.lasyk.info,2014-08-22:2014/Aug/22/logout-from-facebook/</guid><category>facebook</category></item></channel></rss>

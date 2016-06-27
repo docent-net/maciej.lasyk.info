@@ -49,25 +49,25 @@ standout will end up with italics instead of reverse. To make applications
 aware that tmux supports italics and to use a proper escape sequence for
 standout, you'll need to create a new terminfo file with modified sgr, smso,
 rmso, sitm and ritm entries:</em></p>
-<div class="highlight"><pre><span class="nv">$ </span>mkdir <span class="nv">$HOME</span>/.terminfo/
-<span class="nv">$ screen_terminfo</span><span class="o">=</span><span class="s2">&quot;screen&quot;</span>
-<span class="nv">$ </span>infocmp <span class="s2">&quot;</span><span class="nv">$screen_terminfo</span><span class="s2">&quot;</span> <span class="p">|</span> sed <span class="se">\</span>
+<div class="highlight"><pre><span></span>$ mkdir <span class="nv">$HOME</span>/.terminfo/
+$ <span class="nv">screen_terminfo</span><span class="o">=</span><span class="s2">&quot;screen&quot;</span>
+$ infocmp <span class="s2">&quot;</span><span class="nv">$screen_terminfo</span><span class="s2">&quot;</span> <span class="p">|</span> sed <span class="se">\</span>
   -e <span class="s1">&#39;s/^screen[^|]*|[^,]*,/screen-it|screen with italics support,/&#39;</span> <span class="se">\</span>
   -e <span class="s1">&#39;s/%?%p1%t;3%/%?%p1%t;7%/&#39;</span> <span class="se">\</span>
   -e <span class="s1">&#39;s/smso=[^,]*,/smso=\\E[7m,/&#39;</span> <span class="se">\</span>
   -e <span class="s1">&#39;s/rmso=[^,]*,/rmso=\\E[27m,/&#39;</span> <span class="se">\</span>
   -e <span class="s1">&#39;$s/$/ sitm=\\E[3m, ritm=\\E[23m,/&#39;</span> &gt; /tmp/screen.terminfo
-<span class="nv">$ </span>tic /tmp/screen.terminfo
+$ tic /tmp/screen.terminfo
 </pre></div>
 
 
 <p><em>And tell tmux to use it in ~/.tmux.conf:</em></p>
-<div class="highlight"><pre>set -g default-terminal &quot;screen-it&quot;
+<div class="highlight"><pre><span></span>set -g default-terminal &quot;screen-it&quot;
 </pre></div>
 
 
 <p><em>If your terminal supports 256 colors, use:</em></p>
-<div class="highlight"><pre><span class="nv">$ screen_terminfo</span><span class="o">=</span><span class="s2">&quot;screen-256color&quot;</span>
+<div class="highlight"><pre><span></span>$ <span class="nv">screen_terminfo</span><span class="o">=</span><span class="s2">&quot;screen-256color&quot;</span>
 </pre></div>
 
 
@@ -76,7 +76,7 @@ rmso, sitm and ritm entries:</em></p>
 <p>So I created <a href="https://github.com/docent-net/fedora-desktop-ansible/commit/d314aedd61e6973df3de16bd557de7e3f3aecb3d">Ansible implementation</a>
 and put in inside of <a href="https://github.com/docent-net/fedora-desktop-ansible">fedora-desktop-ansible</a>.</p>
 <p>You can test it with:</p>
-<div class="highlight"><pre>ansible-playbook master.yml --tags tmux
+<div class="highlight"><pre><span></span>ansible-playbook master.yml --tags tmux
 </pre></div>
     <h2>Comments</h2>
     <div id="disqus_thread"></div>
@@ -112,26 +112,6 @@ and put in inside of <a href="https://github.com/docent-net/fedora-desktop-ansib
         <div id="tagcloud">
         <nav>
             <ul class="tagcloud">
-                    <li class="tag-4"><a href="http://maciej.lasyk.info/tag/books.html">books</a></li>
-                    <li class="tag-4"><a href="http://maciej.lasyk.info/tag/piwik.html">piwik</a></li>
-                    <li class="tag-3"><a href="http://maciej.lasyk.info/tag/fedora.html">fedora</a></li>
-                    <li class="tag-3"><a href="http://maciej.lasyk.info/tag/kvm.html">kvm</a></li>
-                    <li class="tag-4"><a href="http://maciej.lasyk.info/tag/containers.html">containers</a></li>
-                    <li class="tag-4"><a href="http://maciej.lasyk.info/tag/netboot.html">netboot</a></li>
-                    <li class="tag-4"><a href="http://maciej.lasyk.info/tag/rhel.html">rhel</a></li>
-                    <li class="tag-3"><a href="http://maciej.lasyk.info/tag/ebooks.html">ebooks</a></li>
-                    <li class="tag-1"><a href="http://maciej.lasyk.info/tag/docker.html">docker</a></li>
-                    <li class="tag-4"><a href="http://maciej.lasyk.info/tag/network.html">network</a></li>
-                    <li class="tag-3"><a href="http://maciej.lasyk.info/tag/talks.html">talks</a></li>
-                    <li class="tag-3"><a href="http://maciej.lasyk.info/tag/pelican.html">pelican</a></li>
-                    <li class="tag-1"><a href="http://maciej.lasyk.info/tag/centos.html">centos</a></li>
-                    <li class="tag-3"><a href="http://maciej.lasyk.info/tag/tmux.html">tmux</a></li>
-                    <li class="tag-3"><a href="http://maciej.lasyk.info/tag/selinux.html">selinux</a></li>
-                    <li class="tag-4"><a href="http://maciej.lasyk.info/tag/dns.html">dns</a></li>
-                    <li class="tag-4"><a href="http://maciej.lasyk.info/tag/devops.html">devops</a></li>
-                    <li class="tag-1"><a href="http://maciej.lasyk.info/tag/security.html">security</a></li>
-                    <li class="tag-1"><a href="http://maciej.lasyk.info/tag/conferences.html">conferences</a></li>
-                    <li class="tag-4"><a href="http://maciej.lasyk.info/tag/evernote.html">evernote</a></li>
             </ul>
         </nav>
         </div>

@@ -35,7 +35,7 @@
 <p>So I had this need to run <strong>ssh</strong> daemon on port 443/TCP. I reconfigured sshd daemon, iptables and stucked with Selinux
 policy, when I wanted to assign port 443 to sshd_port_t (so I thought I'd need to remove in the first step actual 
 assignment of port 443 which is http_port_t):</p>
-<div class="highlight"><pre><span class="o">[</span>root@srv ~<span class="o">]</span><span class="c"># semanage port -d -t http_port_t -p tcp 443                                                                                                          </span>
+<div class="highlight"><pre><span></span><span class="o">[</span>root@srv ~<span class="o">]</span><span class="c1"># semanage port -d -t http_port_t -p tcp 443                                                                                                          </span>
 ValueError: Port tcp/443 is defined in policy, cannot be deleted
 </pre></div>
 
@@ -43,20 +43,20 @@ ValueError: Port tcp/443 is defined in policy, cannot be deleted
 <h3>SSH on port 443? sshd configuration + iptables</h3>
 <p>Yup, it happens ;)</p>
 <p>It's simple reconfiguration done in <strong>/etc/ssh/sshd_config</strong>:</p>
-<div class="highlight"><pre>Port 22
+<div class="highlight"><pre><span></span>Port 22
 Port 443
 </pre></div>
 
 
 <p>So as you can see I left sshd running also on port 22/tcp. Also reconfigured iptables (Centos 7, no firewalld yet):</p>
-<div class="highlight"><pre><span class="o">[</span>root@srv ~<span class="o">]</span><span class="c"># grep 443 /etc/sysconfig/iptables</span>
+<div class="highlight"><pre><span></span><span class="o">[</span>root@srv ~<span class="o">]</span><span class="c1"># grep 443 /etc/sysconfig/iptables</span>
 -A INPUT -p tcp -m state --state NEW -m tcp --dport <span class="m">443</span> -j ACCEPT
 </pre></div>
 
 
 <h3>Back to Selinux - how to fix this?</h3>
 <p>Actually answer lays in documentation:</p>
-<div class="highlight"><pre><span class="nv">$ </span>man semanage-port
+<div class="highlight"><pre><span></span>$ man semanage-port
 
        -m, --modify
               Modify a record of the specified object <span class="nb">type</span>
@@ -65,12 +65,12 @@ Port 443
 
 <p>So basically instead of removing this httpd_port_t assignment, what is impossible without recompiling the policy I just
 modified it:</p>
-<div class="highlight"><pre><span class="o">[</span>root@srv ~<span class="o">]</span><span class="c"># semanage port -m -t ssh_port_t -p tcp 443</span>
+<div class="highlight"><pre><span></span><span class="o">[</span>root@srv ~<span class="o">]</span><span class="c1"># semanage port -m -t ssh_port_t -p tcp 443</span>
 </pre></div>
 
 
 <p>And now we have:</p>
-<div class="highlight"><pre><span class="o">[</span>root@netrunner ~<span class="o">]</span><span class="c"># semanage port -l | grep 443                                                                                                                         </span>
+<div class="highlight"><pre><span></span><span class="o">[</span>root@netrunner ~<span class="o">]</span><span class="c1"># semanage port -l | grep 443                                                                                                                         </span>
 http_port_t                    tcp      80, 81, 443, 488, 8008, 8009, 8443, 9000
 ssh_port_t                     tcp      443, 444, 22
 </pre></div>
@@ -111,26 +111,6 @@ ssh_port_t                     tcp      443, 444, 22
         <div id="tagcloud">
         <nav>
             <ul class="tagcloud">
-                    <li class="tag-4"><a href="http://maciej.lasyk.info/tag/books.html">books</a></li>
-                    <li class="tag-4"><a href="http://maciej.lasyk.info/tag/piwik.html">piwik</a></li>
-                    <li class="tag-3"><a href="http://maciej.lasyk.info/tag/fedora.html">fedora</a></li>
-                    <li class="tag-3"><a href="http://maciej.lasyk.info/tag/kvm.html">kvm</a></li>
-                    <li class="tag-4"><a href="http://maciej.lasyk.info/tag/containers.html">containers</a></li>
-                    <li class="tag-4"><a href="http://maciej.lasyk.info/tag/netboot.html">netboot</a></li>
-                    <li class="tag-4"><a href="http://maciej.lasyk.info/tag/rhel.html">rhel</a></li>
-                    <li class="tag-3"><a href="http://maciej.lasyk.info/tag/ebooks.html">ebooks</a></li>
-                    <li class="tag-1"><a href="http://maciej.lasyk.info/tag/docker.html">docker</a></li>
-                    <li class="tag-4"><a href="http://maciej.lasyk.info/tag/network.html">network</a></li>
-                    <li class="tag-3"><a href="http://maciej.lasyk.info/tag/talks.html">talks</a></li>
-                    <li class="tag-3"><a href="http://maciej.lasyk.info/tag/pelican.html">pelican</a></li>
-                    <li class="tag-1"><a href="http://maciej.lasyk.info/tag/centos.html">centos</a></li>
-                    <li class="tag-3"><a href="http://maciej.lasyk.info/tag/tmux.html">tmux</a></li>
-                    <li class="tag-3"><a href="http://maciej.lasyk.info/tag/selinux.html">selinux</a></li>
-                    <li class="tag-4"><a href="http://maciej.lasyk.info/tag/dns.html">dns</a></li>
-                    <li class="tag-4"><a href="http://maciej.lasyk.info/tag/devops.html">devops</a></li>
-                    <li class="tag-1"><a href="http://maciej.lasyk.info/tag/security.html">security</a></li>
-                    <li class="tag-1"><a href="http://maciej.lasyk.info/tag/conferences.html">conferences</a></li>
-                    <li class="tag-4"><a href="http://maciej.lasyk.info/tag/evernote.html">evernote</a></li>
             </ul>
         </nav>
         </div>
