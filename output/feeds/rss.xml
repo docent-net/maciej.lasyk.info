@@ -40,8 +40,8 @@ sudo pip install boto==2.40.0
 &lt;p&gt;So - the solution is to use &lt;a href="http://docs.python-guide.org/en/latest/dev/virtualenvs/"&gt;Python virtualenv&lt;/a&gt;.
 It might be obvious, but it's not that easy with Ansible. When working from defined virtual environment
 and using &lt;strong&gt;local&lt;/strong&gt; connection Ansible actually creates SSH connection via loopback device and enters login shell
-using configured account (e.g. &lt;strong&gt;remote_user&lt;/strong&gt; set it ansible.cfg; more on this topic &lt;a href="http://docs.ansible.com/ansible/intro_configuration.html#remote-user"&gt;here&lt;/a&gt;.
-After logging back in to your account we're using default Python interpreter (global one, probably &lt;strong&gt;/usr/bin/python&lt;/strong&gt;) -
+using configured account (e.g. &lt;strong&gt;remote_user&lt;/strong&gt; set it ansible.cfg; more on this topic &lt;a href="http://docs.ansible.com/ansible/intro_configuration.html#remote-user"&gt;here&lt;/a&gt;).
+After logging back into your account we're using default Python interpreter (global one, probably &lt;strong&gt;/usr/bin/python&lt;/strong&gt;) -
 not the one we want to (from our virtualenv). Kaboom!&lt;/p&gt;
 &lt;p&gt;Ok, so there's a solution. It's called &lt;strong&gt;ansible_python_interpreter&lt;/strong&gt; and it's mentioned
 in &lt;a href="http://docs.ansible.com/faq.html"&gt;Ansible FAQ&lt;/a&gt; (but regarding other case). Basically
@@ -100,7 +100,9 @@ LANG=C LC_ALL=C LC_MESSAGES=C
 
 &lt;p&gt;Notice last: &lt;strong&gt;/home/ukleftue//.virtualenvs/ilovebaleares/bin/python&lt;/strong&gt; - see? This is
 our problem - setting &lt;strong&gt;ansible_python_interpreter&lt;/strong&gt; works globally for all plays
-within playbook.&lt;/p&gt;
+within playbook. In the second playbook Ansible connects to freshly spawned EC2 instance
+and tries to work under Python interpreter under defined virtualenv - which obviously
+doesn't exist on this fresh VM.&lt;/p&gt;
 &lt;p&gt;So I found solution for this - actually you can set &lt;strong&gt;ansible_python_interpreter&lt;/strong&gt; per
 host basis in inventory (told you that sometimes when I don't hate Ansible I really
 love it?). So just prepare yourself file like &lt;strong&gt;inventory/local&lt;/strong&gt; which could look
@@ -116,6 +118,8 @@ line (as it is already set in inventory), but providing additional inventory fil
 &lt;/pre&gt;&lt;/div&gt;
 
 
+&lt;p&gt;Thanks to that you can define Python interpreter (namely your virtualenv) for local
+connections and leave it default for remote connections.&lt;/p&gt;
 &lt;h2&gt;Whoah, that really works?&lt;/h2&gt;
 &lt;p&gt;Erm, SOA#1: Works for me ;)&lt;/p&gt;
 &lt;p&gt;Enjoy!&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Maciej Lasyk</dc:creator><pubDate>Mon, 27 Jun 2016 00:00:00 +0200</pubDate><guid isPermaLink="false">tag:maciej.lasyk.info,2016-06-27:2016/Jun/27/working-with-virtualenv-and-ansible/</guid><category>ansible</category><category>virtualenv</category><category>inventory</category></item><item><title>Nixnote (Evernote client) on Fedora</title><link>http://maciej.lasyk.info/2016/Mar/13/nixnote-evernote-client-on-fedora/</link><description>&lt;p&gt;&lt;center&gt;&lt;img alt="Evernote" src="http://maciej.lasyk.info/images/evernote_logo.png" /&gt;&lt;/center&gt;&lt;/p&gt;

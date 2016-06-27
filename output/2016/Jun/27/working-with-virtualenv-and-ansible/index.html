@@ -71,8 +71,8 @@ sudo pip install boto==2.40.0
 <p>So - the solution is to use <a href="http://docs.python-guide.org/en/latest/dev/virtualenvs/">Python virtualenv</a>.
 It might be obvious, but it's not that easy with Ansible. When working from defined virtual environment
 and using <strong>local</strong> connection Ansible actually creates SSH connection via loopback device and enters login shell
-using configured account (e.g. <strong>remote_user</strong> set it ansible.cfg; more on this topic <a href="http://docs.ansible.com/ansible/intro_configuration.html#remote-user">here</a>.
-After logging back in to your account we're using default Python interpreter (global one, probably <strong>/usr/bin/python</strong>) -
+using configured account (e.g. <strong>remote_user</strong> set it ansible.cfg; more on this topic <a href="http://docs.ansible.com/ansible/intro_configuration.html#remote-user">here</a>).
+After logging back into your account we're using default Python interpreter (global one, probably <strong>/usr/bin/python</strong>) -
 not the one we want to (from our virtualenv). Kaboom!</p>
 <p>Ok, so there's a solution. It's called <strong>ansible_python_interpreter</strong> and it's mentioned
 in <a href="http://docs.ansible.com/faq.html">Ansible FAQ</a> (but regarding other case). Basically
@@ -131,7 +131,9 @@ LANG=C LC_ALL=C LC_MESSAGES=C
 
 <p>Notice last: <strong>/home/ukleftue//.virtualenvs/ilovebaleares/bin/python</strong> - see? This is
 our problem - setting <strong>ansible_python_interpreter</strong> works globally for all plays
-within playbook.</p>
+within playbook. In the second playbook Ansible connects to freshly spawned EC2 instance
+and tries to work under Python interpreter under defined virtualenv - which obviously
+doesn't exist on this fresh VM.</p>
 <p>So I found solution for this - actually you can set <strong>ansible_python_interpreter</strong> per
 host basis in inventory (told you that sometimes when I don't hate Ansible I really
 love it?). So just prepare yourself file like <strong>inventory/local</strong> which could look
@@ -147,6 +149,8 @@ line (as it is already set in inventory), but providing additional inventory fil
 </pre></div>
 
 
+<p>Thanks to that you can define Python interpreter (namely your virtualenv) for local
+connections and leave it default for remote connections.</p>
 <h2>Whoah, that really works?</h2>
 <p>Erm, SOA#1: Works for me ;)</p>
 <p>Enjoy!</p>
