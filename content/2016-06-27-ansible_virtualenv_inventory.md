@@ -53,8 +53,8 @@ But this would actually break your system - wide libraries. If another project n
 So - the solution is to use [Python virtualenv](http://docs.python-guide.org/en/latest/dev/virtualenvs/).
 It might be obvious, but it's not that easy with Ansible. When working from defined virtual environment
 and using **local** connection Ansible actually creates SSH connection via loopback device and enters login shell
-using configured account (e.g. **remote_user** set it ansible.cfg; more on this topic [here](http://docs.ansible.com/ansible/intro_configuration.html#remote-user).
-After logging back in to your account we're using default Python interpreter (global one, probably **/usr/bin/python**) -
+using configured account (e.g. **remote_user** set it ansible.cfg; more on this topic [here](http://docs.ansible.com/ansible/intro_configuration.html#remote-user)).
+After logging back into your account we're using default Python interpreter (global one, probably **/usr/bin/python**) -
 not the one we want to (from our virtualenv). Kaboom!
 
 Ok, so there's a solution. It's called **ansible_python_interpreter** and it's mentioned
@@ -122,7 +122,9 @@ LANG=C LC_ALL=C LC_MESSAGES=C
 
 Notice last: **/home/ukleftue//.virtualenvs/ilovebaleares/bin/python** - see? This is
 our problem - setting **ansible_python_interpreter** works globally for all plays
-within playbook.
+within playbook. In the second playbook Ansible connects to freshly spawned EC2 instance
+and tries to work under Python interpreter under defined virtualenv - which obviously
+doesn't exist on this fresh VM.
 
 So I found solution for this - actually you can set **ansible_python_interpreter** per
 host basis in inventory (told you that sometimes when I don't hate Ansible I really
@@ -140,6 +142,9 @@ line (as it is already set in inventory), but providing additional inventory fil
 ```
 ansible-playbook -i inventory/ec2.py -i inventory/local magic_cloud.yml"
 ```
+
+Thanks to that you can define Python interpreter (namely your virtualenv) for local
+connections and leave it default for remote connections.
 
 ## Whoah, that really works? ###
 
