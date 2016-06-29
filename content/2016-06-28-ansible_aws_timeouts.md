@@ -4,7 +4,7 @@ Tags: ansible, aws, ec2, timeouts
 Author: Maciej Lasyk
 Summary: Couple words about working with AWS timeouts in Ansible
 
-<center>![AWS]({filename}/images/AWS_Logo.png)</center>
+<center>![AWS]({filename}/images/aws_logo.png)</center>
 
 ## Timeouts in AWS? ##
 
