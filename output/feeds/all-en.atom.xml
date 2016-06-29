@@ -1,5 +1,132 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Many craft. Wow. Such create</title><link href="http://maciej.lasyk.info/" rel="alternate"></link><link href="http://maciej.lasyk.info/feeds/all-en.atom.xml" rel="self"></link><id>http://maciej.lasyk.info/</id><updated>2016-06-27T00:00:00+02:00</updated><entry><title>Working with virtualenv and Ansible</title><link href="http://maciej.lasyk.info/2016/Jun/27/working-with-virtualenv-and-ansible/" rel="alternate"></link><published>2016-06-27T00:00:00+02:00</published><author><name>Maciej Lasyk</name></author><id>tag:maciej.lasyk.info,2016-06-27:2016/Jun/27/working-with-virtualenv-and-ansible/</id><summary type="html">&lt;p&gt;&lt;center&gt;&lt;img alt="Evernote" src="http://maciej.lasyk.info/images/Ansible_Logo.png" /&gt;&lt;/center&gt;&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Many craft. Wow. Such create</title><link href="http://maciej.lasyk.info/" rel="alternate"></link><link href="http://maciej.lasyk.info/feeds/all-en.atom.xml" rel="self"></link><id>http://maciej.lasyk.info/</id><updated>2016-06-28T00:00:00+02:00</updated><entry><title>Handling timeouts in Ansible AWS modules</title><link href="http://maciej.lasyk.info/2016/Jun/28/handling-timeouts-in-ansible-aws-modules/" rel="alternate"></link><published>2016-06-28T00:00:00+02:00</published><author><name>Maciej Lasyk</name></author><id>tag:maciej.lasyk.info,2016-06-28:2016/Jun/28/handling-timeouts-in-ansible-aws-modules/</id><summary type="html">&lt;p&gt;&lt;center&gt;&lt;img alt="AWS" src="{filename}/images/AWS_Logo.png" /&gt;&lt;/center&gt;&lt;/p&gt;
+&lt;h2&gt;Timeouts in AWS?&lt;/h2&gt;
+&lt;p&gt;Yup, it's completely normal, that sometimes between your laptop and AWS API something
+doesn't work as stable as you'd like it to. We hit random timeouts and we have to
+re - run our playbooks.&lt;/p&gt;
+&lt;h2&gt;Timeouts in Ansible?&lt;/h2&gt;
+&lt;p&gt;Looking for any "timeout" configuration directive in ansible.cfg &lt;a href="http://docs.ansible.com/ansible/intro_configuration.html#timeout"&gt;I found this&lt;/a&gt; -
+it actually doesn't help. We might just set a longer timeout for SSH connections. But
+AWS modules connects to API using boto library.&lt;/p&gt;
+&lt;h2&gt;So what's the problem once again?&lt;/h2&gt;
+&lt;p&gt;Let's say that we have the following playbook:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="x"&gt;- hosts: localhost&lt;/span&gt;
+&lt;span class="x"&gt;  connection: local&lt;/span&gt;
+&lt;span class="x"&gt;  tasks:&lt;/span&gt;
+&lt;span class="x"&gt;  - name: Create security group&lt;/span&gt;
+&lt;span class="x"&gt;    ec2_group:&lt;/span&gt;
+&lt;span class="x"&gt;      name: &amp;quot;test_sg&amp;quot;&lt;/span&gt;
+&lt;span class="x"&gt;      state: &amp;quot;present&amp;quot;&lt;/span&gt;
+&lt;span class="x"&gt;      vpc_id: &amp;quot;some_vpc&amp;quot;&lt;/span&gt;
+&lt;span class="x"&gt;      purge_rules: False&lt;/span&gt;
+&lt;span class="x"&gt;      purge_rules_egress: False&lt;/span&gt;
+&lt;span class="x"&gt;    register: ec2_group&lt;/span&gt;
+
+&lt;span class="x"&gt;  - name: Tag security group&lt;/span&gt;
+&lt;span class="x"&gt;    ec2_tag:&lt;/span&gt;
+&lt;span class="x"&gt;      resource: &amp;quot;&lt;/span&gt;&lt;span class="cp"&gt;{{&lt;/span&gt; &lt;span class="nv"&gt;ec2_group.group_id&lt;/span&gt; &lt;span class="cp"&gt;}}&lt;/span&gt;&lt;span class="x"&gt;&amp;quot;&lt;/span&gt;
+&lt;span class="x"&gt;      state: &amp;quot;present&amp;quot;&lt;/span&gt;
+&lt;span class="x"&gt;      tags: &amp;quot;&lt;/span&gt;&lt;span class="cp"&gt;{{&lt;/span&gt; &lt;span class="nv"&gt;some_defined_tags&lt;/span&gt; &lt;span class="cp"&gt;}}&lt;/span&gt;&lt;span class="x"&gt;&amp;quot;&lt;/span&gt;
+&lt;span class="x"&gt;    register: ec2_group_tags&lt;/span&gt;
+
+&lt;span class="x"&gt;  - name: Apply permissions on security group&lt;/span&gt;
+&lt;span class="x"&gt;    ec2_group:&lt;/span&gt;
+&lt;span class="x"&gt;      name: &amp;quot;test_sg&amp;quot;&lt;/span&gt;
+&lt;span class="x"&gt;      state: &amp;quot;present&amp;quot;&lt;/span&gt;
+&lt;span class="x"&gt;      vpc_id: &amp;quot;some_vpc&amp;quot;&lt;/span&gt;
+&lt;span class="x"&gt;      rules: &amp;quot;&lt;/span&gt;&lt;span class="cp"&gt;{{&lt;/span&gt; &lt;span class="nv"&gt;some&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt;&lt;span class="nv"&gt;defined_rules&lt;/span&gt; &lt;span class="cp"&gt;}}&lt;/span&gt;&lt;span class="x"&gt;&amp;quot;&lt;/span&gt;
+
+&lt;span class="x"&gt;  - name: Provision a set of instances&lt;/span&gt;
+&lt;span class="x"&gt;    ec2:&lt;/span&gt;
+&lt;span class="x"&gt;      group_id: &amp;quot;&lt;/span&gt;&lt;span class="cp"&gt;{{&lt;/span&gt; &lt;span class="nv"&gt;ec2_group.group_id&lt;/span&gt; &lt;span class="cp"&gt;}}&lt;/span&gt;&lt;span class="x"&gt;&amp;quot;&lt;/span&gt;
+&lt;span class="x"&gt;      instance_type: &amp;quot;t2.large&amp;quot;&lt;/span&gt;
+&lt;span class="x"&gt;      image: &amp;quot;some_ami&amp;quot;&lt;/span&gt;
+&lt;span class="x"&gt;      vpc_subnet_id: &amp;quot;some_vpc&amp;quot;&lt;/span&gt;
+&lt;span class="x"&gt;      count_tag: &amp;quot;some_tag&amp;quot;&lt;/span&gt;
+&lt;span class="x"&gt;      exact_count: &amp;quot;3&amp;quot;&lt;/span&gt;
+&lt;span class="x"&gt;      wait: true&lt;/span&gt;
+&lt;span class="x"&gt;      instance_tags: &amp;quot;&lt;/span&gt;&lt;span class="cp"&gt;{{&lt;/span&gt; &lt;span class="nv"&gt;some_defined_tags&lt;/span&gt; &lt;span class="cp"&gt;}}&lt;/span&gt;&lt;span class="x"&gt;&amp;quot;&lt;/span&gt;
+&lt;span class="x"&gt;      zone: &amp;quot;some_zone&amp;quot;&lt;/span&gt;
+&lt;span class="x"&gt;    register: ec2&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;And now let's say that it fails randomly because of timeouts that happens over time -
+and those timeouts hit random tasks.&lt;/p&gt;
+&lt;p&gt;We could simply re - run the job and thanks to idempotency it would just make sure
+that it was all finished up.&lt;/p&gt;
+&lt;p&gt;Also we could simply retry starting from failing step:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;PLAY RECAP ********************************************************************
+           to retry, use: --limit @/home/user/playbook.retry
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h2&gt;Anything more civilized?&lt;/h2&gt;
+&lt;p&gt;Actually there's another method. Not sure if it is more civilized, but it works
+and makes the Ansible playbook finish successfully more frequently.&lt;/p&gt;
+&lt;p&gt;It's a simple &lt;strong&gt;do - until&lt;/strong&gt; loop &lt;a href="http://docs.ansible.com/ansible/playbooks_loops.html#do-until-loops"&gt;documented here&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Using this approach we might add error - handling and retry policy to above playbook
+so we could get something like the following one;&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="x"&gt;- hosts: localhost&lt;/span&gt;
+&lt;span class="x"&gt;  connection: local&lt;/span&gt;
+&lt;span class="x"&gt;  tasks:&lt;/span&gt;
+&lt;span class="x"&gt;  - name: Create security group&lt;/span&gt;
+&lt;span class="x"&gt;    ec2_group:&lt;/span&gt;
+&lt;span class="x"&gt;      name: &amp;quot;test_sg&amp;quot;&lt;/span&gt;
+&lt;span class="x"&gt;      state: &amp;quot;present&amp;quot;&lt;/span&gt;
+&lt;span class="x"&gt;      vpc_id: &amp;quot;some_vpc&amp;quot;&lt;/span&gt;
+&lt;span class="x"&gt;      purge_rules: False&lt;/span&gt;
+&lt;span class="x"&gt;      purge_rules_egress: False&lt;/span&gt;
+&lt;span class="x"&gt;    register: ec2_group&lt;/span&gt;
+
+&lt;span class="x"&gt;    until: ec2_group.failed is not defined or ec2_group.failed == false&lt;/span&gt;
+&lt;span class="x"&gt;    retries: &amp;quot;3&amp;quot;&lt;/span&gt;
+&lt;span class="x"&gt;    delay: &amp;quot;30&amp;quot;&lt;/span&gt;
+
+&lt;span class="x"&gt;  - name: Tag security group&lt;/span&gt;
+&lt;span class="x"&gt;    ec2_tag:&lt;/span&gt;
+&lt;span class="x"&gt;      resource: &amp;quot;&lt;/span&gt;&lt;span class="cp"&gt;{{&lt;/span&gt; &lt;span class="nv"&gt;ec2_group.group_id&lt;/span&gt; &lt;span class="cp"&gt;}}&lt;/span&gt;&lt;span class="x"&gt;&amp;quot;&lt;/span&gt;
+&lt;span class="x"&gt;      state: &amp;quot;present&amp;quot;&lt;/span&gt;
+&lt;span class="x"&gt;      tags: &amp;quot;&lt;/span&gt;&lt;span class="cp"&gt;{{&lt;/span&gt; &lt;span class="nv"&gt;some_defined_tags&lt;/span&gt; &lt;span class="cp"&gt;}}&lt;/span&gt;&lt;span class="x"&gt;&amp;quot;&lt;/span&gt;
+&lt;span class="x"&gt;    register: ec2_group_tags&lt;/span&gt;
+
+&lt;span class="x"&gt;    until: ec2_group_tags.failed is not defined or ec2_group_tags.failed == false&lt;/span&gt;
+&lt;span class="x"&gt;    retries: &amp;quot;3&amp;quot;&lt;/span&gt;
+&lt;span class="x"&gt;    delay: &amp;quot;30&amp;quot;&lt;/span&gt;
+
+&lt;span class="x"&gt;  - name: Apply permissions on security group&lt;/span&gt;
+&lt;span class="x"&gt;    ec2_group:&lt;/span&gt;
+&lt;span class="x"&gt;      name: &amp;quot;test_sg&amp;quot;&lt;/span&gt;
+&lt;span class="x"&gt;      state: &amp;quot;present&amp;quot;&lt;/span&gt;
+&lt;span class="x"&gt;      vpc_id: &amp;quot;some_vpc&amp;quot;&lt;/span&gt;
+&lt;span class="x"&gt;      rules: &amp;quot;&lt;/span&gt;&lt;span class="cp"&gt;{{&lt;/span&gt; &lt;span class="nv"&gt;some&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt;&lt;span class="nv"&gt;defined_rules&lt;/span&gt; &lt;span class="cp"&gt;}}&lt;/span&gt;&lt;span class="x"&gt;&amp;quot;&lt;/span&gt;
+&lt;span class="x"&gt;    register: ec2_group_perms&lt;/span&gt;
+
+&lt;span class="x"&gt;    until: ec2_group_perms.failed is not defined or ec2_group_perms.failed == false&lt;/span&gt;
+&lt;span class="x"&gt;    retries: &amp;quot;3&amp;quot;&lt;/span&gt;
+&lt;span class="x"&gt;    delay: &amp;quot;30&amp;quot;&lt;/span&gt;
+
+&lt;span class="x"&gt;  - name: Provision a set of instances&lt;/span&gt;
+&lt;span class="x"&gt;    ec2:&lt;/span&gt;
+&lt;span class="x"&gt;      group_id: &amp;quot;&lt;/span&gt;&lt;span class="cp"&gt;{{&lt;/span&gt; &lt;span class="nv"&gt;ec2_group.group_id&lt;/span&gt; &lt;span class="cp"&gt;}}&lt;/span&gt;&lt;span class="x"&gt;&amp;quot;&lt;/span&gt;
+&lt;span class="x"&gt;      instance_type: &amp;quot;t2.large&amp;quot;&lt;/span&gt;
+&lt;span class="x"&gt;      image: &amp;quot;some_ami&amp;quot;&lt;/span&gt;
+&lt;span class="x"&gt;      vpc_subnet_id: &amp;quot;some_vpc&amp;quot;&lt;/span&gt;
+&lt;span class="x"&gt;      count_tag: &amp;quot;some_tag&amp;quot;&lt;/span&gt;
+&lt;span class="x"&gt;      exact_count: &amp;quot;3&amp;quot;&lt;/span&gt;
+&lt;span class="x"&gt;      wait: true&lt;/span&gt;
+&lt;span class="x"&gt;      instance_tags: &amp;quot;&lt;/span&gt;&lt;span class="cp"&gt;{{&lt;/span&gt; &lt;span class="nv"&gt;some_defined_tags&lt;/span&gt; &lt;span class="cp"&gt;}}&lt;/span&gt;&lt;span class="x"&gt;&amp;quot;&lt;/span&gt;
+&lt;span class="x"&gt;      zone: &amp;quot;some_zone&amp;quot;&lt;/span&gt;
+&lt;span class="x"&gt;    register: ec2&lt;/span&gt;
+
+&lt;span class="x"&gt;    until: ec2.failed is not defined or ec2.failed == false&lt;/span&gt;
+&lt;span class="x"&gt;    retries: &amp;quot;3&amp;quot;&lt;/span&gt;
+&lt;span class="x"&gt;    delay: &amp;quot;30&amp;quot;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;It's very simple and works just fine. Of course retry and delay values are good subject
+to be parametrized and put into variable.&lt;/p&gt;</summary><category term="ansible"></category><category term="aws"></category><category term="ec2"></category><category term="timeouts"></category></entry><entry><title>Working with virtualenv and Ansible</title><link href="http://maciej.lasyk.info/2016/Jun/27/working-with-virtualenv-and-ansible/" rel="alternate"></link><published>2016-06-27T00:00:00+02:00</published><author><name>Maciej Lasyk</name></author><id>tag:maciej.lasyk.info,2016-06-27:2016/Jun/27/working-with-virtualenv-and-ansible/</id><summary type="html">&lt;p&gt;&lt;center&gt;&lt;img alt="Evernote" src="http://maciej.lasyk.info/images/Ansible_Logo.png" /&gt;&lt;/center&gt;&lt;/p&gt;
 &lt;h2&gt;What this is about?&lt;/h2&gt;
 &lt;p&gt;So after upgrading to &lt;a href="https://getfedora.org/?wkfpF24"&gt;Fedora 24&lt;/a&gt; I wanted to have
 a clean installation and use only system libraries (no more &lt;strong&gt;sudo pip install..&lt;/strong&gt;).
