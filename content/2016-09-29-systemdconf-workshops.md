@@ -37,18 +37,26 @@ VMs or some other Vagrant abomination ;)
 
 I found a little error in the materials for systemd-nspawn preparation. It should be:
 
-```sudo dnf --releasever=24 --installroot=/var/lib/machine/f24 install systemd passwd dnf fedora-release```
+```
+dnf --releasever=24 --installroot=/var/lib/machine/f24 \
+install systemd passwd dnf fedora-release
+```
 
 Also I suggest creating this container under **/var/lib/machines** as this directory already has proper selinux type
 (and we don't want to run with selinux disabled, yeah?)
 
 Also I'd suggest installing following packages:
 
-```dnf install systemd-devel telnet telnet-server procps pkg-config make automake gcc git vim-enhanced iproute```
+```
+dnf install systemd-devel telnet telnet-server procps \
+pkg-config make automake gcc git vim-enhanced iproute
+```
 
 And in the end - use this container as template for any following task from all the workshop sessions:
 
-```cp -R /var/lib/machines/f24 /var/lib/machines/f24-workshop1```
+```
+cp -R /var/lib/machines/f24 /var/lib/machines/f24-workshop1
+```
 
 I've published notes from this session on [my github](https://github.com/docent-net/systemd-conference-2016)
 
