@@ -1,5 +1,73 @@
 <?xml version="1.0" encoding="utf-8"?>
-<rss version="2.0"><channel><title>Many craft. Wow. Such create</title><link>http://maciej.lasyk.info/</link><description></description><lastBuildDate>Tue, 28 Jun 2016 00:00:00 +0200</lastBuildDate><item><title>Handling timeouts in Ansible AWS modules</title><link>http://maciej.lasyk.info/2016/Jun/28/handling-timeouts-in-ansible-aws-modules/</link><description>&lt;p&gt;&lt;center&gt;&lt;img alt="AWS" src="http://maciej.lasyk.info/images/aws_logo.png" /&gt;&lt;/center&gt;&lt;/p&gt;
+<rss version="2.0"><channel><title>Many craft. Wow. Such create</title><link>http://maciej.lasyk.info/</link><description></description><lastBuildDate>Thu, 29 Sep 2016 00:00:00 +0200</lastBuildDate><item><title>systemdconf(2): 1st day / workshop summary</title><link>http://maciej.lasyk.info/2016/Sep/29/systemdconf2-1st-day-workshop-summary/</link><description>&lt;p&gt;&lt;center&gt;&lt;img alt="PID1" src="http://maciej.lasyk.info/images/pid1.png" /&gt;&lt;/center&gt;&lt;/p&gt;
+&lt;h2&gt;systemdconf(2)&lt;/h2&gt;
+&lt;p&gt;So it's the second time &lt;strong&gt;systemdconf&lt;/strong&gt; takes place. Again - in Berlin, which I find even more pretty in early Autumn 
+than year before (which was in November) - sunny and warm.&lt;/p&gt;
+&lt;p&gt;Full schedule of this year's edition is &lt;a href="https://cfp.systemd.io/en/systemdconf_2016/public/schedule/0"&gt;here&lt;/a&gt;. Last year 
+there was no workshops, but there was a hackfest on the last day. This time we have a workshop on the 0 - day (I call
+it "0 - day" as this is an optional and needs an additional ticket).&lt;/p&gt;
+&lt;p&gt;So first 2 sessions were common for all attendees:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Demystifying systemd - Hands On&lt;/strong&gt; by &lt;strong&gt;Ben Breard&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Using the Journal Efficiently&lt;/strong&gt; by &lt;strong&gt;Lennart Poettering&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Afterwards I found it very hard to choose between next sessions that were taking place in same time. I really wanted
+to take part in &lt;strong&gt;Lukáš Nykrýn's&lt;/strong&gt; workshop about &lt;strong&gt;systemd-nspawn 101&lt;/strong&gt; and learn about &lt;strong&gt;mgmt&lt;/strong&gt; from &lt;strong&gt;James Shubin&lt;/strong&gt;.
+But I finally chose almost 5 - hour session about &lt;strong&gt;Writing services the systemd way&lt;/strong&gt; lead by &lt;strong&gt;David Strauss&lt;/strong&gt;.&lt;/p&gt;
+&lt;h2&gt;Session 1: Demystifying systemd - Hands on by Ben Breard&lt;/h2&gt;
+&lt;p&gt;I was late almost 90 minutes as my coach bus was late almost 2 - hours (thanks to traffic jams on south entrance to 
+Berlin). But I quickly synced to the rest of people thanks to &lt;a href="http://people.redhat.com/bbreard/systemd/DemystifyingsystemdHandsOn.html"&gt;wonderful materials prepared by 
+Ben&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;I decided to go through this workshop without using VMs but systemd-nspawn container instead. Thanks to this approach
+I was able to create one container per workshop task in a quick and elegant way without wasting resources on KVM 
+VMs or some other Vagrant abomination ;)&lt;/p&gt;
+&lt;p&gt;I found a little error in the materials for systemd-nspawn preparation. It should be:&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;sudo dnf --releasever=24 --installroot=/var/lib/machine/f24 install systemd passwd dnf fedora-release&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;Also I suggest creating this container under &lt;strong&gt;/var/lib/machines&lt;/strong&gt; as this directory already has proper selinux type
+(and we don't want to run with selinux disabled, yeah?)&lt;/p&gt;
+&lt;p&gt;Also I'd suggest installing following packages:&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;dnf install systemd-devel telnet telnet-server procps pkg-config make automake gcc git vim-enhanced iproute&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;And in the end - use this container as template for any following task from all the workshop sessions:&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;cp -R /var/lib/machines/f24 /var/lib/machines/f24-workshop1&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;I've published notes from this session on &lt;a href="https://github.com/docent-net/systemd-conference-2016"&gt;my github&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Generally speaking I'm very glad to attend this session - it was a wholesome recap of systemd basics!&lt;/p&gt;
+&lt;h2&gt;Session 2: Using the Journal Efficiently by Lennart Poettering&lt;/h2&gt;
+&lt;p&gt;This session was run by Lennart. If I were asked &lt;strong&gt;how to describe it in one sentence&lt;/strong&gt; it would be: &lt;strong&gt;man systemctl
+with Lennart's incredible comment and things that can't be find in man&lt;/strong&gt;. I really loved it. And as usual - Lennart
+explained the matter of logging w/journald so extensively that actually it was hard to even ask about anything.&lt;/p&gt;
+&lt;p&gt;Beside &lt;strong&gt;man systemctl&lt;/strong&gt; things Lennart talked in details about unit's metadata (see &lt;strong&gt;-o verbose&lt;/strong&gt; and all those 
+uppercase params), cursors and gatewayd.&lt;/p&gt;
+&lt;p&gt;I've published notes from this session on &lt;a href="https://github.com/docent-net/systemd-conference-2016"&gt;my github&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Again - outstanding session.&lt;/p&gt;
+&lt;h2&gt;Session 3: Writing services the systemd way by David Strauss&lt;/h2&gt;
+&lt;p&gt;During this session we created a simple C application which later we converted into a systemd service with some
+basic systemd functionalities:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;journald integration via sd_journal&lt;/li&gt;
+&lt;li&gt;monitoring / watchdog via sd_notify&lt;/li&gt;
+&lt;li&gt;socket activation &lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Whole session was packed with coding, compiling, re - compiling and trying. It was very intensive, fast - paced and...
+great! Afterwards we also saw corresponding &lt;a href="https://github.com/systemd/python-systemd"&gt;python-systemd&lt;/a&gt; wrappers.
+Actually one of my ideas for Saturday hackfest is to rewrite this session's subject in Python in order to learn
+how Python integration works.&lt;/p&gt;
+&lt;p&gt;Again - totally awesome session!&lt;/p&gt;
+&lt;p&gt;Materials for this session are hosted on &lt;a href="https://github.com/systemd/tutorials/tree/berlin"&gt;Github&lt;/a&gt;. Simply start 
+with &lt;strong&gt;starter&lt;/strong&gt; directory and apply logdaemon, watchdogdaemon and sadaemon on that starter content.&lt;/p&gt;
+&lt;p&gt;I didn't make notes during this session - there was no time, only coding and compiling.&lt;/p&gt;
+&lt;h2&gt;systemd-nspawn 101 by Lukáš Nykrýn&lt;/h2&gt;
+&lt;p&gt;Unfortunately I didn't attend this workshops. However I asked Lukáš about materials - 
+&lt;a href="http://redhat.slides.com/lnykryn/systemd-nspawn-101#"&gt;he already published his slides&lt;/a&gt;&lt;/p&gt;
+&lt;h2&gt;Next Generation Config Mgmt: Workshop by James (purpleidea) Shubin&lt;/h2&gt;
+&lt;p&gt;And now for something completely different ;) Also - I couldn't attend this one, but I caught up day after with James
+and asked about materials. However there're no dedicated materials from that workshops, you can basically hack around
+mgmt basing on &lt;a href="https://github.com/purpleidea/mgmt/"&gt;github project page&lt;/a&gt;. This is very interesting project which needs
+contributions (GoLang here) so if you're interested - go for it!&lt;/p&gt;
+&lt;h2&gt;So that's it&lt;/h2&gt;
+&lt;p&gt;Basically that's it. I have to say that I really like the idea of workshops and this day was 100% worth its price. I
+was able to recap my systemd knowledge, update it, ask questions to people who actually develop systemd and understand
+concepts which were not tha easy for me. Also I already have some implementations ideas that were born during those
+workshops so - thank you guys!&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Maciej Lasyk</dc:creator><pubDate>Thu, 29 Sep 2016 00:00:00 +0200</pubDate><guid isPermaLink="false">tag:maciej.lasyk.info,2016-09-29:2016/Sep/29/systemdconf2-1st-day-workshop-summary/</guid><category>systemd</category><category>conference</category><category>conf</category><category>berlin</category></item><item><title>Handling timeouts in Ansible AWS modules</title><link>http://maciej.lasyk.info/2016/Jun/28/handling-timeouts-in-ansible-aws-modules/</link><description>&lt;p&gt;&lt;center&gt;&lt;img alt="AWS" src="http://maciej.lasyk.info/images/aws_logo.png" /&gt;&lt;/center&gt;&lt;/p&gt;
 &lt;h2&gt;Timeouts in AWS?&lt;/h2&gt;
 &lt;p&gt;Yup, it's completely normal, that sometimes between your laptop and AWS API something
 doesn't work as stable as you'd like it to. We hit random timeouts and we have to
