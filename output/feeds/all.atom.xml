@@ -22,13 +22,24 @@ Ben&lt;/a&gt;.&lt;/p&gt;
 I was able to create one container per workshop task in a quick and elegant way without wasting resources on KVM 
 VMs or some other Vagrant abomination ;)&lt;/p&gt;
 &lt;p&gt;I found a little error in the materials for systemd-nspawn preparation. It should be:&lt;/p&gt;
-&lt;p&gt;&lt;code&gt;sudo dnf --releasever=24 --installroot=/var/lib/machine/f24 install systemd passwd dnf fedora-release&lt;/code&gt;&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;dnf --releasever=24 --installroot=/var/lib/machine/f24 \
+install systemd passwd dnf fedora-release
+&lt;/pre&gt;&lt;/div&gt;
+
+
 &lt;p&gt;Also I suggest creating this container under &lt;strong&gt;/var/lib/machines&lt;/strong&gt; as this directory already has proper selinux type
 (and we don't want to run with selinux disabled, yeah?)&lt;/p&gt;
 &lt;p&gt;Also I'd suggest installing following packages:&lt;/p&gt;
-&lt;p&gt;&lt;code&gt;dnf install systemd-devel telnet telnet-server procps pkg-config make automake gcc git vim-enhanced iproute&lt;/code&gt;&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;dnf install systemd-devel telnet telnet-server procps \
+pkg-config make automake gcc git vim-enhanced iproute
+&lt;/pre&gt;&lt;/div&gt;
+
+
 &lt;p&gt;And in the end - use this container as template for any following task from all the workshop sessions:&lt;/p&gt;
-&lt;p&gt;&lt;code&gt;cp -R /var/lib/machines/f24 /var/lib/machines/f24-workshop1&lt;/code&gt;&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;cp -R /var/lib/machines/f24 /var/lib/machines/f24-workshop1
+&lt;/pre&gt;&lt;/div&gt;
+
+
 &lt;p&gt;I've published notes from this session on &lt;a href="https://github.com/docent-net/systemd-conference-2016"&gt;my github&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;Generally speaking I'm very glad to attend this session - it was a wholesome recap of systemd basics!&lt;/p&gt;
 &lt;h2&gt;Session 2: Using the Journal Efficiently by Lennart Poettering&lt;/h2&gt;

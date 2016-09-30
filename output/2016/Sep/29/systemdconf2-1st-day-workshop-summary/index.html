@@ -53,13 +53,24 @@ Ben</a>.</p>
 I was able to create one container per workshop task in a quick and elegant way without wasting resources on KVM 
 VMs or some other Vagrant abomination ;)</p>
 <p>I found a little error in the materials for systemd-nspawn preparation. It should be:</p>
-<p><code>sudo dnf --releasever=24 --installroot=/var/lib/machine/f24 install systemd passwd dnf fedora-release</code></p>
+<div class="highlight"><pre><span></span>dnf --releasever=24 --installroot=/var/lib/machine/f24 \
+install systemd passwd dnf fedora-release
+</pre></div>
+
+
 <p>Also I suggest creating this container under <strong>/var/lib/machines</strong> as this directory already has proper selinux type
 (and we don't want to run with selinux disabled, yeah?)</p>
 <p>Also I'd suggest installing following packages:</p>
-<p><code>dnf install systemd-devel telnet telnet-server procps pkg-config make automake gcc git vim-enhanced iproute</code></p>
+<div class="highlight"><pre><span></span>dnf install systemd-devel telnet telnet-server procps \
+pkg-config make automake gcc git vim-enhanced iproute
+</pre></div>
+
+
 <p>And in the end - use this container as template for any following task from all the workshop sessions:</p>
-<p><code>cp -R /var/lib/machines/f24 /var/lib/machines/f24-workshop1</code></p>
+<div class="highlight"><pre><span></span>cp -R /var/lib/machines/f24 /var/lib/machines/f24-workshop1
+</pre></div>
+
+
 <p>I've published notes from this session on <a href="https://github.com/docent-net/systemd-conference-2016">my github</a></p>
 <p>Generally speaking I'm very glad to attend this session - it was a wholesome recap of systemd basics!</p>
 <h2>Session 2: Using the Journal Efficiently by Lennart Poettering</h2>
