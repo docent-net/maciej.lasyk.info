@@ -38,13 +38,14 @@ SOCIAL = (('You can add links in your config file', '#'),
 DEFAULT_PAGINATION = False
 
 # Uncomment following line if you want document-relative URLs when developing
-RELATIVE_URLS = False
+# RELATIVE_URLS = True
 
 ARTICLE_URL = '{date:%Y}/{date:%b}/{date:%d}/{slug}/'
 ARTICLE_SAVE_AS = '{date:%Y}/{date:%b}/{date:%d}/{slug}/index.html'
 
 DISQUS_SITENAME='manycraft'
 GOOGLE_ANALYTICS='UA-61452-19'
+GOOGLE_TAGMANAGER="GTM-56PJ72"
 
 TAG_CLOUD_STEPS = 8
 TAG_CLOUD_MAX_ITEMS = 20
