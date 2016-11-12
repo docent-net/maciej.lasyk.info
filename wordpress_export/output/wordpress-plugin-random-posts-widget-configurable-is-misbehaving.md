@@ -1,7 +1,7 @@
 Title: Wordpress plugin Random Posts Widget Configurable is misbehaving
 Date: 2013-05-11 19:40
 Author: docent
-Category: security
+Category: tech
 Tags: wordpress
 Slug: wordpress-plugin-random-posts-widget-configurable-is-misbehaving
 Status: published

@@ -1,7 +1,7 @@
 Title: Safe Wordpress management via SSL / HTTPS
 Date: 2012-09-17 21:11
 Author: docent
-Category: Uncategorized
+Category: tech
 Tags: ssl, wordpress
 Slug: safe-wordpress-management-via-ssl-https
 Status: published

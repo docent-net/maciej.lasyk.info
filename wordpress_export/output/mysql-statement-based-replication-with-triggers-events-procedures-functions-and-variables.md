@@ -1,7 +1,7 @@
 Title: MySQL statement based replication with triggers, events, procedures, functions and variables
 Date: 2012-01-06 13:30
 Author: docent
-Category: mysql
+Category: tech
 Tags: mysql, replication
 Slug: mysql-statement-based-replication-with-triggers-events-procedures-functions-and-variables
 Status: published

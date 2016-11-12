@@ -1,7 +1,7 @@
 Title: Hello there!
 Date: 2011-12-05 22:51
 Author: docent
-Category: Uncategorized
+Category: random
 Slug: hello-there
 Status: published
 

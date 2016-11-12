@@ -1,7 +1,7 @@
 Title: Integrating Perforce with VIM
 Date: 2011-12-07 14:15
 Author: docent
-Category: humor
+Category: tech
 Tags: perforce, vim
 Slug: integrating-perforce-with-vim
 Status: published

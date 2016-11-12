@@ -1,7 +1,7 @@
 Title: Grep is Your friend
 Date: 2011-12-07 22:58
 Author: docent
-Category: Bash tips
+Category: tech
 Tags: bash, grep, regexp
 Slug: grep-is-your-friend
 Status: published

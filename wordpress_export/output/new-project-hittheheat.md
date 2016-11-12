@@ -1,7 +1,7 @@
 Title: New project - HitTheHeat
 Date: 2013-10-29 22:41
 Author: docent
-Category: projects
+Category: tech
 Tags: arduino, github, HitTheHeat, open source, projects
 Slug: new-project-hittheheat
 Status: published

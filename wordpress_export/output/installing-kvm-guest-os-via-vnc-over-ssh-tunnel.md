@@ -1,7 +1,7 @@
 Title: Installing KVM guest OS via VNC over SSH tunnel
 Date: 2013-01-03 20:59
 Author: docent
-Category: ssh, virtualization
+Category: tech
 Tags: kvm, ssh, vnc
 Slug: installing-kvm-guest-os-via-vnc-over-ssh-tunnel
 Status: published

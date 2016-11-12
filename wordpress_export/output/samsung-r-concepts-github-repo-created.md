@@ -1,7 +1,7 @@
 Title: Samsung R&D Linux Boot competition - smashed ;) / Concepts github repo created!
 Date: 2013-10-29 21:30
 Author: docent
-Category: conferences
+Category: tech
 Tags: boot, booter, competition, concept, github, linux, samsung
 Slug: samsung-r-concepts-github-repo-created
 Status: published

@@ -1,7 +1,7 @@
 Title: Wacom Bamboo Fun in Fedora 15
 Date: 2012-01-11 20:44
 Author: docent
-Category: desktop
+Category: tech
 Tags: fedora, fedoraplanet, tablet, wacom, x
 Slug: wacom-bamboo-fun-in-fedora-15
 Status: published

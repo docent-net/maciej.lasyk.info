@@ -1,7 +1,7 @@
 Title: hack.me
 Date: 2013-05-11 16:39
 Author: docent
-Category: Uncategorized
+Category: tech
 Tags: humor
 Slug: hack-me
 Status: published

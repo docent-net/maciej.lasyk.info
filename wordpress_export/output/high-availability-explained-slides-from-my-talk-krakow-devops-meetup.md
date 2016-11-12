@@ -1,7 +1,7 @@
 Title: High Availability Explained - slides from my talk @ Krakow DevOPS meetup
 Date: 2014-01-29 10:19
 Author: docent
-Category: meetups
+Category: tech
 Tags: ha, meetup, talks
 Slug: high-availability-explained-slides-from-my-talk-krakow-devops-meetup
 Status: published

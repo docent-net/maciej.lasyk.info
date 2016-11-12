@@ -1,7 +1,7 @@
 Title: MySQL tunneling via SSH and error "channel: open failed: connect failed: Connection refused"
 Date: 2011-12-28 13:48
 Author: docent
-Category: mysql, ssh
+Category: tech
 Tags: mysql, ssh, tunnel
 Slug: mysql-tunneling-via-ssh-and-error-channel-open-failed-connect-failed-connection-refused
 Status: published

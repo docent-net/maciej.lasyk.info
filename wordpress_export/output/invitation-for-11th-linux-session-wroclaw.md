@@ -1,7 +1,7 @@
 Title: Invitation to 11th Linux Session @Wrocław
 Date: 2014-03-02 22:26
 Author: docent
-Category: conferences
+Category: tech
 Tags: conferences, ganglia, ha, nagios, talks
 Slug: invitation-for-11th-linux-session-wroclaw
 Status: published

@@ -1,7 +1,7 @@
 Title: Way to go RedHat! RHEL 6.5 released
 Date: 2013-12-05 18:46
 Author: docent
-Category: rhel
+Category: tech
 Tags: centos, release, rhel
 Slug: way-to-go-redhat-rhel-6-5-released
 Status: published

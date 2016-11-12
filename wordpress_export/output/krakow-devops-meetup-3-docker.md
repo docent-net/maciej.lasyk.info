@@ -1,7 +1,7 @@
 Title: Kraków DevOPS Meetup #3: Docker
 Date: 2014-02-25 18:56
 Author: docent
-Category: meetups
+Category: tech
 Tags: centos, devops, docker, fedora, meetup, rhel, selinux
 Slug: krakow-devops-meetup-3-docker
 Status: published

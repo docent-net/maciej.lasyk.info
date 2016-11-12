@@ -1,7 +1,7 @@
 Title: Moving to Pelican
 Date: 2014-08-20 21:43
 Author: docent
-Category: Uncategorized
+Category: random
 Slug: moving-to-pelican
 Status: published
 

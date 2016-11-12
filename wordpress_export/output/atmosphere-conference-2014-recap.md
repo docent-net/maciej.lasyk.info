@@ -1,7 +1,7 @@
 Title: Atmosphere Conference 2014 recap
 Date: 2014-05-26 14:02
 Author: docent
-Category: tech-events
+Category: tech
 Tags: atmosphere, docker, express, kraken, node.js, npm, scalability, security, conferences
 Slug: atmosphere-conference-2014-recap
 Status: published

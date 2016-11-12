@@ -1,7 +1,7 @@
 Title: Kraków DevOPS Meetup #2
 Date: 2014-01-23 13:36
 Author: docent
-Category: meetups
+Category: tech
 Tags: devops, ha, meetup
 Slug: krakow-devops-meetup-2
 Status: published

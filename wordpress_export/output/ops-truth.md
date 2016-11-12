@@ -1,7 +1,7 @@
 Title: Ops truth
 Date: 2011-12-06 18:29
 Author: docent
-Category: humor, quotes
+Category: tech
 Tags: humor, operations, quote
 Slug: ops-truth
 Status: published

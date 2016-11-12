@@ -1,7 +1,7 @@
 Title: RHEL/Fedora + Docker (and SELinux) - slides from my talk @ Krakow DevOPS meetup
 Date: 2014-02-26 22:20
 Author: docent
-Category: meetups
+Category: tech
 Tags: centos, docker, fedora, fedoraplanet, meetup, rhel, selinux
 Slug: rhelfedora-docker-and-selinux-slides-from-my-talk-krakow-devops-meetup
 Status: published

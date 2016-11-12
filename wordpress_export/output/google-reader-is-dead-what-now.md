@@ -1,7 +1,7 @@
 Title: Google Reader is dead. What now?
 Date: 2013-07-01 09:41
 Author: docent
-Category: Uncategorized
+Category: tech
 Tags: open source, rss, ttrss
 Slug: google-reader-is-dead-what-now
 Status: published

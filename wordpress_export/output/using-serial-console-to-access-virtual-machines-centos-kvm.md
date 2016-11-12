@@ -1,7 +1,7 @@
 Title: Using serial console to access virtual machines (Centos, KVM)
 Date: 2013-01-09 22:06
 Author: docent
-Category: configuration, kvm, virtualization
+Category: tech
 Tags: console, kvm, serial, virsh, virtualization
 Slug: using-serial-console-to-access-virtual-machines-centos-kvm
 Status: published

@@ -1,7 +1,7 @@
 Title: Do You Kanban?
 Date: 2012-03-04 08:34
 Author: docent
-Category: management, operations
+Category: tech
 Tags: management, operations
 Slug: do-you-kanban
 Status: published

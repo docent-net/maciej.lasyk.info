@@ -1,7 +1,7 @@
 Title: Hackathon preps
 Date: 2013-02-25 22:01
 Author: docent
-Category: hackathon
+Category: tech
 Tags: arduino, ganglia, hackathon, nagios, raspberry-pi
 Slug: hackathon-preps
 Status: published

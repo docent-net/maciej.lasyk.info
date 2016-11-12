@@ -1,7 +1,7 @@
 Title: Invitation to the OWASP Kraków meeting
 Date: 2013-09-26 18:39
 Author: docent
-Category: security
+Category: tech
 Tags: owasp, security, talks
 Slug: invitation-to-the-owasp-krakow-meeting
 Status: published

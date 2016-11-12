@@ -1,7 +1,7 @@
 Title: ssh_exchange_identification: Connection closed by remote host
 Date: 2012-01-30 17:05
 Author: docent
-Category: ssh
+Category: tech
 Tags: ssh, sshd
 Slug: ssh_exchange_identification-connection-closed-by-remote-host
 Status: published

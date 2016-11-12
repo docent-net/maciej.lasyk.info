@@ -1,7 +1,7 @@
 Title: 11 Linux Session recap
 Date: 2014-04-09 20:40
 Author: docent
-Category: tech-events
+Category: tech
 Tags: conferences, ganglia, ha, nagios, open source
 Slug: 11-linux-session-recap
 Status: published

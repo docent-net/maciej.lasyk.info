@@ -1,7 +1,7 @@
 Title: SA management quote
 Date: 2013-01-10 08:36
 Author: docent
-Category: quotes
+Category: tech
 Tags: books, quotes
 Slug: sa-management-quote
 Status: published

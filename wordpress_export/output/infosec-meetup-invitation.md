@@ -1,7 +1,7 @@
 Title: Infosec meetup invitation
 Date: 2014-03-06 21:35
 Author: docent
-Category: meetups
+Category: tech
 Tags: infosec, meetup, selinux
 Slug: infosec-meetup-invitation
 Status: published

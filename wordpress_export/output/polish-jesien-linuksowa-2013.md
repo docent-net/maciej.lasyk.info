@@ -1,7 +1,7 @@
 Title: Jesień Linuksowa 2013
 Date: 2013-06-30 16:39
 Author: docent
-Category: conferences
+Category: tech
 Tags: conferences, jesien
 Slug: polish-jesien-linuksowa-2013
 Status: published

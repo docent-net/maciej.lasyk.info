@@ -1,9 +1,9 @@
 Title: Grep
 Date: 2014-02-18 23:19
 Author: docent
-Category: Uncategorized
+Category: tech
 Tags: grep
-Slug: 479
+Slug: Grep
 Status: published
 
 <!--:en-->

@@ -1,7 +1,7 @@
 Title: Lighttpd expire.url mixed entries
 Date: 2012-07-05 14:46
 Author: docent
-Category: configuration
+Category: tech
 Tags: lighttpd
 Slug: lighttpd-expire-url-mixed-entries
 Status: published

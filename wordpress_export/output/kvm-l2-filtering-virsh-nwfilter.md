@@ -1,8 +1,8 @@
 Title: KVM L2 filtering / virsh nwfilter
 Date: 2013-12-01 22:24
 Author: docent
-Category: virtualization
-Tags: arp, dhcp, ebtables, kvm, netfilter, networking
+Category: tech
+Tags: arp, dhcp, ebtables, kvm, netfilter, networking, virtualization
 Slug: kvm-l2-filtering-virsh-nwfilter
 Status: published
 

@@ -1,8 +1,8 @@
 Title: SELinux && Ganglia / Multicast && Apache && RRDs
 Date: 2013-09-29 21:10
 Author: docent
-Category: security
-Tags: apache, ganglia, gmetad, gmond, gweb, httpd, rrd, selinux
+Category: tech
+Tags: apache, ganglia, gmetad, gmond, gweb, httpd, rrd, selinux, security
 Slug: selinux-ganglia-multicast-apache-rrds
 Status: published
 

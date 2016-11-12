@@ -1,7 +1,7 @@
 Title: KVM - libvirt-guests - autostart / shutdown / pause
 Date: 2013-04-29 11:40
 Author: docent
-Category: kvm, virtualization
+Category: tech
 Tags: kvm, virtualization, xen
 Slug: kvm-libvirt-guests-autostart-shutdown-pause
 Status: published

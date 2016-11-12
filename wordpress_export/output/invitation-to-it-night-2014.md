@@ -1,7 +1,7 @@
 Title: Invitation to IT Night 2014
 Date: 2014-05-30 08:05
 Author: docent
-Category: meetups
+Category: tech
 Tags: meetup, shell, terminal
 Slug: invitation-to-it-night-2014
 Status: published

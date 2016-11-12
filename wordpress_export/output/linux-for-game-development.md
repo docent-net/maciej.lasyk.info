@@ -1,7 +1,7 @@
 Title: Linux for Game Development
 Date: 2013-06-24 20:26
 Author: docent
-Category: Uncategorized
+Category: tech
 Slug: linux-for-game-development
 Status: published
 

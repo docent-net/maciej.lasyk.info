@@ -1,7 +1,7 @@
 Title: Gmail like "+" adresses aliases in Postfix
 Date: 2013-12-27 22:47
 Author: docent
-Category: postfix
+Category: tech
 Tags: aliases, gmail, pcre, postfix, regexp
 Slug: gmail-like-adresses-aliases-in-postfix
 Status: published

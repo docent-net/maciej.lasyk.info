@@ -1,7 +1,7 @@
 Title: How to change OVH kernel to normal Centos kernel
 Date: 2012-12-23 13:54
 Author: docent
-Category: kernel
+Category: tech
 Tags: centos kernel ovh
 Slug: how-to-change-ovh-kernel-to-normal-centos-kernel
 Status: published

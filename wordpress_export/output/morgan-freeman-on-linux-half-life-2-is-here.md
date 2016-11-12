@@ -1,7 +1,7 @@
 Title: Morgan Freeman on Linux! Half Life 2 is here!
 Date: 2013-05-12 21:01
 Author: docent
-Category: games
+Category: random
 Tags: games
 Slug: morgan-freeman-on-linux-half-life-2-is-here
 Status: published

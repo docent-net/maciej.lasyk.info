@@ -1,7 +1,7 @@
 Title: Stop disabling SELinux - slides from my talk @ Krakow Infosec meetup
 Date: 2014-03-13 22:52
 Author: docent
-Category: meetups
+Category: tech
 Tags: kernel, meetup, security, selinux
 Slug: stop-disabling-selinux-slides-from-my-talk-krakow-infosec-meetup
 Status: published

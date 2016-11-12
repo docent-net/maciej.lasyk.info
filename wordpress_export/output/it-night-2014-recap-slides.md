@@ -1,7 +1,7 @@
 Title: IT night 2014 recap & slides
 Date: 2014-06-01 21:20
 Author: docent
-Category: conferences, meetups
+Category: tech
 Tags: bash, earthquake, finch, guake, irc, irssi, meetup, mutt, newsbeuter, rss, screen, terminal, terminator, tmux, twitter, vim, xmpp, zsh
 Slug: it-night-2014-recap-slides
 Status: published

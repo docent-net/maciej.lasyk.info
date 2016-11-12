@@ -1,7 +1,7 @@
 Title: MySQL bug gets cake ;)
 Date: 2013-07-01 19:25
 Author: docent
-Category: humor
+Category: tech
 Tags: humor
 Slug: mysql-bug-gets-cake
 Status: published

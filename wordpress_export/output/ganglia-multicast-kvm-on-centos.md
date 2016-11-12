@@ -1,8 +1,8 @@
 Title: Ganglia, multicast && KVM on CentOS
 Date: 2013-08-09 15:54
 Author: docent
-Category: monitoring
-Tags: firewall, ganglia, gmetad, gmond, kvm
+Category: tech
+Tags: firewall, ganglia, gmetad, gmond, kvm, monitoring
 Slug: ganglia-multicast-kvm-on-centos
 Status: published
 

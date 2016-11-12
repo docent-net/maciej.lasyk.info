@@ -1,7 +1,7 @@
 Title: MySQL replication over SSH tunnel
 Date: 2011-12-24 23:37
 Author: docent
-Category: mysql, ssh
+Category: tech
 Tags: mysql, replication, ssh, tunnel
 Slug: mysql-replication-over-ssh-tunnel
 Status: published

@@ -1,7 +1,7 @@
 Title: Postfix: Backup MX
 Date: 2012-01-06 14:49
 Author: docent
-Category: postfix
+Category: tech
 Tags: dns, email, mx, postfix
 Slug: postfix-backup-mx
 Status: published

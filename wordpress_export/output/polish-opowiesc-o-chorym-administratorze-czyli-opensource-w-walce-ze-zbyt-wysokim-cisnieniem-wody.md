@@ -1,7 +1,7 @@
 Title: (Polish) Opowieść o chorym administratorze, czyli OpenSource w walce ze zbyt wysokim ciśnieniem wody
 Date: 2013-01-20 20:21
 Author: docent
-Category: operations
+Category: tech
 Tags: fedora, gnuplot, imagemagick, mae, monitoring, motion, opensource
 Slug: polish-opowiesc-o-chorym-administratorze-czyli-opensource-w-walce-ze-zbyt-wysokim-cisnieniem-wody
 Status: published

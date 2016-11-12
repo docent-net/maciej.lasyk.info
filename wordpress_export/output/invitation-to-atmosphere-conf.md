@@ -1,9 +1,9 @@
 Title: Invitation to AtmosphereConf
 Date: 2014-05-12 20:17
 Author: docent
-Category: conferences
+Category: tech
 Tags: atmosphereconf, conferences
-Slug: 543
+Slug: invitation-to-atmosphereconf
 Status: published
 
 <!--:en-->

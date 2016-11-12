@@ -1,7 +1,7 @@
 Title: MySQL HA
 Date: 2013-08-05 20:08
 Author: docent
-Category: mysql
+Category: tech
 Tags: failover, ha, mysql, replication
 Slug: mysql-ha
 Status: published

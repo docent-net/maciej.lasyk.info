@@ -1,7 +1,7 @@
 Title: Raspbian, Raspberry-PI, installation, overclocking && vnc
 Date: 2013-05-17 09:05
 Author: docent
-Category: Uncategorized
+Category: tech
 Tags: overclocking, raspberry-pi, raspbian, rpi, vnc
 Slug: raspbian-raspberry-pi-installation-overclocking-vnc
 Status: published

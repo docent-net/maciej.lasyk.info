@@ -1,7 +1,7 @@
 Title: Taniec [PL only]
 Date: 2013-06-18 12:34
 Author: docent
-Category: humor
+Category: tech
 Tags: humor
 Slug: taniec-pl-only
 Status: published

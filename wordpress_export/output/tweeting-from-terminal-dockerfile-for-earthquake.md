@@ -1,7 +1,7 @@
 Title: Tweeting from terminal; Dockerfile for Earthquake
 Date: 2014-03-03 23:19
 Author: docent
-Category: docker
+Category: tech
 Tags: docker, dockerfile, earthquake, fedora, fedoraplanet, twitter
 Slug: tweeting-from-terminal-dockerfile-for-earthquake
 Status: published

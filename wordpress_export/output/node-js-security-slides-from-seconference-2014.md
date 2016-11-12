@@ -1,7 +1,7 @@
 Title: node.js security slides from SEConference 2014
 Date: 2014-05-10 09:11
 Author: docent
-Category: conferences, security
+Category: tech
 Tags: conferences, docker, javascript, node.js, seconference, security
 Slug: node-js-security-slides-from-seconference-2014
 Status: published

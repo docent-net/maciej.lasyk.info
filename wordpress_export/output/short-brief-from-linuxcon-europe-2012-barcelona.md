@@ -1,8 +1,8 @@
 Title: Short brief from LinuxCon Europe 2012 / Barcelona
 Date: 2012-11-14 22:06
 Author: docent
-Category: conferences
-Tags: linuxcon
+Category: tech
+Tags: linuxcon, conferences, events
 Slug: short-brief-from-linuxcon-europe-2012-barcelona
 Status: published
 

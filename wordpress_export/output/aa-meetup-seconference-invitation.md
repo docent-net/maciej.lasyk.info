@@ -1,7 +1,7 @@
 Title: AA meetup & SEConference invitation
 Date: 2014-05-06 21:04
 Author: docent
-Category: events
+Category: tech
 Tags: conferences, ganglia, meetup, monitoring, nagios, node.js, security
 Slug: aa-meetup-seconference-invitation
 Status: published

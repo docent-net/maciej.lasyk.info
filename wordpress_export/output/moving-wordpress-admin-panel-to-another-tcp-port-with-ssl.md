@@ -1,7 +1,7 @@
 Title: Moving Wordpress admin panel to another TCP port (with SSL)
 Date: 2013-12-29 17:05
 Author: docent
-Category: security
+Category: tech
 Tags: port, ssl, tcp, wordpress
 Slug: moving-wordpress-admin-panel-to-another-tcp-port-with-ssl
 Status: published

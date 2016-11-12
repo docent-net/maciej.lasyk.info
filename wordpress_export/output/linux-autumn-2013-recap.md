@@ -1,7 +1,7 @@
 Title: Linux Autumn 2013 - recap
 Date: 2013-10-13 17:37
 Author: docent
-Category: conferences
+Category: tech
 Tags: conferences, jesien
 Slug: linux-autumn-2013-recap
 Status: published

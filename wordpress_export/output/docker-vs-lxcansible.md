@@ -1,8 +1,8 @@
 Title: Docker vs LXC/Ansible?
 Date: 2014-03-16 19:46
 Author: docent
-Category: virtualization
-Tags: ansible, docker, fedoraplanet, kvm, lxc, virtualization, xen
+Category: tech
+Tags: ansible, docker, fedoraplanet, kvm, lxc, virtualization, xen, containers
 Slug: docker-vs-lxcansible
 Status: published
 
