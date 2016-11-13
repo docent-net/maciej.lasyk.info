@@ -36,7 +36,9 @@ On my laptop I build and run containers with:
 
 ```
 docker build -t pelican -f pelican.dockerfile .
-export PROJDIR=/directory/to/blog/repo; docker run --name pelican \
+# this might be also PROJDIR=`pwd` when running inside PROJECT DIR
+export PROJDIR=/directory/to/blog/repo
+docker run --name pelican \
     -v ${PROJDIR}/content:/srv/content:Z \
     -v ${PROJDIR}/output_docker:/srv/output:Z \
     -v ${PROJDIR}/pelicanconf.py:/srv/pelicanconf.py:Z \
