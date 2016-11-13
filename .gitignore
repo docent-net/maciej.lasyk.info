@@ -3,3 +3,6 @@ cache/*
 *.pid
 .idea
 output/*
+Makefile
+develop_server.sh
+fabfile.py
