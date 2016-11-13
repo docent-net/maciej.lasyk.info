@@ -59,4 +59,4 @@ docker build -t nginx -f nginx.dockerfile .
 export PROJDIR=/directory/to/blog/repo; docker run -d --name nginx -p 8001:80 \
     -v ${PROJDIR}/output_docker:/srv/www:Z nginx
 ```
-test 3
+test 34
