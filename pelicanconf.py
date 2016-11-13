@@ -3,7 +3,7 @@
 from __future__ import unicode_literals
 
 AUTHOR = u'Maciej Lasyk'
-SITENAME = u'Many craft. Wow. Such create'
+SITENAME = u'Many craft<br>Wow<br>Such create'
 SITEURL = 'http://maciej.lasyk.info'
 
 HOME_URL = 'http://maciej.lasyk.info'
@@ -13,6 +13,8 @@ TIMEZONE = 'Europe/Paris'
 DEFAULT_LANG = u'en'
 
 THEME = "themes/docent"
+PLUGIN_PATHS=["plugins"]
+PLUGINS=["tag_cloud"]
 
 STATIC_PATHS = ['images', 'pdfs']
 
@@ -38,7 +40,7 @@ SOCIAL = (('You can add links in your config file', '#'),
 DEFAULT_PAGINATION = False
 
 # Uncomment following line if you want document-relative URLs when developing
-# RELATIVE_URLS = True
+RELATIVE_URLS = False
 
 ARTICLE_URL = '{date:%Y}/{date:%b}/{date:%d}/{slug}/'
 ARTICLE_SAVE_AS = '{date:%Y}/{date:%b}/{date:%d}/{slug}/index.html'
@@ -48,7 +50,12 @@ GOOGLE_ANALYTICS='UA-61452-19'
 GOOGLE_TAGMANAGER="GTM-56PJ72"
 
 TAG_CLOUD_STEPS = 8
-TAG_CLOUD_MAX_ITEMS = 20
+TAG_CLOUD_MAX_ITEMS = 15
+TAG_CLOUD_SORTING = 'alphabetically'
+TAG_CLOUD_BADGE = False
 
 #PIWIK_URL='analytics.lasyk.info'
 #PIWIK_SITE_ID=1
+
+#GITHUB_URL='https://github.com/docent-net'
+
