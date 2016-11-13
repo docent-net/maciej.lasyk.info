@@ -6,13 +6,21 @@
 {% elif category %}
 <h1 class="index_page">Category: {{ category }}</h1>
 {% else %}
-<h1 class="index_page">Blog Posts</h1>
 {% endif %}
 {% if articles %}
-    <ul class="article_list">
-    {% for article in articles %}        
-            <li><span class="blurred">{{ article.date|strftime('%d %b %Y') }}</span> >> <a href="{{ SITEURL }}/{{ article.url }}" rel="bookmark" title="{{ article.summary }}">{{ article.title }} - {{ article.summary|striptags }}</a></li>
+    {% for article in articles %}
+        <div>
+            <span style="display: inline-block; width: 150px; padding-left: 5px">
+                {{ article.date|strftime('%d %b %Y') }} &gt;&gt;
+            </span>
+            <span style="display: inline-block; padding-left: 150px; vertical-align: top; width: 400px;">
+                <a href="{{ SITEURL }}/{{ article.url }}" rel="bookmark" title="{{ article.summary }}">{{ article.title }}
+                {% if article.summary %}
+                {{ article.summary|striptags }}<
+                {% endif %}
+                </a>
+            </span>
+        </div>
     {% endfor %}
-    </ul>
 {% endif %}
 {% endblock content %}
