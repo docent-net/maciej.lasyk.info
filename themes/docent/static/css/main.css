@@ -12,7 +12,7 @@
 
 @import url("pygment.css");
 
-body { margin:0px; padding:20px 0px; text-align:center; font-family:Merriweather, Monospace; color:#585858; }
+body { margin:0px; padding:20px 0px; font-family:Merriweather, Monospace; color:#585858; }
 a, a:visited { text-decoration:none; color:rgb(17, 170, 34); }
 a:hover { color:#FFF; background-color:#5353CB }
 h1, h2, h3, h4, h5, h6, h7 { margin:0px; text-transform:uppercase; }
