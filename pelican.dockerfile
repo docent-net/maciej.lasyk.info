@@ -1,4 +1,4 @@
-FROM fedora
+FROM fedora:24
 MAINTAINER Maciej Lasyk <maciek@lasyk.info>
 
 RUN dnf -y install python-pip gcc make libxslt-devel redhat-rpm-config \
