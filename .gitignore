@@ -3,6 +3,7 @@ cache/*
 *.pid
 .idea
 output/*
+output_docker/*
 Makefile
 develop_server.sh
 fabfile.py
