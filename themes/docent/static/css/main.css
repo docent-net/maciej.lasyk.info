@@ -12,7 +12,7 @@
 
 @import url("pygment.css");
 
-body { margin:0px; padding:20px 0px; text-align:center; font-family:Monospace; color:#585858; }
+body { margin:0px; padding:20px 0px; text-align:center; font-family:Merriweather, Monospace; color:#585858; }
 a, a:visited { text-decoration:none; color:rgb(17, 170, 34); }
 a:hover { color:#FFF; background-color:#5353CB }
 h1, h2, h3, h4, h5, h6, h7 { margin:0px; text-transform:uppercase; }
@@ -43,7 +43,7 @@ ul.sub-menu, ul.children { margin:0px 10px 0px 0px; }
 .thumbnail { margin:0px; padding:0px; }
 .thumbnail img { float:right; }
 
-.entry { font-size: 14px; line-height: 20px; }
+.entry { font-size: 16px; line-height: 22px; }
 .entry h1 { line-height: 26px }
 .entry h2, h3, h4, h5 { margin:30px 0px 10px 0px; }
 .entry img { display:block; border:none; }
