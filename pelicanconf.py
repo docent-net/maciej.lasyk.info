@@ -16,7 +16,7 @@ THEME = "themes/docent"
 PLUGIN_PATHS=["plugins"]
 PLUGINS=["tag_cloud"]
 
-STATIC_PATHS = ['images', 'pdfs']
+STATIC_PATHS = ['images', 'keybase.txt']
 
 # Feed generation is usually not desired when developing
 FEED_DOMAIN = SITEURL
