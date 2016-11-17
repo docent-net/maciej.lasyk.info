@@ -69,7 +69,7 @@ class Importer(object):
                     )
                 else:
                     self.__filtered_files.append(_file)
-                break   # testing on 1 file for now
+                # break   # testing on 1 file for now
 
         if len(self.__filtered_files) > 0:
             print('Filtered (not fixed) files: {0}'.
@@ -90,15 +90,15 @@ class Importer(object):
 
                 # remove PL versions (yup, let's use EN only):
                 content = ''.join(content)
-                content = content[:content.index('<!--:pl-->')]
+                if '<!--:pl-->' in content:
+                    content = content[:content.index('<!--:pl-->')]
 
-                # dinally remove that unused EN tags <!--:en-->
+                # finally remove that unused EN tags <!--:en-->
                 content = re.sub('<!--:en-->', '', content)
 
                 # todo: fetching and saving images to image content directory
                 # todo: resizing images
                 # todo: fixing images Markdown tags
-
 
                 try:
                     with open(
