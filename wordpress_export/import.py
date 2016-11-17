@@ -30,25 +30,32 @@ import re
     '--src_dir',
     default='output',
     prompt='Plz enter source directory path (with md files exported from XML)',
-    help='Directory with Markdown files exported from Wordpress'
+    help='Directory with Markdown files exported from Wordpress [default: '
+         'output]'
 )
 @click.option(
     '--trg_dir',
     default='fixed',
     prompt='Plz enter directory where to save fixed files',
-    help='Directory where to save fixed files'
+    help='Directory where to save fixed files [default: fixed]'
 )
-def import_files(src_dir, trg_dir):
-    importer = Importer(src_dir, trg_dir)
+@click.option(
+    '--overwrite/--no-overwrite',
+    default=False,
+    help='If you wanna overwrite already existing files [default: overwrite]'
+)
+def import_files(src_dir, trg_dir, overwrite):
+    importer = Importer(src_dir, trg_dir, overwrite)
     importer.fix_files()
 
 
 class Importer(object):
     __filtered_files = []
 
-    def __init__(self, src_dir, trg_dir):
+    def __init__(self, src_dir, trg_dir, overwrite):
         self.src_dir = os.path.join(os.getcwd(), src_dir)
         self.trg_dir = os.path.join(os.getcwd(), trg_dir)
+        self.overwrite = overwrite
 
     def fix_files(self):
         self.__sanitize_trg_dir()
@@ -73,13 +80,31 @@ class Importer(object):
             with open(src_file_path, 'r') as src_file_handler:
                 # we don't assume too large files here, no need for generators:
                 content = src_file_handler.readlines()
-                [year, fixed_content] = self.__fix_file_content(content)
+
+                # read year from metadata - we'll use it later for target
+                # directory
+                [year, content] = self.__fix_file_content(content)
+
+                # strip unused tags: <!--:-->
+                content = [re.sub('<!--:-->', '', x) for x in content]
+
+                # remove PL versions (yup, let's use EN only):
+                content = ''.join(content)
+                content = content[:content.index('<!--:pl-->')]
+
+                # dinally remove that unused EN tags <!--:en-->
+                content = re.sub('<!--:en-->', '', content)
+
+                # todo: fetching and saving images to image content directory
+                # todo: resizing images
+                # todo: fixing images Markdown tags
+
+
                 try:
                     with open(
                             os.path.join(self.trg_dir, file_name), "w"
                     ) as trg_file_handler:
-                        trg_file_handler.write(fixed_content)
-                        # TODO writing data to file
+                        trg_file_handler.write(''.join(content))
                 except IOError:
                     self.__filtered_files.append(file_name)
                     print(os.path.join(self.trg_dir, file_name))
@@ -105,9 +130,10 @@ class Importer(object):
 
     def __sanitize_trg_dir(self):
         if os.path.exists(self.trg_dir):
-            if len(os.listdir(self.trg_dir)) > 0:
-                exit('Target directory exists and is not empty, plz remove or '
-                     'empty it manually: {0}'.format(self.trg_dir))
+            if not self.overwrite:
+                if len(os.listdir(self.trg_dir)) > 0:
+                    exit('Target directory exists and is not empty, plz remove'
+                         ' or empty it manually: {0}'.format(self.trg_dir))
         else:
             try:
                 os.mkdir(self.trg_dir)
