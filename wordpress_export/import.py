@@ -97,8 +97,14 @@ class Importer(object):
                 content = re.sub('<!--:en-->', '', content)
 
                 # todo: fetching and saving images to image content directory
+                img_urls = re.findall('(maciek.lasyk.info/sysop/wp-content/uploads/[^)|^\s]+)', content)
+                self.fetch_images(img_urls)
                 # todo: resizing images
                 # todo: fixing images Markdown tags
+
+                content = re.sub('{.aligncenter', '', content)
+                content = re.sub('height="\d+"}', '', content)
+                content = re.sub("\n.size-medium .wp-image-(\d+) width=\"(\d+)\"\n", '', content)
 
                 try:
                     with open(
@@ -113,6 +119,13 @@ class Importer(object):
         except IOError:
             self.__filtered_files.append(file_name)
             pass
+
+    @staticmethod
+    def fetch_images(img_urls):
+        for url in img_urls:
+            # todo: saving images to a provided in cli param directory
+            print url
+
 
     @staticmethod
     def __fix_file_content(content):
