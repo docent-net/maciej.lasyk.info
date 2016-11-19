@@ -23,7 +23,8 @@ import os.path
 import click
 import fnmatch
 import re
-
+import urllib
+from retry import retry
 
 @click.command()
 @click.option(
@@ -120,12 +121,20 @@ class Importer(object):
             self.__filtered_files.append(file_name)
             pass
 
-    @staticmethod
-    def fetch_images(img_urls):
+    def fetch_images(self, img_urls):
         for url in img_urls:
-            # todo: saving images to a provided in cli param directory
-            print url
+            filename = url.split('/')[-1]
+            self.get_image('http://' + url, os.path.join(self.trg_dir, 'images', filename))
 
+    @retry(Exception, tries=5, delay=3, backoff=2)
+    def get_image(self, img_url, path):
+        try:
+            print("Fetching image {0} to {1}\n".format(img_url, path))
+            urllib.urlretrieve(img_url, path)
+        except:
+            return False
+
+        return True
 
     @staticmethod
     def __fix_file_content(content):
@@ -152,6 +161,11 @@ class Importer(object):
                 os.mkdir(self.trg_dir)
             except Exception as e:  # nopep8 generic exception here for a reason
                 exit('Couldn\'t create target directory {0}: {1}'
+                     .format(self.trg_dir, e))
+            try:
+                os.mkdir(os.path.join(self.trg_dir, 'images'))
+            except Exception as e:  # nopep8 generic exception here for a reason
+                exit('Couldn\'t create image directory {0}: {1}'
                      .format(self.trg_dir, e))
 
     def __sanitize_src_dir(self):
