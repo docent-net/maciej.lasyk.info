@@ -25,6 +25,7 @@ import fnmatch
 import re
 import urllib
 from retry import retry
+from PIL import Image
 
 @click.command()
 @click.option(
@@ -45,18 +46,25 @@ from retry import retry
     default=False,
     help='If you wanna overwrite already existing files [default: overwrite]'
 )
-def import_files(src_dir, trg_dir, overwrite):
-    importer = Importer(src_dir, trg_dir, overwrite)
+@click.option(
+    '--img_width',
+    default=0,
+    help='If specified all downloaded images embeded in given blogpost will be '
+         'resized to this width [default: 0 - no resize]'
+)
+def import_files(src_dir, trg_dir, overwrite, img_width):
+    importer = Importer(src_dir, trg_dir, overwrite, img_width)
     importer.fix_files()
 
 
 class Importer(object):
     __filtered_files = []
 
-    def __init__(self, src_dir, trg_dir, overwrite):
+    def __init__(self, src_dir, trg_dir, overwrite, img_width):
         self.src_dir = os.path.join(os.getcwd(), src_dir)
         self.trg_dir = os.path.join(os.getcwd(), trg_dir)
         self.overwrite = overwrite
+        self.img_width = img_width
 
     def fix_files(self):
         self.__sanitize_trg_dir()
@@ -99,13 +107,19 @@ class Importer(object):
 
                 # todo: fetching and saving images to image content directory
                 img_urls = re.findall('(maciek.lasyk.info/sysop/wp-content/uploads/[^)|^\s]+)', content)
-                self.fetch_images(img_urls)
+                self.fetch_and_resize_images(img_urls)
                 # todo: resizing images
                 # todo: fixing images Markdown tags
 
                 content = re.sub('{.aligncenter', '', content)
                 content = re.sub('height="\d+"}', '', content)
                 content = re.sub("\n.size-medium .wp-image-(\d+) width=\"(\d+)\"\n", '', content)
+                if not re.search('^Summary:', content):
+                    content = re.sub(
+                        "\nCategory: ",
+                        "\nSummary: .\nCategory: ",
+                        content
+                    )
 
                 try:
                     with open(
@@ -121,10 +135,33 @@ class Importer(object):
             self.__filtered_files.append(file_name)
             pass
 
-    def fetch_images(self, img_urls):
+    def fetch_and_resize_images(self, img_urls):
         for url in img_urls:
             filename = url.split('/')[-1]
-            self.get_image('http://' + url, os.path.join(self.trg_dir, 'images', filename))
+            filepath = os.path.join(self.trg_dir, 'images', filename)
+            # download image only when it doesn't exist:
+            if not os.path.exists(filepath):
+                self.get_image('http://' + url, filepath)
+
+            # resize images to given width:
+            if self.img_width is not 0:
+                self.resize_image(filepath)
+
+    def resize_image(self, file):
+        try:
+            with Image.open(file) as img:
+                # don't resize when there's no such need:
+                if img.size[0] != self.img_width:
+                    print("Resizing {0} from {1} to {2}\n".format(
+                        file, img.size[0], self.img_width)
+                    )
+                    wpercent = (self.img_width / float(img.size[0]))
+                    hsize = int((float(img.size[1]) * float(wpercent)))
+                    img = img.resize((self.img_width, hsize), Image.ANTIALIAS)
+                    img.save(file)
+        except IOError:
+            print("Can't open {0} for resize!".format(file))
+            pass
 
     @retry(Exception, tries=5, delay=3, backoff=2)
     def get_image(self, img_url, path):

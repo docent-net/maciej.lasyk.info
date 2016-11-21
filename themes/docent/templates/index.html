@@ -15,7 +15,7 @@
             </span>
             <span style="display: inline-block; vertical-align: top; width: 395px;">
                 <a href="{{ SITEURL }}/{{ article.url }}" rel="bookmark" title="{{ article.summary }}">{{ article.title }}
-                {% if article.summary %}
+                {% if article.summary and article.summary != "<p>.</p>" %}
                 - {{ article.summary|striptags }}
                 {% endif %}
                 </a>
