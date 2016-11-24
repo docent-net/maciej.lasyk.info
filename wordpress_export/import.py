@@ -114,6 +114,7 @@ class Importer(object):
                 content = re.sub('{.aligncenter', '', content)
                 content = re.sub('height="\d+"}', '', content)
                 content = re.sub("\n.size-medium .wp-image-(\d+) width=\"(\d+)\"\n", '', content)
+                content = re.sub('(\.size-full)*\s*\.wp-image-(\d+) width="(\d+)"', '', content)
                 if not re.search('^Summary:', content):
                     content = re.sub(
                         "\nCategory: ",
