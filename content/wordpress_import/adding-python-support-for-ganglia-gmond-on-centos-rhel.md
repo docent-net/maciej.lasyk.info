@@ -5,6 +5,7 @@ Category: tech
 Tags: ganglia, gmond, python, monitoring
 Slug: adding-python-support-for-ganglia-gmond-on-centos-rhel
 Status: published
+Summary: Spooky story about Ganglia
 
 <center>![Ganglia]({filename}/images/ganglia_logo_small.jpg)</center>
 

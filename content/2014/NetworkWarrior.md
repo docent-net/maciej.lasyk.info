@@ -4,11 +4,11 @@ Updated: 2014-08-18 23:17
 Category: ebooks
 Tags: ebooks,networking
 Author: Maciej Lasyk
-Summary: A few words about "Network Warrior" e-book
+Summary: A few words about Network Warrior e-book
 
 <center>![Network Warrior]({filename}/images/networkwarrior.jpg)</center>
 
-Some time ago I bought an e-book "**Network Warrior**" by **Gary A. Donahue**. As this
+Some time ago I bought an e-book **Network Warrior** by **Gary A. Donahue**. As this
 is rather a long reading (more than 700 pages) I didn't have enough time to
 finish it. But right now - on holidays - once more I went through table of
 contents and last chapter "**Avoiding Frustration**" brought my attention. I just couldn't

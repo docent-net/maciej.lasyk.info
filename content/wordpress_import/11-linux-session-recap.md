@@ -5,15 +5,10 @@ Category: tech
 Tags: conferences, ganglia, ha, nagios, open source
 Slug: 11-linux-session-recap
 Status: published
+Summary: a few words about great IT event
 
 
-
-[![11 Linux
-Session](http://maciek.lasyk.info/sysop/wp-content/uploads/2014/03/11-300x89.jpg)
-.wp-image-495 width="300"
-](http://maciek.lasyk.info/sysop/wp-content/uploads/2014/03/11.jpg)
-
- 
+<center>![11 Linux Session]({filename}/images/11-300x89.jpg)</center>
 
 11th edition of Linux Session is over. It was 2 days full of great
 presentations, discussions and liters of beer we drank. I really enjoyed
@@ -32,21 +27,4 @@ yourself the slides:
 
 <iframe width="427" height="356" style="border: 1px solid #CCC; border-width: 1px 1px 0; margin-bottom: 5px; max-width: 100%;" src="http://www.slideshare.net/slideshow/embed_code/33338110" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" allowfullscreen></iframe>
 
-<div style="margin-bottom: 5px;">
-
-**[Monitoring with Nagios and
-Ganglia](https://www.slideshare.net/d0cent/monitoring-with-nagios-and-ganglia "Monitoring with Nagios and Ganglia")**
-from **[Maciej Lasyk](http://www.slideshare.net/d0cent)**
-
-</div>
-
 <iframe width="427" height="356" style="border: 1px solid #CCC; border-width: 1px 1px 0; margin-bottom: 5px; max-width: 100%;" src="http://www.slideshare.net/slideshow/embed_code/33338702" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" allowfullscreen></iframe>
-
-<div style="margin-bottom: 5px;">
-
-**[High Availability (HA) Explained - second
-edition](https://www.slideshare.net/d0cent/high-availability-ha-explained-second-edition "High Availability (HA) Explained - second edition")**
-from **[Maciej Lasyk](http://www.slideshare.net/d0cent)**
-
-</div>
-
