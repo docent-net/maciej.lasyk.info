@@ -14,7 +14,7 @@ run **systemd** workshops last Saturday. Venue was full, guys from
 [MegiTeam](http://www.megiteam.pl/) made sure everything was organized well -
 it was just like it should be - thank you all :)
 
-<img class="image-process-article-image" src="{filename}/images/systemd-workshops-krk.jpg"/>
+<center>![systemd workshops]({filename}/images/systemd-workshops-krk.jpg)</center>
 
 ## Can I see what you learned? ##
 
