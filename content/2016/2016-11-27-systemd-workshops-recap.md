@@ -10,13 +10,13 @@ Summary: how did it go?
 
 So as [I wrote before]({filename}/2016/2016-11-15-systemd-workshops.md) 
 together with [Marcin Skarbek](https://twitter.com/marcinskarbek) we
-run **systemd** workshops last Saturday. Venue was full, guys from 
+ran **systemd** workshops last Saturday. Venue was full, guys from 
 [MegiTeam](http://www.megiteam.pl/) made sure everything was organized well -
 it was just like it should be - thank you all :)
 
 <center>![systemd workshops]({filename}/images/systemd-workshops-krk.jpg)</center>
 
-## Can I see what you learned? ##
+## Can I see what you presented? ##
 
 Sure, everything is explained in [github repo](https://github.com/docent-net/systemd-workshop).
 
