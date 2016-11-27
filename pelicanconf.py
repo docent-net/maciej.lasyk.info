@@ -14,7 +14,7 @@ DEFAULT_LANG = u'en'
 
 THEME = "themes/docent"
 PLUGIN_PATHS=["plugins"]
-PLUGINS=["tag_cloud"]
+PLUGINS=["tag_cloud", "image_process"]
 
 STATIC_PATHS = ['images', 'keybase.txt']
 
@@ -59,3 +59,8 @@ TAG_CLOUD_BADGE = False
 
 #GITHUB_URL='https://github.com/docent-net'
 
+# common image size via plugin
+# https://github.com/whiskyechobravo/image_process
+IMAGE_PROCESS = {
+    'article-image': ["scale_in 300 300 False"]
+    }
