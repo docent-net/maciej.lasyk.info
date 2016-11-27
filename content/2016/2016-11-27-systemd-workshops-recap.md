@@ -1,18 +1,36 @@
-Title: Devops meetup @Wrocław
+Title: systemd workshops recap
 Category: tech
-Tags: systemd, meetup, devops
+Tags: systemd, workshops, learning-systemd
 Author: Maciej Lasyk
-Summary: I'll give a talk about systemd during next Devops meetup @Wrocław
+Summary: how did it go?
 
 <center>![PID1 for the win!]({filename}/images/pid1.png)</center>
 
-## Meetup ##
+## Workshops ##
 
-I was asked to give a 90min presentation which be a very short version of
-[systemd workshops I'm running](https://github.com/docent-net/systemd-workshop)
-here in Kraków.
+So as [I wrote before]({filename}/2016/2016-11-15-systemd-workshops.md) 
+together with [Marcin Skarbek](https://twitter.com/marcinskarbek) we
+run **systemd** workshops last Saturday. Venue was full, guys from 
+[MegiTeam](http://www.megiteam.pl/) made sure everything was organized well -
+it was just like it should be - thank you all :)
 
-If you're interested in this very subject - 
-[register now on the meetup page](https://www.meetup.com/Wroclaw-DevOps-Meetup/events/235730817/?fromEmail=235730817&rv=ea1)
+<img class="image-process-article-image" src="{filename}/images/systemd-workshops-krk.jpg"/>
 
-See you there guys!
+## Can I see what you learned? ##
+
+Sure, everything is explained in [github repo](https://github.com/docent-net/systemd-workshop).
+
+## Will you do it again? ##
+
+There've been questions if we could run those workshops one more time. So
+actually yes. We're thinking about 2nd round before end of this year. Simply
+follow Twitter tag [#systemdkrkworkshops](https://twitter.com/search?q=%23systemdkrkworkshops)
+(or this blog's RSSes).
+
+## Anything more? #learningsystemd! ##
+
+Yes. Considering that systemd is huge and learning it is a long journey I
+decided to create **learning-systemd** tag in this very blog (and Twitter tag
+[#learningsystemd](https://twitter.com/search?f=tweets&q=%23learningsystemd&src=typd))
+I'll use it for blog post I'll create on this very topic. And I plan to post 
+often :)
