@@ -2,7 +2,7 @@ Title: systemd mask
 Category: tech
 Tags: systemd, mask, learning-series, learning-systemd, systemctl
 Author: Maciej Lasyk
-Summary: how to disable service from starting when installed?
+Summary: how to prevent service from being started upon installation?
 
 <center>![PID1 for the win!]({filename}/images/pid1.png)</center>
 
