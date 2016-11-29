@@ -47,8 +47,14 @@
 
     <div id="feedsbar">
         <ul>
+        {% if tag %}
+            <li><a href="/feeds/tag/{{ tag }}.rss.xml">RSS</a> |
+                <a href="/feeds/tag/{{ tag }}.atom.xml">Atom</a>
+            </li>
+        {% else %}
             <li><a href="/feeds/rss.xml">RSS</a> | <a href="/feeds/atom.xml">Atom</a>
             </li>
+        {% endif %}
         </ul>
     </div>
 
