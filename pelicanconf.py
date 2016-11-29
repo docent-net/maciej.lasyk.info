@@ -26,6 +26,8 @@ CATEGORY_FEED_ATOM = 'feeds/%s.atom.xml'
 FEED_RSS = 'feeds/rss.xml'
 FEED_ALL_RSS = 'feeds/all.rss.xml'
 CATEGORY_FEED_RSS = 'feeds/%s.rss.xml'
+TAG_FEED_ATOM = 'feeds/tag/%s.atom.xml'
+TAG_FEED_RSS = 'feeds/tag/%s.rss.xml'
 
 # Blogrol
 LINKS =  (('Pelican', 'http://getpelican.com/'),
