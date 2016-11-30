@@ -1,0 +1,6 @@
+@font-face {
+  font-family: 'Merriweather';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Merriweather'), local('Merriweather-Regular'), url(http://maciej.lasyk.info/slides/wroclaw_devops_systemd_2016/Merriweather-Regular.ttf) format('truetype');
+}
