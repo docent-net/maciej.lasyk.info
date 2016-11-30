@@ -8,7 +8,7 @@ I use [OpenWRT](https://openwrt.org/) on my home access - points instead of
 stock software (due to security concerns and my OpenSourceTheWorld approach).
 
 I also have [BIND](https://en.wikipedia.org/wiki/BIND) in use on my
-home-server, so I can use e.g. [zones]({filename}/DnsBindViews.md).
+home-server, so I can use e.g. [zones]({filename}/2014/DnsBindViews.md).
 
 So I was trying to make OpenWRT send DNS IP address to DHCP clients. By default
 OpenWRT will send it's own IP (it's using Dnsmasq onboard). And I just couldn't
