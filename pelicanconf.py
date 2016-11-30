@@ -20,11 +20,17 @@ STATIC_PATHS = [
     'images',
     'slides',
     'keybase.txt',
+    'static'
     ]
 
 ARTICLE_EXCLUDES = [
-    'slides'
+    'slides',
+    'static'
 ]
+
+EXTRA_PATH_METADATA = {
+    'static/google95d51144019ab367.html': {'path': 'google95d51144019ab367.html'}
+}
 
 # Feed generation is usually not desired when developing
 FEED_DOMAIN = SITEURL
@@ -50,7 +56,8 @@ SOCIAL = (('You can add links in your config file', '#'),
 DEFAULT_PAGINATION = False
 
 # Uncomment following line if you want document-relative URLs when developing
-RELATIVE_URLS = False
+# RELATIVE_URLS = False
+RELATIVE_URLS = True
 
 ARTICLE_URL = '{date:%Y}/{date:%b}/{date:%d}/{slug}/'
 ARTICLE_SAVE_AS = '{date:%Y}/{date:%b}/{date:%d}/{slug}/index.html'
