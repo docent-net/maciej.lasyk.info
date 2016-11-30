@@ -50,6 +50,13 @@ integration. So [here it is](https://wiki.debian.org/Debate/initsystem/systemd)
 1. That systemd conference in Berlin I attended 2 times in a row was a great
    idea and that I will get there again and again. If you missed it - you
    may [watch the videos](https://www.youtube.com/channel/UCvq_RgZp3kljp9X8Io9Z1DA/videos)
+   
+# Slides & materials #
+
+I published slides [here](http://maciej.lasyk.info/slides/wroclaw_devops_systemd_2016/)
+(not sure why it doesn't work on FF for me, try w/Chrome).
+
+Codebase is on [systemd workshops repo](https://github.com/docent-net/systemd-workshop)
 
 # Thank you guys! #
 
