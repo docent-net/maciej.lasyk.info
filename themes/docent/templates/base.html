@@ -47,14 +47,24 @@
 
     <div id="feedsbar">
         <ul>
-        {% if tag %}
-            <li><a href="/feeds/tag/{{ tag }}.rss.xml">RSS</a> |
-                <a href="/feeds/tag/{{ tag }}.atom.xml">Atom</a>
-            </li>
-        {% else %}
-            <li><a href="/feeds/rss.xml">RSS</a> | <a href="/feeds/atom.xml">Atom</a>
-            </li>
-        {% endif %}
+            {% if tag %}
+                <li><a href="/feeds/tag/{{ tag }}.rss.xml">RSS</a> |
+                    <a href="/feeds/tag/{{ tag }}.atom.xml">Atom</a>
+                </li>
+            {% else %}
+                <li><a href="/feeds/rss.xml">RSS</a> | <a
+                        href="/feeds/atom.xml">Atom</a>
+                </li>
+            {% endif %}
+        </ul>
+    </div>
+
+    <div id="feedsbar">
+        <ul>
+            {% for page in PAGES %}
+                <li><a href="{{ SITEURL }}/{{ page.url }}">{{ page.title }}</a>
+                    {% if not loop.last %} ::{% endif %}</li>
+            {% endfor %}
         </ul>
     </div>
 
