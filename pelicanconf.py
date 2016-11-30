@@ -14,7 +14,7 @@ DEFAULT_LANG = u'en'
 
 THEME = "themes/docent"
 PLUGIN_PATHS=["plugins"]
-PLUGINS=["tag_cloud", "image_process"]
+PLUGINS=["tag_cloud", "image_process", "sitemap"]
 
 STATIC_PATHS = [
     'images',
@@ -81,3 +81,19 @@ TAG_CLOUD_BADGE = False
 IMAGE_PROCESS = {
     'article-image': ["scale_in 300 300 False"]
     }
+
+# sitemap configuration:
+SITEMAP = {
+    'format': 'xml',
+    'priorities': {
+        'articles': 0.9,
+        'indexes': 0.9,
+        'pages': 0.1
+    },
+    'changefreqs': {
+        'articles': 'monthly',
+        'indexes': 'daily',
+        'pages': 'monthly'
+    },
+    'exclude': ['tag/', 'category/', 'static', 'slides']
+}
