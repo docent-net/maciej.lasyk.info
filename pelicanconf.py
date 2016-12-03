@@ -4,9 +4,9 @@ from __future__ import unicode_literals
 
 AUTHOR = u'Maciej Lasyk'
 SITENAME = u'Many craft<br>Wow<br>Such create'
-SITEURL = 'http://maciej.lasyk.info'
+SITEURL = 'https://maciej.lasyk.info'
 
-HOME_URL = 'http://maciej.lasyk.info'
+HOME_URL = 'https://maciej.lasyk.info'
 
 TIMEZONE = 'Europe/Paris'
 
