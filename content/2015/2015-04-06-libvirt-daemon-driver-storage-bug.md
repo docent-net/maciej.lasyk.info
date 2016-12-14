@@ -17,7 +17,7 @@ hosts. When this was done I couldn't list VMs anymore using **virsh**:
 [454/564]
  Id    Name                           State
  ----------------------------------------------------
- ```
+```
 
 Hmm that's not normal obsiously. Checked the **libvirtd** status:
 
