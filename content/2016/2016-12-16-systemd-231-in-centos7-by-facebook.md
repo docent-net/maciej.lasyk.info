@@ -10,7 +10,7 @@ Slug: systemd-231-latest-in-centos-7-thx-to-facebook
 # What is it about? #
 
 So [Centos7](https://www.centos.org/) currently has [systemd](https://www.freedesktop.org/wiki/Software/systemd/)
-version 219 installed whic was released on 2015-02-16 (see [NEWS](https://github.com/systemd/systemd/blob/master/NEWS)).
+version 219 installed which was released on 2015-02-16 (see [NEWS](https://github.com/systemd/systemd/blob/master/NEWS)).
 
 This is a huge problem, as we miss a lot of very important functions related to
 journald, networkd, machinectl, systemd-nspawn and so on.
