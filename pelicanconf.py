@@ -8,7 +8,7 @@ SITEURL = 'https://maciej.lasyk.info'
 
 HOME_URL = 'https://maciej.lasyk.info'
 
-TIMEZONE = 'Europe/Paris'
+TIMEZONE = 'Europe/Warsaw'
 
 DEFAULT_LANG = u'en'
 
@@ -56,8 +56,7 @@ SOCIAL = (('You can add links in your config file', '#'),
 DEFAULT_PAGINATION = False
 
 # Uncomment following line if you want document-relative URLs when developing
-RELATIVE_URLS = False
-# RELATIVE_URLS = True
+RELATIVE_URLS = True
 
 ARTICLE_URL = '{date:%Y}/{date:%b}/{date:%d}/{slug}/'
 ARTICLE_SAVE_AS = '{date:%Y}/{date:%b}/{date:%d}/{slug}/index.html'
