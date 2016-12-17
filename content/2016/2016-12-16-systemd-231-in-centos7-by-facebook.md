@@ -31,7 +31,7 @@ shared by a Red-Hatter [Jan Synacek](https://github.com/jsynacek).
 
 Having those both you may install systemd 231 on your Centos7.
 
-It's not however meant currently to be meant as production and also doesn't
+It's not currently meant to be running as production and also doesn't
 provide SELinux policies / contexts. But.. it works. And it works on FB scale 
 :)
 
