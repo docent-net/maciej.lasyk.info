@@ -1,254 +1,83 @@
-Title: Python + UnitTest + cProfile + Mock
+Title: systemd 231 (latest) in Centos 7 thx to Facebook
 Category: tech
-Tags: programming, python, testing, tdd, unittesting, cprofile, mock
+Tags: systemd, centos, facebook, fedora
 Author: Maciej Lasyk
-Summary: Story about tracing root cause of unit tests running veeery slow
+Summary: guys from FB-Engineering shared what they were talking about during systemd.conf
 
-<center>![coding!]({filename}/images/python-profiling.png)</center>
+<center>![systemd ftw!]({filename}/images/pid1.png)</center>
 
-# Problem? #
+# What is it about? #
 
-Another day in work and I find out that in one of our projects unit tests suite 
-executes in about **13 seconds**. Wow! It was like 200ms before, so what 
-happened?
+So [Centos7](https://www.centos.org/) currently has [systemd](https://www.freedesktop.org/wiki/Software/systemd/)
+version 219 installed whic was released on 2015-02-16 (see [NEWS](https://github.com/systemd/systemd/blob/master/NEWS)).
 
-Btw - this particular project is a Python 
-[Google/AppEngine](https://cloud.google.com/appengine/) application. We use 
-[UnitTest](https://docs.python.org/2/library/unittest.html) framework for unit
-tests as well as [mock](https://pypi.python.org/pypi/mock/) library.
+This is a huge problem, as we miss a lot of very important functions related to
+journald, networkd, machinectl, systemd-nspawn and so on.
 
-One could say that it's not a problem as you don't test that often. Unless you
-do. In [Ocado](http://www.ocadotechnology.com/) we really do 
-[TDD](https://en.wikipedia.org/wiki/Test-driven_development) everywhere. E.g.
-in this particular project **Guacamole** we have [git hooks](https://git-scm.com/book/en/v2/Customizing-Git-Git-Hooks) 
-that run unit - tests on every git commit. That's why we really want unit tests
-to run very fast. **Personally I think that unit test suite that executes in 
-more than 0,5s is broken**.
+Porting latest systemd versions to Centos is a daunting task. It's possible,
+but it takes time. And during latest [systemd conference](https://conf.systemd.io/)
+guys from [Facebook Engineering](https://twitter.com/fb_engineering) told us,
+that they actually did it. [Marcin](https://twitter.com/marcinskarbek) asked
+them if they're gonna share it and Davide replied, that it should be easy and
+will think about it.
 
-One more thing. In order to run our tests we use [tests_runner.py](https://github.com/GoogleCloudPlatform/python-docs-samples/blob/master/appengine/standard/localtesting/runner.py) 
-provided by Google - it's a tool that loads GCP SDK as well as detects our 
-tests in project directory and run suite. It's important, as it's just another 
-complication.
+And they did. Yesterday.
 
-So it looks like:
+On Facebook Incubator project on Github you'll find [rpm - backports](https://github.com/facebookincubator/rpm-backports)
 
-```bash
-$ python tests_runner.py --test-path tests/ --test-pattern 'test*.py' /home/somewhere/google-cloud-sdk
+And there's also a [COPR repo](https://copr.fedorainfracloud.org/coprs/jsynacek/systemd-backports-for-centos-7/) 
+shared by a Red-Hatter [Jan Synacek](https://github.com/jsynacek).
 
-----------------------------------------------------------------------
-Ran 47 tests in 13.105s
+Having those both you may install systemd 231 on your Centos7.
 
-OK
+It's not however meant currently to be meant as production and also doesn't
+provide SELinux policies / contexts. But.. it works. And it works on FB scale 
+:)
 
-```
+# Quick howto #
 
-You see? **13 seconds to run 47 tests - disgusting!**
-
-# Tests look fine #
-
-So I **git log / diff** and I saw that we've got couple of new tests. But each 
-of those tests brought something good to our projects, so it wasn't about 
-removing those tests, but rather checking where is the root cause. 
-**I didn't want to remove any tests** just because it executes slow. **I 
-wanted to find out why** tests run slow and fix it.
-
-# Let's cProfile! #
-
-So I thought that I'll try with profiling those tests. In Python there're 
-couple of ways to do it. I know great [cProfile](https://docs.python.org/2/library/profile.html)
-module:
+(it's copy&paste from [Jan's COPR installation instructions](https://copr.fedorainfracloud.org/coprs/jsynacek/systemd-backports-for-centos-7/)
+, so make sure it's up to date:
 
 ```bash
-$ python -m cProfile -s totime tests_runner.py --test-path tests/ --test-pattern 'test*.py' /home/somewhere/google-cloud-sdk
-
-----------------------------------------------------------------------
-Ran 47 tests in 13.304s
-
-OK
-
-   ncalls  tottime  percall  cumtime  percall filename:lineno(function)
-       18    1.445    0.080    1.445    0.080 {method 'connect' of '_socket.socket' objects}
-       18    1.310    0.073    1.310    0.073 {method 'do_handshake' of '_ssl._SSLSocket' objects}
-       18    0.833    0.046    0.833    0.046 {_socket.getaddrinfo}
-     9378    0.757    0.000    0.757    0.000 {method 'read' of '_ssl._SSLSocket' objects}
-       18    0.186    0.010    0.186    0.010 {method 'set_default_verify_paths' of '_ssl._SSLContext' objects}
-       36    0.109    0.003    0.109    0.003 decoder.py:370(raw_decode)
-       18    0.096    0.005    0.096    0.005 {method 'load_verify_locations' of '_ssl._SSLContext' objects}
-      305    0.028    0.000    0.826    0.003 socket.py:410(readline)
-...
-(cut rest as it's not that interesting)
-
+Make sure to edit /etc/selinux/config and put SELinux to permissive before you update, otherwise your system will not boot anymore!
+# wget https://copr.fedorainfracloud.org/coprs/jsynacek/systemd-backports-for-centos-7/repo/epel-7/jsynacek-systemd-backports-for-centos-7-epel-7.repo -O /etc/yum.repos.d/jsynacek-systemd-centos-7.repo
+# yum update systemd
 ```
+# Short story longer #
 
-So as you can see - I sorted all calls by **total time**. So **_socket.socket.connect()** 
-was called **18 times** and it took circa **1,5s**. Wow! And another 
-**2 seconds** on SSL socket manipulations. Wow and WTF? I mean - unit tests
-creating any socket connections and involving SSL processing?
+And special thanks to [Marcin Sawicki](https://twitter.com/odcinek) for 
+catching my tweet and moving things forward <3
 
-But from this point I just see that some of libraries used in the whole stack
-(in this situation _socket and _ssl) take a bunch of time to process some
-request. But searching for those particular calls can be like searching for a
-needle in the haystack. I could use [pdb](https://docs.python.org/2/library/pdb.html)
-debugger and debug those tests (or in Pycharm's builtin debugger that I find 
-much more handy) but still - debugging take a lot of time.
+Guys - thank you a lot for this!
 
-# Let's visualize problem! #
-
-I love Python because it provides me with so many tools and libs created by
-great community. So there is this [gprof2dot](https://github.com/jrfonseca/gprof2dot)
-converter that takes output from cProfile and generates SVG graphs visualizing
-calls. Wow!
-
-Actually this tool visualizes output from much more tools (see docs) - that
-makes it very generic and valuable.
-
-So I re-run profiler, wrote profile data to a file and generated an SVG file:
-
-```bash
-$ python -m cProfile -o guacamole.pstats tests_runner.py --test-path tests/ --test-pattern 'test*.py' /home/somewhere/google-cloud-sdk
-
-...
-
-$ gprof2dot -f pstats guacamole.pstats | dot -Tsvg -o guacamole.svg
-```
-
-And I saw this (click to see larger SVG):
-
-<center>[![Guacamole profiling]({filename}/images/guacamole-min.png)]({filename}/images/guacamole.svg)]</center>
-
-Wow! So now following coloured path we might see that:
-
-<center>![Guacamole profiling]({filename}/images/guacamole-profiling.png)</center>
-
-So actually **test_Backup.py** contains problematic tests (almost 87% of time 
-consumed). Moreover it is **setUp** fixture:
-
-```python
-class test_Backup(unittest.TestCase):
-    def setUp(self):
-        self.testbed = testbed.Testbed()
-        self.testbed.activate()
-        self.Backup = Backup()
-```
-
-And going further it is Backup constructor __init__:
-
-```python
-class Backup(object):
-    def __init__(self):
-        self.Storage = Storage()
-        self.StorageTransfer = StorageTransfer()
-```
-
-And even further it is about time taken to invoke constructors of **Storage**
-and **StorageTransfer**. Let's see:
-
-```python
-class Storage(object):
-    def __init__(self):
-        self.http = httplib2.Http()
-        self.service = googleapiclient.discovery.build(
-            'storage',
-            'v1',
-            credentials=some_method(),
-            http=self.http
-        )
-```
-
-```python
-class StorageTransfer(object):
-    def __init__(self):
-        self.http = httplib2.Http(timeout=60)
-        self.service = googleapiclient.discovery.build(
-            'storagetransfer',
-            'v1',
-            credentials=some_method(),
-            http=self.http
-        )
-```
-
-So where's the problem? Above code is a [standard authentication for GCP](https://github.com/GoogleCloudPlatform/python-docs-samples/blob/master/storage/transfer_service/create_client.py)
-and we thought it will be mocked by **testbed.activate()** (provided by Google) 
-on some level. But as we can see - it wasn't. So every test we run there is an 
-instance of **googleapiclient.discovery.build** created - and this object 
-basically does all the authentication based requests (thus SSL, requests lib 
-etc involved).
-
-# Solution - simple mock! #
-
-So the solution was quite simple. We decided to mock whole
-**googleapiclient.discovery.build** and that should do the trick:
-
-```python
-from google.appengine.ext import vendor
-from mock import Mock
-
-vendor.add('lib')
-
-import googleapiclient.discovery # nopep8 pylint: disable=C0413
-class test_Backup(unittest.TestCase):
-    def setUp(self):
-        googleapiclient.discovery.build = Mock()
-        self.testbed = testbed.Testbed()
-        self.testbed.activate()
-        self.Backup = Backup()
-```
-
-And...:
-
-```bash
-$ python tests_runner.py --test-path tests/ --test-pattern 'test*.py' /home/somewhere/google-cloud-sdk
-
-----------------------------------------------------------------------
-Ran 47 tests in 0.047s
-
-OK
-
-```
-
-Yes! It worked like a charm! From almost 13 seconds down to 0.047 seconds. 
-**That is a 27659% improvement, nice!**
-
-# Foreword #
-
-One more thing. Our original implementation of e.g. **Storage()** was:
-
-```python
-from googleapiclient.discovery import build
-
-class Storage(object):
-    def __init__(self):
-        self.http = httplib2.Http()
-        self.service = build(
-            'storage',
-            'v1',
-            credentials=some_method(),
-            http=self.http
-        )
-```
-
-But we had to mock the whole loading context:
-
-```python
-googleapiclient.discovery.build = Mock()
-```
-
-This wouldn't work as it would mock **build()** from other namespace. So we
-basically refactored a bit of **Storage()**:
-
-```python
-import googleapiclient.discovery # nopep8 pylint: disable=C0413
-
-class Storage(object):
-    def __init__(self):
-        self.http = httplib2.Http()
-        self.service = googleapiclient.discovery.build(
-            'storage',
-            'v1',
-            credentials=some_method(),
-            http=self.http
-        )
-```
-
-And now mocking started working. So - profile, visualize and mock! Keep your 
-unit - tests under 0,5s!
+<blockquote class="twitter-tweet" data-lang="en"><p lang="en" dir="ltr">Wow:<a href="https://t.co/Nh1yoxlGIG">https://t.co/Nh1yoxlGIG</a> now just waiting till <a href="https://twitter.com/fb_engineering">@fb_engineering</a> share theirs <a href="https://twitter.com/hashtag/systemd?src=hash">#systemd</a> <a href="https://twitter.com/hashtag/Fedora?src=hash">#Fedora</a> port to <a href="https://twitter.com/hashtag/centos?src=hash">#centos</a> mentioned on <a href="https://twitter.com/systemdconf">@systemdconf</a> &lt;3</p>&mdash; Maciek Lasyk (@docent_net) <a href="https://twitter.com/docent_net/status/806196636770795521">December 6, 2016</a></blockquote>
+<script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+<blockquote class="twitter-tweet" data-conversation="none" data-lang="en"><p lang="en" dir="ltr"><a href="https://twitter.com/docent_net">@docent_net</a> was it Davide announcing that? I can ping him tmorrow at the office ;)</p>&mdash; Marcin Sawicki (@odcinek) <a href="https://twitter.com/odcinek/status/809314228091785216">December 15, 2016</a></blockquote>
+<script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+<blockquote class="twitter-tweet" data-conversation="none" data-lang="en"><p lang="en" dir="ltr"><a href="https://twitter.com/odcinek">@odcinek</a> <a href="https://twitter.com/marcinskarbek">@marcinskarbek</a> do you remember? If not I&#39;ll search it in the videos.</p>&mdash; Maciek Lasyk (@docent_net) <a href="https://twitter.com/docent_net/status/809332228723445760">December 15, 2016</a></blockquote>
+<script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+<blockquote class="twitter-tweet" data-conversation="none" data-lang="en"><p lang="en" dir="ltr"><a href="https://twitter.com/docent_net">@docent_net</a> <a href="https://twitter.com/odcinek">@odcinek</a> no, not announced. It was only an answer about possibility of releasing when we asked about this.</p>&mdash; Marcin Skarbek (@marcinskarbek) <a href="https://twitter.com/marcinskarbek/status/809334484533387264">December 15, 2016</a></blockquote>
+<script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+<blockquote class="twitter-tweet" data-conversation="none" data-lang="en"><p lang="en" dir="ltr"><a href="https://twitter.com/marcinskarbek">@marcinskarbek</a> <a href="https://twitter.com/odcinek">@odcinek</a> &#39;mentioned&#39; -&gt; &#39;announced&#39; -&gt; &#39;published&#39;; can we agree on that? :D</p>&mdash; Maciek Lasyk (@docent_net) <a href="https://twitter.com/docent_net/status/809350242223198208">December 15, 2016</a></blockquote>
+<script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+<blockquote class="twitter-tweet" data-conversation="none" data-lang="en"><p lang="und" dir="ltr"><a href="https://twitter.com/docent_net">@docent_net</a> <a href="https://twitter.com/odcinek">@odcinek</a> <a href="https://t.co/7q1ZAXnSj7">pic.twitter.com/7q1ZAXnSj7</a></p>&mdash; Marcin Skarbek (@marcinskarbek) <a href="https://twitter.com/marcinskarbek/status/809351156375883776">December 15, 2016</a></blockquote>
+<script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+<blockquote class="twitter-tweet" data-conversation="none" data-lang="en"><p lang="en" dir="ltr"><a href="https://twitter.com/marcinskarbek">@marcinskarbek</a> <a href="https://twitter.com/odcinek">@odcinek</a> This is part of presentation/Q&amp;A where systemd port was mentioned: <a href="https://t.co/NziIK41PYE">https://t.co/NziIK41PYE</a> but have to dig where</p>&mdash; Maciek Lasyk (@docent_net) <a href="https://twitter.com/docent_net/status/809352168725684226">December 15, 2016</a></blockquote>
+<script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+<blockquote class="twitter-tweet" data-conversation="none" data-lang="en"><p lang="en" dir="ltr"><a href="https://twitter.com/marcinskarbek">@marcinskarbek</a> <a href="https://twitter.com/odcinek">@odcinek</a> Davide actually told that FB will share it. My memory tells me it was somewhere inside the presentation, not Q&amp;A</p>&mdash; Maciek Lasyk (@docent_net) <a href="https://twitter.com/docent_net/status/809352439266758656">December 15, 2016</a></blockquote>
+<script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+<blockquote class="twitter-tweet" data-conversation="none" data-lang="en"><p lang="en" dir="ltr"><a href="https://twitter.com/docent_net">@docent_net</a> <a href="https://twitter.com/odcinek">@odcinek</a> ok, I found it: <a href="https://t.co/gMMSqbp8vk">https://t.co/gMMSqbp8vk</a></p>&mdash; Marcin Skarbek (@marcinskarbek) <a href="https://twitter.com/marcinskarbek/status/809357830201503744">December 15, 2016</a></blockquote>
+<script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+<blockquote class="twitter-tweet" data-conversation="none" data-lang="en"><p lang="en" dir="ltr"><a href="https://twitter.com/marcinskarbek">@marcinskarbek</a> <a href="https://twitter.com/odcinek">@odcinek</a> great, so now fingers crossed :)</p>&mdash; Maciek Lasyk (@docent_net) <a href="https://twitter.com/docent_net/status/809362164930805761">December 15, 2016</a></blockquote>
+<script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+<blockquote class="twitter-tweet" data-conversation="none" data-lang="en"><p lang="es" dir="ltr"><a href="https://twitter.com/docent_net">@docent_net</a> <a href="https://twitter.com/marcinskarbek">@marcinskarbek</a> tada! <a href="https://t.co/yvMtY4zJSM">https://t.co/yvMtY4zJSM</a></p>&mdash; Marcin Sawicki (@odcinek) <a href="https://twitter.com/odcinek/status/809450352390991872">December 15, 2016</a></blockquote>
+<script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+<blockquote class="twitter-tweet" data-conversation="none" data-lang="en"><p lang="en" dir="ltr"><a href="https://twitter.com/odcinek">@odcinek</a> <a href="https://twitter.com/docent_net">@docent_net</a> <a href="https://twitter.com/marcinskarbek">@marcinskarbek</a> And the copr repo from RH of these packages for CentOS 7: <a href="https://t.co/F7EmQhxOZU">https://t.co/F7EmQhxOZU</a></p>&mdash; PhilD (@ThePhilD) <a href="https://twitter.com/ThePhilD/status/809492567511310336">December 15, 2016</a></blockquote>
+<script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+<blockquote class="twitter-tweet" data-conversation="none" data-lang="en"><p lang="en" dir="ltr"><a href="https://twitter.com/ThePhilD">@ThePhilD</a> <a href="https://twitter.com/odcinek">@odcinek</a> <a href="https://twitter.com/marcinskarbek">@marcinskarbek</a> sweet, many thanks! Next question was about <a href="https://twitter.com/hashtag/SELinux?src=hash">#SELinux</a>, but I see it&#39;s like work in progress ;) Thanks!</p>&mdash; Maciek Lasyk (@docent_net) <a href="https://twitter.com/docent_net/status/809494964958883840">December 15, 2016</a></blockquote>
+<script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+<blockquote class="twitter-tweet" data-conversation="none" data-lang="en"><p lang="und" dir="ltr"><a href="https://twitter.com/docent_net">@docent_net</a> <a href="https://twitter.com/ThePhilD">@ThePhilD</a> <a href="https://twitter.com/marcinskarbek">@marcinskarbek</a> <a href="https://t.co/vLALC4IUZT">pic.twitter.com/vLALC4IUZT</a></p>&mdash; Marcin Sawicki (@odcinek) <a href="https://twitter.com/odcinek/status/809513208998309888">December 15, 2016</a></blockquote>
+<script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+<blockquote class="twitter-tweet" data-conversation="none" data-lang="en"><p lang="en" dir="ltr"><a href="https://twitter.com/odcinek">@odcinek</a> <a href="https://twitter.com/ThePhilD">@ThePhilD</a> <a href="https://twitter.com/marcinskarbek">@marcinskarbek</a> booring :p</p>&mdash; Maciek Lasyk (@docent_net) <a href="https://twitter.com/docent_net/status/809515640193220608">December 15, 2016</a></blockquote>
+<script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
