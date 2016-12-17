@@ -1,4 +1,4 @@
-Title: systemd 231 (latest) in Centos 7 thx to Facebook
+Title: systemd 231 in Centos 7 thx to Facebook
 Category: tech
 Tags: systemd, centos, facebook, fedora
 Author: Maciej Lasyk
