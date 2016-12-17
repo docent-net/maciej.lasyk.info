@@ -15,5 +15,6 @@ RELATIVE_URLS = False
 DELETE_OUTPUT_DIRECTORY = True
 
 SITEURL = 'https://maciej.lasyk.info'
+HOME_URL = 'https://maciej.lasyk.info'
 TIMEZONE = 'Europe/Warsaw'
 
