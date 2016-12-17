@@ -3,6 +3,7 @@ Category: tech
 Tags: systemd, centos, facebook, fedora
 Author: Maciej Lasyk
 Summary: guys from FB-Engineering shared what they were talking about during systemd.conf
+Slug: systemd-231-latest-in-centos-7-thx-to-facebook
 
 <center>![systemd ftw!]({filename}/images/pid1.png)</center>
 
