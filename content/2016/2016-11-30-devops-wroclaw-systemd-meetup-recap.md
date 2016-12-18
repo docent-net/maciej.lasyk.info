@@ -1,6 +1,6 @@
 Title: Wrocław devops meetup recap
 Category: tech
-Tags: systemd, learning-series, learning-systemd, meetup
+Tags: systemd, learning-series, learning-systemd, meetup, talks
 Author: Maciej Lasyk
 Summary: a few words about my last talk
 

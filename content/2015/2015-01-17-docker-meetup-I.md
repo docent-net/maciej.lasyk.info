@@ -1,6 +1,6 @@
 Title: 1st Kraków Docker Meetup!
 Category: tech
-Tags: meetups, docker
+Tags: meetups, docker, talks
 Author: Maciej Lasyk
 Summary: Invitation to the first Kraków Docker Meetup!
 

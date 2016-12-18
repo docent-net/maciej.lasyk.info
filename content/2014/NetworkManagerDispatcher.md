@@ -3,7 +3,7 @@ Date: 2014-09-14 11:46
 Category: tech
 Tags: network,centos,fedora
 Author: Maciej Lasyk
-Summary: Short story why one coulde like NetworkManager
+Summary: this is actually a nice function
 
 [NetworkManager](https://en.wikipedia.org/wiki/NetworkManager) is often 
 associated with some voodoo - network - magic tool, that does the work on 

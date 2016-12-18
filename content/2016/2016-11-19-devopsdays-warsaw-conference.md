@@ -1,6 +1,6 @@
 Title: Devopsdays Warsaw
 Category: tech
-Tags: devopsdays, conference, event, meetup, devops
+Tags: devopsdays, conferences, event, meetup, devops
 Author: Maciej Lasyk
 Summary: Devopsdays Warsaw is just behind the corner!
 

@@ -1,6 +1,6 @@
 Title: systemd workshops
 Category: tech
-Tags: systemd, workshops, meetup
+Tags: systemd, workshops, meetup, talks
 Author: Maciej Lasyk
 Summary: We're running systemd workshops in Kraków!
 

@@ -1,6 +1,6 @@
 Title: Autumn conferences recap
 Category: tech
-Tags: conference,devops,devopsdays,pycon,systemd
+Tags: conference,devops,devopsdays,pycon,systemd, talks
 Author: Maciej Lasyk
 Summary: A short recap from the Pycon.cz, systemd.conf and Devopsdays Warsaw 2015 conferences
 

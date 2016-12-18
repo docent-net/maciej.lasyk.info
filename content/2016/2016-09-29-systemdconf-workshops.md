@@ -1,6 +1,6 @@
 Title: systemdconf(2): 1st day / workshop summary
 Category: tech
-Tags: systemd, conference, conf, berlin
+Tags: systemd, conferences, conf, berlin
 Author: Maciej Lasyk
 Summary: Summary from 1st day of systemdconf 2016 
 

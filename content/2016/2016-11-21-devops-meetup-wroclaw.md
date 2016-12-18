@@ -1,6 +1,6 @@
 Title: Devops meetup @Wrocław
 Category: tech
-Tags: systemd, meetup, devops
+Tags: systemd, meetup, devops, talks
 Author: Maciej Lasyk
 Summary: I'll give a talk about systemd during next Devops meetup @Wrocław
 

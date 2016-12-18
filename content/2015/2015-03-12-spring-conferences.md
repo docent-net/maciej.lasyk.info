@@ -1,6 +1,6 @@
 Title: Conferences schedule for Spring 2015
 Category: tech
-Tags: conferences,events
+Tags: conferences, events, talks
 Author: Maciej Lasyk
 Summary: Talks I'll give this Spring
 

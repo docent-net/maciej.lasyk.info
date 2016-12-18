@@ -1,6 +1,6 @@
 Title: systemd workshops recap
 Category: tech
-Tags: systemd, workshops, learning-systemd
+Tags: systemd, workshops, learning-systemd, talks
 Author: Maciej Lasyk
 Summary: how did it go?
 

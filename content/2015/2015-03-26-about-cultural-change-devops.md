@@ -1,6 +1,6 @@
 Title: About cultural change w/Devops
 Category: tech
-Tags: devops,culture,cams,management
+Tags: devops,culture,cams,management, talks
 Author: Maciej Lasyk
 Summary: Embrace the Devops
 
