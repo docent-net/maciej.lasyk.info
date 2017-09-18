@@ -7,3 +7,6 @@ output_docker/*
 Makefile
 develop_server.sh
 fabfile.py
+*.log
+.terraform/*
+*.backup
