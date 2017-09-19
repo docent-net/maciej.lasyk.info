@@ -18,7 +18,7 @@ resource "google_storage_bucket_acl" "ml-cloud_storage_bucket-acl" {
 data "template_file" "ml-nginx_startup_template" {
   template = "${path.module}/templates/nginx_startup.sh.tpl"
   vars {
-    bucket_name = "dupa"
+    bucket_name = "${google_storage_bucket.ml-cloud_storage_bucket.name}"
   }
 }
 
