@@ -23,7 +23,7 @@ resource "google_compute_autoscaler" "ml-autoscaler" {
   target = "${google_compute_instance_group_manager.ml-instance-group-manager.self_link}"
 
   autoscaling_policy = {
-    max_replicas    = 3
+    max_replicas    = 1 // cant be more due to global IP addr assignment
     min_replicas    = 1
     cooldown_period = 600
 
