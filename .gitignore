@@ -8,5 +8,8 @@ Makefile
 develop_server.sh
 fabfile.py
 *.log
+.terraform
+tmp
+tmp/*
 .terraform/*
 *.backup
