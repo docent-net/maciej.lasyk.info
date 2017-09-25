@@ -35,10 +35,3 @@ resource "google_storage_bucket_object" "ml-nginx_health_check_conf" {
   source = "${path.module}/templates/nginx_health_check.conf"
   bucket = "${google_storage_bucket.ml-cloud_storage_bucket.name}"
 }
-
-resource "google_storage_bucket_object" "ml-update-blog-script" {
-  provider = "google.us-central1"
-  name   = "ml-update-blog.sh"
-  source = "${path.module}/scripts/update_maciej.lasyk.info.sh"
-  bucket = "${google_storage_bucket.ml-cloud_storage_bucket.name}"
-}
