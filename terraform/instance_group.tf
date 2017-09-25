@@ -1,39 +1,41 @@
 resource "null_resource" "ml-instance-group-manager" {
   provisioner "local-exec" {
     command = <<EOT
-        gcloud beta compute instance-groups managed
-        create ml-instance-group-manager-test
-        --size=1
-        --template=${google_compute_instance_template.ml-instance-template.name}
-        --base-instance-name=ml-instance-group
-        --initial-delay=600
-        --http-health-check=${google_compute_http_health_check.ml-instance-health-check.name}
+        gcloud beta compute instance-groups managed \
+        create ml-instance-group-manager \
+        --size=1 \
+        --template=${google_compute_instance_template.ml-instance-template.name} \
+        --base-instance-name=ml-instance-group \
+        --initial-delay=600 \
+        --http-health-check=${google_compute_http_health_check.ml-instance-health-check.name} \
         --region=${var.region}
     EOT
   }
 }
 
-resource "null_resource" "ml-instance-group-manager" {
+resource "null_resource" "ml-instance-group-manager-named-ports" {
+  depends_on = ["null_resource.ml-instance-group-manager"]
   provisioner "local-exec" {
     command = <<EOT
-        gcloud beta compute instance-groups managed
-        set-named-ports ml-instance-group-manager
-        --named-ports="http:80"
+        gcloud beta compute instance-groups managed \
+        set-named-ports ml-instance-group-manager \
+        --named-ports="http:80" \
         --region=${var.region}
     EOT
   }
 }
 
-resource "null_resource" "ml-instance-group-manager" {
+resource "null_resource" "ml-instance-group-manager-autoscaling" {
+  depends_on = ["null_resource.ml-instance-group-manager"]
   provisioner "local-exec" {
     command = <<EOT
-        gcloud beta compute instance-groups managed
-        set-autoscaling ml-instance-group-manager
-        --cool-down-period=600
-        --max-num-replicas=3
-        --min-num-replicas=1
-        --scale-based-on-cpu
-        --target-cpu-utilization=0.6
+        gcloud beta compute instance-groups managed \
+        set-autoscaling ml-instance-group-manager \
+        --cool-down-period=600 \
+        --max-num-replicas=3 \
+        --min-num-replicas=1 \
+        --scale-based-on-cpu \
+        --target-cpu-utilization=0.6 \
         --region=${var.region}
     EOT
   }

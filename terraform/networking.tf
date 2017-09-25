@@ -12,8 +12,11 @@ resource "google_compute_backend_service" "ml-glb-backend" {
   enable_cdn  = true
   connection_draining_timeout_sec = 300
 
+  // has to do it manually as it is provided by local-exec:
+  depends_on = ["null_resource.ml-instance-group-manager","null_resource.ml-instance-group-manager-autoscaling","null_resource.ml-instance-group-manager-named-ports"]
+
   backend {
-    group = "${google_compute_instance_group_manager.ml-instance-group-manager.instance_group}"
+    group = "projects/${var.google_project_id}/regions/${var.region}/instanceGroups/ml-instance-group-manager"
   }
 
   health_checks = ["${google_compute_http_health_check.ml-instance-health-check.self_link}"]
@@ -52,7 +55,7 @@ resource "google_compute_target_https_proxy" "ml-glb-target-https-proxy" {
 
 resource "google_compute_global_forwarding_rule" "ml-glb-forwarding-rule" {
   provider = "google.us-central1"
-  name = "ml-glb-forwarding-rule"
+  name = "ml-glb-http-frontend"
   target = "${google_compute_target_http_proxy.ml-glb-target-http-proxy.self_link}"
   ip_address = "${google_compute_global_address.ml-glb-ip.self_link}"
   port_range = "80"
