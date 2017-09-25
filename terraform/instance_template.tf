@@ -22,11 +22,10 @@ resource "google_compute_instance_template" "ml-instance-template" {
   network_interface {
     network = "default"
     access_config {
-      nat_ip = "${google_compute_address.ml-ip-address.address}"
     }
   }
 
-  tags = ["http-server", "https-server"]
+  tags = ["http-server"]
 
   lifecycle {
     create_before_destroy = true
