@@ -1,0 +1,7 @@
+cron:
+- description: update compute engine image
+  url: /update
+  schedule: every monday 09:00
+  retry_parameters:
+    min_backoff_seconds: 5
+    max_doublings: 6
