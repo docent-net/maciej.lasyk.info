@@ -1,4 +1,4 @@
-resource "null_resource" "appengine-app-creator" {
+resource "null_resource" "appengine-app-deployer" {
   provisioner "local-exec" {
     command = <<EOT
         gcloud app create \
@@ -7,10 +7,7 @@ resource "null_resource" "appengine-app-creator" {
            --quiet || true
     EOT
   }
-}
-
-resource "null_resource" "appengine-app-deployer" {
-  depends_on = ["null_resource.appengine-app-creator"]
+  
   provisioner "local-exec" {
     command = <<EOT
         gcloud app deploy \

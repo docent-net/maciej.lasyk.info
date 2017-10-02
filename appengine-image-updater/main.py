@@ -38,6 +38,7 @@ class Updater(webapp2.RequestHandler):
         self.project = parser.get('project', 'project_id')
         self.region = parser.get('project', 'region')
         self.instance_group_manager = parser.get('project', 'instance_group_manager')
+        self.instance_template = parser.get('project', 'instance_template')
 
     def get(self):
         try:
@@ -49,6 +50,10 @@ class Updater(webapp2.RequestHandler):
             service = discovery.build('compute', 'beta', credentials=credentials)
         except Exception as e:
             logging.error(e)
+
+        template_url = 'projects/{0}/global/instanceTemplates/{1}'.format(
+            self.project, self.instance_template
+        )
 
         instance_group_manager_body = {
             "updatePolicy": {
@@ -64,7 +69,7 @@ class Updater(webapp2.RequestHandler):
             },
             "versions": [
                 {
-                    "instanceTemplate": "projects/maciej-lasyk-info/global/instanceTemplates/ml-instance-template",
+                    "instanceTemplate": template_url,
                     "name": "v1"
                 }
             ]
