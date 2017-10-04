@@ -1,5 +1,5 @@
 import os
-import sys
+import time
 import logging
 from ConfigParser import SafeConfigParser
 import webapp2
@@ -55,6 +55,8 @@ class Updater(webapp2.RequestHandler):
             self.project, self.instance_template
         )
 
+        version = 'v{0}'.format(int(time.time()))
+
         instance_group_manager_body = {
             "updatePolicy": {
                 "minimalAction": "REPLACE",
@@ -70,7 +72,7 @@ class Updater(webapp2.RequestHandler):
             "versions": [
                 {
                     "instanceTemplate": template_url,
-                    "name": "v1"
+                    "name": version
                 }
             ]
         }
