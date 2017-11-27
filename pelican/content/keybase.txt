@@ -4,74 +4,48 @@ https://keybase.io/docent_net
 
 I hereby claim:
 
-  * I am an admin of http://maciej.lasyk.info
+  * I am an admin of https://maciej.lasyk.info
   * I am docent_net (https://keybase.io/docent_net) on keybase.
-  * I have a public key with fingerprint D39D 923D 6C4A F125 10B0  D7A6 0CDB 1EAF A92F 162E
+  * I have a public key ASAIKqOB2VAQiAW8OX7kiRH9iQvPpZvsa7dPM9GOrx3mOAo
 
 To do so, I am signing this object:
 
 {
-    "body": {
-        "key": {
-            "eldest_kid": "0120bdca1b2ebc9a2f5e0ec9199a3e191ce66f0b2e5d964da8bbccff030c0d92746e0a",
-            "fingerprint": "d39d923d6c4af12510b0d7a60cdb1eafa92f162e",
-            "host": "keybase.io",
-            "key_id": "0cdb1eafa92f162e",
-            "kid": "01017aace293c224ff79d2673b744709a52007ba1494e238845518f950ceacd5fde70a",
-            "uid": "bcf8f15b7759d6b967d9bc2c5678fc19",
-            "username": "docent_net"
-        },
-        "revoke": {
-            "sig_ids": [
-                "0e7b8c078905c27d4701c3d71259f15e150899e49445ad6dcac37f574c8577b20f"
-            ]
-        },
-        "service": {
-            "hostname": "maciej.lasyk.info",
-            "protocol": "http:"
-        },
-        "type": "web_service_binding",
-        "version": 1
+  "body": {
+    "key": {
+      "eldest_kid": "0120bdca1b2ebc9a2f5e0ec9199a3e191ce66f0b2e5d964da8bbccff030c0d92746e0a",
+      "host": "keybase.io",
+      "kid": "0120082aa381d950108805bc397ee48911fd890bcfa59bec6bb74f33d18eaf1de6380a",
+      "uid": "bcf8f15b7759d6b967d9bc2c5678fc19",
+      "username": "docent_net"
     },
-    "ctime": 1479127588,
-    "expire_in": 157680000,
-    "prev": "c1b9621174b168b88a27688194387230c3ddd53514c80fb4cf4b1247bed40627",
-    "seqno": 16,
-    "tag": "signature"
+    "merkle_root": {
+      "ctime": 1511774685,
+      "hash": "244f7dd753e8f577adb2c9531ff49efbb930540151d4351065b35985aa3298870631617935327933df936eab7a43de8d4024b348064226ee9416ca4444041485",
+      "hash_meta": "fcc8dff41237690db0fda4017111d8ae2ff2bcec03050007f0a0ded63cd9d60e",
+      "seqno": 1753122
+    },
+    "service": {
+      "hostname": "maciej.lasyk.info",
+      "protocol": "https:"
+    },
+    "type": "web_service_binding",
+    "version": 1
+  },
+  "client": {
+    "name": "keybase.io go client",
+    "version": "1.0.36"
+  },
+  "ctime": 1511774691,
+  "expire_in": 504576000,
+  "prev": "4ce688e7a53fad21fafc2ae6c9d1493463ab48ea91b5f6c94f3439769c09d591",
+  "seqno": 35,
+  "tag": "signature"
 }
 
 which yields the signature:
 
------BEGIN PGP MESSAGE-----
-Version: Keybase OpenPGP v2.0.58
-Comment: https://keybase.io/crypto
-
-yMO2AnicZVJrbFRFFN4tBdfKqyhKxUhzoVZIWWbua+7sD4VEUDQt8mogha5zZ+Zu
-L+0+2N0WlkeAoKQkqLzRotG2UCjyKCCL2PJoLWgsoRrBlFgRKAEK4RVKbBSscyv8
-cv5MZs53vvOd75zmAX1cae7+v728r3bc8153S+Nfpa5Zow+MWiyZYZaQfIulYt57
-8RLGY3F/sc0knwSgDExGCTRlblJMZEvjgFMMMSYKhxhSrusWEFGNYV1lxDBNSi0L
-KIAChmWk6hwQKUey7FCARyNROxQXtEzBIqgwnarEgrIGgQkYIjqgzIScWATLFtRl
-LhKLwjEnQ4gzSYx77bD4Ew//f/L+j3+iG0BECOUyVqgsq5aFMJN1pJhIVRHARJMB
-QCaBKla5rBiGqmnQsLAGKCeUaRbjqFd3aS+dSS3DgpqJkIaZbmIdMWxSmWo6MiwK
-sQOM8WiIBLnTXZjyUNwf4nFpaY4U5WXhYu44G7MDQnZM8hVIgCPToAAZGGhURkxo
-glRhSHiBRSEONWBgzIU6VSNMFxOgCrI0pFJDQ8iUgSXNFdyiZplNe8kdnx7XDxJq
-83neEhJLFHvtkOVYFomG42EaLhHhong84nOUxRMRB76Am/7HRH7TDjExKZFQxqMx
-OxySfFAgadx2mKGKMJSRZhg5El8YsaPcbzsIDekGEMcpw8sEJYXCIxlCpJpQN0zD
-ILKAGBCrioFksRsKY0xTNCj6AZapUksAZRWZnKlAl5HktDY/FBbcutBJAoJTuBci
-8dIol5Y2Nc5JdbnTXP36pjgr7Ep7evCTxW75YtCj9IYeo23EpMK63NrJGwMLRu5f
-P7lu5tkR97fuaa4YeWdNz/bzj+5dqel/aOa+zi/PBK83n26fU49uZRxbW7JjeJt0
-eGDr3LVHK6uu5f85fffqWFZP4e7LI5ILE/PfM6al/nrL716eLCcnbn/yafmJN0bj
-zi0rlq7Z0zNmzbcp7Q117fXRZMEfz62KZy06m9V65fSElIZzVYcLx1XvzN6ck9lF
-n7KGlOUd+85bfbFhVhF7NWdJg2fTNxsqun8Pfpx7LndGt1QKe1yBpu8X5Z9J635B
-fbem/ofE6PjV7av3pp9/rbrixvU5ydmXDr44fdOORe1T6hpPsuGNwXXqigv3bwcO
-eSYebdsd+qdyaNVm5d62DweApgPpn8kZ/Wb0vXTjYRegD5e4XvopmBnIzq0/9+NU
-X/JKbeDsFmvwzaaabdM6PKVjn/koMt79QUdK4cVlwwYO2zBwWKkrY/FEmD8luzUv
-eTmy0XP99Tutnrvv5GTvvdm8Kpk/1D1gY8v4xpWdvs97/h6/6eDdufZXXWMOJibN
-8+06mUhdV7SwJeId7iqfGua0RHN7zr+9v8/e2bsyv/ZsHRs9kOceVHE8bfutG/uP
-Fy2r2UG27dmZ91bgVG1Bfdf6Nwt+GduRvnxlZ7N75qQJ3u6WZ1N3VgbVo8subHkw
-alW0c8jKIyfeF122tlV28COkPaM2cfNn49q4h1dfKa96cOjUv5a75KM=
-=dgFM
------END PGP MESSAGE-----
+hKRib2R5hqhkZXRhY2hlZMOpaGFzaF90eXBlCqNrZXnEIwEgCCqjgdlQEIgFvDl+5IkR/YkLz6Wb7Gu3TzPRjq8d5jgKp3BheWxvYWTFA0x7ImJvZHkiOnsia2V5Ijp7ImVsZGVzdF9raWQiOiIwMTIwYmRjYTFiMmViYzlhMmY1ZTBlYzkxOTlhM2UxOTFjZTY2ZjBiMmU1ZDk2NGRhOGJiY2NmZjAzMGMwZDkyNzQ2ZTBhIiwiaG9zdCI6ImtleWJhc2UuaW8iLCJraWQiOiIwMTIwMDgyYWEzODFkOTUwMTA4ODA1YmMzOTdlZTQ4OTExZmQ4OTBiY2ZhNTliZWM2YmI3NGYzM2QxOGVhZjFkZTYzODBhIiwidWlkIjoiYmNmOGYxNWI3NzU5ZDZiOTY3ZDliYzJjNTY3OGZjMTkiLCJ1c2VybmFtZSI6ImRvY2VudF9uZXQifSwibWVya2xlX3Jvb3QiOnsiY3RpbWUiOjE1MTE3NzQ2ODUsImhhc2giOiIyNDRmN2RkNzUzZThmNTc3YWRiMmM5NTMxZmY0OWVmYmI5MzA1NDAxNTFkNDM1MTA2NWIzNTk4NWFhMzI5ODg3MDYzMTYxNzkzNTMyNzkzM2RmOTM2ZWFiN2E0M2RlOGQ0MDI0YjM0ODA2NDIyNmVlOTQxNmNhNDQ0NDA0MTQ4NSIsImhhc2hfbWV0YSI6ImZjYzhkZmY0MTIzNzY5MGRiMGZkYTQwMTcxMTFkOGFlMmZmMmJjZWMwMzA1MDAwN2YwYTBkZWQ2M2NkOWQ2MGUiLCJzZXFubyI6MTc1MzEyMn0sInNlcnZpY2UiOnsiaG9zdG5hbWUiOiJtYWNpZWoubGFzeWsuaW5mbyIsInByb3RvY29sIjoiaHR0cHM6In0sInR5cGUiOiJ3ZWJfc2VydmljZV9iaW5kaW5nIiwidmVyc2lvbiI6MX0sImNsaWVudCI6eyJuYW1lIjoia2V5YmFzZS5pbyBnbyBjbGllbnQiLCJ2ZXJzaW9uIjoiMS4wLjM2In0sImN0aW1lIjoxNTExNzc0NjkxLCJleHBpcmVfaW4iOjUwNDU3NjAwMCwicHJldiI6IjRjZTY4OGU3YTUzZmFkMjFmYWZjMmFlNmM5ZDE0OTM0NjNhYjQ4ZWE5MWI1ZjZjOTRmMzQzOTc2OWMwOWQ1OTEiLCJzZXFubyI6MzUsInRhZyI6InNpZ25hdHVyZSJ9o3NpZ8RA5Ni+wQoUnElgfbrGxjZnyHQgR0yNJSYQPW+m1Gfbgtf71fv20PLxe6VuiL6++NUFgn5tM/p2tDXwPjnL2EmyCahzaWdfdHlwZSCkaGFzaIKkdHlwZQildmFsdWXEIP8pBz1zFWQ1TVrwLdXrJ0sfNonKErxruhn/O0CJTh98o3RhZ80CAqd2ZXJzaW9uAQ==
 
 And finally, I am proving ownership of this host by posting or
 appending to this document.
