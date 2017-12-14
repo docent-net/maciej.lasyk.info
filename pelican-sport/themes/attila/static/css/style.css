@@ -1420,19 +1420,29 @@ img {
 }
 
 .post-excerpt p {
-    margin: 0
+    margin: 0;
+    font-size: 1.2em;
+}
+
+.post-content {
+    line-height: 180%;
 }
 
 .post-content a {
-    border-bottom: 1px solid #f26a3d
+    border-bottom: 1px solid #1d1d1d;
+    font-size: 1.0em;
+}
+
+.post-content p {
+    font-size: 1.2em;
 }
 
 .post-content a:hover,
 .post-content a:focus {
-    color: #f26a3d
+    color: #f26a3d;
+    font-size: 1.0em;
 }
 
-.post-content img,
 .post-content .fluid-width-video-wrapper {
     max-width: none;
     width: 110%;
@@ -1860,6 +1870,11 @@ img {
         left: 0;
         top: -1.75em
     }
+
+    .image-left {
+        float: left;
+    }
+
     .post-content img,
     .post-content .fluid-width-video-wrapper {
         width: 100%;
