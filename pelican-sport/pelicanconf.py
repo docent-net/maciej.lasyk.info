@@ -65,6 +65,8 @@ TAG_CLOUD_MAX_ITEMS = 15
 TAG_CLOUD_SORTING = 'alphabetically'
 TAG_CLOUD_BADGE = False
 
+GOOGLE_ANALYTICS='UA-61452-19'
+
 #PIWIK_URL='analytics.lasyk.info'
 #PIWIK_SITE_ID=1
 
