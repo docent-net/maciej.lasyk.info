@@ -24,6 +24,7 @@
                 <section class="post-content">
                 {{ article.content }}
                 </section>
+                {% include 'partials/comments_count.html' %}
             {% else %}
                 <section class="post-excerpt">
                     <p>
@@ -35,7 +36,6 @@
                     </p>
                 </section>
             {% endif %}
-            {% include 'partials/comments_count.html' %}
             </div>
         </article>
     {% endfor %}
