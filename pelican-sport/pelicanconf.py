@@ -5,7 +5,7 @@ from __future__ import unicode_literals
 AUTHOR = u'Maciej Lasyk'
 SITENAME = u'Blog długodystansowy'
 SITEURL = 'http://127.0.0.1:8000/sport'
-HEADER_COVER = 'static/logo-zima.png'
+HEADER_COVER = 'static/logo-zima.jpg'
 HEADER_COLOR = 'black'
 
 HOME_URL = 'http://127.0.0.1:8000/sport'

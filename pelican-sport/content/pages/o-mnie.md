@@ -3,7 +3,7 @@ Category: blog
 Tags: blog
 Author: Maciej Lasyk
 Summary: Zaczynamy!
-Cover: /static/norseman-czesc.png
+Cover: /static/norseman-czesc.jpg
 
 Cześć!
 
