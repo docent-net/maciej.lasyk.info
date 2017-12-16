@@ -3,7 +3,7 @@ Category: triathlon
 Tags: triathlon,książki,trening,norseman
 Author: Maciej Lasyk
 Summary: Kilka słów na temat bardzo wartościowych książek o tematykach wokół - treningowych.
-Cover: /static/gausta.png
+Cover: /static/books.png
 
 Tym razem #qualitycontent na temat przygotowania i trenowania do triathlonu. 
 Akurat zima się zaczyna, więc to ten czas.
