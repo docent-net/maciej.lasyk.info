@@ -4,6 +4,7 @@ Tags: blog
 Author: Maciej Lasyk
 Summary: Zaczynamy!
 Cover: /static/norseman-czesc.jpg
+Status: Draft
 
 Cześć!
 
