@@ -1,191 +1,133 @@
-Title: Triathlon - książki treningowe
+Title: O celach treningowych
 Category: triathlon
-Tags: triathlon,książki,trening,norseman
+Tags: trening,planowanie,cele
 Author: Maciej Lasyk
-Summary: Kilka słów na temat bardzo wartościowych książek o tematykach wokół - treningowych.
-Cover: /static/books.png
+Summary: Czy cele treningowe są nam faktycznie potrzebne? A może chodzi 
+         o realizację marzeń?
+Cover: /static/o-celach-treningowych-top.jpg
+Status: Draft
 
-Tym razem #qualitycontent na temat przygotowania i trenowania do triathlonu. 
-Akurat zima się zaczyna, więc to ten czas.
+Jesienią trenerzy zazwyczaj pytają swoich zawodników o cele na nowy sezon.
+Książki treningowe również wskazują, żeby nie zaczynać treningów bez określenia
+konkretnego celu do zrealizowania. I o tym będzie ten wpis.
 
-Ostatnio wiele osób mnie podpytywało, więc zdecydowałem się napisać skąd 
-czerpię wiedzę (co nie znaczy, że do was nie wrócę - po prostu chciałem dać 
-wszystkim kierunek na długie lata) i jak to wyglądało u mnie w trakcie 
-przygotowań.
+Znam kilka osób, które nie starają się wybierać żadnych konkretnych celów - po
+prostu trenują i startują dla przyjemności nie patrząc bardzo dokładnie gdzie 
+ich nogi poniosą. Mam też znajomych bardzo mocno skoncentrowanych na realizacji 
+szczegółowych postanowień w wybranym sezonie. Sam znajduje się gdzieś pomiędzy. 
 
-To co tu opisuję pozwoliło mi ukończyć [Isklar Norseman Xtreme Triathlon](http://nxtri.com/) z 
-czarną koszulką dokładnie realizując plan, który sobie powziąłem 4 lata temu 
-(czarna koszulka na Norsemanie - nie mniej, nie więcej).
+#### Cele i marzenia
 
-Ja zacząłem przygodę z triathlonem kilka lat temu i co roku czytałem kilka 
-książek, robiłem swoje notatki, konfrontowałem różne podejścia z książek i 
-sprawdzałem co dla mnie jest lepsze a co nie działa. Poznałem też wiele osób, 
-które startują i trenują, leczą, doradzają itd.
+Do czego nam w ogóle mają służyć cele treningowe? Zazwyczaj chodzi o realizację 
+naszych marzeń. Ktoś zawsze chciał ukończyć [tu wpisz jakieś zawody], inna 
+osoba chciała pojechać [nazwa kraju lub krainy geograficznej] a start w 
+zawodach miałby w tym pomóc. Mogą to być też bardzo ambitne, wręcz niemożliwe 
+do realizacji marzenia (wspiąć się na Everest, przepłynąć kajakiem Atlantyk..).
 
-Z tego co zauważyłem to ludzie mają 2 podejścia do startowania w triathlonie: 
-ukończyć tzw. ironmana (czyli pełny dystans: 4km pływania, 180km na rowerze i 
-42.5km biegu; czasem chodzi konkretnie o zawody z cyklu [Ironman](http://www.ironman.com)
-lub nawet Mistrzostwa Świata na Hawajach, czyli [Ironman World Championship](http://eu.ironman.com/triathlon/events/americas/ironman/world-championship.aspx) - 
-tu już poprzeczka bardzo wysoko) i potem często przestają lub też po prostu 
-startowanie co roku dla przyjemności w różnych imprezach i czerpanie z tego 
-max przyjemności przy mniejszym zaangażowaniu treningowym.
+Warto jest sobie uświadomić, jakie marzenia chcemy zrealizować. Ta świadomość 
+pozwoli nam określić sobie cele, które musimy po drodze zrealizować. Czasem
+może się okazać, że dane marzenie jest praktycznie nieosiągalne. Ale czy trzeba
+tracić nadzieję? Nie!
 
-Na tym etapie wspomnę jeszcze, że poza serią **Ironman** czy [Challenge Family](http://www.challenge-family.com/) 
-(czyli zawody raczej płaskie, w których startujący rywalizują z bardzo mocnym 
-naciskiem na czas) pojawiła się też stosunkowo nowa seria [Xtri World Tour](http://xtriworldtour.com/)
-(ta, w której ja biorę udział), składająca się z zawodów o mocno górzystych 
-trasach, często w dość wymagających warunkach (zimno, mokro, stromo).
+![Everest?]({filename}/static/o-celach-treningowych-everest.jpg)
 
-Nie przedłużając już: ja zdecydowałem się kilka lat temu na pierwsze starty w 
-okolicach Krakowa (olimpijka [czyli dystans 1.5km / 40km / 10km] [Frydman 
-Triathlon](http://frydmantriathlon.pl/) oraz [Iron Dragon](http://www.irondragon.pl/) 
-a rok później już górskie "połówki" (czyli połowa dystansu IM: 2/90/21): 
-[Oravaman](http://oravaman.sk/) oraz [Tatraman](http://tatraman.eu/). Dalej 
-sezon przed Norsemanem chciałem wystartować jeszcze w pełnym dystansie na 
-jakichś górskich zawodach, ale nie wyszło. Jak widzicie więc - co sezon 
-podwajałem dystans i upewniałem się, że zawody kończę w górnej połówce, czyli 
-na luzie i z zapasem sporym.
+Przykładowo: ja od 20 lat mam w głowie wejście na Everest (tak, jedno z moich 
+największych marzeń jest bardzo cliché). Zacząłem je realizować wiele lat temu. 
+Zrobiłem kurs skałkowy, dołączyłem do [krakowskiego Klubu Wysokogórskiego](http://kw.krakow.pl/),
+zacząłem się wspinać po Tatrach, w planie miałem Alpy, poznałem ludzi, którzy
+zdobywali szczyty w Himalajach.. czyli zacząłem powoli realizować to swoje
+marzenie. Każdy kolejny rok miał swoje cele (Tatry, Alpy, finansowanie, 
+praca..). 
 
-Pełnego dystansu nie zrobisz pozostając w zdrowiu bez opieki fizjoterapeuty - 
-na to warto zwrócić uwagę. Podobnie - nie wystarczy jeździć na rowerze i 
-biegać. Trzeba jeszcze dobrej opieki na basenie (chyba, że się pływa od 
-dziecka i ma technikę) oraz spersonalizowanego planu na siłowni oraz ćwiczeń 
-funkcjonalnych ogólnorozwojowych. Bardzo pomocna jest też joga - pozwala 
-wsłuchać się w organizm i zapobiec przetrenowaniu (szczególnie istotne gdy 
-trenuje się samemu bez trenera, który to wszystko ogarnia).
+Jednak po drodze się ożeniłem, urodził się Wojtek i.. odpuściłem wspinanie. 
+Albo raczej zawiesiłem do momentu, kiedy przyjdzie czas (posłuchałem rady 
+[Wandy Rutkiewicz](https://en.wikipedia.org/wiki/Wanda_Rutkiewicz), która to
+dość otwarcie pisała, że trzeba być niesamowitym egoistą aby z młodymi dziećmi
+w domu wyjeżdżać w góry wysokie).
 
-W pierwszych sezonach warto te sprawy oddelegować specjalistom i po prostu 
-chodzić na zajęcia (plan treningowy dostosowany do naszych celów i słabości 
-wykonany przez specjalistów, siłownia pod okiem ogarniętej osoby, która zwróci 
-uwagę na to czy wykonujemy prawidłowo ćwiczenia zapisane w planie [lub nawet 
-dopomoże w modyfikacji planu], bardzo dobry, sportowy fizjoterapeuta, który 
-regularnie zrobi ci przegląd i nie dopuści do grubszej kontuzji przy okazji 
-pilnując aby twój rozwój fizjologiczny szedł w dobrym kierunku [czyli zamiast 
-robić samą klatę i bice po prostu rozwiniesz się odpowiednio funkcjonalnie], 
-trener na basenie, który ma doświadczenie w triathlonie [pływanie basenowe nie 
-równa się pływanie na wodzie otwartej w grupie ludzi], dietetyk, ponieważ na 
-długim dystansie organizm nie da rady na samym cukrze i węglowodanach..
+![Relizacja marzeń]({filename}/static/o-celach-treningowych-marzenie.jpg)
 
-No sporo tego. Może się wydawać, że sport bardzo drogi, czasochłonny i bardzo 
-trudny w realizacji swoich planów. Nic bardziej mylnego.
+Marzenie o Evereście ciągle jednak realizuję. Doskonale zdaje sobie sprawę z 
+tego, że aby na niego wejść trzeba doskonałej wydolności organizmu, 
+wytrzymałości i koksu w nogach i rękach. Zebrałem więc inne marzenia, które
+są powiązane ze sportem oraz generowaniem hajsów (czyli wszystko co potrzebne
+w planie Everest) i powoli je pcham do przodu. Może mi się nigdy nie udać,
+jednak sama świadomość, że codziennie jestem coraz bliżej motywuje. A z 
+doświadczenia wiem już, że sam Everest nie jest tak ważny jak cała ta droga 
+przebyta aby na niego wejść. Czyli sytuacja win-win. Wejdę - super, nie wejdę - 
+ciągle super.
 
-Czytając książki, robiąc notatki i próbując zrozumieć ten sport jesteśmy w 
-stanie sami całkiem sporą część tych spraw sobie ogarnąć. Przede wszystkim mam 
-tu na myśli plan treningowy, który jest kluczem do startów. Układanie go pod 
-siebie, dostosowywanie i ciągła dyskusja z samym sobą na temat tego jakie cele 
-i w jaki sposób realizować jest niesamowitą sprawą. Oczywiście nauka tej 
-umiejętności kosztuje sporo czasu, ale poważnie - warto :) Gdy ją posiądziemy 
-to potem już ryzyko kontuzji mocno spadnie, a i nasze czasy na mecie będą 
-lepsze.
+#### "Biegam bo lubię" a cele treningowe
 
-<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-<ins class="adsbygoogle"
-     style="display:block; text-align:center;"
-     data-ad-layout="in-article"
-     data-ad-format="fluid"
-     data-ad-client="ca-pub-6313567533554996"
-     data-ad-slot="2510579126"></ins>
-<script>
-     (adsbygoogle = window.adsbygoogle || []).push({});
-</script>
+Zdarza się też, że ktoś powie "biegam bo lubię" zamiast łączyć sport z 
+marzeniami. Czy takim osobom potrzebne są jakiekolwiek cele treningowe?
 
-No i w końcu tytuły, z których czerpałem wiedzę (jest ich dziewięc, kolejność
-w jakiej czytałem i proponuję):
+To zależy. Jeśli osoba postrzega swoją aktywność jako trening to zdecydowanie
+tak - w końcu trenuje w jakimś celu. Odwrotnie ma osoba, która widzi swoje
+bieganie czy pływanie jako rekreację i chęć życia w zdrowiu i formie (np.
+chce móc jeść więcej słodyczy, a przecież rower świetnie spala tłuszcz czy też
+po prostu - biegając lepiej utrzymać mi sylwetkę).
 
-#### 1. Pytania o triathlon (Dariusz Sidor)
+![Biegam bo lubię]({filename}/static/o-celach-treningowych-biegambolubie.jpg)
 
-Pierwsza pozycja to darmowa książka [Pytania o triathlon](http://xtri.pl/trening/pytania-o-triathlon-darmowy-ebook-o-triathlonie-od-dariusza-sidora/) 
-Dariusz Sidora. Bardzo polecam, ponieważ rozwiewa ona sporo mitów i daje też 
-szansę przemyśleć jeszcze zanim się zabierzemy za treningi czy w ogóle warto i 
-jak to wygląda: 
-[![Pytania o triathlon]({filename}/static/pytania-o-triathlon.png)](http://xtri.pl/trening/pytania-o-triathlon-darmowy-ebook-o-triathlonie-od-dariusza-sidora/)
+W pierwszym przypadku mamy już doczynienia treningiem celowym (choć czasem
+nie musi być to ściśle określony cel, np w danym sezonie nie mamy konkretnego
+startu w głowie bo np. mamy małe dziecko, jednak za kilka lat chcielibyśmy 
+zrobić coś dużego, więc w tym sezonie trenujemy aby trzymać formę).
 
-#### 2. Triathletes Training Bible (Joe Friel)
+#### Horyzont marzeń
 
-Chyba najbardziej rozległy klasyk: Biblia Triathlonistów Joe Friela; 
-ostatnie wydanie jest super (angielskojęzyczne, starsze wydania dostępne 
-języku PL też są ok, tylko mniej uporządkowane); autor Joe Friel to bardzo 
-znany w świecie sportów wytrzymałościowych trener, współzałożyciel 
-[TrainingPeaks](http://www.trainingpeaks.com/) (taka platforma do analizy 
-treningów dla prosów i semi prosów):
- 
-[![Triathletes Training Bible]({filename}/static/tri-training-bible.png)](https://www.amazon.com/Triathletes-Training-Bible-Worlds-Comprehensive/dp/1937715442/ref=dp_ob_title_bk)
- 
-Jednak ta książka może być trochę przytłaczająca, bo opisano w niej praktycznie 
-wszystko. Dobrze przeczytać na jesień przed rozpoczęciem sezonu tak aby sobie 
-wszystko w głowie poukładać. Ta książka jest jednak trochę old - schoolowa.
+Pewnie już domyślasz się o co chodzi po przeczytaniu powyższych akapitów. To 
+proste - chcesz zrealizować marzenie? Wsadź je na horyzont, patrz w jego 
+kierunku codziennie przy okazji spoglądając na to wszystko co po drodze (czyli
+marzenia i cele pośrednie).
 
-#### 3. Well Built Triathlete (Matt Dixon)
- 
-To jest książka dla ludzi, którzy już startują, powyższą biblię przeczytali, 
-mają całkiem spoko wyniki, jednak chcą lepiej a już odbijają się od ściany a 
-powyższa biblia nie odpowiada na pytania dlaczego już nie mają takiego progresu. 
-Matt Dixon jest na prawdę świetnym autorem i triathlonistą (prowadzi zresztą 
-znanych ludzi w ramach firmy [PurplePatch](https://purplepatchfitness.com/)).
+Dlaczego to takie ważne, aby o tym myśleć regularnie? Do wyjaśnienia przyda się 
+nam trochę fizyki (studiowałem to trochę wiem). W kosmosie mamy czarne dziury.
+To takie twory, które wchłaniają wszystko i już nigdy nie wypuszczają. Czarną
+dziurę od obserwatora (czyli nas) oddziela tzw. Horyzont Zdarzeń. To jest coś
+takiego jak filtr półprzepuszczalny, który z jednej strony wpuszcza (światło, 
+fale elektromagnetyczne czy grawitacyjne) a z drugiej nic nie wypuszcza. Czyli
+obserwator nigdy nie zobaczy tego co tam wpadło.
 
-[![Well Built Triathlete]({filename}/static/well-built-triathlete.png)](https://www.amazon.com/Well-Built-Triathlete-Turning-Potential-Performance/dp/1937715116)
+![Horyzont Marzeń]({filename}/static/o-celach-treningowych-realizacja.jpg)
 
-#### 4. Strength Training for Triathletes (Patrick Hagerman)
- 
-Trening triathlonowy bardzo mocno zależy od siły, którą człowiek jest w stanie 
-wygenerować i mocy, którą dysponuje i może utrzymać. Powyższe książki opisują 
-dość dobrze kwestie treningu siłowego, jednak nie rozwiązują tego problemu 
-systematycznie (tzn w Biblii jest opisane to dokładnie wraz z periodyzacją i 
-ćwiczeniami, jednak dość skąpo a Dixon raczej omawia to ogólnikowo). 
-Ta książka ten problem zupełnie rozwiązuje - opisuje wszystko od A do Z. Ja na 
-jej bazuje już kolejny sezon i nic więcej po prostu nie potrzebuję: 
+Wracając do naszych rozważań - wprowadzam tu (jak na fizyka przystało) pojęcie
+Horyzontu Marzeń [tm]. Jeśli twoje marzenie umieścisz poza horyzontem (między 
+nim a czarną dziurą), to nie będziesz o tym marzeniu regularnie myślał (a co za
+tym idzie - nie będziesz regularnie w głowie zastanawiał się jak je 
+zrealizować) - mówiąc kolokwialnie to wessie je czarna dziura. 
 
-[![Strength Training for Triathletes]({filename}/static/strength-training-for-triathletes.png)](https://www.amazon.com/Strength-Training-Triathletes-Triathlon-Endurance/dp/1937715310)
+Nie pamiętając o tym marzeniu nie będziesz robił nic w celu jego osiągnięcia. 
+Będziesz się ciągle od niego oddalał - może się nawet zdarzyć, że zostanie 
+utracone bezpowrotnie (gdybym się obudził w wieku 45 lat nie mając zdrowia 
+potrzebnego do wejścia na Everest oraz realnego pomysłu na finansowanie to
+moje marzenie zostałoby wessane przez ową czarną dziurę bezpowrotnie). 
 
-#### 5. Primal Endurance (Mark Sisson)
+#### Cele na sezon
 
-Powyższe książki mogą trochę przytłoczyć bo dają sporo wiedzy, czasem nie do 
-końca się ze sobą zgadzają plus człowiek musi się jeszcze zastanowić dobrze co 
-tak na prawdę chce osiągnąć, bo bez konkretnych celów to albo się przetrenuje 
-albo wypali w dość krótkim czasie. 
-Dodatkowo dobrze też jest zastanowić się nad żywieniem, które jest przecież 
-bardzo istotne. Te problemy opisuje Mark Sisson w poniższej książce: 
+Już nie przedłużając tych wywodów (dobrnąłeś na prawdę tak daleko? gratulacje!)
+napiszę to co powie ci każdy trener czy książka treningowa - wybierz cele na
+sezon. Jakie? Takie, które zbliżą cię do realizacji twojego marzenia. 
+Przykładowo:
 
-[![Primal Endurance]({filename}/static/primal-endurance.png)](https://www.amazon.com/Primal-Endurance-chronic-carbohydrate-dependency/dp/1939563089)
+1. Chcesz zrobić Ironmana a nie startowałeś jeszcze w triathlonie i nie umiesz 
+pływać ale biegasz regularnie i jeździsz na rowerze?
+    * Cel 1: przepłynąć 1000m kraulem do końca kwietnia bez odpoczynku poniżej 
+godziny.
+    * Cel 2: Ukończyć do końca czerwca triathlon na dystansie sprinterskim
+    * Cel 3: Ukończyć do końca września triathlon na dystansie olimpijskim
+1. Chcesz przebiec [UTMB](http://utmbmontblanc.com/en/) ale na razie jedyne
+"ultra" jakie ci wychodzi to ultra maratony przed TV?
+    * Cel 1: Przebiec bez zatrzymywania i schodzenia do spaceru 10km do końca 
+kwietnia
+    * Cel 2: Osiągnąć czas 4:30min/km na dystansie 100m
+    * Cel 3: Przebiec zawody na dystansie 10km w czasie poniżej 1h:10min
+   
+Proste? Pewnie, że tak. Pamiętaj jednak:
 
-#### 6. Beyond Training (Ben Greenfield)
-
-W skrócie: książka tak na prawdę mówi jak nie spierdolić sobie życia 
-treningami :)
-
-[![Beyond Training]({filename}/static/beyond-training.png)](https://www.amazon.com/Beyond-Training-Mastering-Endurance-Health/dp/1628600128)
-
-#### 7. Deskbound (Kelly Starrett)
-
-Dla nerdów takich jak ja spędzających sporo czasu przed komputerem ta pozycja 
-wg. mnie jest cholernie ważna. Istotna jeśli chce się osiągać dobre wyniki w 
-sporcie i zmniejszać ryzyko kontuzji równocześnie spędzając sporo czasu za 
-biurkiem. 
-Dzięki niej będziemy się więcej ruszać na codzień, mniej leżeć przed TV oraz 
-zrobimy wiele, aby praca przy biurku tak bardzo nam nie szkodziła.
-
-[![Deskbound]({filename}/static/deskbound.png)](https://www.amazon.com/Deskbound-Standing-Up-Sitting-World/dp/1628600586)
-
-#### 8. Developing Endurance (NSCA, 11 autorów)
- 
-Prawie na koniec - super pozycja dostarczająca niskopoziomowej wiedzy na temat 
-tego jak organizm funkcjonuje, jaki wpływ na jego działanie na poziomie 
-mikrokomórkowym mają treningi - pozycja dość naukowa.
-
-Dodatkowo zawiera wiele pomysłów na treningi, opisuje testy, zasady, żywienie,
-trening siłowy - takie trochę "wszystko w jednym" jednak w bardzo szczegółowy
-sposób.
-
-[![Developing Endurance]({filename}/static/developing-endurance.png)](https://www.amazon.com/Developing-Endurance-Performance-Conditioning-Association/dp/0736083278)
-
-#### 9. Developing Core (NSCA, Jeffrey Willardson)
-
-I już na prawdę na koniec: jeśli opisane w powyższych książkach ćwiczenia core 
-nie wystaraczają albo chcesz zbudować pod siebie bardzo ukierunkowane zestawy 
-ćwiczeń. to następująca książka bardzo dokładnie opisuje w jaki sposób określić 
-swoje niedoskonałości oraz jak je poprawiać. Książka wg. mnie bardziej dla 
-fizjoterapeutów lub osób, które bardzo mocno chcą zrozumieć jak działa ich 
-ciało i jak je usprawnić. Opisuje rozwój funkcjonalny pod kątem bardzo wielu
-sportów
-
-[![Developing Core]({filename}/static/developing-core.png)](https://www.amazon.com/Developing-Performance-National-Conditioning-Association/dp/0736095497)
+1. Nie więcej niż 3 cele na sezon. Trzy to już dużo.
+2. Lepiej mierzyć w czas niż w pozycję na zawodach. Nie masz wpływu na formę
+innych startujących, ale na swoją i owszem.
+3. Cele muszą być osiągalne. Mistrzostwo świata IM? Ok, ale tylko jeśli sezon
+wcześniej miałeś czas na pełnym dystansie Ironmana poniżej 8 godzin.
