@@ -62,6 +62,17 @@ ciągle super.
 Zdarza się też, że ktoś powie "biegam bo lubię" zamiast łączyć sport z 
 marzeniami. Czy takim osobom potrzebne są jakiekolwiek cele treningowe?
 
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<ins class="adsbygoogle"
+     style="display:block; text-align:center;"
+     data-ad-layout="in-article"
+     data-ad-format="fluid"
+     data-ad-client="ca-pub-6313567533554996"
+     data-ad-slot="2510579126"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
 To zależy. Jeśli osoba postrzega swoją aktywność jako trening to zdecydowanie
 tak - w końcu trenuje w jakimś celu. Odwrotnie ma osoba, która widzi swoje
 bieganie czy pływanie jako rekreację i chęć życia w zdrowiu i formie (np.
