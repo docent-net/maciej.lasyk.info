@@ -101,7 +101,7 @@ takiego jak filtr półprzepuszczalny, który z jednej strony wpuszcza (światł
 fale elektromagnetyczne czy grawitacyjne) a z drugiej nic nie wypuszcza. Czyli
 obserwator nigdy nie zobaczy tego co tam wpadło.
 
-![Horyzont Marzeń]({filename}/static/o-celach-treningowych-realizacja.jpg)
+![Horyzont Marzeń]({filename}/static/o-celach-treningowych-horyzont.jpg)
 
 Wracając do naszych rozważań - wprowadzam tu (jak na fizyka przystało) pojęcie
 Horyzontu Marzeń [tm]. Jeśli twoje marzenie umieścisz poza horyzontem (między 
@@ -142,3 +142,7 @@ Proste? Pewnie, że tak. Pamiętaj jednak:
 innych startujących, ale na swoją i owszem.
 3. Cele muszą być osiągalne. Mistrzostwo świata IM? Ok, ale tylko jeśli sezon
 wcześniej miałeś czas na pełnym dystansie Ironmana poniżej 8 godzin.
+
+![Horyzont Marzeń]({filename}/static/o-celach-treningowych-realizacja.jpg)
+
+fff
