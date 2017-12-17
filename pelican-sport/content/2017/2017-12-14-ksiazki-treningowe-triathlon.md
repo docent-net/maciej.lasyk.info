@@ -78,6 +78,17 @@ umiejętności kosztuje sporo czasu, ale poważnie - warto :) Gdy ją posiądzie
 to potem już ryzyko kontuzji mocno spadnie, a i nasze czasy na mecie będą 
 lepsze.
 
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<ins class="adsbygoogle"
+     style="display:block; text-align:center;"
+     data-ad-layout="in-article"
+     data-ad-format="fluid"
+     data-ad-client="ca-pub-6313567533554996"
+     data-ad-slot="2510579126"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
 No i w końcu tytuły, z których czerpałem wiedzę (jest ich dziewięc, kolejność
 w jakiej czytałem i proponuję):
 
