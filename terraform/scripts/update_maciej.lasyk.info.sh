@@ -1,7 +1,8 @@
 #!/bin/bash
 GIT=/usr/bin/git
-
 export PROJDIR=/srv/maciej.lasyk.info
+
+$GIT clone https://github.com/docent-net/maciej.lasyk.info.git ${PROJDIR}
 cd ${PROJDIR}
 $GIT fetch --all
 $GIT reset --hard origin/master

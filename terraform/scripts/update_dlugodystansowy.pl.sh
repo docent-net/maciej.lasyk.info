@@ -1,7 +1,8 @@
 #!/bin/bash
 GIT=/usr/bin/git
-
 export PROJDIR=/srv/dlugodystansowy.pl
+
+$GIT clone https://github.com/docent-net/dlugodystansowy.pl.git ${PROJDIR}
 cd ${PROJDIR}
 $GIT fetch --all
 $GIT reset --hard origin/master
