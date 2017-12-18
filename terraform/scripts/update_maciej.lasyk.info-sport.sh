@@ -12,3 +12,6 @@ docker run --name pelican-sport -v ${PROJDIR}/pelican-sport/content:/srv/content
     -v ${PROJDIR}/pelican-sport/publishconf.py:/srv/publishconf.py:Z \
     -v ${PROJDIR}/pelican-sport/themes:/srv/themes:Z \
     -v ${PROJDIR}/pelican-sport/plugins:/srv/plugins:Z gcr.io/maciej-lasyk-info/pelican-f25.1
+
+rm -rf /srv/maciej.lasyk.info/pelican/output/sport
+mv /srv/maciej.lasyk.info/pelican-sport/output /srv/maciej.lasyk.info/pelican/output/sport

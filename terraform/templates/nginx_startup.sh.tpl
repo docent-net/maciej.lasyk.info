@@ -7,7 +7,6 @@ git clone https://github.com/docent-net/maciej.lasyk.info.git /srv/maciej.lasyk.
 
 sh /srv/maciej.lasyk.info/terraform/scripts/update_maciej.lasyk.info.sh
 sh /srv/maciej.lasyk.info/terraform/scripts/update_maciej.lasyk.info-sport.sh
-mv /srv/maciej.lasyk.info/pelican-sport/output /srv/maciej.lasyk.info/pelican/output/sport
 
 docker run -d -p 80:80 --name nginx \
     -v /srv/maciej.lasyk.info/terraform/templates/nginx_health_check.conf:/etc/nginx/default.d/health_check.conf:Z \

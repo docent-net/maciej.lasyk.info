@@ -144,5 +144,3 @@ innych startujących, ale na swoją i owszem.
 wcześniej miałeś czas na pełnym dystansie Ironmana poniżej 8 godzin.
 
 ![Horyzont Marzeń]({filename}/static/o-celach-treningowych-realizacja.jpg)
-
-fff
