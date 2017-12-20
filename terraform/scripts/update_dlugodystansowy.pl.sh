@@ -12,4 +12,4 @@ docker run --env LC_ALL=pl_PL --name pelican-dlugodystansowy.pl -v ${PROJDIR}/pe
     -v ${PROJDIR}/pelican/pelicanconf.py:/srv/pelicanconf.py:Z \
     -v ${PROJDIR}/pelican/publishconf.py:/srv/publishconf.py:Z \
     -v ${PROJDIR}/pelican/themes:/srv/themes:Z \
-    -v ${PROJDIR}/pelican/plugins:/srv/plugins:Z gcr.io/maciej-lasyk-info/pelican-f26-1
+    -v ${PROJDIR}/pelican/plugins:/srv/plugins:Z gcr.io/maciej-lasyk-info/pelican-f26-2
