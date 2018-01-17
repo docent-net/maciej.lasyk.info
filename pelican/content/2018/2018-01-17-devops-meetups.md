@@ -15,6 +15,7 @@ So I'll be giving 2 talks today:
   provisioning w/Terraform
 - [More about systemd](https://www.meetup.com/SysOpsPolska/events/245911108/?eventId=245911108)
 
-URL for slides:
+URLs for slides:
+
 - [Terraform and GCP](https://maciej.lasyk.info/slides/devopskrk-gcp-terraform/)
 - [systemd](https://maciej.lasyk.info/slides/sysops-devops-systemd/)
