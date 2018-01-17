@@ -2,5 +2,5 @@
   font-family: 'Merriweather';
   font-style: normal;
   font-weight: 400;
-  src: local('Merriweather'), local('Merriweather-Regular'), url(http://127.0.0.1:8666/Merriweather-Regular.ttf) format('truetype');
+  src: local('Merriweather'), local('Merriweather-Regular'), url(https://maciej.lasyk.info/slides/devopskrk-gcp-terraform/Merriweather-Regular.ttf) format('truetype');
 }
