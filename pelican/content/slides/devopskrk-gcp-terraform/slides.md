@@ -170,3 +170,8 @@ template: default
 template: default
 
 # Thanks, Q&A?
+
+.left[
+- slides: [https://maciej.lasyk.info/2018/Jan/17/devops-meetups-krakow/](https://maciej.lasyk.info/2018/Jan/17/devops-meetups-krakow/)
+- code: [https://github.com/docent-net/dlugodystansowy.pl](https://github.com/docent-net/dlugodystansowy.pl)
+]
