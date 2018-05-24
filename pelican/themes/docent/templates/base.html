@@ -58,8 +58,10 @@
     <div id="feedsbar">
         <ul>
             {% for page in PAGES %}
+                {% if page.title != 'Privacy policy' %}
                 <li><a href="{{ SITEURL }}/{{ page.url }}">{{ page.title }}</a>
-                    {% if not loop.last %} ::{% endif %}</li>
+                    {% if not loop.last and PAGES|length > 2 %} ::{% endif %}</li>
+                {% endif %}
             {% endfor %}
         </ul>
     </div>
