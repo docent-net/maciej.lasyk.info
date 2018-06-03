@@ -17,6 +17,11 @@ variable region {
   default = "us-central1"
 }
 
+variable zone {
+  type = "string"
+  default = "us-central1-a"
+}
+
 provider "google" {
   project = "${var.google_project_id}"
   region = "${var.region}"

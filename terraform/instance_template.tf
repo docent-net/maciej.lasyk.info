@@ -16,6 +16,7 @@ resource "google_compute_instance_template" "ml-instance-template" {
   }
 
   disk {
+    device_name = "persistent-disk-0"
     source_image = "centos-cloud/centos-7"
   }
 
@@ -34,17 +35,5 @@ resource "google_compute_instance_template" "ml-instance-template" {
   service_account {
     email = "${google_service_account.ml-instance-service-account.email}"
     scopes = ["userinfo-email", "compute-ro", "storage-ro"]
-  }
-
-  // it is here to make sure that instance group created via
-  // local-exec will be removed before this http health check
-  // (otherwise destroy will fail as it depends on instance group)
-  provisioner "local-exec" {
-    when    = "destroy"
-    command = <<EOT
-        gcloud beta compute instance-groups managed \
-        delete ml-instance-group-manager \
-        --region=${var.region} || true
-    EOT
   }
 }
