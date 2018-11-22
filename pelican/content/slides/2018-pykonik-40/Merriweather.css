@@ -1,0 +1,6 @@
+@font-face {
+  font-family: 'Merriweather';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Merriweather'), local('Merriweather-Regular'), url(https://maciej.lasyk.info/slides/2018-pykonik-40/Merriweather-Regular.ttf) format('truetype');
+}
