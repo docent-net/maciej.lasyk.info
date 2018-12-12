@@ -4,7 +4,7 @@ Tags: python, pip, rundeck
 Author: Maciej Lasyk
 Summary: about problems with virtualenvs in Python
 
-So latetly while automating some jobs with [Rundeck](https://www.rundeck.org)
+So lately while automating some jobs with [Rundeck](https://www.rundeck.org)
 I came across a problem:
 
 ```bash
@@ -15,17 +15,19 @@ virtual-env-directory/bin/pip:
 bad interpreter: Permission denied
 ```
 
-Wow, where did it came from?
+Wow, where did it come from?
 
-This works perfectly (running this PIP command) from the CLI. So why under
+This pip command works perfectly from the CLI. So why under
 Rundeck it fails?
 
 So I found out, that this is due to shebang length limitation. On Linux it just
 can't be longer than 128 characters ([see BINPRM_BUF_SIZE
 here](https://github.com/torvalds/linux/blob/master/include/uapi/linux/binfmts.h#L19)).
 
+And Rundeck changes this path a bit (this is due to job configuration I use).
+
 So as I didn't want to recompile my Kernel for that to make it work I simply 
-made sure that the whole shebang will fit the 128 chars limit by shortening
+made sure that the whole shebang would fit the 128 chars limit by shortening
 the path mentioned in error above.
 
 There's also another way - one could create a wrapper script that would run
