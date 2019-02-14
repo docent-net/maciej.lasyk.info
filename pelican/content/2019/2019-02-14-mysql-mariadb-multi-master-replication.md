@@ -161,7 +161,7 @@ see if no problems were reported: **SHOW WARNINGS;**
 
 And that's it.
 
-#### Debugging problems
+#### Debugging and solbing problems
 
 You will probably hit some problems during setting this up for the first time.
 Some helpful commands:
@@ -173,6 +173,9 @@ replication: **RESET SLAVE 'master_name' all**; afterwards you need to
 **STOP ALL SLAVES;** and reconfigure proper **gtid_slave_pos** by **SET GLOBAL...
 so check current GTID and replace the incorrect part with the proper one). Now 
 again **CHANGE MASTER...** and **START SLAVE master_name;**
+1. If you encounter replication error and resolve it somehow than in order to 
+skip it you will need to: **STOP SLAVE 'master_name'; SET GLOBAL SQL_SLAVE_SKIP_COUNTER = 1; START SLAVE 'master_name';**
+This way you can skip one error (increase error counter to skip more than one).
  
 ## Helpful resources ##
 
