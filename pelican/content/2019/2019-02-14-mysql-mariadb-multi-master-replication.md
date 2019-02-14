@@ -45,7 +45,7 @@ Last, but not least - I used mariadb-server version **10.1.26**.
 
 #### 1. Take backups of both masters.
 
-Just in case. Standard practice.
+Just in case.
 
 #### 2. Prepare your masters' configurations
 
