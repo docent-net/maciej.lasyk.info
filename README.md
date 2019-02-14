@@ -42,3 +42,8 @@ GCP Instance managers has ability to rolling replace instances. We just need a
 trigger. And for that purposes we use AppEngine which provides a cron-like 
 scheduler. The only application feature is to invoke API request to the 
 instance manager endpoint. 
+
+## Running on bare-metal VMs under systemd-nspawn
+
+This is actual way I'm running this blog (moved away from Google Cloud). 
+However the deployment automation code is still not published.
