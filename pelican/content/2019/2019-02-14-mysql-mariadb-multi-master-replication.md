@@ -175,7 +175,7 @@ so check current GTID and replace the incorrect part with the proper one). Now
 again **CHANGE MASTER...** and **START SLAVE master_name;**
 1. If you encounter replication error and resolve it somehow than in order to 
 skip it you will need to: **STOP SLAVE 'master_name'; SET GLOBAL SQL_SLAVE_SKIP_COUNTER = 1; START SLAVE 'master_name';**
-This way you can skip one error (increase error counter to skip more than one).
+This way you can skip one error (increase error counter to skip more than one)
  
 ## Helpful resources ##
 
