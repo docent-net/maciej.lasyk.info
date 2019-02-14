@@ -20,7 +20,8 @@ STATIC_PATHS = [
     'images',
     'slides',
     'keybase.txt',
-    'static'
+    'static',
+    'favicon.ico'
     ]
 
 ARTICLE_EXCLUDES = [
