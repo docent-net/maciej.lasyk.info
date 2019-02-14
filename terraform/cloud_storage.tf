@@ -3,6 +3,7 @@ resource "google_storage_bucket" "ml-cloud_storage_bucket" {
   name     = "${var.ml-cloud_storage_bucket_name}"
   location = "US"
   storage_class = "MULTI_REGIONAL"
+  force_destroy = true
 }
 
 resource "google_storage_bucket_acl" "ml-cloud_storage_bucket-acl" {
