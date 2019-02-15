@@ -57,12 +57,8 @@
 
     <div id="feedsbar">
         <ul>
-            {% for page in PAGES %}
-                {% if page.title != 'Privacy policy' %}
-                <li><a href="{{ SITEURL }}/{{ page.url }}">{{ page.title }}</a>
-                    {% if not loop.last and PAGES|length > 2 %} ::{% endif %}</li>
-                {% endif %}
-            {% endfor %}
+            <li><a href="https://github.com/docent-net/conferences">My talks</a></li>
+            <li><a href="{{ SITEURL }}/pages/contact">Contact</a></li>
         </ul>
     </div>
 
