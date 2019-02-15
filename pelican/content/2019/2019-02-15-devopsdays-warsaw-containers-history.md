@@ -10,7 +10,7 @@ Last year I gave a talk about history of Linux Containers during
 [Devopsdays Poland](https://devopsdays.pl/).
 
 Preparing this presentation was very interesting for me - I had to go through
-quite a history of computing, understand business decisions behind some
+quite a history of computing, understand business cases behind some
 decisions and explain that to the audience. In the end it was a bit chaotic,
 however feedback was great.
 
