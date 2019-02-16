@@ -20,6 +20,6 @@ You can watch video here:
 
 And slides are here:
 
-[https://maciej.lasyk.info/slides/2018-devopsdays-poland-history-of-linux-containers/](https://maciej.lasyk.info/slides/2018-devopsdays-poland-history-of-linux-containers/)
+[https://maciej.lasyk.info/slides/2018-devopsdays-warsaw-quo-vadis-containers/](https://maciej.lasyk.info/slides/2018-devopsdays-warsaw-quo-vadis-containers/)
 
 Enjoy!
