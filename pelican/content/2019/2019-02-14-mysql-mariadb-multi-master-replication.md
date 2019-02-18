@@ -161,7 +161,7 @@ see if no problems were reported: **SHOW WARNINGS;**
 
 And that's it.
 
-#### Debugging and solbing problems
+#### Debugging and solving problems
 
 You will probably hit some problems during setting this up for the first time.
 Some helpful commands:
