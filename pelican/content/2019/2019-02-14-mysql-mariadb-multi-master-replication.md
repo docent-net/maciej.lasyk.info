@@ -166,8 +166,12 @@ And that's it.
 You will probably hit some problems during setting this up for the first time.
 Some helpful commands:
 
-1. Resetting master in order to create once again data backups for uploading
-to slaves: **RESET MASTER** (run this on master)
+##### Resetting master 
+
+E.g. in order to create once again data backups for uploading to slaves: 
+
+**RESET MASTER** (run this on master)
+
 1. Resetting one slave in order to recreate and reconfigure particular 
 replication: 
   1. **RESET SLAVE 'master_name' all**
