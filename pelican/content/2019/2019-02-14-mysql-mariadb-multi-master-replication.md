@@ -172,14 +172,19 @@ E.g. in order to create once again data backups for uploading to slaves:
 
 **RESET MASTER** (run this on master)
 
-1. Resetting one slave in order to recreate and reconfigure particular 
-replication: 
+##### Resetting one slave
+
+E.g. in order to recreate and reconfigure particular replication:
+ 
   1. **RESET SLAVE 'master_name' all**
   1. afterwards you need to **STOP ALL SLAVES;** 
   1. set proper **gtid_slave_pos** by **SET GLOBAL... (check current GTID and replace the incorrect part with the proper one)
   1. again **CHANGE MASTER...** and **START SLAVE master_name;**
-1. If you encounter replication error and resolve it somehow than in order to 
-skip it you will need to: 
+
+##### If you encounter replication error
+ 
+... and resolve it somehow than in order to skip it you will need to:
+ 
   1. **STOP SLAVE 'master_name'; 
   1. SET GLOBAL SQL_SLAVE_SKIP_COUNTER = 1; 
   1. START SLAVE 'master_name';**
