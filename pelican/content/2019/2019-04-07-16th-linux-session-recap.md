@@ -43,8 +43,8 @@ Last but not least - some time ago one of [tweets](https://twitter.com/benbreard
 <center>![systemd ftw]({filename}/images/ben-systemd.png)</center>
 
 I liked this t-shirt very much, and as I always try to teach more and more people about good things of systemd therefore
-I decided to prepare similar t-shirt for this event. Here it is (you can't really see the sentence, but believe me -it's
-there ;) ):
+I decided to prepare similar t-shirt for this event. Here it is (you can't really see the sentence, but believe me - 
+it's there ;) ):
 
 <center>![systemd ftw]({filename}/images/everybody-loves-systemd.jpg)</center>
 
