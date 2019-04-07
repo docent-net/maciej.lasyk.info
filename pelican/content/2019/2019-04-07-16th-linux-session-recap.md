@@ -1,6 +1,6 @@
 Title: Recap from 16th Linux Session @Wrocław
 Category: tech
-Tags: containers, conferences, devops, talks, linux
+Tags: containers, conferences, devops, talks, linux, fedora
 Author: Maciej Lasyk
 Summary: Summary from my stay @Wrocław during yet another great conference
 
@@ -37,5 +37,15 @@ performance analysis and planning, [Blender](https://www.blender.org/) for video
 [sport - related podcast](https://dlugodystansowy.pl).
 
 Slides from this lightning talk are here: [https://maciej.lasyk.info/slides/16th-linux-session-lt](https://maciej.lasyk.info/slides/16th-linux-session-lt) 
+
+Last but not least - some time ago one of [tweets](https://twitter.com/benbreardjr/status/1113122811042848768) draw my attention:
+
+<center>![systemd ftw]({filename}/images/ben-systemd.png)</center>
+
+I liked this t-shirt very much, and as I always try to teach more and more people about good things of systemd therefore
+I decided to prepare similar t-shirt for this event. Here it is (you can't really see the sentence, but believe me -it's
+there ;) ):
+
+<center>![systemd ftw]({filename}/images/everybody-loves-systemd.jpg)</center>
 
 Thank you guys and see you next year!
