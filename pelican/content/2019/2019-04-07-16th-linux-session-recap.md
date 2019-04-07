@@ -28,7 +28,8 @@ thanks guys! So this time I talked about security of Linux containers (one more 
 [16th-linux-session-slides.pdf](http://maciej.lasyk.info/slides/16th-linux-session-slides.pdf)
 </center>
 
-Also I decided to prepare a lightning - talk about one of my hobbies: long - distance training and sport and how Linux
+Also I decided to prepare a lightning - talks. First about [sshuttle](https://github.com/sshuttle/sshuttle) and the
+second one about my hobby which is a long - distance training and sport and how Linux
 and open source software helps me with that. 2 years ago I finished [Norseman Xtreme Triahlon](https://nxtri.com/) - 
 during this lightning talk I described briefly how I use [GoldenCheetah](https://www.goldencheetah.org) for my workout 
 performance analysis and planning, [Blender](https://www.blender.org/) for video analysis of my swimming stroke and 
