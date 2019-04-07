@@ -35,6 +35,6 @@ performance analysis and planning, [Blender](https://www.blender.org/) for video
 [Audacity](https://www.audacityteam.org/) for audio editing and working on content of my 
 [sport - related podcast](https://dlugodystansowy.pl).
 
-Slides from thihs lightning talk are here: 
+Slides from this lightning talk are here: [https://maciej.lasyk.info/slides/16th-linux-session-lt](https://maciej.lasyk.info/slides/16th-linux-session-lt) 
 
 Thank you guys and see you next year!
