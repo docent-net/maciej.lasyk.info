@@ -13,9 +13,9 @@ something new. And have a beer or two or more ;)
 From all those talks I attended in I'd like to say that two draw my attention quite close:
 
 1. **Performant filtering of network packets with BPF** by [Michał Rostecki](https://twitter.com/mrostecki?lang=en).
-   Michał works around [Cilium](https://cilium.io/) at [Suse](https://www.suse.com/) and during his talk I learn a bit
+   Michał works around [Cilium](https://cilium.io/) at [Suse](https://www.suse.com/) and during his talk I learnt a bit
    about how current state of network filtering works in Linux Kernel, what are different methods of filtering / routing
-   and where to find one of the nest documentation about BPF (that is on Cilium documentation pages: [https://cilium.readthedocs.io/en/latest/bpf/](https://cilium.readthedocs.io/en/latest/bpf/)).
+   and where to find one of the best documentation about BPF (that is on Cilium documentation pages: [https://cilium.readthedocs.io/en/latest/bpf/](https://cilium.readthedocs.io/en/latest/bpf/)).
 1. **Own email server - hows and whys** by Błażej Święcicki (Błażej, do you exist on internets at all? ;) ). This talk
    started interesting discussion about privacy of our communication. We learnt how it looks like to host own email 
    service these days. Personally I do host my own mail server thus I was interested in challenges Błażej had to accept 
