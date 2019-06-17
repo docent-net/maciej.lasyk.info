@@ -7,19 +7,18 @@ Summary: A few words about SRE related talks I gave recently
 <center>![Kielce!]({filename}/images/maciek-sre.jpg)</center>
 
 Some time ago a friend of mine, who is a co - organizer of [Geecon](https://geecon.org/)
-(thanks [Ags](https://twitter.com/ags313)!) asked me whether I could give a 
-talk about "what to do beside developing a software: how to maintain it? Maciek,
-you know the best and our conference needs this kind of discussions".
+(thanks [Ags](https://twitter.com/ags313)!) asked me about giving a 
+talk about "how to maintain applications on production".
 
-So I thought that instead of some generic talk about "how to maintain 
-applications on production" I'll work on a presentation where I would describe
+So I thought that instead of some generic talk I'll work on a presentation 
+where I would describe 
 in details how we worked on reliability matters @[Codewise](https://codewise.com/).
 And the story should be interesting to people, as our company is well known for
-running low - latency, high traffic systems (400k/s total).
+running low - latency, high traffic systems (400k requests/s total).
 
 <center>![Poznań!]({filename}/images/maciek-devopsdays-poznan.jpg)</center>
 
-And I run this presentation three times, second even as a keynote during 
+I run this presentation three times, second even as a keynote during 
 [DevopsDays Poznań](https://devopsdays.org/events/2019-poznan/welcome/) event.
 
 The interesting part is originally this presentation was meant to tell a story
