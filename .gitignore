@@ -14,3 +14,4 @@ tmp/*
 .terraform/*
 *.backup
 *.iml
+pelican/output
