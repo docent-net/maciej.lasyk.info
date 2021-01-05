@@ -5,9 +5,11 @@ RUN microdnf -y install python3-pip gcc make libxslt-devel redhat-rpm-config \
     python3-devel langpacks-pl python3-lxml libxml2-devel libtiff-devel \
     libjpeg-devel libzip-devel freetype-devel lcms2-devel libwebp-devel tcl-devel \
     tk-devel
-COPY pelican /srv/pelican
+COPY pelican/requirements.txt /srv/requirements.txt
 RUN pip install --upgrade pip
-RUN pip install -r /srv/pelican/requirements.txt
+RUN pip install -r /srv/requirements.txt
+
+COPY pelican /srv/pelican
 ENV PYTHONPATH /srv/pelican
 RUN [ "/usr/local/bin/pelican", "/srv/pelican/content", "-o", "/srv/pelican/output", "-s", "/srv/pelican/publishconf.py" ]
 
